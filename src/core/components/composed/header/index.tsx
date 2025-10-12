@@ -15,7 +15,7 @@ export function Header() {
             <PureUISidebarToggleButton />
 
             <div className="flex items-center gap-1">
-              <Link href="/pure-ui" className="flex items-center gap-2">
+              <Link href="/" className="flex items-center gap-2">
                 <div className="relative bg-foreground p-0.5 rounded-[7px] overflow-hidden shadow-2xl max-md:hidden">
                   <svg
                     viewBox="0 0 32 32"
