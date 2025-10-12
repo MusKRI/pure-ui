@@ -94,5 +94,8 @@ export const generateStaticPaths = (): Effect.Effect<
  * }
  * ```
  */
-export const getStaticPaths = (): Promise<readonly StaticPath[]> =>
-  Effect.runPromise(generateStaticPaths());
+export const getStaticPaths = async (): Promise<StaticPath[]> => {
+  const paths = await Effect.runPromise(generateStaticPaths());
+  // Convert readonly array to mutable array for Next.js compatibility
+  return [...paths];
+};
