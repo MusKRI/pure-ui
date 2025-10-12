@@ -1,0 +1,20 @@
+.showcase pre code {
+  white-space: pre-wrap;
+  font-family: var(--font-noto-mono);
+  font-size: 14px;
+}
+
+.showcase code {
+  counter-reset: step;
+  counter-increment: step 0;
+}
+
+.showcase code .line::before {
+  content: counter(step);
+  counter-increment: step;
+  width: 1rem;
+  margin-right: 1.5rem;
+  display: inline-block;
+  text-align: right;
+  color: var(--color-muted-foreground);
+}

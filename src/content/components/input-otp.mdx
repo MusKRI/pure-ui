@@ -1,0 +1,121 @@
+---
+title: Input OTP
+description: Accessible one-time password component with copy paste functionality. Built on top of input-otp package.
+provider: shadcn
+features:
+  - "Bordered and underlined style variants"
+  - "Multiple size options"
+  - "Smooth animated number transitions"
+  - "Interactive focus indicators"
+  - "Copy paste functionality and mobile autofill support"
+  - "Accessible design"
+---
+
+<ComponentShowcase name="input-otp-demo" />
+
+## Installation
+
+<Tabs defaultValue="terminal">
+  <TabsList>
+    <TabsTrigger value="terminal">
+      <Terminal className="w-4 h-4" />
+      Terminal
+    </TabsTrigger>
+    <TabsTrigger value="manual">
+      <Code2 className="w-4 h-4" />
+      Manual
+    </TabsTrigger>
+  </TabsList>
+  <TabsContent value="terminal">
+    <InstallationCommands
+      type="registry-installation"
+      registryPath="components/input-otp"
+    />
+  </TabsContent>
+  <TabsContent value="manual">
+    <Steps currentStep={1}>
+      <Step stepNumber={1} title="Install dependencies">
+        <InstallationCommands
+          type="package-installation"
+          npmCommand="npm install input-otp motion class-variance-authority clsx"
+          pnpmCommand="pnpm add input-otp motion class-variance-authority clsx"
+          yarnCommand="yarn add input-otp motion class-variance-authority clsx"
+          bunCommand="bun add input-otp motion class-variance-authority clsx"
+        />
+      </Step>
+      <Step
+        stepNumber={2}
+        title="Add cn function to your utils"
+      >
+        ```ts
+        import { clsx, type ClassValue } from "clsx";
+        import { twMerge } from "tailwind-merge";
+
+        export function cn(...inputs: ClassValue[]) {
+          return twMerge(clsx(inputs));
+        }
+        ```
+      </Step>
+      <Step
+        stepNumber={3}
+        title="Copy and paste the following code into your project"
+        isLast
+      >
+        <ComponentCodePreview name="input-otp" />
+      </Step>
+    </Steps>
+
+  </TabsContent>
+</Tabs>
+
+## Usage
+
+```tsx
+<InputOTP maxLength={6}>
+  <InputOTPGroup>
+    <InputOTPSlot index={0} />
+    <InputOTPSlot index={1} />
+    <InputOTPSlot index={2} />
+  </InputOTPGroup>
+  <InputOTPSeparator />
+  <InputOTPGroup>
+    <InputOTPSlot index={3} />
+    <InputOTPSlot index={4} />
+    <InputOTPSlot index={5} />
+  </InputOTPGroup>
+</InputOTP>
+```
+
+## Examples
+
+### Disabled
+
+<ComponentShowcase name="input-otp-disabled-demo" />
+
+### Sizes
+
+You can use `slotSize` prop on `InputOTP` component to change the size of the input OTP slots. The default size is `md`.
+
+<ComponentShowcase name="input-otp-sizes-demo" />
+
+### Variants
+
+You can use `variant` prop on `InputOTP` component to change the variant of the input OTP. The default variant is `bordered`.
+
+<ComponentShowcase name="input-otp-variants-demo" />
+
+### Separator
+
+You can use `InputOTPSeparator` component to add a separator between the input OTP slots.
+
+<ComponentShowcase name="input-otp-separator-demo" />
+
+### Patterns
+
+You can use `pattern` prop on `InputOTP` component to restrict the input to a specific pattern. It accepts a regular expression string.
+
+<ComponentShowcase name="input-otp-patterns-demo" />
+
+### Controlled
+
+<ComponentShowcase name="input-otp-controlled-demo" />

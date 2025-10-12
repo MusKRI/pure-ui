@@ -1,0 +1,122 @@
+---
+title: Accordion
+description: An accordion is a vertically stacked set of expandable panels, each containing an interactive header and an associated content area..
+features:
+  - "Full keyboard navigation"
+  - "Can be controlled or uncontrolled"
+  - "Can expand one or multiple items"
+  - "Animated with Motion"
+  - "Animated indicator icon"
+  - "Respects reduce motion with system settings and through props"
+---
+
+<ComponentShowcase name="accordion-demo" />
+
+## Installation
+
+<Tabs defaultValue="terminal">
+  <TabsList>
+    <TabsTrigger value="terminal">
+      <Terminal className="w-4 h-4" />
+      Terminal
+    </TabsTrigger>
+    <TabsTrigger value="manual">
+      <Code2 className="w-4 h-4" />
+      Manual
+    </TabsTrigger>
+  </TabsList>
+  <TabsContent value="terminal">
+    <InstallationCommands
+      type="registry-installation"
+      registryPath="components/accordion"
+    />
+  </TabsContent>
+  <TabsContent value="manual">
+    <Steps currentStep={1}>
+      <Step stepNumber={1} title="Install dependencies">
+        <InstallationCommands
+          type="package-installation"
+          npmCommand="npm install @base-ui-components/react motion class-variance-authority clsx tailwind-merge"
+          pnpmCommand="pnpm add @base-ui-components/react motion class-variance-authority clsx tailwind-merge"
+          yarnCommand="yarn add @base-ui-components/react motion class-variance-authority clsx tailwind-merge"
+          bunCommand="bun add @base-ui-components/react motion class-variance-authority clsx tailwind-merge"
+        />
+      </Step>
+      <Step
+        stepNumber={2}
+        title="Copy and paste the following code into your project"
+        isLast
+      >
+        <ComponentCodePreview name="accordion" />
+      </Step>
+    </Steps>
+  </TabsContent>
+</Tabs>
+
+## Anatomy
+
+```tsx
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionPanel,
+} from "@/components/ui/accordion";
+
+<Accordion>
+  <AccordionItem>
+    <AccordionHeader>
+      <AccordionTrigger />
+    </AccordionHeader>
+    <AccordionPanel />
+  </AccordionItem>
+</Accordion>;
+```
+
+## Usage
+
+### Variant
+
+You can use the `variant` prop to change the variant of the accordion.
+
+<ComponentShowcase name="accordion-variant-demo" />
+
+### Multiple Expanded
+
+Use the `multiple` prop to allow multiple items to be expanded at the same time.
+
+<ComponentShowcase name="accordion-multiple-expanded-demo" />
+
+### Custom Indicator
+
+<ComponentShowcase name="accordion-custom-indicator-demo" />
+
+### Disabled State
+
+<ComponentShowcase name="accordion-disabled-state-demo" />
+
+### Reduce Motion
+
+<ComponentShowcase name="accordion-reduce-motion-demo" />
+
+## Animation Presets
+
+### Fade
+
+<ComponentShowcase name="accordion-fade-demo" />
+
+### Perspective
+
+<ComponentShowcase name="accordion-perspective-demo" />
+
+### Perspective Blur
+
+<ComponentShowcase name="accordion-perspective-blur-demo" />
+
+### Scale
+
+<ComponentShowcase name="accordion-scale-demo" />
+
+### Slide
+
+<ComponentShowcase name="accordion-slide-demo" />

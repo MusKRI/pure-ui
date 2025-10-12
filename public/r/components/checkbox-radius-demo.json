@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox-radius-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "checkbox"
+  ],
+  "files": [
+    {
+      "path": "src/registry/default/components/examples/checkbox/checkbox-radius-demo.tsx",
+      "content": "import { Checkbox } from \"@/registry/default/components/ui/checkbox\";\r\n\r\nexport function CheckboxRadiusDemo() {\r\n  return (\r\n    <div className=\"flex flex-col gap-5\">\r\n      <label className=\"flex items-center gap-2 cursor-pointer\">\r\n        <Checkbox radius=\"none\" />\r\n        <span>Sharp Corners</span>\r\n      </label>\r\n      <label className=\"flex items-center gap-2 cursor-pointer\">\r\n        <Checkbox radius=\"sm\" />\r\n        <span>Subtle Rounding</span>\r\n      </label>\r\n\r\n      <label className=\"flex items-center gap-2 cursor-pointer\">\r\n        <Checkbox radius=\"default\" />\r\n        <span>Standard Appearance</span>\r\n      </label>\r\n\r\n      <label className=\"flex items-center gap-2 cursor-pointer\">\r\n        <Checkbox radius=\"lg\" />\r\n        <span>Softer Edges</span>\r\n      </label>\r\n\r\n      <label className=\"flex items-center gap-2 cursor-pointer\">\r\n        <Checkbox radius=\"full\" />\r\n        <span>Completely Rounded</span>\r\n      </label>\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

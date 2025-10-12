@@ -1,0 +1,107 @@
+---
+alwaysApply: true
+---
+# EffectTS Code Style Guidelines
+
+## Import Style
+
+- Use named imports with curly braces: `import { Effect, Console, Duration } from "effect"`
+- Import the `pipe` utility from the main "effect" package
+- Import platform-specific modules from their respective packages: `import { NodeRuntime } from "@effect/platform-node"`
+- Group related imports together (e.g., keep all Effect imports in one statement)
+
+## Code Structure and Organization
+
+- Prefer generator syntax using `Effect.gen` for sequential operations
+- Use `yield*` within generators to invoke effects and bind their results
+- Avoid excessive nesting with pipes
+- Structure code in a linear, sequential flow for better readability
+- Use the `.pipe()` method for pipeline building: `Effect.succeed("task").pipe(Effect.delay("200 millis"))`
+- Create helper functions that return Effect values for reusable operations
+
+## Function Implementation Pattern
+
+- Favor generators over "do simulation" and plain pipes for complex operations
+- For multi-step operations, use the progression (from most to least preferred):
+  1. `Effect.gen` with generators (most recommended)
+  2. Plain pipe (least preferred due to nesting)
+  3. "Do simulation" with `Effect.Do.pipe`
+- Choose the right approach based on operation complexity
+- Define small, focused utility functions that operate on effects
+
+## Promise Interoperability
+
+- Use `Effect.promise` to wrap JavaScript Promises in Effect values
+- Handle Promise rejections properly through Effect's error channel
+- Avoid mixing raw Promise handling with Effect operations
+- Always provide explicit error handling for Promise-based operations
+
+## Concurrency Control
+
+- Use `Effect.all` for operating on arrays of effects with concurrency control
+- Be explicit about concurrency options when using parallel operations
+- Default to sequential execution when order matters
+- Use the appropriate concurrency model based on the use case:
+  - Sequential (default): One after another
+  - Bounded concurrency: Specify a number for maximum concurrent tasks
+  - Unbounded: Use "unbounded" for maximum parallelism
+  - Inherit: Use "inherit" to inherit concurrency settings from parent
+
+## Time and Duration
+
+- Use the `Duration` module for time-related values instead of raw milliseconds
+- Express durations as string literals for readability: `"200 millis"`, `"5 seconds"`
+- Use `Duration.toMillis()` to convert to numeric values when needed
+- Prefer Effect's timing utilities over raw JavaScript setTimeout/setInterval
+
+## Avoiding Tacit Usage
+
+- Write functions explicitly: `Effect.map((x) => fn(x))`
+- Avoid point-free style: `Effect.map(fn)`
+- Don't use `flow` from the `effect/Function` module
+- Be explicit to ensure proper type inference and clearer stack traces
+- Use explicit parameters even when functions could be passed directly
+
+## Application Entry Points
+
+- Use platform-specific `runMain` instead of `runPromise` for production applications
+- Select the appropriate runtime for your platform:
+  - Node.js: `NodeRuntime.runMain` from `@effect/platform-node`
+  - Bun: `BunRuntime.runMain` from `@effect/platform-bun`
+  - Browser: `BrowserRuntime.runMain` from `@effect/platform-browser`
+- Ensure proper resource cleanup with graceful shutdown support
+
+## Error Handling
+
+- Place teardown logic in the main effect for proper resource release
+- Use `Effect.addFinalizer` for cleanup operations
+- Ensure graceful teardown when applications are interrupted
+- Handle errors at the appropriate level of abstraction
+
+## Type Safety
+
+- Use explicit type annotations when inference is insufficient
+- Avoid type assertions when possible
+- Leverage Effect's built-in error handling with proper typing
+- Define custom error types for domain-specific errors
+
+## Logging and Debugging
+
+- Structure complex operations to make logging and tracing easier
+- Log the start and completion of long-running tasks
+- Consider wrapping logging in Effect operations for better composition
+
+## Performance Considerations
+
+- Follow Effect's patterns for resource management
+- Use appropriate scheduling mechanisms
+- Implement proper cancellation and interruption handling
+- Optimize for both readability and performance
+- Choose the appropriate concurrency model for your use case
+
+## Testing
+
+- Write tests that validate both success and failure paths
+- Use Effect's testing utilities for effect-based code, especially the `@effect/vitest` library
+- Test interruption handling and resource cleanup
+- Verify correct concurrency behavior in multi-task scenarios

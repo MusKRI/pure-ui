@@ -1,0 +1,161 @@
+---
+title: Dialog
+description: A customizable dialog component
+features:
+  - "Rich animation presets"
+  - "Customizable transitions & easing curves"
+  - "Reduced motion support & accessibility"
+  - "Composable sub-components & portal rendering"
+---
+
+<ComponentShowcase name="dialog-demo" />
+
+## Installation
+
+<Tabs defaultValue="terminal">
+  <TabsList>
+    <TabsTrigger value="terminal">
+      <Terminal className="w-4 h-4" />
+      Terminal
+    </TabsTrigger>
+    <TabsTrigger value="manual">
+      <Code2 className="w-4 h-4" />
+      Manual
+    </TabsTrigger>
+  </TabsList>
+  <TabsContent value="terminal">
+    <InstallationCommands
+      type="registry-installation"
+      registryPath="components/dialog"
+    />
+  </TabsContent>
+  <TabsContent value="manual">
+    <Steps currentStep={1}>
+      <Step stepNumber={1} title="Install dependencies">
+        <InstallationCommands
+          type="package-installation"
+          npmCommand="npm install class-variance-authority clsx tailwind-merge @base-ui-components/react motion"
+          pnpmCommand="pnpm add class-variance-authority clsx tailwind-merge @base-ui-components/react motion"
+          yarnCommand="yarn add class-variance-authority clsx tailwind-merge @base-ui-components/react motion"
+          bunCommand="bun add class-variance-authority clsx tailwind-merge @base-ui-components/react motion"
+        />
+      </Step>
+      <Step
+        stepNumber={2}
+        title="Add cn function to your utils"
+      >
+        ```ts
+        import { clsx, type ClassValue } from "clsx";
+        import { twMerge } from "tailwind-merge";
+
+        export function cn(...inputs: ClassValue[]) {
+          return twMerge(clsx(inputs));
+        }
+        ```
+      </Step>
+      <Step
+        stepNumber={3}
+        title="Copy and paste the following code into your project"
+        isLast
+      >
+        <ComponentCodePreview name="dialog" />
+      </Step>
+    </Steps>
+
+  </TabsContent>
+</Tabs>
+
+## Anatomy
+
+Import the component and assemble its parts:
+
+```tsx
+import { Dialog } from "@/components/ui/dialog";
+
+<Dialog>
+  <DialogTrigger />
+  <DialogPortal>
+    <DialogBackdrop />
+    <DialogPopup>
+      <DialogTitle />
+      <DialogDescription />
+      <DialogClose />
+    </DialogPopup>
+  </DialogPortal>
+</Dialog>;
+```
+
+## Usage
+
+### Non Dismissible
+
+By default, the dialog is dismissible. You can make it non-dismissible by passing `dismissible={false}` to the `Dialog` component. This is useful when you want to prevent the user from closing the dialog by clicking outside of it or by pressing the escape key.
+
+<ComponentShowcase name="dialog-non-dismissible-demo" />
+
+### Non Modal
+
+The `modal` property controls how users can interact with the page when the dialog is open.
+
+**`modal={true}`** (default) -
+Focus is trapped, scrolling is locked, and outside interactions are disabled.
+
+**`modal={false}`** -
+Users can interact with both the dialog and the rest of the page freely.
+
+**`modal="trap-focus"`** -
+Focus is trapped for keyboard navigation, but scrolling and outside pointer interactions remain enabled.
+
+<ComponentShowcase name="dialog-non-modal-demo" />
+
+### Reduce Motion
+
+You can reduce the motion of the dialog by passing `reduceMotion` to the `DialogPopup` component.
+
+<ComponentShowcase name="dialog-reduce-motion-demo" />
+
+## Animation Presets
+
+### Scale
+
+<ComponentShowcase name="dialog-scale-demo" />
+
+### Top Flip
+
+<ComponentShowcase name="dialog-top-flip-demo" />
+
+### Bottom Flip
+
+<ComponentShowcase name="dialog-bottom-flip-demo" />
+
+### Left Flip
+
+<ComponentShowcase name="dialog-left-flip-demo" />
+
+### Right Flip
+
+<ComponentShowcase name="dialog-right-flip-demo" />
+
+### Top Slide
+
+<ComponentShowcase name="dialog-top-slide-demo" />
+
+### Bottom Slide
+
+<ComponentShowcase name="dialog-bottom-slide-demo" />
+
+### Left Slide
+
+<ComponentShowcase name="dialog-left-slide-demo" />
+
+### Right Slide
+
+<ComponentShowcase name="dialog-right-slide-demo" />
+
+### Fade
+
+<ComponentShowcase name="dialog-fade-demo" />
+
+### Wipe
+
+<ComponentShowcase name="dialog-wipe-demo" />

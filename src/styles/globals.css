@@ -1,0 +1,205 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@import "./partials/index.css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --white: oklch(100% 0 0); /* #fff */
+  --black: oklch(0% 0 0); /* #000 */
+  --snow: oklch(99.11% 0 0); /* #fcfcfc */
+  --eclipse: oklch(22.21% 0 0); /* #1b1b1b */
+
+  --background: var(--white);
+  --foreground: var(--eclipse);
+
+  --card: var(--white);
+  --card-foreground: var(--eclipse);
+
+  --popover: var(--white);
+  --popover-foreground: var(--eclipse);
+
+  --primary: oklch(14.48% 0 0); /* #0a0a0a */
+  --primary-foreground: var(--snow);
+
+  --secondary: oklch(92.19% 0 0); /* #e5e5e5 */
+  --secondary-foreground: oklch(20.46% 0 0); /* #171717 */
+
+  --muted: oklch(97.61% 0 0); /* #f7f7f7 */
+  --muted-foreground: oklch(59.65% 0 0); /* #7f7f7f */
+
+  --accent: oklch(92.19% 0 0); /* #e5e5e5 */
+  --accent-foreground: oklch(20.46% 0 0); /* #171717 */
+
+  --danger: oklch(62.59% 0.191 29.19); /* #e44c3d */
+  --danger-foreground: var(--snow);
+  --success: oklch(55.03% 0.1244 153.56); /* #24864e */
+  --success-foreground: var(--snow);
+  --warning: oklch(71.86% 0.152 64.85); /* #e48d21 */
+  --warning-foreground: var(--eclipse);
+
+  --border: oklch(79.21% 0 0); /* #bbb */
+  --input: oklch(86.99% 0 0); /* #d4d4d4 */
+
+  --ring: oklch(79.27% 0.006 31.06); /* #bfbab9 */
+
+  /* Selection Colors */
+  --selection-background-color: #bbb;
+  --selection-color: #1a1a1a;
+
+  /* Syntax Highlighting Colors */
+  --color-content: var(--muted);
+  --syntax-default: var(--foreground);
+  --syntax-comment: var(--muted-foreground);
+  --syntax-constant: var(--foreground);
+  --syntax-entity: var(--foreground);
+  --syntax-parameter: var(--foreground);
+  --syntax-tag: var(--foreground);
+  --syntax-keyword: var(--muted-foreground);
+  --syntax-string: var(--muted-foreground);
+  --syntax-variable: var(--foreground);
+  --syntax-invalid: var(--danger);
+  --syntax-bracket-highlight: var(--foreground);
+  --syntax-carriage-return-background: var(--danger);
+  --syntax-carriage-return-foreground: var(--white);
+  --syntax-deleted-background: oklch(97.61% 0 0);
+  --syntax-deleted-foreground: var(--danger);
+  --syntax-inserted-background: oklch(97.61% 0 0);
+  --syntax-inserted-foreground: var(--success);
+  --syntax-changed-background: oklch(97.61% 0 0);
+  --syntax-changed-foreground: var(--warning);
+  --syntax-untracked-background: var(--muted);
+  --syntax-untracked-foreground: var(--muted-foreground);
+  --syntax-other: var(--foreground);
+
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: oklch(16.84% 0 0); /* #0f0f0f */
+  --foreground: var(--snow);
+
+  --card: var(--eclipse);
+  --card-foreground: var(--snow);
+
+  --popover: var(--eclipse);
+  --popover-foreground: var(--snow);
+
+  --primary: oklch(98.51% 0 0); /* #fafafa */
+  --primary-foreground: var(--eclipse);
+
+  --secondary: oklch(26.86% 0 0); /* #262626 */
+  --secondary-foreground: oklch(92.2% 0 0); /* #e5e5e5 */
+
+  --muted: oklch(14.48% 0 0); /* #0a0a0a */
+  --muted-foreground: oklch(59.65% 0 0); /* #7f7f7f */
+
+  --accent: oklch(26.86% 0 0); /* #262626 */
+  --accent-foreground: oklch(92.2% 0 0); /* #e5e5e5 */
+
+  --danger: oklch(57.98% 0.1635 30.83); /* #c84b39 */
+  --danger-foreground: var(--snow);
+  --success: oklch(55.03% 0.1244 153.56); /* #24864e */
+  --success-foreground: var(--snow);
+  --warning: oklch(85% 0.1414 77.88); /* #ffc156 */
+  --warning-foreground: var(--eclipse);
+
+  --border: oklch(28.5% 0 0); /* #2a2a2a */
+  --input: oklch(26.86% 0 0); /* #262626 */
+
+  --ring: oklch(63.94% 0.005 314.79); /* #8d8b8e */
+
+  /* Selection Colors */
+  --selection-background-color: oklch(20.46% 0 0); /* #171717 */
+  --selection-color: oklch(92.2% 0 0); /* #e5e5e5 */
+
+  /* Syntax Highlighting Colors */
+  --color-content: var(--muted);
+  --syntax-default: var(--foreground);
+  --syntax-comment: var(--muted-foreground);
+  --syntax-constant: var(--foreground);
+  --syntax-entity: var(--foreground);
+  --syntax-parameter: var(--foreground);
+  --syntax-tag: var(--foreground);
+  --syntax-keyword: var(--muted-foreground);
+  --syntax-string: var(--muted-foreground);
+  --syntax-variable: var(--foreground);
+  --syntax-invalid: var(--danger);
+  --syntax-bracket-highlight: var(--foreground);
+  --syntax-carriage-return-background: var(--danger);
+  --syntax-carriage-return-foreground: var(--white);
+  --syntax-deleted-background: oklch(14.48% 0 0);
+  --syntax-deleted-foreground: var(--danger);
+  --syntax-inserted-background: oklch(14.48% 0 0);
+  --syntax-inserted-foreground: var(--success);
+  --syntax-changed-background: oklch(14.48% 0 0);
+  --syntax-changed-foreground: var(--warning);
+  --syntax-untracked-background: var(--muted);
+  --syntax-untracked-foreground: var(--muted-foreground);
+  --syntax-other: var(--foreground);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-danger: var(--danger);
+  --color-danger-foreground: var(--danger-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-noto-mono);
+}
+
+@layer base {
+  * {
+    @apply min-w-0 border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+:where(html, body) {
+  min-height: 100%;
+}
+
+/* Selection */
+::selection {
+  background-color: var(--selection-background-color);
+  color: var(--selection-color);
+  text-shadow: none;
+}
+
+/* Force monospace font for code blocks */
+[data-shiki] pre,
+[data-shiki] code,
+.shiki pre,
+.shiki code,
+pre[class*="language-"],
+code[class*="language-"] {
+  font-family: var(--font-noto-mono) !important;
+}

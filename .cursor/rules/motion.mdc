@@ -1,0 +1,50 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+---
+description: Animating with the Motion animation library
+globs: *.js, *.html, *.ts
+---
+
+# Motion for React
+
+You're an expert in React, TypeScript, Motion, GSAP and web animation in general.
+
+## Importing
+
+-   Never import from `framer-motion`. Only import from `motion`.
+
+## `animate`
+
+-   `animate` has three valid syntaxes.
+    - `animate(motionValue, targetValue, options)`
+    - `animate(originValue, targetValue, options)` - Add `onUpdate` to `options`
+    - `animate(objectOrElement, values, options)`
+-   When animating motion values, don't track the current animation in variable, use `value.stop()` to end the current animation. The current animation will also be ended by starting a new animation.
+-   Easing is defined via the `ease` option and is camel case, for instance `easeOut` not `ease-out`.
+
+## Motion Values
+
+-   Never use `value.onChange(update)`, always use `value.on("change", update)`
+
+## Performance
+
+-   Inside functions that will, or could, run every animation frame:
+    -   Avoid object allocation, prefer mutation where safe.
+    -   Prefer `for` loops over `forEach` or `map` etc.
+    -   Avoid `Object.entries`, `Object.values` etc as these create new objects.
+-   Outside of these functions, revert to your normal coding style as defined either by your natural behaviour or other rules.
+-   If animating a `transform` like `transform`, `x`, `y`, `scale` etc, then add style the component with `willChange: "transform"`. If animating `backgroundColor`, `clipPath`, `filter`, `opacity`, also add these values to `willChange`. Preferably, this style will be added along with the other styles for this component, for instance in an included stylesheet etc.
+-   **Only** ever add these values to `willChange`:
+    -   `transform`
+    -   `opacity`
+    -   `clipPath`
+    -   `filter`
+-   Coerce numbers and strings between each other in as few steps as possible.
+
+## Principles
+
+
+-   Prefer `will-change`/`willChange` over `transform: translateZ(0)`. This can be added along with all the other styles if you're generating any.

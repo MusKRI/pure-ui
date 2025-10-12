@@ -1,0 +1,88 @@
+---
+title: Button
+description: Used to trigger an action or event, such as submitting a form, displaying a dialog or sending a request.
+features:
+  - "A wrapper around native HTML <button>, supports all HTMLButtonElement properties, methods and events"
+  - "Different variants, sizes and border radiuses"
+  - "Pending state animation"
+  - "Respects reduce motion settings"
+---
+
+<ComponentShowcase name="button-demo" />
+
+## Installation
+
+<Tabs defaultValue="terminal">
+  <TabsList>
+    <TabsTrigger value="terminal">
+      <Terminal className="w-4 h-4" />
+      Terminal
+    </TabsTrigger>
+    <TabsTrigger value="manual">
+      <Code2 className="w-4 h-4" />
+      Manual
+    </TabsTrigger>
+  </TabsList>
+  <TabsContent value="terminal">
+    <InstallationCommands
+      type="registry-installation"
+      registryPath="components/button"
+    />
+  </TabsContent>
+  <TabsContent value="manual">
+    <Steps currentStep={1}>
+      <Step stepNumber={1} title="Install dependencies">
+        <InstallationCommands
+          type="package-installation"
+          npmCommand="npm install class-variance-authority clsx tailwind-merge @radix-ui/react-slot"
+          pnpmCommand="pnpm add class-variance-authority clsx tailwind-merge @radix-ui/react-slot"
+          yarnCommand="yarn add class-variance-authority clsx tailwind-merge @radix-ui/react-slot"
+          bunCommand="bun add class-variance-authority clsx tailwind-merge @radix-ui/react-slot"
+        />
+      </Step>
+      <Step
+        stepNumber={2}
+        title="Add cn function to your utils"
+      >
+        ```ts
+        import { clsx, type ClassValue } from "clsx";
+        import { twMerge } from "tailwind-merge";
+
+        export function cn(...inputs: ClassValue[]) {
+          return twMerge(clsx(inputs));
+        }
+        ```
+      </Step>
+      <Step
+        stepNumber={3}
+        title="Copy and paste the following code into your project"
+        isLast
+      >
+        <ComponentCodePreview name="button" />
+      </Step>
+    </Steps>
+
+  </TabsContent>
+</Tabs>
+
+## Examples
+
+### Variants
+
+<ComponentShowcase name="button-variants-demo" />
+
+### Size
+
+<ComponentShowcase name="button-size-demo" />
+
+### Radius
+
+<ComponentShowcase name="button-radius-demo" />
+
+### Pending
+
+<ComponentShowcase name="button-pending-demo" />
+
+### Reduce Motion
+
+<ComponentShowcase name="button-reduce-motion-demo" />

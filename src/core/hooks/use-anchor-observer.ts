@@ -1,0 +1,77 @@
+import { useEffect, useState } from "react";
+
+/**
+ * Find the active heading of the page
+ *
+ * It selects the top heading by default, and the last item when reached the bottom of page.
+ *
+ * @param watch - An array of headings ids to watch
+ * @param single - only one active item at most
+ * @returns Active anchor
+ */
+export function useAnchorObserver(watch: string[], single: boolean): string[] {
+  const [activeAnchor, setActiveAnchor] = useState<string[]>([]);
+
+  useEffect(() => {
+    let visibleHeadings: string[] = [];
+
+    const observer = new IntersectionObserver(
+      (enteries) => {
+        for (const entry of enteries) {
+          if (
+            entry.isIntersecting &&
+            !visibleHeadings.includes(entry.target.id)
+          ) {
+            visibleHeadings = [...visibleHeadings, entry.target.id];
+          } else if (
+            !entry.isIntersecting &&
+            visibleHeadings.includes(entry.target.id)
+          ) {
+            visibleHeadings = visibleHeadings.filter(
+              (id) => id !== entry.target.id
+            );
+          }
+        }
+
+        if (visibleHeadings.length > 0) {
+          setActiveAnchor(visibleHeadings);
+        }
+      },
+      {
+        rootMargin: single ? `-80px 0% -70% 0%` : `-20px 0% -40% 0%`,
+        threshold: 1,
+      }
+    );
+
+    function onScroll(): void {
+      const element = document.scrollingElement;
+      if (!element) return;
+      const top = element.scrollTop;
+
+      if (top <= 0 && single) setActiveAnchor(watch.slice(0, 1));
+      else if (top + element.clientHeight >= element.scrollHeight - 6) {
+        setActiveAnchor((active) => {
+          return active.length > 0 && !single
+            ? watch.slice(watch.indexOf(active[0]))
+            : watch.slice(-1);
+        });
+      }
+    }
+
+    for (const heading of watch) {
+      const element = document.getElementById(heading);
+
+      if (element) observer.observe(element);
+    }
+
+    onScroll();
+    window.addEventListener("scroll", onScroll);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      observer.disconnect();
+    };
+  }, [watch, single]);
+
+  return single ? activeAnchor.slice(0, 1) : activeAnchor;
+}

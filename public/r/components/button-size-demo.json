@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-size-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "button"
+  ],
+  "files": [
+    {
+      "path": "src/registry/default/components/examples/button/button-size-demo.tsx",
+      "content": "import { Button } from \"@/registry/default/components/ui/button\";\r\n\r\nexport function ButtonSizeDemo() {\r\n  return (\r\n    <div className=\"flex flex-col items-center justify-center gap-4\">\r\n      <Button size=\"xs\">Pure UI Button</Button>\r\n      <Button size=\"sm\">Pure UI Button</Button>\r\n      <Button size=\"default\">Pure UI Button</Button>\r\n      <Button size=\"lg\">Pure UI Button</Button>\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

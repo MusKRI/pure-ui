@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "button"
+  ],
+  "files": [
+    {
+      "path": "src/registry/default/components/examples/button/button-demo.tsx",
+      "content": "import { Button } from \"@/registry/default/components/ui/button\";\r\n\r\nexport function ButtonDemo() {\r\n  return (\r\n    <div className=\"flex flex-wrap items-center gap-2 md:flex-row\">\r\n      <Button>Button</Button>\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

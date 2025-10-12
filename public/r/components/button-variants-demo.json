@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-variants-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "button"
+  ],
+  "files": [
+    {
+      "path": "src/registry/default/components/examples/button/button-variants-demo.tsx",
+      "content": "import { Button } from \"@/registry/default/components/ui/button\";\r\n\r\nexport function ButtonVariantsDemo() {\r\n  return (\r\n    <div className=\"flex flex-col items-center justify-center gap-4\">\r\n      <Button variant=\"default\">Default Button</Button>\r\n      <Button variant=\"outline\">Outline Button</Button>\r\n      <Button variant=\"ghost\">Ghost Button</Button>\r\n      <Button variant=\"link\">Link Button</Button>\r\n      <Button variant=\"danger\">Danger Button</Button>\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

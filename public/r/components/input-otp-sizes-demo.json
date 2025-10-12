@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-otp-sizes-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "input-otp"
+  ],
+  "files": [
+    {
+      "path": "src/registry/default/components/examples/input-otp/input-otp-sizes-demo.tsx",
+      "content": "import {\r\n  InputOTP,\r\n  InputOTPGroup,\r\n  InputOTPSlot,\r\n} from \"@/registry/default/components/ui/input-otp\";\r\n\r\nexport const InputOTPSizesDemo = () => {\r\n  const sizes = [\"sm\", \"md\", \"lg\"] as const;\r\n\r\n  return (\r\n    <div className=\"flex flex-col items-center gap-4\">\r\n      {sizes.map((size) => (\r\n        <InputOTP key={size} maxLength={6} slotSize={size}>\r\n          <InputOTPGroup>\r\n            <InputOTPSlot index={0} />\r\n            <InputOTPSlot index={1} />\r\n            <InputOTPSlot index={2} />\r\n            <InputOTPSlot index={3} />\r\n            <InputOTPSlot index={4} />\r\n            <InputOTPSlot index={5} />\r\n          </InputOTPGroup>\r\n        </InputOTP>\r\n      ))}\r\n    </div>\r\n  );\r\n};\r\n",
+      "type": "registry:component"
+    }
+  ]
+}
