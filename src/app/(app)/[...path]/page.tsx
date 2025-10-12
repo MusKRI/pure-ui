@@ -1,12 +1,16 @@
 import { Effect } from "effect";
 import { notFound } from "next/navigation";
 
-import {
-  ContentBody,
-  ContentInfoHeader,
-} from "@/core/components/composed/content-ui";
+import { ContentBody, ContentInfoHeader } from "components/composed/content-ui";
 import { getContentByPath } from "@/lib/content-parser";
 import { parseSlug } from "@/lib/slug-parser";
+import { getStaticPaths } from "@/lib/static-paths";
+
+export async function generateStaticParams() {
+  const staticPaths = await getStaticPaths();
+
+  return staticPaths;
+}
 
 export default async function PureUIFlowPage(props: PageProps<"/[...path]">) {
   const { path = [] } = await props.params;
