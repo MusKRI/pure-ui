@@ -40,6 +40,20 @@ export const pureUIShadcnComponents: RegistryItem[] = [
       "@radix-ui/react-slot",
     ],
   },
+  // Card
+  {
+    name: "card",
+    type: "registry:ui",
+    title: "Card",
+    description: "A customizable card component",
+    files: [
+      {
+        path: "ui/card/index.tsx",
+        type: "registry:ui",
+      },
+    ],
+    dependencies: ["clsx", "tailwind-merge", "@radix-ui/react-slot"],
+  },
   // Checkbox
   {
     name: "checkbox",

@@ -191,6 +191,63 @@ export const pureUICompExamples: RegistryItem[] = [
     ],
   },
 
+  // Card
+  {
+    name: "card-demo",
+    type: "registry:example",
+    registryDependencies: ["card"],
+    files: [
+      {
+        path: "examples/card/card-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "card-variants-demo",
+    type: "registry:example",
+    registryDependencies: ["card"],
+    files: [
+      {
+        path: "examples/card/card-variants-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "card-horizontal-layout",
+    type: "registry:example",
+    registryDependencies: ["card"],
+    files: [
+      {
+        path: "examples/card/card-horizontal-layout.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "card-with-image-demo",
+    type: "registry:example",
+    registryDependencies: ["card"],
+    files: [
+      {
+        path: "examples/card/card-with-image-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "card-with-background-images-demo",
+    type: "registry:example",
+    registryDependencies: ["card"],
+    files: [
+      {
+        path: "examples/card/card-with-background-images-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+
   // Checkbox
   {
     name: "checkbox-demo",

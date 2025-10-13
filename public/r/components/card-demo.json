@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "card-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "card"
+  ],
+  "files": [
+    {
+      "path": "src/registry/default/components/examples/card/card-demo.tsx",
+      "content": "import { LinkIcon } from \"lucide-react\";\r\nimport Link from \"next/link\";\r\n\r\nimport {\r\n  Card,\r\n  CardHeader,\r\n  CardTitle,\r\n  CardDescription,\r\n  CardContent,\r\n  CardFooter,\r\n} from \"@/registry/default/components/ui/card\";\r\n\r\nexport function CardDemo() {\r\n  return (\r\n    <Card className=\"w-full max-w-md\">\r\n      <CardHeader>\r\n        <CardTitle>PAYMENT</CardTitle>\r\n        <CardDescription>You can now withdraw on crypto.</CardDescription>\r\n      </CardHeader>\r\n      <CardContent id=\"payment-content\">\r\n        <p>Add your wallet in settings to withdraw</p>\r\n      </CardContent>\r\n      <CardFooter>\r\n        <Link\r\n          aria-label=\"Go to settings (opens in new tab)\"\r\n          href=\"https://kam-ui.com\"\r\n          target=\"_blank\"\r\n          className=\"inline-flex items-center gap-2 hover:underline\"\r\n        >\r\n          Go to settings\r\n          <LinkIcon aria-hidden=\"true\" className=\"size-4\" />\r\n        </Link>\r\n      </CardFooter>\r\n    </Card>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

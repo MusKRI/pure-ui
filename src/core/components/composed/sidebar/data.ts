@@ -55,6 +55,12 @@ const pureUIComponents = [
     href: "/components/button",
   },
   {
+    id: "card",
+    title: "Card",
+    type: "link",
+    href: "/components/card",
+  },
+  {
     id: "checkbox",
     title: "Checkbox",
     type: "link",
@@ -73,8 +79,14 @@ const pureUIComponents = [
   //   href: "/components/dropdown-menu",
   // },
   {
+    id: "input",
+    title: "Input",
+    type: "link",
+    href: "/components/input",
+  },
+  {
     id: "input-otp",
-    title: "Input-otp",
+    title: "Input OTP",
     type: "link",
     href: "/components/input-otp",
   },

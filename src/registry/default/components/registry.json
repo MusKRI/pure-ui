@@ -40,6 +40,23 @@
       ]
     },
     {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "A customizable card component",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge",
+        "@radix-ui/react-slot"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/ui/card/index.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "checkbox",
       "type": "registry:ui",
       "title": "Checkbox",
@@ -312,6 +329,71 @@
       "files": [
         {
           "path": "src/registry/default/components/examples/button/button-pending-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "card-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "card"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/card/card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "card-variants-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "card"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/card/card-variants-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "card-horizontal-layout",
+      "type": "registry:example",
+      "registryDependencies": [
+        "card"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/card/card-horizontal-layout.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "card-with-image-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "card"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/card/card-with-image-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "card-with-background-images-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "card"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/card/card-with-background-images-demo.tsx",
           "type": "registry:example"
         }
       ]

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "card-horizontal-layout",
+  "type": "registry:example",
+  "registryDependencies": [
+    "card"
+  ],
+  "files": [
+    {
+      "path": "src/registry/default/components/examples/card/card-horizontal-layout.tsx",
+      "content": "import {\r\n  Card,\r\n  CardHeader,\r\n  CardTitle,\r\n  CardDescription,\r\n  CardFooter,\r\n} from \"@/registry/default/components/ui/card\";\r\nimport { Button } from \"@/registry/default/components/ui/button\";\r\n\r\nexport function CardHorizontalLayout() {\r\n  return (\r\n    <Card className=\"w-full items-stretch md:flex-row\">\r\n      <img\r\n        alt=\"Demon Slayer: Kimetsu no Yaiba\"\r\n        className=\"rounded-lg pointer-events-none aspect-square w-full select-none object-cover md:max-w-[146px]\"\r\n        loading=\"lazy\"\r\n        src=\"https://pbs.twimg.com/media/G2co19tXoAAnWT8?format=jpg&name=large\"\r\n      />\r\n      <div className=\"flex flex-1 flex-col gap-3\">\r\n        <CardHeader className=\"gap-1 py-1\">\r\n          <CardTitle>Demon Slayer: Kimetsu no Yaiba</CardTitle>\r\n          <CardDescription>\r\n            Follow Tanjiro Kamado as he embarks on a journey to become a demon\r\n            slayer and find a cure for his sister Nezuko, who has been turned\r\n            into a demon. An epic tale of courage, family bonds, and\r\n            breathtaking battles.\r\n          </CardDescription>\r\n        </CardHeader>\r\n        <CardFooter className=\"mt-auto flex w-full flex-row items-center justify-between\">\r\n          <div className=\"flex flex-col\">\r\n            <span\r\n              aria-label=\"Rating: 8.6 out of 10\"\r\n              className=\"text-foreground text-sm font-medium\"\r\n            >\r\n              ★ 8.6/10\r\n            </span>\r\n            <span\r\n              aria-label=\"Total episodes: 26 episodes\"\r\n              className=\"text-muted-foreground text-xs\"\r\n            >\r\n              26 episodes\r\n            </span>\r\n          </div>\r\n          <Button size=\"sm\">Watch Now</Button>\r\n        </CardFooter>\r\n      </div>\r\n    </Card>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

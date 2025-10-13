@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "card",
+  "type": "registry:ui",
+  "title": "Card",
+  "description": "A customizable card component",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "@radix-ui/react-slot"
+  ],
+  "files": [
+    {
+      "path": "src/registry/default/components/ui/card/index.tsx",
+      "content": "import React from \"react\";\r\nimport { Slot } from \"@radix-ui/react-slot\";\r\n\r\nimport { cn } from \"@/lib/classes\";\r\n\r\ntype CardVariant = \"flat\" | \"outlined\" | \"elevated\" | \"filled\";\r\n\r\ninterface CardProps extends React.ComponentProps<\"div\"> {\r\n  asChild?: boolean;\r\n  variant?: CardVariant;\r\n}\r\n\r\nfunction Card({\r\n  asChild,\r\n  className,\r\n  variant = \"outlined\",\r\n  ...props\r\n}: CardProps) {\r\n  const Comp = asChild ? Slot : \"div\";\r\n\r\n  return (\r\n    <Comp\r\n      data-slot=\"card\"\r\n      className={cn(\r\n        \"relative flex flex-col gap-3 overflow-hidden p-4 rounded-xl border border-border/60\",\r\n        variant === \"flat\" && \"border-none bg-transparent shadow-none\",\r\n        variant === \"outlined\" && \"bg-card\",\r\n        variant === \"elevated\" && \"bg-card shadow-sm\",\r\n        variant === \"filled\" && \"bg-secondary\",\r\n        className\r\n      )}\r\n      {...props}\r\n    />\r\n  );\r\n}\r\n\r\ninterface CardHeaderProps extends React.ComponentProps<\"div\"> {\r\n  asChild?: boolean;\r\n}\r\n\r\nfunction CardHeader({ asChild, className, ...props }: CardHeaderProps) {\r\n  const Comp = asChild ? Slot : \"div\";\r\n\r\n  return (\r\n    <Comp\r\n      data-slot=\"card-header\"\r\n      className={cn(\"flex flex-col\", className)}\r\n      {...props}\r\n    />\r\n  );\r\n}\r\n\r\ninterface CardTitleProps extends React.ComponentProps<\"h3\"> {\r\n  asChild?: boolean;\r\n}\r\n\r\nfunction CardTitle({ asChild, className, ...props }: CardTitleProps) {\r\n  const Comp = asChild ? Slot : \"h3\";\r\n\r\n  return (\r\n    <Comp\r\n      data-slot=\"card-title\"\r\n      className={cn(\"text-base text-card-foreground leading-6\", className)}\r\n      {...props}\r\n    />\r\n  );\r\n}\r\n\r\ninterface CardDescriptionProps extends React.ComponentProps<\"p\"> {\r\n  asChild?: boolean;\r\n}\r\n\r\nfunction CardDescription({\r\n  asChild,\r\n  className,\r\n  ...props\r\n}: CardDescriptionProps) {\r\n  const Comp = asChild ? Slot : \"p\";\r\n\r\n  return (\r\n    <Comp\r\n      data-slot=\"card-description\"\r\n      className={cn(\"text-muted-foreground text-sm\", className)}\r\n      {...props}\r\n    />\r\n  );\r\n}\r\n\r\ninterface CardContentProps extends React.ComponentProps<\"div\"> {\r\n  asChild?: boolean;\r\n}\r\n\r\nfunction CardContent({ asChild, className, ...props }: CardContentProps) {\r\n  const Comp = asChild ? Slot : \"div\";\r\n\r\n  return (\r\n    <Comp\r\n      data-slot=\"card-content\"\r\n      className={cn(\"flex flex-col gap-1 flex-1\", className)}\r\n      {...props}\r\n    />\r\n  );\r\n}\r\n\r\ninterface CardFooterProps extends React.ComponentProps<\"div\"> {\r\n  asChild?: boolean;\r\n}\r\nfunction CardFooter({ asChild, className, ...props }: CardFooterProps) {\r\n  const Comp = asChild ? Slot : \"div\";\r\n\r\n  return (\r\n    <Comp\r\n      data-slot=\"card-footer\"\r\n      className={cn(\"flex flex-row items-center\", className)}\r\n      {...props}\r\n    />\r\n  );\r\n}\r\n\r\nexport {\r\n  Card,\r\n  CardHeader,\r\n  CardTitle,\r\n  CardDescription,\r\n  CardContent,\r\n  CardFooter,\r\n};\r\n",
+      "type": "registry:ui"
+    }
+  ]
+}

@@ -45,6 +45,25 @@ export const Index: Record<string, any> = {
     categories: undefined,
     meta: undefined,
   },
+  "card": {
+    name: "card",
+    description: "A customizable card component",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    dependencies: ["clsx","tailwind-merge","@radix-ui/react-slot"],
+    files: [{
+      path: "src/registry/default/components/ui/card/index.tsx",
+      type: "registry:ui",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/ui/card/index.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
   "checkbox": {
     name: "checkbox",
     description: "A customizable checkbox component",
@@ -419,6 +438,101 @@ export const Index: Record<string, any> = {
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/default/components/examples/button/button-pending-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
+  "card-demo": {
+    name: "card-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["card"],
+    dependencies: undefined,
+    files: [{
+      path: "src/registry/default/components/examples/card/card-demo.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/examples/card/card-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
+  "card-variants-demo": {
+    name: "card-variants-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["card"],
+    dependencies: undefined,
+    files: [{
+      path: "src/registry/default/components/examples/card/card-variants-demo.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/examples/card/card-variants-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
+  "card-horizontal-layout": {
+    name: "card-horizontal-layout",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["card"],
+    dependencies: undefined,
+    files: [{
+      path: "src/registry/default/components/examples/card/card-horizontal-layout.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/examples/card/card-horizontal-layout.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
+  "card-with-image-demo": {
+    name: "card-with-image-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["card"],
+    dependencies: undefined,
+    files: [{
+      path: "src/registry/default/components/examples/card/card-with-image-demo.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/examples/card/card-with-image-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
+  "card-with-background-images-demo": {
+    name: "card-with-background-images-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["card"],
+    dependencies: undefined,
+    files: [{
+      path: "src/registry/default/components/examples/card/card-with-background-images-demo.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/examples/card/card-with-background-images-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),

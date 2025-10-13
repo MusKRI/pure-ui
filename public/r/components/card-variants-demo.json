@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "card-variants-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "card"
+  ],
+  "files": [
+    {
+      "path": "src/registry/default/components/examples/card/card-variants-demo.tsx",
+      "content": "import {\r\n  Card,\r\n  CardHeader,\r\n  CardTitle,\r\n  CardDescription,\r\n  CardContent,\r\n} from \"@/registry/default/components/ui/card\";\r\n\r\nexport function CardVariantsDemo() {\r\n  return (\r\n    <div className=\"flex flex-col gap-4\">\r\n      <Card className=\"w-[320px]\" variant=\"flat\">\r\n        <CardHeader>\r\n          <CardTitle>Variant Flat</CardTitle>\r\n          <CardDescription>\r\n            Transparent background with no border\r\n          </CardDescription>\r\n        </CardHeader>\r\n        <CardContent>\r\n          <p>Content with no variant styling</p>\r\n        </CardContent>\r\n      </Card>\r\n      <Card className=\"w-[320px]\" variant=\"outlined\">\r\n        <CardHeader>\r\n          <CardTitle>Variant Outlined</CardTitle>\r\n          <CardDescription>\r\n            This card uses outlined variant (default)\r\n          </CardDescription>\r\n        </CardHeader>\r\n        <CardContent>\r\n          <p>Content with subtle elevation</p>\r\n        </CardContent>\r\n      </Card>\r\n      <Card className=\"w-[320px]\" variant=\"elevated\">\r\n        <CardHeader>\r\n          <CardTitle>Variant Elevated</CardTitle>\r\n          <CardDescription>This card uses elevated variant</CardDescription>\r\n        </CardHeader>\r\n        <CardContent>\r\n          <p>Content with medium elevation</p>\r\n        </CardContent>\r\n      </Card>\r\n      <Card className=\"w-[320px]\" variant=\"filled\">\r\n        <CardHeader>\r\n          <CardTitle>Variant Filled</CardTitle>\r\n          <CardDescription>This card uses filled variant</CardDescription>\r\n        </CardHeader>\r\n        <CardContent>\r\n          <p>Content with higher elevation</p>\r\n        </CardContent>\r\n      </Card>\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}
