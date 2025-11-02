@@ -32,7 +32,7 @@ export function Step({
       </div>
 
       {/* Step content */}
-      <div className="flex-1 pb-12">
+      <div className="flex-1 pb-5 [&_.PureCodeBlock]:mb-0">
         {title && (
           <h3 className="mb-2 text-foreground font-mono text-sm md:text-base font-medium tracking-normal">
             {title}

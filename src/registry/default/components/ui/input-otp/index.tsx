@@ -8,7 +8,7 @@ import {
   TargetAndTransition,
 } from "motion/react";
 import { OTPInput, OTPInputContext as OTPInputContextBase } from "input-otp";
-import { cva } from "class-variance-authority";
+import { tv } from "tailwind-variants";
 
 import { cn } from "@/lib/classes";
 
@@ -135,28 +135,27 @@ function InputOTPAnimatedNumber({ value }: InputOTPAnimatedNumberProps) {
   );
 }
 
-const inputOtpSlotVariants = cva(
-  "relative font-semibold flex items-center justify-center",
-  {
-    variants: {
-      variant: {
-        bordered: "rounded-[10px] border border-border bg-background",
-        underlined: "rounded-none border-b border-border bg-background",
-      },
-      slotSize: {
-        sm: "h-8 min-h-8 w-8 min-w-8 text-sm",
-        md: "h-10 min-h-10 w-10 min-w-10 text-base",
-        lg: "h-12 min-h-12 w-12 min-w-12 text-lg",
-      },
+const inputOtpSlotVariants = tv({
+  base: "relative font-semibold flex items-center justify-center",
+  variants: {
+    variant: {
+      bordered: "rounded-[10px] border border-border bg-background",
+      underlined: "rounded-none border-b border-border bg-background",
     },
-    defaultVariants: {
-      variant: "bordered",
-      slotSize: "md",
+    slotSize: {
+      sm: "h-8 min-h-8 w-8 min-w-8 text-sm",
+      md: "h-10 min-h-10 w-10 min-w-10 text-base",
+      lg: "h-12 min-h-12 w-12 min-w-12 text-lg",
     },
-  }
-);
+  },
+  defaultVariants: {
+    variant: "bordered",
+    slotSize: "md",
+  },
+});
 
-const inputOtpSlotIndicatorVariants = cva("absolute inset-0 z-10", {
+const inputOtpSlotIndicatorVariants = tv({
+  base: "absolute inset-0 z-10",
   variants: {
     variant: {
       bordered: "rounded-[inherit] ring-2 ring-primary/70 outline-none",

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "switch-with-label",
+  "type": "registry:example",
+  "registryDependencies": [
+    "switch"
+  ],
+  "files": [
+    {
+      "path": "src/registry/default/components/examples/switch/switch-with-label.tsx",
+      "content": "import { Switch } from \"@/registry/default/components/ui/switch\";\r\n\r\nexport function SwitchWithLabel() {\r\n  return (\r\n    <label className=\"flex items-center gap-2 cursor-pointer\">\r\n      <Switch />\r\n      <span>Enable notifications</span>\r\n    </label>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

@@ -16,10 +16,10 @@ export function HeaderNav() {
           key={link.label}
           href={link.href}
           className={cn(
-            "text-base",
+            "text-sm font-medium",
             pathname.startsWith(link.href)
-              ? "text-primary"
-              : "text-muted-foreground hover:text-primary"
+              ? "text-sidebar-primary"
+              : "text-sidebar-foreground/60 hover:text-sidebar-primary"
           )}
         >
           {link.label}

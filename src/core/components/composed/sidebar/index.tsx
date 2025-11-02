@@ -53,13 +53,18 @@ export function Sidebar() {
       initial={false}
       animate={{ x: isOpen ? 0 : -260 }}
       transition={{ duration: 0.7, ease: [0.19, 1, 0.22, 1] }}
-      className="h-[calc(100vh-4rem)] border-r border-border w-[260px] shrink-0 lg:flex-col overflow-y-auto top-16 fixed bg-muted overscroll-y-contain scrollbar-gutter z-100"
+      className="h-[calc(100vh-4rem)] border-r border-border w-[260px] shrink-0 lg:flex-col overflow-y-auto top-16 fixed bg-sidebar overscroll-y-contain scrollbar-gutter z-50"
     >
       <MobileNav pathname={pathname} />
       <div className="p-4">
-        <div className="relative">
+        <div className="relative flex flex-col gap-0.5">
           {sidebarConfig.map((item) => (
-            <SidebarItem key={item.id} item={item} pathname={pathname} handleClosingSidebar={handleClosingSidebar}/>
+            <SidebarItem
+              key={item.id}
+              item={item}
+              pathname={pathname}
+              handleClosingSidebar={handleClosingSidebar}
+            />
           ))}
         </div>
       </div>

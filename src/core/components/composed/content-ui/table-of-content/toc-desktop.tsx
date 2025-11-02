@@ -9,8 +9,8 @@ type Props = {
 
 export const PureUITableOfContent = ({ headings }: Props) => {
   return (
-    <div className="py-6 font-mono">
-      <div className="font-medium flex items-center">
+    <div className="pt-26 pb-16 h-full">
+      <div className="font-medium flex items-center mb-4 text-sm font-mono">
         <LineLeaning className="w-4 h-4 mr-2" />
         Contents
       </div>

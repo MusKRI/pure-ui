@@ -36,7 +36,7 @@ function MobileTOCContent() {
   return (
     <motion.div
       ref={mobileTOCRef}
-      className="fixed z-50 max-w-full w-full backdrop-blur-lg bg-muted/70 border-y border-border block lg:hidden text-sm overflow-hidden"
+      className="fixed z-40 max-w-full w-full backdrop-blur-lg bg-sidebar border-y border-border block lg:hidden text-sm overflow-hidden"
       animate={{
         height: isOpen ? "auto" : "45px",
       }}

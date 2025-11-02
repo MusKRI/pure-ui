@@ -29,7 +29,7 @@ export function ComponentSources({
   }, []);
 
   return (
-    <div className="h-full flex flex-col">
+    <div className="h-full flex flex-col rounded-2xl overflow-hidden">
       {processedFiles && processedFiles.length > 0 ? (
         <>
           {processedFiles.length > 1 && (
@@ -73,7 +73,9 @@ export function ComponentSources({
         <div className="flex items-center justify-center h-full">
           <div className="text-center p-8">
             <Code2 className="w-12 h-12 mx-auto mb-3 opacity-50 text-gray-400" />
-            <p className="text-foreground font-medium">No source code available</p>
+            <p className="text-foreground font-medium">
+              No source code available
+            </p>
             <p className="text-gray-400 text-sm mt-2">
               Source code for {name} not found
             </p>

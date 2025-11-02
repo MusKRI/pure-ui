@@ -22,9 +22,9 @@ function Card({
     <Comp
       data-slot="card"
       className={cn(
-        "relative flex flex-col gap-3 overflow-hidden p-4 rounded-xl border border-border/60",
+        "relative flex flex-col gap-3 overflow-hidden p-4 rounded-xl border border-border/60 before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(--radius-2xl)-1px)] before:shadow-[0_1px_--theme(--color-black/4%)] dark:bg-clip-border dark:before:shadow-[0_-1px_--theme(--color-white/8%)]",
         variant === "flat" && "border-none bg-transparent shadow-none",
-        variant === "outlined" && "bg-card",
+        variant === "outlined" && "bg-card shadow-xs",
         variant === "elevated" && "bg-card shadow-sm",
         variant === "filled" && "bg-secondary",
         className

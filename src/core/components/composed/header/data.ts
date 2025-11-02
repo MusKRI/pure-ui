@@ -9,6 +9,6 @@ export const pureUIHeaderLinks = [
   },
   {
     label: "Blocks",
-    href: "/blocks",
+    href: "#",
   },
 ] as const;

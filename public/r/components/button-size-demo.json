@@ -8,7 +8,7 @@
   "files": [
     {
       "path": "src/registry/default/components/examples/button/button-size-demo.tsx",
-      "content": "import { Button } from \"@/registry/default/components/ui/button\";\r\n\r\nexport function ButtonSizeDemo() {\r\n  return (\r\n    <div className=\"flex flex-col items-center justify-center gap-4\">\r\n      <Button size=\"xs\">Pure UI Button</Button>\r\n      <Button size=\"sm\">Pure UI Button</Button>\r\n      <Button size=\"default\">Pure UI Button</Button>\r\n      <Button size=\"lg\">Pure UI Button</Button>\r\n    </div>\r\n  );\r\n}\r\n",
+      "content": "import { PlayIcon } from \"lucide-react\";\r\n\r\nimport { Button } from \"@/registry/default/components/ui/button\";\r\n\r\nexport function ButtonSizeDemo() {\r\n  return (\r\n    <div className=\"flex flex-col gap-5\">\r\n      <div className=\"flex flex-wrap items-center justify-center gap-4\">\r\n        <Button size=\"xs\">XS Button</Button>\r\n        <Button size=\"sm\">SM Button</Button>\r\n        <Button size=\"default\">Default Button</Button>\r\n        <Button size=\"lg\">LG Button</Button>\r\n        <Button size=\"xl\">XL Button</Button>\r\n      </div>\r\n      <div className=\"flex flex-wrap items-center justify-center gap-4\">\r\n        <Button size=\"icon-sm\">\r\n          <PlayIcon className=\"size-4\" />\r\n        </Button>\r\n        <Button size=\"icon\">\r\n          <PlayIcon className=\"size-4\" />\r\n        </Button>\r\n        <Button size=\"icon-lg\">\r\n          <PlayIcon className=\"size-4\" />\r\n        </Button>\r\n      </div>\r\n    </div>\r\n  );\r\n}\r\n",
       "type": "registry:example"
     }
   ]

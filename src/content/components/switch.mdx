@@ -1,0 +1,103 @@
+---
+title: Switch
+description: The Switch component is used as an alternative between checked and not checked states.
+---
+
+<ComponentShowcase name="switch-demo" />
+
+## Installation
+
+<Tabs defaultValue="terminal">
+  <TabsList>
+    <TabsTrigger value="terminal">
+      <Terminal className="w-4 h-4" />
+      Terminal
+    </TabsTrigger>
+    <TabsTrigger value="manual">
+      <Code2 className="w-4 h-4" />
+      Manual
+    </TabsTrigger>
+  </TabsList>
+  <TabsContent value="terminal">
+    <InstallationCommands
+      type="registry-installation"
+      registryPath="components/switch"
+    />
+  </TabsContent>
+  <TabsContent value="manual">
+    <Steps currentStep={1}>
+      <Step stepNumber={1} title="Install dependencies">
+        <InstallationCommands
+          type="package-installation"
+          npmCommand="npm install tailwind-variants clsx tailwind-merge"
+          pnpmCommand="pnpm add tailwind-variants clsx tailwind-merge"
+          yarnCommand="yarn add tailwind-variants clsx tailwind-merge"
+          bunCommand="bun add tailwind-variants clsx tailwind-merge"
+        />
+      </Step>
+      <Step
+        stepNumber={2}
+        title="Add cn function to your utils"
+      >
+        ```ts
+        import { clsx, type ClassValue } from "clsx";
+        import { twMerge } from "tailwind-merge";
+
+        export function cn(...inputs: ClassValue[]) {
+          return twMerge(clsx(inputs));
+        }
+        ```
+      </Step>
+      <Step
+        stepNumber={3}
+        title="Add this type utility to your utils"
+      >
+        ```ts
+        import type { ClassValue } from "tailwind-variants";
+
+        type SlotsToClasses<S extends string> = {
+          [key in S]?: Exclude<ClassValue, 0n>;
+        };
+        ```
+      </Step>
+      <Step
+        stepNumber={4}
+        title="Copy and paste the following code into your project"
+        isLast
+      >
+        <ComponentCodePreview name="switch" />
+      </Step>
+    </Steps>
+
+  </TabsContent>
+</Tabs>
+
+## Usage
+
+### Interactive
+
+The switch component is non interactive by default. You can make it interactive by passing the `isInteractive` prop as `true`
+
+<ComponentShowcase name="switch-interactive-demo" />
+
+### With Label
+
+<ComponentShowcase name="switch-with-label" />
+
+### Disabled
+
+<ComponentShowcase name="switch-disabled-demo" />
+
+### Sizes
+
+<ComponentShowcase name="switch-sizes-demo" />
+
+### With Icons
+
+You can add icons to the start and end of the switch by passing the `startContent` and `endContent` props.
+
+<ComponentShowcase name="switch-with-icons-demo" />
+
+### Controlled
+
+<ComponentShowcase name="switch-controlled-demo" />

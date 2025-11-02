@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-variants-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "input"
+  ],
+  "files": [
+    {
+      "path": "src/registry/default/components/examples/input/input-variants-demo.tsx",
+      "content": "import { Input } from \"@/registry/default/components/ui/input\";\r\n\r\nexport const InputVariantsDemo = () => {\r\n  const variants = [\"flat\", \"bordered\", \"underlined\", \"faded\"] as const;\r\n\r\n  return (\r\n    <div className=\"w-full flex flex-col gap-4\">\r\n      {variants.map((variant) => (\r\n        <div\r\n          key={variant}\r\n          className=\"flex w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4\"\r\n        >\r\n          <Input label=\"Email\" type=\"email\" variant={variant} />\r\n          <Input\r\n            label=\"Email\"\r\n            placeholder=\"Enter your email\"\r\n            type=\"email\"\r\n            variant={variant}\r\n          />\r\n        </div>\r\n      ))}\r\n    </div>\r\n  );\r\n};\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

@@ -1,12 +1,28 @@
+import { PlayIcon } from "lucide-react";
+
 import { Button } from "@/registry/default/components/ui/button";
 
 export function ButtonSizeDemo() {
   return (
-    <div className="flex flex-col items-center justify-center gap-4">
-      <Button size="xs">Pure UI Button</Button>
-      <Button size="sm">Pure UI Button</Button>
-      <Button size="default">Pure UI Button</Button>
-      <Button size="lg">Pure UI Button</Button>
+    <div className="flex flex-col gap-5">
+      <div className="flex flex-wrap items-center justify-center gap-4">
+        <Button size="xs">XS Button</Button>
+        <Button size="sm">SM Button</Button>
+        <Button size="default">Default Button</Button>
+        <Button size="lg">LG Button</Button>
+        <Button size="xl">XL Button</Button>
+      </div>
+      <div className="flex flex-wrap items-center justify-center gap-4">
+        <Button size="icon-sm">
+          <PlayIcon className="size-4" />
+        </Button>
+        <Button size="icon">
+          <PlayIcon className="size-4" />
+        </Button>
+        <Button size="icon-lg">
+          <PlayIcon className="size-4" />
+        </Button>
+      </div>
     </div>
   );
 }

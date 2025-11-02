@@ -7,32 +7,75 @@ const pureUIDocs = [
     href: "/docs",
     type: "link",
   },
-  // {
-  //   id: "installation",
-  //   title: "Installation",
-  //   type: "group",
-  //   defaultExpanded: true,
-  //   children: [
-  //     {
-  //       id: "nextjs",
-  //       title: "Next.js",
-  //       href: "/docs/installation/nextjs",
-  //       type: "link",
-  //     },
-  //     {
-  //       id: "vite",
-  //       title: "Vite",
-  //       href: "/docs/installation/vite",
-  //       type: "link",
-  //     },
-  //     {
-  //       id: "astro",
-  //       title: "Astro",
-  //       href: "/docs/installation/astro",
-  //       type: "link",
-  //     },
-  //   ],
-  // },
+  {
+    id: "get-started",
+    title: "Get Started",
+    href: "/docs/get-started",
+    type: "link",
+  },
+  {
+    id: "installation",
+    title: "Installation",
+    type: "group",
+    href: "/docs/installation",
+    defaultExpanded: true,
+    children: [
+      {
+        id: "nextjs",
+        title: "Next.js",
+        href: "/docs/installation/nextjs",
+        type: "link",
+      },
+      {
+        id: "vite",
+        title: "Vite",
+        href: "/docs/installation/vite",
+        type: "link",
+      },
+      // {
+      //   id: "laravel",
+      //   title: "Laravel",
+      //   href: "/docs/installation/laravel",
+      //   type: "link",
+      // },
+      {
+        id: "react-router",
+        title: "React Router",
+        href: "/docs/installation/react-router",
+        type: "link",
+      },
+      // {
+      //   id: "astro",
+      //   title: "Astro",
+      //   href: "/docs/installation/astro",
+      //   type: "link",
+      // },
+      {
+        id: "tanstack-start",
+        title: "Tanstack Start",
+        href: "/docs/installation/tanstack-start",
+        type: "link",
+      },
+      {
+        id: "tanstack-router",
+        title: "Tanstack Router",
+        href: "/docs/installation/tanstack-router",
+        type: "link",
+      },
+      {
+        id: "manual",
+        title: "Manual",
+        href: "/docs/installation/manual",
+        type: "link",
+      },
+    ],
+  },
+  {
+    id: "theming",
+    title: "Theming",
+    href: "/docs/theming",
+    type: "link",
+  },
 ] satisfies SidebarItem[];
 
 const pureUIComponents = [
@@ -42,12 +85,12 @@ const pureUIComponents = [
     type: "link",
     href: "/components/accordion",
   },
-  // {
-  //   id: "badge",
-  //   title: "Badge",
-  //   type: "link",
-  //   href: "/components/badge",
-  // },
+  {
+    id: "button-group",
+    title: "Button Group",
+    type: "link",
+    href: "/components/button-group",
+  },
   {
     id: "button",
     title: "Button",
@@ -72,12 +115,6 @@ const pureUIComponents = [
     type: "link",
     href: "/components/dialog",
   },
-  // {
-  //   id: "dropdown-menu",
-  //   title: "Dropdown-menu",
-  //   type: "link",
-  //   href: "/components/dropdown-menu",
-  // },
   {
     id: "input",
     title: "Input",
@@ -90,18 +127,42 @@ const pureUIComponents = [
     type: "link",
     href: "/components/input-otp",
   },
-  // {
-  //   id: "switch",
-  //   title: "Switch",
-  //   type: "link",
-  //   href: "/components/switch",
-  // },
-  // {
-  //   id: "tooltip",
-  //   title: "Tooltip",
-  //   type: "link",
-  //   href: "/components/tooltip",
-  // },
+  {
+    id: "menu",
+    title: "Menu",
+    type: "link",
+    href: "/components/menu",
+  },
+  {
+    id: "popover",
+    title: "Popover",
+    type: "link",
+    href: "/components/popover",
+  },
+  {
+    id: "select",
+    title: "Select",
+    type: "link",
+    href: "/components/select",
+  },
+  {
+    id: "separator",
+    title: "Separator",
+    type: "link",
+    href: "/components/separator",
+  },
+  {
+    id: "switch",
+    title: "Switch",
+    type: "link",
+    href: "/components/switch",
+  },
+  {
+    id: "tooltip",
+    title: "Tooltip",
+    type: "link",
+    href: "/components/tooltip",
+  },
 ] satisfies SidebarItem[];
 
 export const pureUISidebarConfig = {

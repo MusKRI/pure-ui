@@ -10,68 +10,64 @@ import React, {
   useState,
 } from "react";
 import { Checkbox as CheckboxPrimitive } from "@base-ui-components/react";
-import { cva, type VariantProps } from "class-variance-authority";
+import { tv, type VariantProps } from "tailwind-variants";
 
 import { cn } from "@/lib/classes";
 
-const checkboxRootStyles = cva(
-  [
+const checkboxRootStyles = tv({
+  base: [
     `group size-7 relative inline-flex items-center justify-center shrink-0 overflow-hidden outline-hidden focus:outline-hidden focus-visible:outline-hidden cursor-pointer focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring focus-visible:ring-offset-background`,
-    `data-[disabled]:cursor-not-allowed data-[disabled]:grayscale data-[disabled]:scale-100 data-[disabled]:opacity-50`,
-    `before:content-[''] before:absolute before:border-2 before:inset-0 before:border-border not-data-[disabled]:hover:before:bg-secondary/60`,
-    `after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-b after:from-primary/80 after:to-primary after:text-primary-foreground data-[unchecked]:after:scale-50 data-[unchecked]:after:opacity-0 after:origin-center data-[checked]:after:scale-100 data-[checked]:after:opacity-100`,
+    `data-disabled:cursor-not-allowed data-disabled:grayscale data-disabled:scale-100 data-disabled:opacity-50`,
+    `before:content-[''] before:absolute before:border-2 before:inset-0 before:border-border not-data-disabled:hover:before:bg-secondary/60`,
+    `after:content-[''] after:absolute after:inset-0 after:bg-primary data-unchecked:after:scale-50 data-unchecked:after:opacity-0 after:origin-center data-checked:after:scale-100 data-checked:after:opacity-100`,
     ``,
   ],
-  {
-    variants: {
-      size: {
-        sm: "size-4.5",
-        default: "size-5",
-        lg: "size-6",
-      },
-      radius: {
-        none: "rounded-none before:rounded-none after:rounded-none",
-        sm: "rounded-[6px] before:rounded-[6px] after:rounded-[6px]",
-        default: "rounded-[7.2px] before:rounded-[7.2px] after:rounded-[7.2px]",
-        lg: "rounded-[8.4px] before:rounded-[8.4px] after:rounded-[8.4px]",
-        full: "rounded-full before:rounded-full after:rounded-full",
-      },
-      reduceMotion: {
-        true: "transition-none before:transition-none after:transition-none",
-        false:
-          "before:transition-colors transition-transform after:[transition:0.2s_linear] after:[transition-property:opacity,scale,transform]",
-      },
+  variants: {
+    size: {
+      sm: "size-4.5",
+      default: "size-5",
+      lg: "size-6",
     },
-    defaultVariants: {
-      size: "default",
-      radius: "default",
-      reduceMotion: false,
+    radius: {
+      none: "rounded-none before:rounded-none after:rounded-none",
+      sm: "rounded-[6px] before:rounded-[6px] after:rounded-[6px]",
+      default: "rounded-[7.2px] before:rounded-[7.2px] after:rounded-[7.2px]",
+      lg: "rounded-[8.4px] before:rounded-[8.4px] after:rounded-[8.4px]",
+      full: "rounded-full before:rounded-full after:rounded-full",
     },
-  }
-);
+    reduceMotion: {
+      true: "transition-none before:transition-none after:transition-none",
+      false:
+        "before:transition-colors transition-transform after:[transition:0.2s_linear] after:[transition-property:opacity,scale,transform]",
+    },
+  },
+  defaultVariants: {
+    size: "default",
+    radius: "default",
+    reduceMotion: false,
+  },
+});
 
-const checkboxIndicatorStyles = cva(
-  [
+const checkboxIndicatorStyles = tv({
+  base: [
     `relative z-10 flex items-center justify-center data-[unchecked]:opacity-0 data-[checked]:opacity-100 text-primary-foreground transition-opacity pointer-events-none`,
   ],
-  {
-    variants: {
-      size: {
-        sm: "w-2.5 h-2.5",
-        default: "w-3 h-3",
-        lg: "w-4 h-4",
-      },
-      reduceMotion: {
-        true: "transition-none",
-        false: "transition-opacity",
-      },
+  variants: {
+    size: {
+      sm: "w-2.5 h-2.5",
+      default: "w-3 h-3",
+      lg: "w-4 h-4",
     },
-    defaultVariants: {
-      size: "default",
-      reduceMotion: false,
+    reduceMotion: {
+      true: "transition-none",
+      false: "transition-opacity",
     },
-  }
-);
+  },
+  defaultVariants: {
+    size: "default",
+    reduceMotion: false,
+  },
+});
 
 interface CheckboxRootProps
   extends React.ComponentProps<typeof CheckboxPrimitive.Root>,
@@ -145,7 +141,8 @@ function CheckboxRoot({
         onCheckedChange={handleCheckedChange}
         indeterminate={indeterminate}
         className={cn(
-          checkboxRootStyles({ className, size, radius, reduceMotion })
+          checkboxRootStyles({ size, radius, reduceMotion }),
+          className
         )}
         {...rest}
       />
@@ -201,7 +198,6 @@ interface CheckboxIndicatorProps
 function CheckboxIndicator({
   className,
   icon = CheckboxIcon,
-  ref,
   children,
   ...rest
 }: CheckboxIndicatorProps) {
@@ -210,8 +206,7 @@ function CheckboxIndicator({
   return (
     <CheckboxPrimitive.Indicator
       data-slot="checkbox-indicator"
-      className={cn(className, checkboxIndicatorStyles({ size, reduceMotion }))}
-      ref={ref}
+      className={cn(checkboxIndicatorStyles({ size, reduceMotion }), className)}
       {...rest}
       keepMounted
     >
@@ -236,14 +231,12 @@ function Checkbox({
   className,
   reduceMotion,
   children,
-  ref,
   ...rest
 }: CheckboxProps) {
   return (
     <CheckboxRoot
       className={cn(className)}
       reduceMotion={reduceMotion}
-      ref={ref}
       {...rest}
     >
       <CheckboxIndicator>{children}</CheckboxIndicator>

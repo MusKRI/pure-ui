@@ -32,7 +32,7 @@ export async function CodeElement({
     return (
       <code
         className={cn(
-          "PureInlineCode relative border border-border rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-medium text-foreground",
+          "PureInlineCode relative border border-border rounded bg-code px-[0.3rem] py-[0.2rem] font-mono text-[0.8rem] font-medium text-code-foreground",
           className
         )}
         {...props}
@@ -47,7 +47,7 @@ export async function CodeElement({
 
     return (
       <code
-        className={cn("PureCodeBlock block font-mono text-sm", className)}
+        className={cn("PureCodeBlock block font-mono text-xs", className)}
         dangerouslySetInnerHTML={{ __html: highlightedCode }}
         {...props}
       />
@@ -58,7 +58,7 @@ export async function CodeElement({
     return (
       <code
         className={cn(
-          "PureCodeBlock block font-mono text-sm text-foreground",
+          "PureCodeBlock block font-mono text-xs text-foreground",
           className
         )}
         {...props}
@@ -80,18 +80,20 @@ export async function CodeBlock({
   );
 
   return (
-    <pre
-      className={cn(
-        "PureCodeBlock relative mb-6 mt-6 overflow-x-auto rounded-lg border border-border bg-muted p-4 font-mono text-sm leading-relaxed [&>code]:bg-transparent [&>code]:p-0",
-        className
-      )}
-      {...props}
-    >
-      {hasCodeChild ? (
-        children
-      ) : (
-        <code className="PureCodeBlock font-mono">{children}</code>
-      )}
-    </pre>
+    <div className="PureCodeBlock [&+.PureCodeBlock]:mt-6 mt-4 [.PureInstallationCommands+&]:mt-8 rounded-2xl bg-code border border-border relative bg-clip-padding before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(--radius-2xl)-1px)] before:shadow-[0_1px_2px_1px_--theme(--color-black/4%)] after:pointer-events-none after:absolute after:-inset-[5px] after:-z-1 after:rounded-[calc(var(--radius-2xl)+4px)] after:border after:border-border/50 after:bg-clip-padding">
+      <pre
+        className={cn(
+          "PureCodeBlock relative overflow-x-auto p-4 font-mono leading-relaxed [&>code]:bg-transparent [&>code]:p-0 [&_code]:!text-sm",
+          className
+        )}
+        {...props}
+      >
+        {hasCodeChild ? (
+          children
+        ) : (
+          <code className="PureCodeBlock font-mono">{children}</code>
+        )}
+      </pre>
+    </div>
   );
 }

@@ -79,7 +79,10 @@ const processImportPaths = (content: string) =>
       c.replace(
         /@\/registry\/default\/components\/ui\/([^"']+)/g,
         "@/components/ui/$1"
-      )
+      ),
+    // Replace lib imports
+    (c) =>
+      c.replace(/@\/registry\/default\/components\/lib\/([^"']+)/g, "@/lib/$1")
   );
 
 // Effect based file reading with error handling

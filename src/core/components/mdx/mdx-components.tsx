@@ -7,6 +7,9 @@ import { cn } from "@/lib/classes";
 // Components
 import { CodeBlock, CodeElement } from "./components/code-block";
 import { ComponentShowcase } from "./components/component-showcase";
+import { MagicLink } from "./components/magic-link";
+import { LinkedCard } from "./components/linked-card";
+import { ColorCard } from "./components/color-card";
 import {
   Tabs,
   TabsList,
@@ -21,7 +24,7 @@ export const mdxComponents: MDXComponents = {
   h1: ({ className, ...props }: React.ComponentProps<"h1">) => (
     <h1
       className={cn(
-        "PureH1 font-mono mt-8 mb-6 scroll-m-28 text-4xl font-bold tracking-tight first:mt-0",
+        "PureH1 font-chillax mt-8 mb-6 scroll-m-24 text-3xl font-bold tracking-tight first:mt-0",
         className
       )}
       {...props}
@@ -39,7 +42,7 @@ export const mdxComponents: MDXComponents = {
           .replace(/[^\w\-]/g, "")
           .toLowerCase()}
         className={cn(
-          "PureH2 font-mono mt-16 mb-6 scroll-m-28 text-3xl font-medium tracking-tight first:mt-0 lg:mt-20 text-foreground",
+          "PureH2 font-chillax mt-12 scroll-m-24 text-2xl font-[560] tracking-tight",
           className
         )}
         {...props}
@@ -57,7 +60,7 @@ export const mdxComponents: MDXComponents = {
         .replace(/[^\w\-]/g, "")
         .toLowerCase()}
       className={cn(
-        "PureH3 font-mono mt-12 mb-4 scroll-m-28 text-xl font-semibold tracking-tight text-foreground",
+        "PureH3 font-chillax mt-6 mb-4 scroll-m-24 text-lg font-[560] tracking-tight",
         className
       )}
       {...props}
@@ -66,7 +69,7 @@ export const mdxComponents: MDXComponents = {
   h4: ({ className, ...props }: React.ComponentProps<"h4">) => (
     <h4
       className={cn(
-        "PureH4 font-mono mt-10 mb-3 scroll-m-28 text-lg font-medium tracking-tight text-foreground",
+        "PureH4 font-chillax mt-10 mb-3 scroll-m-24 text-lg font-medium tracking-tight",
         className
       )}
       {...props}
@@ -75,7 +78,7 @@ export const mdxComponents: MDXComponents = {
   h5: ({ className, ...props }: React.ComponentProps<"h5">) => (
     <h5
       className={cn(
-        "PureH5 font-mono mt-8 mb-3 scroll-m-28 text-base font-medium tracking-tight text-foreground",
+        "PureH5 font-chillax mt-8 mb-3 scroll-m-28 text-base font-medium tracking-tight",
         className
       )}
       {...props}
@@ -84,7 +87,7 @@ export const mdxComponents: MDXComponents = {
   h6: ({ className, ...props }: React.ComponentProps<"h6">) => (
     <h6
       className={cn(
-        "PureH6 font-mono mt-6 mb-2 scroll-m-28 text-sm font-medium tracking-tight uppercase text-foreground",
+        "PureH6 font-mono mt-6 mb-2 scroll-m-28 text-sm font-medium tracking-tight uppercase",
         className
       )}
       {...props}
@@ -93,26 +96,16 @@ export const mdxComponents: MDXComponents = {
   p: ({ className, ...props }: React.ComponentProps<"p">) => (
     <p
       className={cn(
-        "PureP !leading-[2] text-pretty text-foreground/70 text-base mb-6 last:mb-0 [&:not(:first-child)]:mt-6 [.PureUIComponentShowcase+&]:!mt-0",
+        "PureP !leading-[1.8] text-pretty text-muted-foreground text-base mb-6 last:mb-0 [&:not(:first-child)]:mt-6 [.PureUIComponentShowcase+&]:!mt-0",
         className
       )}
       {...props}
     />
   ),
-  a: ({ className, ...props }: React.ComponentProps<"a">) => (
-    <a
-      target="_blank"
-      className={cn(
-        "text-primary/60 hover:text-primary relative",
-        `before:absolute before:bottom-0 before:left-0 before:w-full before:border-b-[1px] before:border-primary/60 before:border-dashed hover:before:border-solid`,
-        className
-      )}
-      {...props}
-    />
-  ),
+  a: MagicLink,
   strong: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
     <strong
-      className={cn("PureStrong font-semibold text-foreground", className)}
+      className={cn("PureStrong font-medium text-foreground", className)}
       {...props}
     />
   ),
@@ -151,13 +144,13 @@ export const mdxComponents: MDXComponents = {
   ),
   code: CodeElement,
   pre: CodeBlock,
-
+  LinkedCard,
   ComponentShowcase,
   Tabs,
   TabsList,
   TabsTrigger,
   TabsContent,
-
+  ColorCard,
   Steps,
   Step,
 

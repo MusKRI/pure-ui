@@ -17,25 +17,25 @@ export function TOCItems() {
   }
 
   return (
-    <nav className="flex flex-col">
-      <div className="absolute top-0 left-0 right-0 h-6 bg-gradient-to-b from-background to-transparent pointer-events-none z-10" />
-      <div className="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-background to-transparent pointer-events-none z-10" />
+    <nav className="h-full relative">
+      {/* <div className="absolute top-0 left-0 right-0 h-6 bg-gradient-to-b from-background to-transparent pointer-events-none z-10" />
+      <div className="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-background to-transparent pointer-events-none z-10" /> */}
 
       <div
-        className="flex flex-col gap-3 items-start max-h-[calc(100vh-16rem)] overflow-y-auto py-4 relative"
+        className="flex flex-col items-start h-full overflow-x-hidden overflow-y-auto my-4 vertical-scroll-shadow"
         style={{
           scrollbarWidth: "none", // Firefox
           msOverflowStyle: "none", // IE/Edge
         }}
       >
-        <div className="absolute left-0 inset-y-[18px] w-[1.5px] rounded-full bg-foreground/10" />
+        <div className="absolute left-0 w-[1.5px] inset-y-2 rounded-full bg-foreground/10" />
 
         {items.map((item) => {
           return (
             <div
               key={item.id}
               className={cn(
-                "relative text-muted-foreground cursor-pointer hover:text-primary [overlap-wrap:anywhere] [transition:color_0.2s_ease-out]",
+                "relative py-[3px] text-muted-foreground cursor-pointer hover:text-primary [overlap-wrap:anywhere] [transition:color_0.2s_ease-out]",
                 item.id === activeAnchor && "text-foreground"
               )}
               style={{
@@ -45,11 +45,15 @@ export function TOCItems() {
             >
               {item.id === activeAnchor && (
                 <motion.div
-                  className="absolute left-0 inset-y-0.5 w-[1.5px] rounded-full bg-foreground"
+                  className="absolute left-0 inset-y-[6px] w-[1.2px] rounded-full bg-foreground"
                   layoutId="active-anchor"
                 />
               )}
-              <span className="text-[13px]">{item.title}</span>
+              <span
+                className={cn(item.level === 3 ? "text-[13px]" : "text-[14px]")}
+              >
+                {item.title}
+              </span>
             </div>
           );
         })}

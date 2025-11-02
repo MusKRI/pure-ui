@@ -1,0 +1,106 @@
+---
+title: Tooltip
+description: Tooltips display a brief, informative message that appears when a user interacts with an element.
+---
+
+<ComponentShowcase name="tooltip-demo" />
+
+## Installation
+
+<Tabs defaultValue="terminal">
+  <TabsList>
+    <TabsTrigger value="terminal">
+      <Terminal className="w-4 h-4" />
+      Terminal
+    </TabsTrigger>
+    <TabsTrigger value="manual">
+      <Code2 className="w-4 h-4" />
+      Manual
+    </TabsTrigger>
+  </TabsList>
+  <TabsContent value="terminal">
+    <InstallationCommands
+      type="registry-installation"
+      registryPath="components/tooltip"
+    />
+  </TabsContent>
+  <TabsContent value="manual">
+    <Steps currentStep={1}>
+      <Step stepNumber={1} title="Install dependencies">
+        <InstallationCommands
+          type="package-installation"
+          npmCommand="npm install motion @base-ui-components/react clsx tailwind-merge"
+          pnpmCommand="pnpm add motion @base-ui-components/react clsx tailwind-merge"
+          yarnCommand="yarn add motion @base-ui-components/react clsx tailwind-merge"
+          bunCommand="bun add motion @base-ui-components/react clsx tailwind-merge"
+        />
+      </Step>
+      <Step
+        stepNumber={2}
+        title="Add cn function to your utils"
+      >
+        ```ts
+        import { clsx, type ClassValue } from "clsx";
+        import { twMerge } from "tailwind-merge";
+
+        export function cn(...inputs: ClassValue[]) {
+          return twMerge(clsx(inputs));
+        }
+        ```
+      </Step>
+      <Step
+        stepNumber={3}
+        title="Copy and paste the following code into your project"
+        isLast
+      >
+        <ComponentCodePreview name="tooltip" />
+      </Step>
+    </Steps>
+
+  </TabsContent>
+</Tabs>
+
+## Anatomy
+
+```tsx
+import { Tooltip, TooltipTrigger, TooltipPopup } from "@/components/ui/tooltip";
+
+<Tooltip>
+  <TooltipTrigger />
+  <TooltipPopup>// Your tooltip content</TooltipPopup>
+</Tooltip>;
+```
+
+## Usage
+
+### With Arrow
+
+You can pass `showArrow` as true to `TooltipPopup` to show arrow on tooltip. By default, it is false.
+
+<ComponentShowcase name="tooltip-with-arrow-demo" />
+
+### Sides
+
+You can pass `side` to `TooltipPopup` to set the side of the tooltip. By default, it is `top`.
+
+<ComponentShowcase name="tooltip-sides-demo" />
+
+### Offset
+
+You can pass `sideOffset` to `TooltipPopup` to change the offset of the tooltip. By default, it is 4.
+
+<ComponentShowcase name="tooltip-offset-demo" />
+
+### Controlled
+
+<ComponentShowcase name="tooltip-controlled-demo" />
+
+### Delay
+
+You can control the `open` and `close` delay of the tooltip with `delay` and `closeDelay` props on `Tooltip` component.
+
+<ComponentShowcase name="tooltip-delay-demo" />
+
+### Custom Content
+
+<ComponentShowcase name="tooltip-custom-content" />

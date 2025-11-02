@@ -2,8 +2,10 @@ import { type RegistryItem } from "@/lib/registry/schemas";
 
 import { pureUIShadcnComponents } from "./pure-ui-components";
 import { pureUICompExamples } from "./pure-ui-comp-examples";
+import { pureUILib } from "./pure-ui-lib";
 
 export const pureUIAllComponents: RegistryItem[] = [
   ...pureUIShadcnComponents,
   ...pureUICompExamples,
+  ...pureUILib,
 ];

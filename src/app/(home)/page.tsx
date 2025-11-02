@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { cn } from "@/lib/classes";
 import { Button } from "@/registry/default/components/ui/button";
+import { RollingText } from "components/composed/rolling-text";
 
 export default function Home() {
   return (
@@ -14,32 +15,21 @@ export default function Home() {
       >
         <div className="relative">
           <div className="flex items-center justify-center gap-8">
-            <div className="relative bg-foreground p-2 rounded-xl overflow-hidden shadow-2xl max-md:hidden">
-              <svg
-                viewBox="0 0 32 32"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="size-12 md:size-18 text-background"
-              >
-                <path
-                  d="M6 20C6 20 9 14 13 14C17 14 19 17 22 17C25 17 28 12 28 12"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+            <div className="flex h-full w-full snap-start flex-col items-center justify-center">
+              <div className="flex flex-row items-center gap-4">
+                <RollingText
+                  text="Pure"
+                  speed={0.05}
+                  duration={3}
+                  className="text-5xl uppercase sm:text-7xl lg:text-8xl font-semibold"
                 />
-              </svg>
-            </div>
-            <div className="flex flex-col relative">
-              <h1
-                className={cn(
-                  "[--text-color:linear-gradient(180deg,#555_0%,#000_100%)] dark:[--text-color:linear-gradient(180deg,#fff_0%,#adadad_100%)]",
-                  "bg-clip-text text-transparent bg-[image:var(--text-color)] font-bold relative text-[max(48px,min(5vw,66px))] font-mono"
-                )}
-              >
-                Pure UI
-              </h1>
-              <div className="h-px w-full absolute bottom-0 left-0 right-0 bg-[linear-gradient(to_right,var(--line-color),var(--line-color)_100%,transparent_0,transparent)] [mask-image:linear-gradient(to_left,var(--background)_63%,transparent),linear-gradient(to_right,var(--background)_63%,transparent),linear-gradient(black,black)] [mask-composite:exclude]" />
+                <RollingText
+                  text="UI"
+                  speed={0.05}
+                  duration={3}
+                  className="text-5xl uppercase sm:text-7xl lg:text-8xl font-semibold"
+                />
+              </div>
             </div>
           </div>
           <div className="px-[32px] relative leading-[1.8] text-center mt-8">
@@ -51,10 +41,8 @@ export default function Home() {
 
           <div className="flex flex-col items-center justify-center">
             <div className="flex flex-row items-center gap-4 p-8">
-              <Button asChild size="lg">
-                <Link href="/docs" className="text-base">
-                  Get Started
-                </Link>
+              <Button size="lg" render={<Link href="/docs" />}>
+                Get Started
               </Button>
             </div>
           </div>

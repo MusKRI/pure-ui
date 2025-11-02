@@ -7,7 +7,7 @@ import {
 
 export function AccordionDemo() {
   return (
-    <Accordion className="w-full max-w-xl" animationPreset="slide">
+    <Accordion className="w-full max-w-xl">
       <AccordionItem value="item-1">
         <AccordionTrigger>What is Base UI?</AccordionTrigger>
         <AccordionPanel className="flex flex-col gap-4 text-balance">

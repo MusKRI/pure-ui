@@ -1,0 +1,20 @@
+{
+  "tailwindCSS.experimental.classRegex": [
+    // tailwind-variants tv() function
+    ["tv\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    // For base, slots, variants, compoundVariants, etc.
+    [
+      "(base|slots|variants|compoundVariants|defaultVariants):\\s*{([^}]*)}",
+      ":\\s*[\"'`]([^\"'`]*).*?[\"'`]"
+    ],
+    // For single line properties
+    [":\\s*[\"'`]([^\"'`]*).*?[\"'`]"]
+  ],
+  "tailwindCSS.classAttributes": [
+    "class",
+    "className",
+    "ngClass",
+    "base",
+    ".*ClassName"
+  ]
+}

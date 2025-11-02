@@ -1,5 +1,6 @@
 import { SVGProps, useId, useMemo } from "react";
 import { motion } from "motion/react";
+import { Tabs } from "@base-ui-components/react/tabs";
 
 import { RegistryItemFile } from "@/lib/registry/schemas";
 import {
@@ -64,41 +65,28 @@ export function ComponentCodePreviewHeader({
   }, [componentSources]);
 
   return (
-    <div
-      className="flex items-center px-3 [&::-webkit-scrollbar]:hidden z-2 overflow-x-auto shrink-0"
+    <Tabs.List
+      className="relative flex items-center gap-3 px-3 [&::-webkit-scrollbar]:hidden z-2 overflow-x-auto shrink-0"
       style={{ scrollbarWidth: "none" }}
     >
       {processedSources.map((source, index) => {
+        const tabValue = index.toString();
         const isActive = activeFileIndex === index;
         const IconComponent = source.icon;
 
         return (
-          <button
+          <Tabs.Tab
             key={source.path}
-            onClick={() => onFileChange?.(index)}
+            value={tabValue}
             className={cn(
-              "relative flex items-center gap-2 px-4 py-2.5 text-sm font-medium transition-all duration-300 whitespace-nowrap cursor-pointer shrink-0",
+              "relative z-2 flex items-center gap-2 px-4 py-2.5 text-sm font-medium [transition:color_0.05s] ease-spring-soft whitespace-nowrap cursor-pointer shrink-0",
               "focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
               isActive
-                ? "text-foreground bg-muted shadow-sm"
+                ? "text-foreground"
                 : "text-muted-foreground hover:text-foreground"
             )}
             style={{ willChange: "transform" }}
           >
-            {isActive && (
-              <motion.div
-                className="absolute inset-0 bg-muted border border-y-0 border-border"
-                layoutId={`file-tab-bg-${uniqueId}`}
-                initial={{ opacity: 0, y: 2 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 2 }}
-                transition={{
-                  duration: 0.2,
-                  ease: "easeOut",
-                }}
-              />
-            )}
-
             <div className="relative flex items-center gap-2 z-10">
               {IconComponent && (
                 <motion.div
@@ -125,9 +113,11 @@ export function ComponentCodePreviewHeader({
 
               <span className="font-medium">{source.displayName}</span>
             </div>
-          </button>
+          </Tabs.Tab>
         );
       })}
-    </div>
+
+      <Tabs.Indicator className="absolute border border-border border-y-0 bg-muted left-0 top-1/2 z-0 h-(--active-tab-height) w-(--active-tab-width) translate-x-(--active-tab-left) -translate-y-1/2 transition-all duration-200 ease-in-out" />
+    </Tabs.List>
   );
 }

@@ -43,8 +43,9 @@ export const ContentBody = ({ parsedContent }: Props) => {
 
         {headingsLength && (
           <DelayedRender delayMs={1000}>
-            <div className="max-w-[260px] sticky top-14 lg:top-24 shrink-0 mr-auto ml-7 hidden lg:flex lg:flex-col lg:self-start">
+            <div className="max-w-[260px] sticky top-0 shrink-0 mr-auto ml-7 hidden lg:flex lg:flex-col lg:self-start">
               <PureUITableOfContent headings={parsedContent.headings} />
+              <div className="pb-36 px-6"></div>
             </div>
           </DelayedRender>
         )}

@@ -1,0 +1,66 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.fadeIn {
+  animation: fadeIn 0.2s ease-out;
+}
+
+@supports (animation-timeline: scroll()) {
+  @property --ft {
+    syntax: "<length>";
+    inherits: false;
+    initial-value: 0;
+  }
+
+  @property --fb {
+    syntax: "<length>";
+    inherits: false;
+    initial-value: 0px;
+  }
+
+  .vertical-scroll-shadow {
+    --ft: 0;
+    --fb: 0px;
+
+    mask-image: linear-gradient(
+      to bottom,
+      transparent 0,
+      #000 var(--ft),
+      #000 calc(100% - var(--fb)),
+      transparent 100%
+    );
+    mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+    animation: fadeTop 1 linear both, fadeBottom 1 linear both;
+    animation-timeline: scroll(self), scroll(self);
+    animation-range: 0% 4%, 49% 100%;
+  }
+
+  @keyframes fadeTop {
+    from {
+      --ft: 0px;
+    }
+    to {
+      --ft: 30px;
+    }
+  }
+
+  @keyframes fadeBottom {
+    from {
+      --fb: 30px;
+    }
+    to {
+      --fb: 0px;
+    }
+  }
+}

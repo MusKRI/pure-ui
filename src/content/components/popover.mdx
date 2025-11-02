@@ -1,0 +1,158 @@
+---
+title: Popover
+description: Popover is a non-modal dialog that floats around its disclosure. It's commonly used for displaying additional rich content on top of something.
+---
+
+<ComponentShowcase name="popover-demo" />
+
+## Installation
+
+<Tabs defaultValue="terminal">
+  <TabsList>
+    <TabsTrigger value="terminal">
+      <Terminal className="w-4 h-4" />
+      Terminal
+    </TabsTrigger>
+    <TabsTrigger value="manual">
+      <Code2 className="w-4 h-4" />
+      Manual
+    </TabsTrigger>
+  </TabsList>
+  <TabsContent value="terminal">
+    <InstallationCommands
+      type="registry-installation"
+      registryPath="components/popover"
+    />
+  </TabsContent>
+  <TabsContent value="manual">
+    <Steps currentStep={1}>
+      <Step stepNumber={1} title="Install dependencies">
+        <InstallationCommands
+          type="package-installation"
+          npmCommand="npm install motion @base-ui-components/react clsx tailwind-merge"
+          pnpmCommand="pnpm add motion @base-ui-components/react clsx tailwind-merge"
+          yarnCommand="yarn add motion @base-ui-components/react clsx tailwind-merge"
+          bunCommand="bun add motion @base-ui-components/react clsx tailwind-merge"
+        />
+      </Step>
+      <Step
+        stepNumber={2}
+        title="Add cn function to your utils"
+      >
+        ```ts
+        import { clsx, type ClassValue } from "clsx";
+        import { twMerge } from "tailwind-merge";
+
+        export function cn(...inputs: ClassValue[]) {
+          return twMerge(clsx(inputs));
+        }
+        ```
+      </Step>
+      <Step
+        stepNumber={3}
+        title="Copy and paste the following code into your project"
+        isLast
+      >
+        <ComponentCodePreview name="popover" />
+      </Step>
+    </Steps>
+
+  </TabsContent>
+</Tabs>
+
+## Anatomy
+
+```tsx
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverPopup,
+  PopoverTitle,
+  PopoverDescription,
+} from "@/components/ui/popover";
+
+<Popover>
+  <PopoverTrigger />
+  <PopoverPopup>
+    <PopoverTitle />
+    <PopoverDescription />
+  </PopoverPopup>
+</Popover>;
+```
+
+## Usage
+
+### With Arrow
+
+You can pass `showArrow` as true to `PopoverPopup` to show arrow on popover. By default, it is false.
+
+<ComponentShowcase name="popover-with-arrow-demo" />
+
+### Sides
+
+You can pass `side` to `PopoverPopup` to change the side of the popover. By default, it is `bottom`.
+
+<ComponentShowcase name="popover-sides-demo" />
+
+### Open on Hover
+
+By default, Popover opens when the trigger is clicked. You can pass `openOnHover` to Popover to open it when the trigger is hovered.
+
+<ComponentShowcase name="popover-with-hover-demo" />
+
+You can pass `delay` to Popover to change the delay time for opening the popover. By default, it is 100ms.
+
+```tsx
+<Popover openOnHover delay={200}>
+  ...
+</Popover>
+```
+
+You can also pass `closeDelay` of Popover to change the delay time for closing the popover. By default, it is 0ms.
+
+```tsx
+<Popover openOnHover closeDelay={200}>
+  ...
+</Popover>
+```
+
+**Note that These two properties will only be used when `openOnHover` is true.**
+
+### Modality of Popover
+
+The `modal` property of `Popover` controls how users can interact with the page when the popover is open.
+
+**`modal={true}`** (default) -
+Focus is trapped, scrolling is locked, and outside interactions are disabled.
+
+**`modal={false}`** -
+Users can interact with both the popover and the rest of the page freely.
+
+**`modal="trap-focus"`** -
+Focus is trapped for keyboard navigation, but scrolling and outside pointer interactions remain enabled.
+
+<ComponentShowcase name="popover-modality-demo" />
+
+### Offset
+
+You can pass `sideOffset` to `PopoverPopup` to change the offset of the popover. By default, it is 4.
+
+<ComponentShowcase name="popover-offset-demo" />
+
+**TIP**: If you want to use arrow on popover, make sure to keep sideOffset not less than 8.
+
+### Controlled
+
+<ComponentShowcase name="popover-controlled-demo" />
+
+### With Form
+
+<ComponentShowcase name="popover-with-form-demo" />
+
+### Backdrop
+
+<ComponentShowcase name="popover-backdrop-demo" />
+
+### Custom trigger
+
+<ComponentShowcase name="popover-custom-trigger-demo" />

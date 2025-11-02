@@ -44,7 +44,7 @@ export function ComponentShowcaseClient({
   );
 
   return (
-    <div className={cn("PureUIComponentShowcase relative mb-7")}>
+    <div className={cn("PureUIComponentShowcase relative mb-12")}>
       <LayoutGroup>
         <Tabs.Root value={activeTab} onValueChange={setActiveTab}>
           <div className="flex flex-col gap-4">
@@ -56,8 +56,8 @@ export function ComponentShowcaseClient({
                   isActive={activeTab === tab.name}
                 />
               ))}
-              <Tabs.Indicator className="absolute top-1/2 left-0 z-[-1] h-(--active-tab-height) w-(--active-tab-width) translate-x-(--active-tab-left) -translate-y-1/2 rounded-sm bg-muted border border-border transition-all duration-[300ms] ease-[cubic-bezier(0.175,0.885,0.32,1.1)]">
-                <span className="absolute left-0 right-0 top-[0px] h-4.5 rounded-full bg-gradient-to-t z-1 from-background to-primary opacity-10 blur-[2px]"></span>
+              <Tabs.Indicator className="absolute top-1/2 left-0 z-[-1] h-(--active-tab-height) w-(--active-tab-width) translate-x-(--active-tab-left) -translate-y-1/2 rounded-sm bg-muted transition-all duration-[270ms] ease-[cubic-bezier(0.175,0.885,0.32,1.1)]">
+                {/* <span className="absolute left-0 right-0 top-[0px] h-4.5 rounded-full bg-gradient-to-t z-1 from-background to-primary opacity-10 blur-[2px]"></span> */}
               </Tabs.Indicator>
             </Tabs.List>
 
@@ -76,7 +76,7 @@ export function ComponentShowcaseClient({
                     style={{
                       willChange: "height",
                     }}
-                    className="rounded-[12px] bg-muted border border-border"
+                    className="rounded-2xl bg-code/50 border border-border relative bg-clip-padding before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(--radius-2xl)-1px)] before:shadow-[0_1px_2px_1px_--theme(--color-black/4%)] after:pointer-events-none after:absolute after:-inset-[5px] after:-z-1 after:rounded-[calc(var(--radius-2xl)+4px)] after:border after:border-border/50 after:bg-clip-padding"
                   >
                     <div className="px-8 flex items-center justify-center pb-12 pt-12 h-full">
                       <div className="h-full w-full">
@@ -116,7 +116,7 @@ export function ComponentShowcaseClient({
                     style={{
                       willChange: "height",
                     }}
-                    className="rounded-[12px] border border-border overflow-hidden"
+                    className="rounded-2xl bg-code border border-border relative bg-clip-padding before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(--radius-2xl)-1px)] before:shadow-[0_1px_2px_1px_--theme(--color-black/4%)] after:pointer-events-none after:absolute after:-inset-[5px] after:-z-1 after:rounded-[calc(var(--radius-2xl)+4px)] after:border after:border-border/50 after:bg-clip-padding"
                   >
                     <ComponentSources
                       name={name}

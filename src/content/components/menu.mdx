@@ -1,0 +1,203 @@
+---
+title: Menu
+description: Displays a list of actions or options that a user can choose.
+---
+
+<ComponentShowcase name="menu-demo" />
+
+## Installation
+
+<Tabs defaultValue="terminal">
+  <TabsList>
+    <TabsTrigger value="terminal">
+      <Terminal className="w-4 h-4" />
+      Terminal
+    </TabsTrigger>
+    <TabsTrigger value="manual">
+      <Code2 className="w-4 h-4" />
+      Manual
+    </TabsTrigger>
+  </TabsList>
+  <TabsContent value="terminal">
+    <InstallationCommands
+      type="registry-installation"
+      registryPath="components/menu"
+    />
+  </TabsContent>
+  <TabsContent value="manual">
+    <Steps currentStep={1}>
+      <Step stepNumber={1} title="Install dependencies">
+        <InstallationCommands
+          type="package-installation"
+          npmCommand="npm install motion @base-ui-components/react clsx tailwind-merge"
+          pnpmCommand="pnpm add motion @base-ui-components/react clsx tailwind-merge"
+          yarnCommand="yarn add motion @base-ui-components/react clsx tailwind-merge"
+          bunCommand="bun add motion @base-ui-components/react clsx tailwind-merge"
+        />
+      </Step>
+      <Step
+        stepNumber={2}
+        title="Add cn function to your utils"
+      >
+        ```ts
+        import { clsx, type ClassValue } from "clsx";
+        import { twMerge } from "tailwind-merge";
+
+        export function cn(...inputs: ClassValue[]) {
+          return twMerge(clsx(inputs));
+        }
+        ```
+      </Step>
+      <Step
+        stepNumber={3}
+        title="Copy and paste the following code into your project"
+        isLast
+      >
+        <ComponentCodePreview name="menu" />
+      </Step>
+    </Steps>
+
+  </TabsContent>
+</Tabs>
+
+## Anatomy
+
+```tsx
+import {
+  Menu,
+  MenuTrigger,
+  MenuPopup,
+  MenuItem,
+  MenuGroup,
+  MenuGroupLabel,
+  MenuSeparator,
+  MenuCheckboxItem,
+  MenuRadioGroup,
+  MenuRadioItem,
+  MenuSub,
+  MenuSubTrigger,
+  MenuSubPopup,
+} from "@/components/ui/menu";
+
+<Menu>
+  <MenuTrigger />
+  <MenuPopup>
+    <MenuItem />
+    <MenuSeparator />
+    <MenuGroup>
+      <MenuGroupLabel />
+      <MenuItem />
+    </MenuGroup>
+    <MenuCheckboxItem />
+    <MenuRadioGroup>
+      <MenuRadioItem />
+    </MenuRadioGroup>
+    <MenuSub>
+      <MenuSubTrigger />
+      <MenuSubPopup />
+    </MenuSub>
+  </MenuPopup>
+</Menu>;
+```
+
+## Usage
+
+### Basic
+
+<ComponentShowcase name="menu-basic-demo" />
+
+### With Arrow
+
+You can pass `showArrow` as true to `MenuPopup` to show arrow on menu. By default, it is false.
+
+**Tip**: If you want to use arrow on menu, make sure to keep `sideOffset` not less than 8.
+
+<ComponentShowcase name="menu-with-arrow-demo" />
+
+### Sides
+
+You can pass `side` to `MenuPopup` to change the side of the menu. By default, it is `bottom`.
+
+<ComponentShowcase name="menu-sides-demo" />
+
+### Open on Hover
+
+By default, Menu opens when the trigger is clicked. You can pass `openOnHover` to Menu to open it when the trigger is hovered.
+
+<ComponentShowcase name="menu-with-hover-demo" />
+
+### Checkboxes
+
+<ComponentShowcase name="menu-checkboxes-demo" />
+
+By default, clicking on a checkbox item will not close the menu. You can pass `closeOnClick` to `MenuCheckboxItem` to close the menu when the checkbox item is clicked.
+
+```tsx
+<MenuCheckboxItem closeOnClick>
+  <span>Checkbox Item</span>
+</MenuCheckboxItem>
+```
+
+### Radio Group
+
+<ComponentShowcase name="menu-radio-group-demo" />
+
+By default, clicking on a radio item will not close the menu. You can pass `closeOnClick` to `MenuRadioItem` to close the menu when the radio item is clicked.
+
+```tsx
+<MenuRadioItem closeOnClick>
+  <span>Radio Item</span>
+</MenuRadioItem>
+```
+
+You can use custom active icon for the radio group by passing the `activeIcon` prop to the `MenuRadioGroup` component. See the example below.
+
+<ComponentShowcase name="menu-radiogroup-with-custom-icon-demo" />
+
+### With Groups
+
+<ComponentShowcase name="menu-with-groups-demo" />
+
+### Nested menu
+
+<ComponentShowcase name="menu-nested-demo" />
+
+### Navigating to another page
+
+Use the `render` prop to compose a menu item with an anchor element.
+
+```tsx
+<MenuItem render={<a href="/projects">Go to Projects</a>} />
+```
+
+## Popup Animation
+
+You can pass `animationPreset` to `MenuPopup` to change the animation of the popup. By default, it is `scale`.
+
+### Scale
+
+<ComponentShowcase name="menu-scale-demo" />
+
+### Wipe
+
+<ComponentShowcase name="menu-wipe-demo" />
+
+### Wipe Scale
+
+<ComponentShowcase name="menu-wipe-scale-demo" />
+
+### Motion
+
+<ComponentShowcase name="menu-motion-demo" />
+
+### Motion Blur
+
+<ComponentShowcase name="menu-motion-blur-demo" />
+
+### Slide Outside
+
+<ComponentShowcase name="menu-slide-outside-demo" />
+
+### Slide Inside
+
+<ComponentShowcase name="menu-slide-inside-demo" />

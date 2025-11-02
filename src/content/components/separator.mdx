@@ -1,0 +1,71 @@
+---
+title: Separator
+description: Visually divide content sections
+---
+
+<ComponentShowcase name="separator-demo" />
+
+## Installation
+
+<Tabs defaultValue="terminal">
+  <TabsList>
+    <TabsTrigger value="terminal">
+      <Terminal className="w-4 h-4" />
+      Terminal
+    </TabsTrigger>
+    <TabsTrigger value="manual">
+      <Code2 className="w-4 h-4" />
+      Manual
+    </TabsTrigger>
+  </TabsList>
+  <TabsContent value="terminal">
+    <InstallationCommands
+      type="registry-installation"
+      registryPath="components/separator"
+    />
+  </TabsContent>
+  <TabsContent value="manual">
+    <Steps currentStep={1}>
+      <Step stepNumber={1} title="Install dependencies">
+        <InstallationCommands
+          type="package-installation"
+          npmCommand="npm install @base-ui-components/react clsx tailwind-merge"
+          pnpmCommand="pnpm add @base-ui-components/react clsx tailwind-merge"
+          yarnCommand="yarn add @base-ui-components/react clsx tailwind-merge"
+          bunCommand="bun add @base-ui-components/react clsx tailwind-merge"
+        />
+      </Step>
+      <Step
+        stepNumber={2}
+        title="Add cn function to your utils"
+      >
+        ```ts
+        import { clsx, type ClassValue } from "clsx";
+        import { twMerge } from "tailwind-merge";
+
+        export function cn(...inputs: ClassValue[]) {
+          return twMerge(clsx(inputs));
+        }
+        ```
+      </Step>
+      <Step
+        stepNumber={3}
+        title="Copy and paste the following code into your project"
+        isLast
+      >
+        <ComponentCodePreview name="separator" />
+      </Step>
+    </Steps>
+
+  </TabsContent>
+</Tabs>
+
+## Usage
+
+```tsx
+import { Separator } from "@/components/ui/separator";
+```
+
+```tsx
+<Separator />
+```

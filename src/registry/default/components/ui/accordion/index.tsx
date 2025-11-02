@@ -8,14 +8,9 @@ import React, {
   useState,
 } from "react";
 import { Accordion as AccordionPrimitive } from "@base-ui-components/react/accordion";
-import {
-  motion,
-  AnimatePresence,
-  Transition,
-  MotionConfig,
-} from "motion/react";
+import { motion, AnimatePresence, MotionConfig } from "motion/react";
 
-import { cn } from "@/lib/classes";
+import { cn } from "@/registry/default/components/lib/classes";
 
 const animationPresets = {
   none: {
@@ -119,38 +114,23 @@ const animationPresets = {
 const transitionPresets = {
   inExpo: {
     type: "tween",
-    duration: 0.35,
+    duration: 0.25,
     ease: [0.95, 0.05, 0.795, 0.035],
   },
   outExpo: {
     type: "tween",
-    duration: 0.35,
+    duration: 0.25,
     ease: [0.19, 1, 0.22, 1],
   },
   inOutExpo: {
     type: "tween",
-    duration: 0.35,
+    duration: 0.235,
     ease: [1, 0, 0, 1],
-  },
-  anticipate: {
-    type: "tween",
-    duration: 0.35,
-    ease: [1, -0.4, 0.35, 0.95],
   },
   quickOut: {
     type: "tween",
-    duration: 0.35,
+    duration: 0.2,
     ease: [0, 0, 0.2, 1],
-  },
-  overshootOut: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.175, 0.885, 0.32, 1.275],
-  },
-  swiftOut: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.175, 0.885, 0.32, 1.1],
   },
   snappyOut: {
     type: "tween",
@@ -159,27 +139,27 @@ const transitionPresets = {
   },
   in: {
     type: "tween",
-    duration: 0.35,
+    duration: 0.235,
     ease: [0.42, 0, 1, 1],
   },
   out: {
     type: "tween",
-    duration: 0.35,
+    duration: 0.185,
     ease: [0, 0, 0.58, 1],
   },
   inOut: {
     type: "tween",
-    duration: 0.25,
+    duration: 0.225,
     ease: [0.42, 0, 0.58, 1],
   },
   outIn: {
     type: "tween",
-    duration: 0.35,
+    duration: 0.235,
     ease: [0.1, 0.7, 0.9, 0.5],
   },
   inQuad: {
     type: "tween",
-    duration: 0.35,
+    duration: 0.235,
     ease: [0.55, 0.085, 0.68, 0.53],
   },
   outQuad: {
@@ -194,12 +174,12 @@ const transitionPresets = {
   },
   inCubic: {
     type: "tween",
-    duration: 0.35,
+    duration: 0.26,
     ease: [0.55, 0.055, 0.675, 0.19],
   },
   outCubic: {
     type: "tween",
-    duration: 0.35,
+    duration: 0.235,
     ease: [0.215, 0.61, 0.355, 1],
   },
   inOutCubic: {
@@ -209,52 +189,52 @@ const transitionPresets = {
   },
   inQuart: {
     type: "tween",
-    duration: 0.35,
+    duration: 0.25,
     ease: [0.895, 0.03, 0.685, 0.22],
   },
   outQuart: {
     type: "tween",
-    duration: 0.35,
+    duration: 0.25,
     ease: [0.165, 0.84, 0.44, 1],
   },
   inOutQuart: {
     type: "tween",
-    duration: 0.35,
+    duration: 0.25,
     ease: [0.77, 0, 0.175, 1],
   },
   inQuint: {
     type: "tween",
-    duration: 0.35,
+    duration: 0.25,
     ease: [0.755, 0.05, 0.855, 0.06],
   },
   outQuint: {
     type: "tween",
-    duration: 0.35,
+    duration: 0.25,
     ease: [0.23, 1, 0.32, 1],
   },
   inOutQuint: {
     type: "tween",
-    duration: 0.35,
+    duration: 0.26,
     ease: [0.86, 0, 0.07, 1],
   },
   inCirc: {
     type: "tween",
-    duration: 0.35,
+    duration: 0.25,
     ease: [0.6, 0.04, 0.98, 0.335],
   },
   outCirc: {
     type: "tween",
-    duration: 0.35,
+    duration: 0.27,
     ease: [0.075, 0.82, 0.165, 1],
   },
   inOutCirc: {
     type: "tween",
-    duration: 0.35,
+    duration: 0.25,
     ease: [0.785, 0.135, 0.15, 0.86],
   },
   inOutBase: {
     type: "tween",
-    duration: 0.35,
+    duration: 0.25,
     ease: [0.25, 0.1, 0.25, 1],
   },
 } as const;
@@ -298,7 +278,7 @@ function Accordion({
   defaultValue,
   onValueChange,
   animationPreset = "fade",
-  transitionPreset = "inOutQuad",
+  transitionPreset = "snappyOut",
   reduceMotion,
   variant = "default",
   className,
@@ -337,7 +317,7 @@ function Accordion({
           className={cn(
             "w-full contain-layout",
             variant === "outline" &&
-              "border border-border/60 rounded-md bg-background shadow-md",
+              "border border-border/60 rounded-[11px] bg-popover shadow-md",
             className
           )}
           {...props}
@@ -443,8 +423,9 @@ function AccordionTrigger({
         data-slot="accordion-trigger"
         className={cn(
           "w-full text-left p-4 flex items-center cursor-pointer",
-          `hover:bg-accent/40 focus:outline-hidden focus-visible:bg-accent/40`,
+          `hover:bg-accent/40 focus-visible:bg-accent/40 dark:hover:bg-accent/55 dark:focus-visible:bg-accent/55`,
           `data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 data-[disabled]:pointer-events-none`,
+          `focus-visible:outline-2 focus-visible:outline-ring focus-visible:outline-offset-2`,
           className
         )}
         {...props}
@@ -501,7 +482,7 @@ function AccordionPanel({
   const { open } = useAccordionItem();
   const {
     animationPreset = "fade",
-    transitionPreset = "inOutExpo",
+    transitionPreset = "snappyOut",
     reduceMotion = false,
   } = useAccordion();
 

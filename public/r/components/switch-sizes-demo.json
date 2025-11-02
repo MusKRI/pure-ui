@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "switch-sizes-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "switch"
+  ],
+  "files": [
+    {
+      "path": "src/registry/default/components/examples/switch/switch-sizes-demo.tsx",
+      "content": "import { Switch } from \"@/registry/default/components/ui/switch\";\r\n\r\nexport function SwitchSizesDemo() {\r\n  const sizes = [\"sm\", \"md\", \"lg\"] as const;\r\n\r\n  return (\r\n    <div className=\"flex flex-col gap-4\">\r\n      {sizes.map((size) => (\r\n        <label key={size} className=\"flex items-center gap-2 cursor-pointer\">\r\n          <Switch size={size} />\r\n          <span>Enable Polar Payments</span>\r\n        </label>\r\n      ))}\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+---
+title: Vite
+description: Install and configure Pure UI for Vite.
+---
+
+## Create Project
+
+Start by creating a new React project using `vite`. Select the React + TypeScript template:
+
+<InstallationCommands
+  type="package-installation"
+  npmCommand="npm create vite@latest"
+  pnpmCommand="pnpm create vite@latest"
+  yarnCommand="yarn create vite@latest"
+  bunCommand="bun create vite@latest"
+/>
+
+## Add Tailwind CSS
+
+<InstallationCommands
+  type="package-installation"
+  npmCommand="npm install tailwindcss @tailwindcss/vite"
+  pnpmCommand="pnpm add tailwindcss @tailwindcss/vite"
+  yarnCommand="yarn add tailwindcss @tailwindcss/vite"
+  bunCommand="bun add tailwindcss @tailwindcss/vite"
+/>
+
+Replace everything in `src/index.css` with the following:
+
+```css
+@import "tailwindcss";
+```
+
+## Edit tsconfig.json file
+
+The current version of Vite splits TypeScript configuration into three files, two of which need to be edited. Add the `baseUrl` and `paths` properties to the `compilerOptions` section of the `tsconfig.json` and `tsconfig.app.json` files:
+
+```json
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
+```
+
+## Edit tsconfig.app.json file
+
+Add the following code to the `tsconfig.app.json` file to resolve paths, for your IDE:
+
+```json
+{
+  "compilerOptions": {
+    // ...
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+    // ...
+  }
+}
+```
+
+## Update vite.config.ts
+
+Install node types to avoid any type errors.
+
+<InstallationCommands
+  type="package-installation"
+  npmCommand="npm install -D @types/node"
+  pnpmCommand="pnpm add -D @types/node"
+  yarnCommand="yarn add -D @types/node"
+  bunCommand="bun add -D @types/node"
+/>
+
+Add the following code to the `vite.config.ts` so your app can resolve paths without error:
+
+```ts
+import path from "path";
+import tailwindcss from "@tailwindcss/vite";
+import react from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react(), tailwindcss()],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
+});
+```
+
+## Run the CLI
+
+Run the `shadcn` init command to setup your project:
+
+<InstallationCommands
+  type="package-installation"
+  npmCommand="npx shadcn@latest init"
+  pnpmCommand="pnpm dlx shadcn@latest init"
+  yarnCommand="yarn shadcn@latest init"
+  bunCommand="bunx --bun shadcn@latest init"
+/>
+
+You will be asked a few questions to configure `components.json`.
+
+```txt
+Which color would you like to use as base color? › Neutral
+```
+
+## Add components
+
+You can now start adding components to your project.
+
+<InstallationCommands
+  type="registry-installation"
+  registryPath="components/separator"
+/>
+
+The command above will add the `Separator` component to your project. You can then import it like this:
+
+```tsx
+import { Separator } from "@/components/ui/separator";
+
+export default function Home() {
+  return (
+    <div>
+      <Separator />
+    </div>
+  );
+}
+```

@@ -56,18 +56,15 @@ function SidebarLinkItem({
     <Link
       key={item.id}
       href={item.href}
-      className="text-sm block px-2.5 font-medium"
+      className={cn(
+        "text-sm block py-1.5 px-4 rounded-md font-[550]",
+        pathname === item.href
+          ? ["text-sidebar-primary", "bg-sidebar-accent/60"]
+          : ["text-sidebar-foreground/60 hover:text-sidebar-primary"]
+      )}
       onClick={handleClosingSidebar}
     >
-      <div
-        className={cn(
-          "relative text-muted-foreground hover:text-foreground py-2",
-          "before:absolute before:top-1/2 before:-translate-y-1/2 before:-left-2.5 before:z-0 before:size-1 before:bg-transparent before:rounded-full",
-          pathname === item.href ? ["before:bg-primary text-primary"] : [""]
-        )}
-      >
-        {item.title}
-      </div>
+      {item.title}
     </Link>
   );
 }
@@ -82,23 +79,65 @@ function SidebarGroupItem({
   handleClosingSidebar: () => void;
 }) {
   const [isExpanded, setIsExpanded] = useState(item.defaultExpanded ?? false);
+  const isActive = item.href ? pathname === item.href : false;
+
+  const handleGroupClick = () => {
+    // If item has href and is not active, navigate to it
+    // If item is active or has no href, toggle expansion
+    if (isActive || !item.href) {
+      setIsExpanded(!isExpanded);
+    }
+  };
+
+  const handleChevronClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsExpanded(!isExpanded);
+  };
+
+  const content = (
+    <>
+      <span>{item.title}</span>
+      <ChevronDownIcon
+        className={cn(
+          "w-4 h-4 [transition:rotate_0.2s] [transition-timing-function:cubic-bezier(0.19.1,0.22,1)]",
+          isExpanded ? "-rotate-90" : "rotate-0"
+        )}
+        onClick={handleChevronClick}
+      />
+    </>
+  );
 
   return (
     <div className="relative block">
-      <div
-        className="flex items-center justify-between px-2.5 py-2 cursor-pointer text-sm font-medium text-muted-foreground hover:text-foreground"
-        onClick={() => {
-          setIsExpanded(!isExpanded);
-        }}
-      >
-        <span>{item.title}</span>
-        <ChevronDownIcon
+      {item.href ? (
+        <Link
+          href={item.href}
           className={cn(
-            "w-4 h-4 [transition:rotate_0.2s] [transition-timing-function:cubic-bezier(0.19.1,0.22,1)]",
-            isExpanded ? "-rotate-90" : "rotate-0"
+            "flex items-center justify-between px-4 py-1.5 rounded-md cursor-pointer text-sm font-medium",
+            isActive
+              ? ["text-sidebar-primary", "bg-sidebar-accent/60"]
+              : ["text-muted-foreground hover:text-foreground"]
           )}
-        />
-      </div>
+          onClick={(e) => {
+            if (isActive) {
+              e.preventDefault();
+              handleGroupClick();
+            } else {
+              handleClosingSidebar();
+            }
+          }}
+        >
+          {content}
+        </Link>
+      ) : (
+        <div
+          className="flex items-center justify-between px-4 py-1.5 rounded-md cursor-pointer text-sm font-medium text-muted-foreground hover:text-foreground"
+          onClick={handleGroupClick}
+        >
+          {content}
+        </div>
+      )}
 
       <AnimatePresence initial={false}>
         {isExpanded && (

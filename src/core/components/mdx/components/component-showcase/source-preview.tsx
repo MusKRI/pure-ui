@@ -28,7 +28,7 @@ export function SourcePreview({ currentFile }: SourcePreviewProps) {
   if (language === "text" || !highlightedCode) {
     return (
       <div className="relative group h-full">
-        <div className="rounded-xl w-full h-full bg-muted/40 border border-border overflow-y-auto backdrop-blur-sm transition-all duration-300 ease-out">
+        <div className="rounded-xl w-full h-full bg-code border border-border overflow-y-auto backdrop-blur-sm transition-all duration-300 ease-out">
           <div className="relative">
             <div className="absolute top-3 right-3 z-10">
               <CopyButton code={code} />
@@ -36,8 +36,7 @@ export function SourcePreview({ currentFile }: SourcePreviewProps) {
           </div>
           <pre
             className={cn(
-              "px-6 py-5 text-sm font-mono leading-[1.7] overflow-auto h-full",
-              "bg-muted/40 text-foreground whitespace-pre",
+              "px-6 py-5 text-[13px] font-mono leading-[1.7] overflow-auto h-full",
               "scrollbar-thin scrollbar-track-transparent scrollbar-thumb-border",
               "hover:scrollbar-thumb-muted-foreground/30"
             )}
@@ -60,15 +59,15 @@ export function SourcePreview({ currentFile }: SourcePreviewProps) {
         <CopyButton code={code} />
       </div>
 
-      <div className="w-full h-full overflow-y-auto transition-all duration-300 ease-out">
+      <div className="w-full max-h-[600px] overflow-y-auto transition-all duration-300 ease-out">
         <div
           className={cn(
-            "relative overflow-y-auto rounded-lg font-mono",
+            "relative overflow-y-auto font-mono",
             // Progressive masking for horizontal scroll
-            "before:absolute before:left-0 before:top-0 before:bottom-0 before:w-8 before:bg-gradient-to-r before:from-muted before:to-transparent before:z-10 before:pointer-events-none",
-            "after:absolute after:right-0 after:top-0 after:bottom-0 after:w-8 after:bg-gradient-to-l after:from-muted after:to-transparent after:z-10 after:pointer-events-none",
+            "before:absolute before:left-0 before:top-0 before:bottom-0 before:w-8 before:bg-gradient-to-r before:from-code before:to-transparent before:z-10 before:pointer-events-none",
+            "after:absolute after:right-0 after:top-0 after:bottom-0 after:w-8 after:bg-gradient-to-l after:from-code after:to-transparent after:z-10 after:pointer-events-none",
             // Custom scrollbar styles with proper overflow handling
-            "[&>pre]:overflow-x-auto [&>pre]:scrollbar-thin [&>pre]:scrollbar-track-transparent [&>pre]:scrollbar-thumb-muted-foreground",
+            "[&>pre]:overflow-x-auto [&>pre]:scrollbar-thin [&>pre]:scrollbar-track-transparent [&>pre]:scrollbar-thumb-code-foreground",
             // Responsive text size
             "[&>pre]:text-sm [&>pre]:leading-relaxed",
             // Padding and spacing - increased horizontal padding to account for fade
@@ -78,9 +77,9 @@ export function SourcePreview({ currentFile }: SourcePreviewProps) {
             // Ensure code block takes full width and doesn't wrap
             "[&>pre>code]:inline-block [&>pre>code]:w-max [&>pre>code]:min-w-full",
             // Tab size for proper indentation
-            "[&>pre]:tab-size-4 [&>pre>code]:tab-size-4",
+            "[&>pre]:tab-size-4 [&>pre>code]:tab-size-4"
             // Ensure proper theme variable inheritance
-            "[&>pre]:!bg-muted [&>pre]:text-muted-foreground"
+            // "[&>pre]:!bg-code [&>pre]:text-code-foreground"
           )}
           dangerouslySetInnerHTML={{ __html: highlightedCode }}
         />

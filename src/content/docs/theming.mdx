@@ -1,0 +1,242 @@
+---
+title: Theming
+description: Customize Pure UI's design system with CSS variables and global styles
+---
+
+Theming allows you to maintain a consistent look and feel across your application.
+
+Pure UI uses CSS variables for theming. You can customize everything from colors to component styles using standard CSS.
+
+## How It Works
+
+Pure UI's theming system is built on top of [Tailwind CSS v4](https://tailwindcss.com/docs/theme)'s theme. When you import `tailwindcss`, it:
+
+1. Uses Tailwind's built-in color palettes (like `--color-neutral-*`)
+2. Maps them to semantic variables for easier use
+3. Automatically switches between light and dark themes
+4. Uses CSS layers and the `@theme` directive for organization
+
+The system follows a simple naming pattern:
+
+- Colors without a suffix are backgrounds (e.g., `--accent`)
+- Colors with `-foreground` are for text on that background (e.g., `--accent-foreground`)
+
+```tsx
+<div className="bg-accent text-accent-foreground">Hello</div>
+```
+
+## List of Variables
+
+### UI Colors
+
+<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-9 mt-5 mb-10">
+  <ColorCard
+    color="oklch(1 0 0)"
+    darkColor="oklch(0.141 0.005 285.823)"
+    title="Background"
+  />
+  <ColorCard
+    color="oklch(0.21 0.006 285.885)"
+    darkColor="oklch(0.967 0.001 286.375)"
+    title="Foreground"
+  />
+  <ColorCard
+    color="oklch(1 0 0)"
+    darkColor="color-mix(
+    in srgb,
+    oklch(0.21 0.006 285.885) 80%,
+    oklch(0.141 0.005 285.823)
+  )"
+    title="Card"
+  />
+  <ColorCard
+    color="oklch(0.21 0.006 285.885)"
+    darkColor="oklch(0.967 0.001 286.375)"
+    title="Card Foreground"
+  />
+  <ColorCard
+    color="oklch(1 0 0)"
+    darkColor="oklch(0.21 0.006 285.885)"
+    title="Popover"
+  />
+  <ColorCard
+    color="oklch(0.21 0.006 285.885)"
+    darkColor="oklch(0.967 0.001 286.375)"
+    title="Popover Foreground"
+  />
+  <ColorCard
+    color="oklch(0.274 0.006 286.033)"
+    darkColor="oklch(0.967 0.001 286.375)"
+    title="Primary"
+  />
+  <ColorCard
+    color="oklch(0.985 0 0)"
+    darkColor="oklch(0.21 0.006 285.885)"
+    title="Primary Foreground"
+  />
+  <ColorCard
+    color="oklch(0 0 0 / 4%)"
+    darkColor="oklch(1 0 0 / 6%)"
+    title="Secondary"
+  />
+  <ColorCard
+    color="oklch(0.21 0.006 285.885)"
+    darkColor="oklch(0.967 0.001 286.375)"
+    title="Secondary Foreground"
+  />
+  <ColorCard
+    color="oklch(0 0 0 / 4%)"
+    darkColor="oklch(1 0 0 / 6%)"
+    title="Muted"
+  />
+  <ColorCard
+    color="oklch(0.442 0.017 285.786)"
+    darkColor="oklch(0.705 0.015 286.067)"
+    title="Muted Foreground"
+  />
+  <ColorCard
+    color="oklch(0 0 0 / 4%)"
+    darkColor="oklch(1 0 0 / 6%)"
+    title="Accent"
+  />
+  <ColorCard
+    color="oklch(0.21 0.006 285.885)"
+    darkColor="oklch(0.967 0.001 286.375)"
+    title="Accent Foreground"
+  />
+  <ColorCard
+    color="oklch(0.637 0.237 25.331)"
+    darkColor="oklch(0.637 0.237 25.331)"
+    title="Destructive"
+  />
+  <ColorCard
+    color="oklch(0.505 0.213 27.518)"
+    darkColor="oklch(0.704 0.191 22.216)"
+    title="Destructive Foreground"
+  />
+  <ColorCard
+    color="oklch(0.623 0.214 259.815)"
+    darkColor="oklch(0.623 0.214 259.815)"
+    title="Info"
+  />
+  <ColorCard
+    color="oklch(0.488 0.243 264.376)"
+    darkColor="oklch(0.707 0.165 254.624)"
+    title="Info Foreground"
+  />
+  <ColorCard
+    color="oklch(0.696 0.17 162.48)"
+    darkColor="oklch(0.696 0.17 162.48)"
+    title="Success"
+  />
+  <ColorCard
+    color="oklch(0.508 0.118 165.612)"
+    darkColor="oklch(0.765 0.177 163.223)"
+    title="Success Foreground"
+  />
+  <ColorCard
+    color="oklch(0.769 0.188 70.08)"
+    darkColor="oklch(0.769 0.188 70.08)"
+    title="Warning"
+  />
+  <ColorCard
+    color="oklch(0.555 0.163 48.998)"
+    darkColor="oklch(0.828 0.189 84.429)"
+    title="Warning Foreground"
+  />
+  <ColorCard
+    color="oklch(0 0 0 / 10%)"
+    darkColor="oklch(1 0 0 / 12%)"
+    title="Border"
+  />
+  <ColorCard
+    color="oklch(0 0 0 / 10%)"
+    darkColor="oklch(1 0 0 / 12%)"
+    title="Input"
+  />
+  <ColorCard
+    color="oklch(0.705 0.015 286.067)"
+    darkColor="oklch(0.552 0.016 285.938)"
+    title="Ring"
+  />
+
+</div>
+
+### Chart Colors
+
+<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-9 mt-5">
+  <ColorCard
+    color="oklch(0.646 0.222 41.116)"
+    darkColor="oklch(0.488 0.243 264.376)"
+    title="Chart 1"
+  />
+  <ColorCard
+    color="oklch(0.6 0.118 184.704)"
+    darkColor="oklch(0.696 0.17 162.48)"
+    title="Chart 2"
+  />
+  <ColorCard
+    color="oklch(0.398 0.07 227.392)"
+    darkColor="oklch(0.769 0.188 70.08)"
+    title="Chart 3"
+  />
+  <ColorCard
+    color="oklch(0.828 0.189 84.429)"
+    darkColor="oklch(0.627 0.265 303.9)"
+    title="Chart 4"
+  />
+  <ColorCard
+    color="oklch(0.769 0.188 70.08)"
+    darkColor="oklch(0.645 0.246 16.439)"
+    title="Chart 5"
+  />
+</div>
+
+### Sidebar Colors
+
+<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-9 mt-5 mb-10">
+  <ColorCard
+    color="oklch(0.985 0 0)"
+    darkColor="color-mix(
+    in srgb,
+    oklch(0.21 0.006 285.885) 32%,
+    oklch(0.141 0.005 285.823)
+  )"
+    title="Sidebar"
+  />
+  <ColorCard
+    color="oklch(0.21 0.006 285.885)"
+    darkColor="oklch(0.967 0.001 286.375)"
+    title="Sidebar Foreground"
+  />
+  <ColorCard
+    color="oklch(0.274 0.006 286.033)"
+    darkColor="oklch(0.967 0.001 286.375)"
+    title="Sidebar Primary"
+  />
+  <ColorCard
+    color="oklch(0.985 0 0)"
+    darkColor="oklch(0.21 0.006 285.885)"
+    title="Sidebar Primary Foreground"
+  />
+  <ColorCard
+    color="oklch(0 0 0 / 4%)"
+    darkColor="oklch(1 0 0 / 8%)"
+    title="Sidebar Accent"
+  />
+  <ColorCard
+    color="oklch(0.21 0.006 285.885)"
+    darkColor="oklch(0.967 0.001 286.375)"
+    title="Sidebar Accent Foreground"
+  />
+  <ColorCard
+    color="oklch(0 0 0 / 10%)"
+    darkColor="oklch(1 0 0 / 12%)"
+    title="Sidebar Border"
+  />
+  <ColorCard
+    color="oklch(0.705 0.015 286.067)"
+    darkColor="oklch(0.705 0.015 286.067)"
+    title="Sidebar Ring"
+  />
+</div>

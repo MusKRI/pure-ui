@@ -1,4 +1,5 @@
 import { Geist, Noto_Sans_Mono } from "next/font/google";
+import localFont from "next/font/local";
 
 import { cn } from "@/lib/classes";
 
@@ -12,4 +13,13 @@ const fontNotoMono = Noto_Sans_Mono({
   variable: "--font-noto-mono",
 });
 
-export const fontVariables = cn(fontSans.variable, fontNotoMono.variable);
+const fontChillax = localFont({
+  src: "../assets/fonts/Chillax-Variable.ttf",
+  variable: "--font-chillax",
+});
+
+export const fontVariables = cn(
+  fontSans.variable,
+  fontNotoMono.variable,
+  fontChillax.variable
+);

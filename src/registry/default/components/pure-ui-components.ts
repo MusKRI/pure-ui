@@ -11,15 +11,16 @@ export const pureUIShadcnComponents: RegistryItem[] = [
       {
         path: "ui/accordion/index.tsx",
         type: "registry:ui",
+        target: "components/ui/accordion.tsx",
       },
     ],
     dependencies: [
-      "class-variance-authority",
       "clsx",
       "tailwind-merge",
       "@base-ui-components/react",
       "motion",
     ],
+    registryDependencies: ["classes"],
   },
   // Button
   {
@@ -93,7 +94,20 @@ export const pureUIShadcnComponents: RegistryItem[] = [
       "motion",
     ],
   },
-
+  // Input
+  {
+    name: "input",
+    type: "registry:ui",
+    title: "Input",
+    description: "A customizable input component",
+    files: [
+      {
+        path: "ui/input/index.tsx",
+        type: "registry:ui",
+      },
+    ],
+    dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
+  },
   // Input OTP
   {
     name: "input-otp",
@@ -112,6 +126,114 @@ export const pureUIShadcnComponents: RegistryItem[] = [
       "tailwind-merge",
       "input-otp",
       "motion",
+    ],
+  },
+  // Menu
+  {
+    name: "menu",
+    type: "registry:ui",
+    title: "Menu",
+    description: "A customizable menu component",
+    files: [
+      {
+        path: "ui/menu/index.tsx",
+        type: "registry:ui",
+      },
+    ],
+    dependencies: [
+      "@base-ui-components/react",
+      "motion",
+      "clsx",
+      "tailwind-merge",
+    ],
+  },
+  // Popover
+  {
+    name: "popover",
+    type: "registry:ui",
+    title: "Popover",
+    description: "A customizable popover component",
+    files: [
+      {
+        path: "ui/popover/index.tsx",
+        type: "registry:ui",
+      },
+    ],
+    dependencies: [
+      "@base-ui-components/react",
+      "motion",
+      "clsx",
+      "tailwind-merge",
+    ],
+  },
+  // Select
+  {
+    name: "select",
+    type: "registry:ui",
+    title: "Select",
+    description: "A customizable select component",
+    files: [
+      {
+        path: "ui/select/index.tsx",
+        type: "registry:ui",
+      },
+    ],
+    dependencies: [
+      "@base-ui-components/react",
+      "motion",
+      "clsx",
+      "tailwind-merge",
+    ],
+  },
+  // Separator
+  {
+    name: "separator",
+    type: "registry:ui",
+    title: "Separator",
+    description: "A customizable separator component",
+    files: [
+      {
+        path: "ui/separator/index.tsx",
+        type: "registry:ui",
+      },
+    ],
+    dependencies: ["@base-ui-components/react", "clsx", "tailwind-merge"],
+  },
+  // Switch
+  {
+    name: "switch",
+    type: "registry:ui",
+    title: "Switch",
+    description: "A customizable switch component",
+    files: [
+      {
+        path: "ui/switch/index.tsx",
+        type: "registry:ui",
+      },
+    ],
+    dependencies: [
+      "tailwind-variants",
+      "tailwind-merge",
+      "@base-ui-components/react",
+    ],
+  },
+  // Tooltip
+  {
+    name: "tooltip",
+    type: "registry:ui",
+    title: "Tooltip",
+    description: "A customizable tooltip component",
+    files: [
+      {
+        path: "ui/tooltip/index.tsx",
+        type: "registry:ui",
+      },
+    ],
+    dependencies: [
+      "@base-ui-components/react",
+      "motion",
+      "clsx",
+      "tailwind-merge",
     ],
   },
 ];

@@ -14,6 +14,7 @@ export interface SidebarLinkItem extends BaseSidebarItem {
 // Item with nested children
 export interface SidebarGroupItem extends BaseSidebarItem {
   type: "group";
+  href?: string; // optional link for the group item itself
   defaultExpanded?: boolean;
   children: SidebarLinkItem[]; // children can only be link items
 }

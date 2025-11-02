@@ -438,7 +438,7 @@ function DialogBackdrop({ className, ...props }: DialogBackdropProps) {
         <div
           key="dialog-backdrop"
           className={cn(
-            "fixed inset-0 bg-black z-100 opacity-20 transition-all duration-150 data-[ending-style]:opacity-0 data-[starting-style]:opacity-0 dark:opacity-70 supports-[-webkit-touch-callout:none]:absolute",
+            "fixed inset-0 bg-black/32 backdrop-blur-sm z-50 transition-all duration-150 data-ending-style:opacity-0 data-starting-style:opacity-0 supports-[-webkit-touch-callout:none]:absolute",
             className
           )}
         />
@@ -459,7 +459,7 @@ interface DialogPopupProps
 function DialogPopup({
   className,
   animationPreset = "scale",
-  transitionPreset = "quickOut",
+  transitionPreset = "snappyOut",
   children,
   reduceMotion = false,
   showCloseButton = true,
@@ -488,34 +488,38 @@ function DialogPopup({
   return (
     <DialogPortal>
       {modal && <DialogBackdrop />}
-      <DialogPrimitive.Popup
-        data-slot="dialog-popup"
-        render={
-          <motion.div
-            key="dialog-popup"
-            initial={animationConfig.initial}
-            animate={animationConfig.animate}
-            exit={animationConfig.exit}
-            transition={transitionConfig}
-            className={cn(
-              "pointer-events-auto fixed top-1/2 left-1/2 z-100 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border border-border p-6 shadow-lg duration-200 sm:max-w-lg bg-muted",
-              className
-            )}
-          >
-            {children}
-            {showCloseButton && (
-              <DialogPrimitive.Close
-                data-slot="dialog-close"
-                className="ring-offset-background focus:ring-ring data-[open]:bg-accent data-[open]:text-muted-foreground absolute top-4 right-4 rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+      <div className="fixed inset-0 z-50">
+        <div className="flex h-[100dvh] flex-col items-center overflow-hidden pt-6 max-sm:before:flex-1 sm:overflow-y-auto sm:p-4 sm:before:basis-[30vh] sm:after:flex-1">
+          <DialogPrimitive.Popup
+            data-slot="dialog-popup"
+            render={
+              <motion.div
+                key="dialog-popup"
+                initial={animationConfig.initial}
+                animate={animationConfig.animate}
+                exit={animationConfig.exit}
+                transition={transitionConfig}
+                className={cn(
+                  "row-start-2 pointer-events-auto grid w-full max-w-[calc(100%-2rem)] gap-4 rounded-lg border border-border/80 p-6 shadow-lg sm:max-w-lg bg-popover max-sm:overflow-y-auto max-sm:border-none max-sm:opacity-[calc(1-min(var(--nested-dialogs),1))] sm:-translate-y-[calc(1.25rem*var(--nested-dialogs))] sm:scale-[calc(1-0.1*var(--nested-dialogs))] sm:rounded-2xl",
+                  className
+                )}
               >
-                <XIcon />
-                <span className="sr-only">Close</span>
-              </DialogPrimitive.Close>
-            )}
-          </motion.div>
-        }
-        {...rest}
-      />
+                {children}
+                {showCloseButton && (
+                  <DialogPrimitive.Close
+                    data-slot="dialog-close"
+                    className="ring-offset-background focus:ring-ring data-[open]:bg-accent data-[open]:text-muted-foreground absolute top-4 right-4 rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+                  >
+                    <XIcon />
+                    <span className="sr-only">Close</span>
+                  </DialogPrimitive.Close>
+                )}
+              </motion.div>
+            }
+            {...rest}
+          />
+        </div>
+      </div>
     </DialogPortal>
   );
 }
@@ -535,7 +539,7 @@ function DialogFooter({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="dialog-footer"
       className={cn(
-        "flex flex-col-reverse gap-2 sm:flex-row sm:justify-end",
+        "flex flex-col-reverse gap-2 sm:-mx-6 sm:mt-2 sm:-mb-6 sm:flex-row sm:justify-end sm:rounded-b-xl sm:border-t sm:border-border/60 sm:bg-muted/50 sm:px-6 sm:py-4",
         className
       )}
       {...props}

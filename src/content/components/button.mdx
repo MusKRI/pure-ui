@@ -34,10 +34,10 @@ features:
       <Step stepNumber={1} title="Install dependencies">
         <InstallationCommands
           type="package-installation"
-          npmCommand="npm install class-variance-authority clsx tailwind-merge @radix-ui/react-slot"
-          pnpmCommand="pnpm add class-variance-authority clsx tailwind-merge @radix-ui/react-slot"
-          yarnCommand="yarn add class-variance-authority clsx tailwind-merge @radix-ui/react-slot"
-          bunCommand="bun add class-variance-authority clsx tailwind-merge @radix-ui/react-slot"
+          npmCommand="npm install tailwind-variants clsx tailwind-merge @base-ui-components/react"
+          pnpmCommand="pnpm add tailwind-variants clsx tailwind-merge @base-ui-components/react"
+          yarnCommand="yarn add tailwind-variants clsx tailwind-merge @base-ui-components/react"
+          bunCommand="bun add tailwind-variants clsx tailwind-merge @base-ui-components/react"
         />
       </Step>
       <Step
@@ -64,6 +64,30 @@ features:
 
   </TabsContent>
 </Tabs>
+
+## Usage
+
+```tsx
+import { Button } from "@/components/ui/button";
+```
+
+```tsx
+<Button>Button</Button>
+```
+
+## Link
+
+You can use the `render` prop to make another component look like a button. Here's an example of a link that looks like a button.
+
+```tsx
+import Link from "next/link";
+
+import { Button } from "@/components/ui/button";
+
+export function LinkAsButton() {
+  return <Button render={<Link href="/login" />}>Login</Button>;
+}
+```
 
 ## Examples
 

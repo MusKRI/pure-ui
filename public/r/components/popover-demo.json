@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "popover-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "popover"
+  ],
+  "files": [
+    {
+      "path": "src/registry/default/components/examples/popover/popover-demo.tsx",
+      "content": "import { ChevronDown } from \"lucide-react\";\r\n\r\nimport {\r\n  Popover,\r\n  PopoverDescription,\r\n  PopoverPopup,\r\n  PopoverTitle,\r\n  PopoverTrigger,\r\n} from \"@/registry/default/components/ui/popover\";\r\nimport { Button } from \"@/registry/default/components/ui/button\";\r\nimport { Input } from \"@/registry/default/components/ui/input\";\r\n\r\nexport const PopoverDemo = () => {\r\n  return (\r\n    <Popover>\r\n      <PopoverTrigger asChild>\r\n        <Button variant=\"default\" size=\"sm\">\r\n          <span>Open Popover</span>\r\n        </Button>\r\n      </PopoverTrigger>\r\n      <PopoverPopup className=\"min-w-70\">\r\n        <div className=\"mb-4\">\r\n          <PopoverTitle className=\"text-base\">\r\n            Subscribe to our newsletter\r\n          </PopoverTitle>\r\n          <PopoverDescription>\r\n            Get weekly updates, new product announcements, and exclusive offers\r\n            delivered to your inbox.\r\n          </PopoverDescription>\r\n        </div>\r\n        <div className=\"flex flex-col gap-2\">\r\n          <Input label=\"Email\" type=\"email\" />\r\n          <Button className=\"w-full\" variant=\"default\" size=\"sm\">\r\n            Submit\r\n          </Button>\r\n        </div>\r\n      </PopoverPopup>\r\n    </Popover>\r\n  );\r\n};\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

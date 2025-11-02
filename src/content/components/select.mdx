@@ -1,0 +1,204 @@
+---
+title: Select
+description: A common form component for choosing a predefined value in a dropdown menu.
+---
+
+<ComponentShowcase name="select-demo" />
+
+## Installation
+
+<Tabs defaultValue="terminal">
+  <TabsList>
+    <TabsTrigger value="terminal">
+      <Terminal className="w-4 h-4" />
+      Terminal
+    </TabsTrigger>
+    <TabsTrigger value="manual">
+      <Code2 className="w-4 h-4" />
+      Manual
+    </TabsTrigger>
+  </TabsList>
+  <TabsContent value="terminal">
+    <InstallationCommands
+      type="registry-installation"
+      registryPath="components/select"
+    />
+  </TabsContent>
+  <TabsContent value="manual">
+    <Steps currentStep={1}>
+      <Step stepNumber={1} title="Install dependencies">
+        <InstallationCommands
+          type="package-installation"
+          npmCommand="npm install motion @base-ui-components/react clsx tailwind-merge"
+          pnpmCommand="pnpm add motion @base-ui-components/react clsx tailwind-merge"
+          yarnCommand="yarn add motion @base-ui-components/react clsx tailwind-merge"
+          bunCommand="bun add motion @base-ui-components/react clsx tailwind-merge"
+        />
+      </Step>
+      <Step
+        stepNumber={2}
+        title="Add cn function to your utils"
+      >
+        ```ts
+        import { clsx, type ClassValue } from "clsx";
+        import { twMerge } from "tailwind-merge";
+
+        export function cn(...inputs: ClassValue[]) {
+          return twMerge(clsx(inputs));
+        }
+        ```
+      </Step>
+      <Step
+        stepNumber={3}
+        title="Add vertical scroll shadow to your styles"
+      >
+        ```css
+        @supports (animation-timeline: scroll()) {
+          @property --ft {
+            syntax: "<length>";
+            inherits: false;
+            initial-value: 0;
+          }
+
+          @property --fb {
+            syntax: "<length>";
+            inherits: false;
+            initial-value: 0px;
+          }
+
+          .vertical-scroll-shadow {
+            --ft: 0;
+            --fb: 0px;
+
+            mask-image: linear-gradient(
+              to bottom,
+              transparent 0,
+              #000 var(--ft),
+              #000 calc(100% - var(--fb)),
+              transparent 100%
+            );
+            mask-size: 100% 100%;
+            mask-repeat: no-repeat;
+            animation: fadeTop 1 linear both, fadeBottom 1 linear both;
+            animation-timeline: scroll(self), scroll(self);
+            animation-range: 0% 4%, 49% 100%;
+          }
+
+          @keyframes fadeTop {
+            from {
+              --ft: 0px;
+            }
+            to {
+              --ft: 30px;
+            }
+          }
+
+          @keyframes fadeBottom {
+            from {
+              --fb: 30px;
+            }
+            to {
+              --fb: 0px;
+            }
+          }
+      }
+        ```
+      </Step>
+      <Step
+        stepNumber={4}
+        title="Copy and paste the following code into your project"
+        isLast
+      >
+        <ComponentCodePreview name="select" />
+      </Step>
+    </Steps>
+
+  </TabsContent>
+</Tabs>
+
+## Anatomy
+
+```tsx
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectIcon,
+  SelectPopup,
+  SelectList,
+  SelectItem,
+  SelectItemText,
+  SelectItemIndicator,
+} from "@/components/ui/select";
+
+<Select>
+  <SelectTrigger>
+    <SelectValue />
+    <SelectIcon />
+  </SelectTrigger>
+  <SelectPopup>
+    <SelectList>
+      <SelectItem>
+        <SelectItemText />
+        <SelectItemIndicator />
+      </SelectItem>
+    </SelectList>
+  </SelectPopup>
+</Select>;
+```
+
+## Usage
+
+### Basic
+
+<ComponentShowcase name="select-basic-demo" />
+
+### Country
+
+<ComponentShowcase name="select-country-demo" />
+
+### Formatting value
+
+By default, `SelectValue` component renders the raw value of the selected / matching item.
+
+Passing the `items` prop to the `Select` component renders the matching label for the rendered value.
+
+<ComponentShowcase name="select-formatting-value-demo" />
+
+A function can also be passed to the `SelectValue` component to render a formatted value.
+
+<ComponentShowcase name="select-formatting-country-demo" />
+
+Here we are doing lookup of the country label by the value in the `SelectValue` component. To avoid lookup, object values for each item can also be used.
+
+### Object values
+
+Select items can use objects as values instead of primitives. This lets you access the full object in custom render functions, and can avoid needing to specify items for lookup.
+
+<ComponentShowcase name="select-object-values-demo" />
+
+### Multiple Selection
+
+<ComponentShowcase name="select-multiple-selection-demo" />
+
+## Animation Presets
+
+### Scale
+
+<ComponentShowcase name="select-scale-demo" />
+
+### Wipe
+
+<ComponentShowcase name="select-wipe-demo" />
+
+### Wipe Scale
+
+<ComponentShowcase name="select-wipe-scale-demo" />
+
+### Motion
+
+<ComponentShowcase name="select-motion-demo" />
+
+### Motion Blur
+
+<ComponentShowcase name="select-motion-blur-demo" />

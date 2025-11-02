@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "menu-checkboxes-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "menu"
+  ],
+  "files": [
+    {
+      "path": "src/registry/default/components/examples/menu/menu-checkboxes-demo.tsx",
+      "content": "\"use client\";\r\n\r\nimport { useState } from \"react\";\r\n\r\nimport { Button } from \"@/registry/default/components/ui/button\";\r\nimport {\r\n  Menu,\r\n  MenuTrigger,\r\n  MenuPopup,\r\n  MenuItem,\r\n  MenuSeparator,\r\n  MenuCheckboxItem,\r\n  MenuGroup,\r\n  MenuSub,\r\n  MenuSubTrigger,\r\n  MenuSubPopup,\r\n  MenuLabel,\r\n} from \"@/registry/default/components/ui/menu\";\r\n\r\nexport const MenuCheckboxesDemo = () => {\r\n  const [open, setOpen] = useState(false);\r\n  const [showStatusBar, setShowStatusBar] = useState(true);\r\n  const [showPanel, setShowPanel] = useState(false);\r\n\r\n  return (\r\n    <Menu open={open} onOpenChange={setOpen}>\r\n      <MenuTrigger asChild>\r\n        <Button variant=\"outline\">Open</Button>\r\n      </MenuTrigger>\r\n      <MenuPopup className=\"w-56\" align=\"center\">\r\n        <MenuLabel>My Account</MenuLabel>\r\n        <MenuGroup>\r\n          <MenuItem onSelect={(event) => event.preventDefault()}>\r\n            Profile\r\n          </MenuItem>\r\n        </MenuGroup>\r\n        <MenuSeparator />\r\n        <MenuSub>\r\n          <MenuSubTrigger>Appearance</MenuSubTrigger>\r\n          <MenuSubPopup>\r\n            <MenuCheckboxItem\r\n              checked={showStatusBar}\r\n              onCheckedChange={(checked) => setShowStatusBar(checked)}\r\n              onSelect={(event) => event.preventDefault()}\r\n            >\r\n              Status Bar\r\n            </MenuCheckboxItem>\r\n            <MenuCheckboxItem\r\n              checked={showPanel}\r\n              onCheckedChange={(checked) => setShowPanel(checked)}\r\n              onSelect={(event) => event.preventDefault()}\r\n            >\r\n              Panel\r\n            </MenuCheckboxItem>\r\n          </MenuSubPopup>\r\n        </MenuSub>\r\n      </MenuPopup>\r\n    </Menu>\r\n  );\r\n};\r\n",
+      "type": "registry:example"
+    }
+  ]
+}
