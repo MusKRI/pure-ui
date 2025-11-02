@@ -86,12 +86,6 @@ const pureUIComponents = [
     href: "/components/accordion",
   },
   {
-    id: "button-group",
-    title: "Button Group",
-    type: "link",
-    href: "/components/button-group",
-  },
-  {
     id: "button",
     title: "Button",
     type: "link",
