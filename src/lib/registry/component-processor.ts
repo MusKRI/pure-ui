@@ -50,7 +50,6 @@ const processFile = (
       try: () =>
         highlightCode(content, {
           lang: detectedLanguage,
-          fileName: file.path,
         }),
       catch: (error) => new ProcessingError(file.path, error),
     });
