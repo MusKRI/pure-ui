@@ -1,12 +1,13 @@
 "use client";
 
-import { useCallback, useId, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { AnimatePresence, motion, LayoutGroup } from "motion/react";
 import { Tabs } from "@base-ui-components/react/tabs";
 
 import { InstallationTab } from "@/lib/mdx/installation-commands";
 import { getToolIcon } from "@/lib/mdx/package-managers";
 import { cn } from "@/lib/classes";
+import { CopyButton } from "../copy-button";
 
 interface Props {
   installationTabs: InstallationTab[];
@@ -17,8 +18,6 @@ export function InstallationCommandsClient({
   installationTabs,
   defaultTab,
 }: Props) {
-  const uniqueId = useId();
-
   const tabs = useMemo(() => {
     const result = installationTabs.map((tab) => {
       return {
@@ -87,7 +86,7 @@ export function InstallationCommandsClient({
               <Tabs.Indicator className="absolute border-x bg-code left-0 top-1/2 -z-1 h-[calc(var(--active-tab-height)+1px)] w-(--active-tab-width) translate-x-(--active-tab-left) -translate-y-1/2 transition-all duration-200 ease-in-out" />
             </Tabs.List>
 
-            <div className="flex-1 overflow-auto border-t border-border relative -top-[1px]">
+            <div className="flex-1 overflow-auto border-t border-border relative -top-px">
               <AnimatePresence mode="popLayout">
                 {tabs.map((tab) => {
                   return (
@@ -129,7 +128,7 @@ export function InstallationCommandsClient({
                               className={cn(
                                 "p-4 m-0 overflow-auto text-sm font-mono",
                                 "text-foreground bg-code",
-                                "whitespace-pre-wrap break-words",
+                                "whitespace-pre-wrap wrap-break-word",
                                 "[&::-webkit-scrollbar]:w-2",
                                 "[&::-webkit-scrollbar-track]:bg-transparent",
                                 "[&::-webkit-scrollbar-thumb]:bg-border",
@@ -143,6 +142,7 @@ export function InstallationCommandsClient({
                             </pre>
                           )}
                           {/* Copy Button */}
+                          <CopyButton value={tab.content} />
                         </motion.div>
                       )}
                     </Tabs.Panel>

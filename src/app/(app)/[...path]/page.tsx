@@ -33,7 +33,10 @@ export default async function PureUIFlowPage(props: PageProps<"/[...path]">) {
 
   return (
     <div className="flex flex-col scroll-smooth">
-      <ContentInfoHeader content={content} />
+      <ContentInfoHeader
+        content={content}
+        relativePath={parsedSlug.validPath}
+      />
       <ContentBody parsedContent={content} />
     </div>
   );

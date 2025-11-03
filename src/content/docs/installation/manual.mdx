@@ -25,7 +25,7 @@ Add the following dependencies to your project:
 
 Configure the path aliases in your `tsconfig.json` file:
 
-```json
+```json filename="tsconfig.json"
 {
   "compilerOptions": {
     "baseUrl": ".",
@@ -36,13 +36,46 @@ Configure the path aliases in your `tsconfig.json` file:
 }
 ```
 
+```tsx showLineNumbers remove=23 add=24 highlight={14}
+"use client";
+
+import { useRouter } from "next/navigation";
+import ArrowCircleLeft from "@/assets/icons/unicons/arrow-circle-left.svg";
+import { cn } from "@/lib/utils";
+
+export default function GoBackButton({
+  className,
+  text = "Go back",
+}: {
+  className?: string;
+  text?: string;
+}) {
+  const router = useRouter();
+  return (
+    <button
+      onClick={() => router.back()}
+      className={cn(
+        "group/back inline-flex justify-start gap-2 justify-self-start",
+        className
+      )}
+    >
+      <ArrowCircleRight className="size-6" />
+      <ArrowCircleLeft className="size-6" />
+      <span className="group-hover/back:underline group-hover/back:underline-offset-4">
+        {text}
+      </span>
+    </button>
+  );
+}
+```
+
 The `@` alias is a preference. You can use other aliases if you want.
 
 ## Configure styles
 
 Add the following to your `styles/globals.css` file.
 
-```css
+```css filename="src/styles/globals.css"
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -176,9 +209,9 @@ Add the following to your `styles/globals.css` file.
 
 ## Add a cn helper
 
-Add the following code to your `lib/utils.ts` file.
+Add the following code to your `lib/classes.ts` file.
 
-```ts
+```ts filename="lib/classes.ts"
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -191,7 +224,7 @@ export function cn(...inputs: ClassValue[]) {
 
 Create a `components.json` file in the root of your project.
 
-```json
+```json filename="components.json"
 {
   "$schema": "https://ui.shadcn.com/schema.json",
   "style": "new-york",
@@ -226,7 +259,7 @@ You can now start adding components to your project.
 
 The command above will add the `Separator` component to your project. You can then import it like this:
 
-```tsx
+```tsx filename="src/app/page.tsx"
 import { Separator } from "@/components/ui/separator";
 
 export default function Home() {

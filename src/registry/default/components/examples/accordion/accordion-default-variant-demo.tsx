@@ -7,9 +7,9 @@ import {
   AccordionTrigger,
 } from "@/registry/default/components/ui/accordion";
 
-export function AccordionVariantDemo() {
+export function AccordionDefaultVariantDemo() {
   return (
-    <Accordion variant="outline" className="w-full max-w-xl">
+    <Accordion variant="default" className="w-full max-w-xl">
       <AccordionItem value="item-1">
         <AccordionTrigger className="flex items-center gap-2">
           <Handbag className="w-4 h-4" />

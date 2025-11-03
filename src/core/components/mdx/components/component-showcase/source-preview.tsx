@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { cn } from "@/lib/classes";
 import { ExtendedPureUIFile } from "@/lib/registry/component-processor";
 import { CopyButton } from "../copy-button";
@@ -31,7 +30,7 @@ export function SourcePreview({ currentFile }: SourcePreviewProps) {
         <div className="rounded-xl w-full h-full bg-code border border-border overflow-y-auto backdrop-blur-sm transition-all duration-300 ease-out">
           <div className="relative">
             <div className="absolute top-3 right-3 z-10">
-              <CopyButton code={code} />
+              <CopyButton value={code} />
             </div>
           </div>
           <pre
@@ -47,7 +46,7 @@ export function SourcePreview({ currentFile }: SourcePreviewProps) {
           >
             <code>{code}</code>
           </pre>
-          <div className="h-px bg-gradient-to-r from-transparent via-border/40 to-transparent" />
+          <div className="h-px bg-linear-to-r from-transparent via-border/40 to-transparent" />
         </div>
       </div>
     );
@@ -56,7 +55,7 @@ export function SourcePreview({ currentFile }: SourcePreviewProps) {
   return (
     <div className="relative group h-full">
       <div className="absolute top-3 right-8 z-10">
-        <CopyButton code={code} />
+        <CopyButton value={code} />
       </div>
 
       <div className="w-full max-h-[600px] overflow-y-auto transition-all duration-300 ease-out">
@@ -64,8 +63,8 @@ export function SourcePreview({ currentFile }: SourcePreviewProps) {
           className={cn(
             "relative overflow-y-auto font-mono",
             // Progressive masking for horizontal scroll
-            "before:absolute before:left-0 before:top-0 before:bottom-0 before:w-8 before:bg-gradient-to-r before:from-code before:to-transparent before:z-10 before:pointer-events-none",
-            "after:absolute after:right-0 after:top-0 after:bottom-0 after:w-8 after:bg-gradient-to-l after:from-code after:to-transparent after:z-10 after:pointer-events-none",
+            "before:absolute before:left-0 before:top-0 before:bottom-0 before:w-8 before:bg-linear-to-r before:from-code before:to-transparent before:z-10 before:pointer-events-none",
+            "after:absolute after:right-0 after:top-0 after:bottom-0 after:w-8 after:bg-linear-to-l after:from-code after:to-transparent after:z-10 after:pointer-events-none",
             // Custom scrollbar styles with proper overflow handling
             "[&>pre]:overflow-x-auto [&>pre]:scrollbar-thin [&>pre]:scrollbar-track-transparent [&>pre]:scrollbar-thumb-code-foreground",
             // Responsive text size

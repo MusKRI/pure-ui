@@ -74,7 +74,7 @@ export function Sidebar() {
 
 function MobileNav({ pathname }: { pathname: string }) {
   return (
-    <div className="px-4 py-2 min-md:hidden">
+    <div className="px-4 py-2 md:hidden">
       <div className="flex flex-row items-center justify-between w-full relative">
         {pureUIHeaderLinks.map((link) => (
           <Link

@@ -3,13 +3,14 @@
 import { useMemo, useState } from "react";
 import { Tabs } from "@base-ui-components/react/tabs";
 import { AnimatePresence, LayoutGroup, motion } from "motion/react";
-import { Code2, Eye } from "lucide-react";
 
 import { ExtendedPureUIFile } from "@/lib/registry/component-processor";
 import { ExtendedRegistryItem } from "@/lib/registry/process-registry";
 import { cn } from "@/lib/classes";
-import { ComponentShowcaseTab } from "./component-showcase-tab";
 import { Index } from "@/registry/default/components/__index__";
+import { SourceCodeIcon, ViewIcon } from "@/core/icons/pack1";
+
+import { ComponentShowcaseTab } from "./component-showcase-tab";
 import { ComponentSources } from "./component-sources";
 
 interface ComponentShowcaseClientProps {
@@ -21,11 +22,11 @@ interface ComponentShowcaseClientProps {
 export const tabs = [
   {
     name: "preview",
-    icon: Eye,
+    icon: ViewIcon,
   },
   {
     name: "code",
-    icon: Code2,
+    icon: SourceCodeIcon,
   },
 ] as const;
 
@@ -56,7 +57,7 @@ export function ComponentShowcaseClient({
                   isActive={activeTab === tab.name}
                 />
               ))}
-              <Tabs.Indicator className="absolute top-1/2 left-0 z-[-1] h-(--active-tab-height) w-(--active-tab-width) translate-x-(--active-tab-left) -translate-y-1/2 rounded-sm bg-muted transition-all duration-[270ms] ease-[cubic-bezier(0.175,0.885,0.32,1.1)]">
+              <Tabs.Indicator className="absolute top-1/2 left-0 z-[-1] h-(--active-tab-height) w-(--active-tab-width) translate-x-(--active-tab-left) -translate-y-1/2 rounded-sm bg-muted transition-all duration-270 ease-[cubic-bezier(0.175,0.885,0.32,1.1)]">
                 {/* <span className="absolute left-0 right-0 top-[0px] h-4.5 rounded-full bg-gradient-to-t z-1 from-background to-primary opacity-10 blur-[2px]"></span> */}
               </Tabs.Indicator>
             </Tabs.List>

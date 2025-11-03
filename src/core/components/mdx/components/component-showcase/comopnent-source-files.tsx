@@ -84,8 +84,8 @@ export function ComponentSourceFiles({
               "relative flex items-center gap-2 px-4 py-2.5 text-sm font-medium transition-all duration-300 whitespace-nowrap cursor-pointer shrink-0",
               "focus:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2",
               isActive
-                ? "text-(--foreground) bg-(--muted) shadow-sm"
-                : "text-(--muted-foreground) hover:text-(--foreground)"
+                ? "text-foreground bg-muted shadow-sm"
+                : "text-muted-foreground hover:text-foreground"
             )}
             style={{ willChange: "transform" }}
           >

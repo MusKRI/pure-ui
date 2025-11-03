@@ -1,11 +1,12 @@
 import * as React from "react";
 import { MDXComponents } from "mdx/types";
-import { Code2, Terminal } from "lucide-react";
 
 import { cn } from "@/lib/classes";
 
+import { CodeIcon, SourceCodeIcon } from "@/core/icons/pack1";
+
 // Components
-import { CodeBlock, CodeElement } from "./components/code-block";
+import { CodeBlock } from "./components/code-block";
 import { ComponentShowcase } from "./components/component-showcase";
 import { MagicLink } from "./components/magic-link";
 import { LinkedCard } from "./components/linked-card";
@@ -96,7 +97,7 @@ export const mdxComponents: MDXComponents = {
   p: ({ className, ...props }: React.ComponentProps<"p">) => (
     <p
       className={cn(
-        "PureP !leading-[1.8] text-pretty text-muted-foreground text-base mb-6 last:mb-0 [&:not(:first-child)]:mt-6 [.PureUIComponentShowcase+&]:!mt-0",
+        "PureP !leading-[1.8] text-pretty text-muted-foreground text-base mb-6 last:mb-0 not-first:mt-6 [.PureUIComponentShowcase+&]:mt-0!",
         className
       )}
       {...props}
@@ -112,7 +113,7 @@ export const mdxComponents: MDXComponents = {
   ul: ({ className, ...props }: React.ComponentProps<"ul">) => (
     <ul
       className={cn(
-        "PureUL my-6 ml-6 list-disc space-y-2 [&>li]:mt-2 marker:text-(--muted-foreground) UnorderedList ps-6 in-[.ListItem]:my-[1em]",
+        "PureUL my-6 ml-6 list-disc space-y-2 [&>li]:mt-2 marker:text-muted-foreground UnorderedList ps-6 in-[.ListItem]:my-[1em]",
         className
       )}
       {...props}
@@ -121,7 +122,7 @@ export const mdxComponents: MDXComponents = {
   ol: ({ className, ...props }: React.ComponentProps<"ol">) => (
     <ol
       className={cn(
-        "PureOL my-6 ml-6 list-decimal space-y-2 [&>li]:mt-2 marker:text-(--muted-foreground) marker:font-medium",
+        "PureOL my-6 ml-6 list-decimal space-y-2 [&>li]:mt-2 marker:text-muted-foreground marker:font-medium",
         className
       )}
       {...props}
@@ -142,7 +143,6 @@ export const mdxComponents: MDXComponents = {
       {...props}
     />
   ),
-  code: CodeElement,
   pre: CodeBlock,
   LinkedCard,
   ComponentShowcase,
@@ -158,6 +158,6 @@ export const mdxComponents: MDXComponents = {
   ComponentCodePreview,
 
   // Icons
-  Code2,
-  Terminal,
+  Code2: SourceCodeIcon,
+  Terminal: CodeIcon,
 };

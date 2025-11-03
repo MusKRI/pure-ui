@@ -57,9 +57,9 @@ function SidebarLinkItem({
       key={item.id}
       href={item.href}
       className={cn(
-        "text-sm block py-1.5 px-4 rounded-md font-[550]",
+        "text-sm block py-1.5 px-4 rounded-md font-normal",
         pathname === item.href
-          ? ["text-sidebar-primary", "bg-sidebar-accent/60"]
+          ? ["text-sidebar-primary", "bg-sidebar-accent/60", "font-medium"]
           : ["text-sidebar-foreground/60 hover:text-sidebar-primary"]
       )}
       onClick={handleClosingSidebar}
@@ -100,7 +100,7 @@ function SidebarGroupItem({
       <span>{item.title}</span>
       <ChevronDownIcon
         className={cn(
-          "w-4 h-4 [transition:rotate_0.2s] [transition-timing-function:cubic-bezier(0.19.1,0.22,1)]",
+          "w-4 h-4 [transition:rotate_0.2s] ease-[cubic-bezier(0.19.1,0.22,1)]",
           isExpanded ? "-rotate-90" : "rotate-0"
         )}
         onClick={handleChevronClick}

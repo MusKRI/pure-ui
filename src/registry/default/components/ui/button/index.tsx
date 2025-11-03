@@ -14,18 +14,18 @@ const buttonVariants = tv({
     `focus-visible:ring-ring focus-visible:ring-[2px] focus-visible:ring-offset-2 dark:focus-visible:ring-offset-secondary-foreground`,
     `disabled:cursor-not-allowed disabled:scale-100 disabled:opacity-60 disabled:bg-secondary`,
     `[transition:scale_0.1s,box-shadow_0.2s,background_0.45s,width_0.2s] [transition-timing-function:cubic-bezier(.6,.04,.98,.335)]`,
-    `[&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none`,
+    `[&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none active:scale-98`,
   ],
   variants: {
     variant: {
-      default: `bg-gradient-to-b from-primary/80 dark:from-primary to-primary text-primary-foreground hover:from-primary/75 dark:hover:from-primary/95`,
+      default: `bg-linear-to-b from-primary/80 dark:from-primary to-primary text-primary-foreground hover:from-primary/75 dark:hover:from-primary/95`,
       secondary:
         "border-secondary bg-secondary text-secondary-foreground hover:bg-secondary/90 data-pressed:bg-secondary/90",
-      outline: `bg-primary/10 border border-primary/40 text-primary hover:bg-primary/15`,
+      outline: `border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50`,
       ghost: `text-primary hover:bg-primary/10 focus-vislbe:bg-primary/10 focus-visible:border-primary/25`,
       link: `text-primary hover:underline hover:underline-offset-4 hover:decoration-1 focus-visible:underline focus-visible:underline-offset-4 focus-visible:decoration-1`,
       destructive:
-        "bg-destructive text-white hover:bg-destructive/90 focus-visible:border-destructive focus-visible:bg-destructive/90 focus-visible:ring-destructive bg-gradient-to-t from-destructive/90 to-destructive",
+        "bg-destructive text-white hover:bg-destructive/90 focus-visible:border-destructive focus-visible:bg-destructive/90 focus-visible:ring-destructive bg-linear-to-t from-destructive/90 to-destructive",
       "destructive-outline":
         "border border-transparent bg-transparent text-destructive-foreground hover:border-destructive/32 hover:bg-destructive/10",
     },
@@ -62,6 +62,7 @@ interface ButtonProps extends useRender.ComponentProps<"button"> {
   size?: VariantProps<typeof buttonVariants>["size"];
   radius?: VariantProps<typeof buttonVariants>["radius"];
   reduceMotion?: boolean;
+  contentClassName?: string;
 }
 
 function Button({
@@ -73,15 +74,16 @@ function Button({
   children,
   render,
   reduceMotion = false,
+  contentClassName,
   ...props
 }: ButtonProps) {
-  const motionless = reduceMotion ? "transition-none" : undefined;
+  const motionless = reduceMotion ? "transition-none!" : undefined;
   const loaderTransition = reduceMotion
     ? "transition-none"
-    : "transition-[margin,width,opacity,translate,scale] duration-200 [transition-timing-function:cubic-bezier(.25,.46,.45,.94)]";
+    : "transition-[margin,width,opacity,translate,scale] duration-200 ease-[cubic-bezier(.25,.46,.45,.94)]";
   const contentTransition = reduceMotion
     ? "transition-none"
-    : "transition-transform duration-200 [transition-timing-function:cubic-bezier(.25,.46,.45,.94)]";
+    : "transition-transform duration-200 ease-[cubic-bezier(.25,.46,.45,.94)]";
 
   const typeValue: React.ButtonHTMLAttributes<HTMLButtonElement>["type"] =
     render ? undefined : "button";
@@ -113,7 +115,14 @@ function Button({
             className={cn("size-4.5", !reduceMotion && "animate-spin")}
           />
         </span>
-        <span className={cn("flex items-center", contentTransition)}>
+        <span
+          data-slot="button-content"
+          className={cn(
+            "flex items-center",
+            contentClassName,
+            contentTransition
+          )}
+        >
           {children}
         </span>
       </span>

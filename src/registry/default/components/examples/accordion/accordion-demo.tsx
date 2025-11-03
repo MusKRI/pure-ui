@@ -34,6 +34,26 @@ export function AccordionDemo() {
           </p>
         </AccordionPanel>
       </AccordionItem>
+      <AccordionItem value="item-4">
+        <AccordionTrigger>Is it accessible?</AccordionTrigger>
+        <AccordionPanel className="flex flex-col gap-4 text-balance">
+          <p className="text-[15px] text-muted-foreground">
+            Yes! All components follow WAI-ARIA guidelines and have been
+            thoroughly tested for keyboard navigation and screen reader
+            compatibility.
+          </p>
+        </AccordionPanel>
+      </AccordionItem>
+      <AccordionItem value="item-5">
+        <AccordionTrigger>Can I customize the animations?</AccordionTrigger>
+        <AccordionPanel className="flex flex-col gap-4 text-balance">
+          <p className="text-[15px] text-muted-foreground">
+            Absolutely! Base UI offers multiple animation presets out of the
+            box, and you can also create your own custom animations to match
+            your design system.
+          </p>
+        </AccordionPanel>
+      </AccordionItem>
     </Accordion>
   );
 }

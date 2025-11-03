@@ -16,7 +16,7 @@ export class FrontmatterParseError extends Data.TaggedError(
 
 export type ContentReadError = FileReadError | FrontmatterParseError;
 
-const readFileEffect = (path: string) =>
+export const readFileEffect = (path: string) =>
   Effect.tryPromise({
     try: () => readFile(path, "utf-8"),
     catch: (cause) => new FileReadError({ path, cause }),
@@ -46,6 +46,7 @@ export const getContentByPath = (relativePath: string) =>
     const fullPath = join(contentDir, relativePath);
 
     const fileContent = yield* readFileEffect(fullPath);
+
     const { content, data } = yield* matterEffect(fileContent);
 
     // Extract headings for table of contents
@@ -58,6 +59,16 @@ export const getContentByPath = (relativePath: string) =>
     };
 
     return result;
+  });
+
+export const getContentByPathEffect = (relativePath: string) =>
+  Effect.gen(function* () {
+    const contentDir = join(process.cwd(), "src/content");
+    const fullPath = join(contentDir, relativePath);
+
+    const fileContent = yield* readFileEffect(fullPath);
+
+    return fileContent;
   });
 
 function extractHeadings(content: string) {

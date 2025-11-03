@@ -1,0 +1,68 @@
+:not(pre) > code {
+  @apply rounded-md border border-border bg-code px-1.5 py-0.5 text-sm font-mono text-code-foreground font-medium before:content-none after:content-none;
+}
+
+@layer base {
+  /* Shiki Code-Blocks */
+  pre.shiki {
+    &.has-diff .line {
+      span:first-child::before {
+        @apply mr-3 inline-flex w-2 content-[""];
+      }
+    }
+
+    .highlighted-word {
+      @apply rounded-sm bg-white/10 px-0.5 py-px;
+    }
+
+    code {
+      @apply block w-fit min-w-full;
+    }
+
+    &.show-line-numbers {
+      counter-reset: step;
+      counter-increment: step var(--starting-line-number, 0);
+      .line {
+        &::before {
+          counter-increment: step;
+          @apply mr-4 inline-flex w-4 shrink-0 justify-end text-muted-foreground/80 content-[counter(step)];
+        }
+      }
+    }
+
+    .line {
+      /* Negative left margin including the border */
+      @apply -ml-4 inline-block text-sm min-w-[calc(100%+--spacing(8))] border-l-2 border-transparent pl-3.5;
+      &.add {
+        @apply border-green-500 bg-green-500/10 before:text-green-500;
+        span {
+          filter: sepia(1) hue-rotate(70deg) saturate(2);
+        }
+        span:first-child::before {
+          @apply text-green-500 content-["+"];
+        }
+      }
+      &.remove {
+        @apply border-red-500 bg-red-500/10 before:text-red-500/50;
+        span {
+          filter: sepia(1) hue-rotate(-45deg) saturate(2) opacity(0.5);
+        }
+        span:first-child::before {
+          @apply text-red-500/50 content-["-"];
+        }
+      }
+      &.highlighted {
+        @apply border-primary bg-code-highlight;
+      }
+
+      &:last-child:empty {
+        display: none;
+      }
+    }
+  }
+
+  /* Shiki Inline-Code */
+  span.shiki {
+    @apply bg-transparent!;
+  }
+}

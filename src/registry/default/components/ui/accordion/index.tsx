@@ -242,7 +242,7 @@ const transitionPresets = {
 type AnimationPreset = keyof typeof animationPresets;
 type TransitionPreset = keyof typeof transitionPresets;
 
-type AccordionVariant = "default" | "outline";
+type AccordionVariant = "default" | "outline" | "swiss";
 
 interface AccordionContextType {
   animationPreset?: AnimationPreset;
@@ -278,7 +278,7 @@ function Accordion({
   defaultValue,
   onValueChange,
   animationPreset = "fade",
-  transitionPreset = "snappyOut",
+  transitionPreset = "outCubic",
   reduceMotion,
   variant = "default",
   className,
@@ -380,9 +380,20 @@ function AccordionItem({
         value={itemValue}
         onOpenChange={handleItemOpenChange}
         className={cn(
-          `w-full contain-layout border-b border-border/60 last:border-b-0 outline-hidden`,
+          `w-full contain-layout outline-hidden [transition-property:border-radius,margin,box-shadow] will-change-[border-radius,margin,box-shadow] duration-200 ease-out`,
+          variant === "default" && "border-b border-border/60 last:border-b-0",
           variant === "outline" &&
-            `first:[&_[data-slot="accordion-trigger"]]:rounded-t-md last:not-data-[open]:[&_[data-slot="accordion-trigger"]]:rounded-b-md`,
+            `border-b border-border/60 last:border-b-0 first:**:data-[slot="accordion-trigger"]:rounded-t-md last:not-data-open:**:data-[slot="accordion-trigger"]:rounded-b-md`,
+          variant === "swiss" && [
+            "bg-popover border-x",
+            "first:rounded-t-[11px] last:rounded-b-[11px] data-closed:border-b data-closed:first:border-t",
+            // Active state styles for swiss variant
+            "data-open:rounded-[11px] data-open:shadow-sm data-open:my-3.5 data-open:first:mt-0 data-open:last:mb-0 data-open:border-b! data-open:border-t!",
+            // target previous accordion item before the open one
+            "has-[+_[data-slot='accordion-item'][data-open]]:border-b! has-[+_[data-slot='accordion-item'][data-open]]:rounded-b-[11px]",
+            // target next accordion item after the open one
+            "data-open:[&+[data-slot='accordion-item'][data-closed]]:border-t! data-open:[&+[data-slot='accordion-item']]:rounded-t-[11px]",
+          ],
           className
         )}
         {...rest}
@@ -424,7 +435,7 @@ function AccordionTrigger({
         className={cn(
           "w-full text-left p-4 flex items-center cursor-pointer",
           `hover:bg-accent/40 focus-visible:bg-accent/40 dark:hover:bg-accent/55 dark:focus-visible:bg-accent/55`,
-          `data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 data-[disabled]:pointer-events-none`,
+          `data-disabled:cursor-not-allowed data-disabled:opacity-50 data-disabled:pointer-events-none`,
           `focus-visible:outline-2 focus-visible:outline-ring focus-visible:outline-offset-2`,
           className
         )}

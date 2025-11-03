@@ -1,6 +1,17 @@
 import { codeToHtml } from "shiki";
-import { transformerNotationHighlight } from "@shikijs/transformers";
+import {
+  transformerNotationHighlight,
+  transformerNotationDiff,
+  transformerNotationWordHighlight,
+} from "@shikijs/transformers";
+import {
+  transformerMetaHighlight,
+  transformerMetaWordHighlight,
+} from "@shikijs/transformers";
+
 import { pureUIShikiTheme } from "./shiki-theme";
+import { transformerMetaDiff } from "./transformer-meta-diff";
+import { transformerCodeBlock } from "./transformer-code-block";
 
 // Language mapping for Shiki
 const languageMap: Record<string, string> = {
@@ -43,20 +54,20 @@ const languageMap: Record<string, string> = {
 
 export interface HighlightOptions {
   lang?: string;
-  fileName?: string;
+  meta?: string;
 }
 
 /**
  * Highlights code using Shiki with optional line highlighting
  * @param code - The code string to highlight
- * @param options - Highlighting options including language, meta for line highlighting, and fileName
+ * @param options - Highlighting options including language, meta for line highlighting
  * @returns Promise<string> - The highlighted HTML string
  */
 export async function highlightCode(
   code: string,
   options: HighlightOptions = {}
 ) {
-  const { lang = "text", fileName } = options;
+  const { lang = "text", meta } = options;
 
   if (!code.trim() || lang === "text") {
     return code;
@@ -72,19 +83,23 @@ export async function highlightCode(
     html = await codeToHtml(code, {
       lang: mappedLanguage,
       theme: pureUIShikiTheme as any,
-      // themes: {
-      //   dark: "vesper",
-      //   light: "catppuccin-latte",
-      // },
-      // theme: "vitesse-dark",
-      transformers: [transformerNotationHighlight()],
+      meta: meta ? { __raw: meta } : undefined,
+      transformers: [
+        transformerNotationHighlight(),
+        transformerNotationDiff(),
+        transformerNotationWordHighlight(),
+        transformerCodeBlock(),
+        transformerMetaDiff(),
+        transformerMetaWordHighlight(),
+        transformerMetaHighlight(),
+      ],
     });
 
     return html;
   } catch (error) {
     console.error(`Failed to highlight code for language ${lang}:`, error);
     // Return original code if highlighting fails
-    return code;
+    return `<pre><code>${code}</code></pre>`;
   }
 }
 

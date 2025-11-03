@@ -46,7 +46,7 @@ features:
         stepNumber={2}
         title="Add cn function to your classes utils"
       >
-        ```ts
+        ```ts filename="lib/classes.ts"
         import { clsx, type ClassValue } from "clsx";
         import { twMerge } from "tailwind-merge";
 
@@ -87,13 +87,31 @@ import {
 </Accordion>;
 ```
 
-## Usage
-
-### Variant
+## Variants
 
 You can use the `variant` prop to change the variant of the accordion.
 
-<ComponentShowcase name="accordion-variant-demo" />
+```tsx noCopy
+<Accordion
+  variant="default" // [!code highlight]
+>
+  ...rest content...
+</Accordion>
+```
+
+### Default
+
+<ComponentShowcase name="accordion-default-variant-demo" />
+
+### Outline
+
+<ComponentShowcase name="accordion-outline-variant-demo" />
+
+### Swiss
+
+<ComponentShowcase name="accordion-swiss-variant-demo" />
+
+## Usage
 
 ### Multiple Expanded
 

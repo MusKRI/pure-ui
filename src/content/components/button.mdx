@@ -110,3 +110,23 @@ export function LinkAsButton() {
 ### Reduce Motion
 
 <ComponentShowcase name="button-reduce-motion-demo" />
+
+## Comparing with Radix / Shadcn
+
+If you’re already familiar with Radix UI and shadcn/ui, this guide highlights the small differences and similarities so you can get started with **Pure UI** quickly.
+
+### Quick Checklist
+
+- Replace `asChild` → `render` on `Button`
+
+### Comparison Example
+
+```tsx remove=2,5 add=3
+<Button
+  asChild
+  render={<Link href="/login" />}
+>
+  <Link href="/login">Log in</Link>
+  Log in
+</Button>
+```
