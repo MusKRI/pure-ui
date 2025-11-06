@@ -1083,6 +1083,40 @@ export const pureUICompExamples: RegistryItem[] = [
       },
     ],
   },
+  // Spinner
+  {
+    name: "spinner-demo",
+    type: "registry:example",
+    registryDependencies: ["spinner"],
+    files: [
+      {
+        path: "examples/spinners/spinner-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "spinner-sizes-demo",
+    type: "registry:example",
+    registryDependencies: ["spinner"],
+    files: [
+      {
+        path: "examples/spinners/spinner-sizes-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "spinner-variants-demo",
+    type: "registry:example",
+    registryDependencies: ["spinner"],
+    files: [
+      {
+        path: "examples/spinners/spinner-variants-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
   // Switch
   {
     name: "switch-demo",
@@ -1161,6 +1195,18 @@ export const pureUICompExamples: RegistryItem[] = [
       },
     ],
   },
+  {
+    name: "custom-switch-card-style-demo",
+    type: "registry:example",
+    registryDependencies: ["switch"],
+    files: [
+      {
+        path: "examples/switch/custom-switch-card-style-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+
   // Tooltip
   {
     name: "tooltip-demo",
@@ -1235,6 +1281,94 @@ export const pureUICompExamples: RegistryItem[] = [
     files: [
       {
         path: "examples/tooltip/tooltip-custom-content.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "tooltip-scale-demo",
+    type: "registry:example",
+    registryDependencies: ["tooltip"],
+    files: [
+      {
+        path: "examples/tooltip/tooltip-scale-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "tooltip-fade-demo",
+    type: "registry:example",
+    registryDependencies: ["tooltip"],
+    files: [
+      {
+        path: "examples/tooltip/tooltip-fade-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "tooltip-slide-outside-demo",
+    type: "registry:example",
+    registryDependencies: ["tooltip"],
+    files: [
+      {
+        path: "examples/tooltip/tooltip-slide-outside-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "tooltip-slide-inside-demo",
+    type: "registry:example",
+    registryDependencies: ["tooltip"],
+    files: [
+      {
+        path: "examples/tooltip/tooltip-slide-inside-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "tooltip-wipe-demo",
+    type: "registry:example",
+    registryDependencies: ["tooltip"],
+    files: [
+      {
+        path: "examples/tooltip/tooltip-wipe-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "tooltip-wipe-scale-demo",
+    type: "registry:example",
+    registryDependencies: ["tooltip"],
+    files: [
+      {
+        path: "examples/tooltip/tooltip-wipe-scale-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "tooltip-motion-demo",
+    type: "registry:example",
+    registryDependencies: ["tooltip"],
+    files: [
+      {
+        path: "examples/tooltip/tooltip-motion-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "tooltip-motion-blur-demo",
+    type: "registry:example",
+    registryDependencies: ["tooltip"],
+    files: [
+      {
+        path: "examples/tooltip/tooltip-motion-blur-demo.tsx",
         type: "registry:example",
       },
     ],

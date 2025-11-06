@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spinner-variants-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "spinner"
+  ],
+  "files": [
+    {
+      "path": "src/registry/default/components/examples/spinners/spinner-variants-demo.tsx",
+      "content": "import {\r\n  DefaultSpinner,\r\n  GradientSpinner,\r\n  BarsSpinner,\r\n  WaveSpinner,\r\n  DotsSpinner,\r\n} from \"@/registry/default/components/ui/spinner\";\r\n\r\nexport function SpinnerVariantsDemo() {\r\n  return (\r\n    <div className=\"flex items-center gap-6\">\r\n      <div className=\"flex flex-col gap-2\">\r\n        <DefaultSpinner />\r\n        <p className=\"text-sm text-muted-foreground\">Default</p>\r\n      </div>\r\n      <div className=\"flex flex-col gap-2\">\r\n        <GradientSpinner />\r\n        <p className=\"text-sm text-muted-foreground\">Gradient</p>\r\n      </div>\r\n      <div className=\"flex flex-col gap-2\">\r\n        <BarsSpinner />\r\n        <p className=\"text-sm text-muted-foreground\">Bars</p>\r\n      </div>\r\n      <div className=\"flex flex-col gap-2\">\r\n        <WaveSpinner />\r\n        <p className=\"text-sm text-muted-foreground\">Wave</p>\r\n      </div>\r\n      <div className=\"flex flex-col gap-2\">\r\n        <DotsSpinner />\r\n        <p className=\"text-sm text-muted-foreground\">Dots</p>\r\n      </div>\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

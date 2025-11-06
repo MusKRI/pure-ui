@@ -12,11 +12,7 @@ export function ButtonPendingDemo() {
   }, [isPending]);
 
   return (
-    <Button
-      onClick={() => setIsPending(true)}
-      pending={isPending}
-      size="default"
-    >
+    <Button onClick={() => setIsPending(true)} pending={isPending}>
       Pure UI Button
     </Button>
   );

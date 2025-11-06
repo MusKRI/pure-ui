@@ -25,53 +25,76 @@ description: Tooltips display a brief, informative message that appears when a u
     />
   </TabsContent>
   <TabsContent value="manual">
-    <Steps currentStep={1}>
-      <Step stepNumber={1} title="Install dependencies">
-        <InstallationCommands
-          type="package-installation"
-          npmCommand="npm install motion @base-ui-components/react clsx tailwind-merge"
-          pnpmCommand="pnpm add motion @base-ui-components/react clsx tailwind-merge"
-          yarnCommand="yarn add motion @base-ui-components/react clsx tailwind-merge"
-          bunCommand="bun add motion @base-ui-components/react clsx tailwind-merge"
-        />
-      </Step>
-      <Step
-        stepNumber={2}
-        title="Add cn function to your utils"
-      >
-        ```ts
-        import { clsx, type ClassValue } from "clsx";
-        import { twMerge } from "tailwind-merge";
+    <Steps>
+      <Step>Install dependencies</Step>
 
-        export function cn(...inputs: ClassValue[]) {
-          return twMerge(clsx(inputs));
-        }
-        ```
-      </Step>
-      <Step
-        stepNumber={3}
-        title="Copy and paste the following code into your project"
-        isLast
-      >
-        <ComponentCodePreview name="tooltip" />
-      </Step>
+      <InstallationCommands
+        type="package-installation"
+        npmCommand="npm install motion @base-ui-components/react clsx tailwind-merge"
+        pnpmCommand="pnpm add motion @base-ui-components/react clsx tailwind-merge"
+        yarnCommand="yarn add motion @base-ui-components/react clsx tailwind-merge"
+        bunCommand="bun add motion @base-ui-components/react clsx tailwind-merge"
+      />
+
+      <Step>Add cn function to your utils</Step>
+
+      ```ts filename="lib/classes.ts"
+      import { clsx, type ClassValue } from "clsx";
+      import { twMerge } from "tailwind-merge";
+
+      export function cn(...inputs: ClassValue[]) {
+        return twMerge(clsx(inputs));
+      }
+      ```
+
+      <Step>Copy and paste the following code into your project</Step>
+
+      <ComponentCodePreview name="tooltip" />
     </Steps>
 
   </TabsContent>
 </Tabs>
 
-## Anatomy
+## Usage
 
 ```tsx
-import { Tooltip, TooltipTrigger, TooltipPopup } from "@/components/ui/tooltip";
+import {
+  Tooltip,
+  TooltipPopup,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 <Tooltip>
-  <TooltipTrigger />
-  <TooltipPopup>// Your tooltip content</TooltipPopup>
+  <TooltipTrigger render={<Button variant="outline" />}>
+    Hover me
+  </TooltipTrigger>
+  <TooltipPopup>Helpful hint</TooltipPopup>
 </Tooltip>;
 ```
 
-## Usage
+**Grouping Tooltips**
+
+To group multiple tooltips so they appear instantly after the first one is opened, wrap them in `TooltipProvider`. The grouping logic ensures that once a tooltip becomes visible, the adjacent tooltips will be shown instantly.
+
+```tsx add=1,14 noCopy
+<TooltipProvider>
+  <Tooltip>
+    <TooltipTrigger render={<Button variant="outline" />}>
+      Tooltip 1
+    </TooltipTrigger>
+    <TooltipPopup>Content 1</TooltipPopup>
+  </Tooltip>
+  <Tooltip>
+    <TooltipTrigger render={<Button variant="outline" />}>
+      Tooltip 2
+    </TooltipTrigger>
+    <TooltipPopup>Content 2</TooltipPopup>
+  </Tooltip>
+</TooltipProvider>
+```
+
+## Examples
 
 ### With Arrow
 
@@ -104,3 +127,64 @@ You can control the `open` and `close` delay of the tooltip with `delay` and `cl
 ### Custom Content
 
 <ComponentShowcase name="tooltip-custom-content" />
+
+## Animation Presets
+
+You can pass `animationPreset` to `TooltipPopup` to set the animation preset of the tooltip. By default, it is `scale`.
+
+### Scale
+
+<ComponentShowcase name="tooltip-scale-demo" />
+
+### Fade
+
+<ComponentShowcase name="tooltip-fade-demo" />
+
+### Slide Outside
+
+<ComponentShowcase name="tooltip-slide-outside-demo" />
+
+### Slide Inside
+
+<ComponentShowcase name="tooltip-slide-inside-demo" />
+
+### Wipe
+
+<ComponentShowcase name="tooltip-wipe-demo" />
+
+### Wipe Scale
+
+<ComponentShowcase name="tooltip-wipe-scale-demo" />
+
+### Motion
+
+<ComponentShowcase name="tooltip-motion-demo" />
+
+### Motion Blur
+
+<ComponentShowcase name="tooltip-motion-blur-demo" />
+
+## Base UI vs Radix UI
+
+If you’re already familiar with Radix UI and shadcn/ui, this guide highlights the small differences and similarities so you can get started with **Pure UI** quickly.
+
+### Quick Checklist
+
+- Replace `asChild` → `render` on `TooltipTrigger`
+- Prefer `TooltipPopup` instead of `TooltipContent`
+- If you used `asChild` on parts, switch to the `render` prop
+
+### Comparison Example
+
+```tsx remove=3,6 add=4
+<Tooltip>
+  <TooltipTrigger
+    asChild
+    render={<Button variant="outline" />}
+  >
+    <Button variant="outline">Hover me</Button>
+    Hover me
+  </TooltipTrigger>
+  <TooltipPopup>Helpful hint</TooltipPopup>
+</Tooltip>
+```

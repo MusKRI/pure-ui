@@ -216,7 +216,7 @@ export const users = [
 export function SelectScaleDemo() {
   return (
     <Select items={users}>
-      <SelectTrigger className="min-w-66 p-2 min-h-12">
+      <SelectTrigger className="min-w-66">
         <SelectValue placeholder="Select a user">
           {(value: number) => {
             const user = users.find((user) => user.value === value);

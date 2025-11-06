@@ -30,7 +30,7 @@ export const CopyMarkdownClient = ({ rawContent }: Props) => {
       ) : (
         <CopyIcon className="size-3.5" />
       )}
-      Copy Markdown
+      Copy Page
     </Button>
   );
 };

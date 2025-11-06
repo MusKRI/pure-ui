@@ -146,6 +146,12 @@ const pureUIComponents = [
     href: "/components/separator",
   },
   {
+    id: "spinner",
+    title: "Spinner",
+    type: "link",
+    href: "/components/spinner",
+  },
+  {
     id: "switch",
     title: "Switch",
     type: "link",

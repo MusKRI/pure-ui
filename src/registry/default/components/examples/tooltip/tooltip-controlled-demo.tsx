@@ -5,6 +5,7 @@ import {
   Tooltip,
   TooltipTrigger,
   TooltipPopup,
+  TooltipProvider,
 } from "@/registry/default/components/ui/tooltip";
 
 export const TooltipControlledDemo = () => {
@@ -12,14 +13,16 @@ export const TooltipControlledDemo = () => {
 
   return (
     <div className="flex flex-col gap-4">
-      <Tooltip open={open} onOpenChange={setOpen}>
-        <TooltipTrigger>
-          <p>Hover me</p>
-        </TooltipTrigger>
-        <TooltipPopup>
-          <p>Tooltip Content</p>
-        </TooltipPopup>
-      </Tooltip>
+      <TooltipProvider>
+        <Tooltip open={open} onOpenChange={setOpen}>
+          <TooltipTrigger>
+            <p>Hover me</p>
+          </TooltipTrigger>
+          <TooltipPopup>
+            <p>Tooltip Content</p>
+          </TooltipPopup>
+        </Tooltip>
+      </TooltipProvider>
 
       <div className="text-muted-foreground text-sm">
         State: {open ? "Open" : "Close"}

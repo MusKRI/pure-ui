@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tooltip-scale-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "tooltip"
+  ],
+  "files": [
+    {
+      "path": "src/registry/default/components/examples/tooltip/tooltip-scale-demo.tsx",
+      "content": "import {\r\n  Tooltip,\r\n  TooltipTrigger,\r\n  TooltipPopup,\r\n  TooltipProvider,\r\n} from \"@/registry/default/components/ui/tooltip\";\r\n\r\nexport const TooltipScaleDemo = () => {\r\n  return (\r\n    <TooltipProvider>\r\n      <Tooltip>\r\n        <TooltipTrigger>\r\n          <p>Hover me</p>\r\n        </TooltipTrigger>\r\n        <TooltipPopup animationPreset=\"scale\">\r\n          <p>Tooltip Content</p>\r\n        </TooltipPopup>\r\n      </Tooltip>\r\n    </TooltipProvider>\r\n  );\r\n};\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

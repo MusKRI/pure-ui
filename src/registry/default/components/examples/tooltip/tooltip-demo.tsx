@@ -2,17 +2,20 @@ import {
   Tooltip,
   TooltipTrigger,
   TooltipPopup,
+  TooltipProvider,
 } from "@/registry/default/components/ui/tooltip";
 
 export const TooltipDemo = () => {
   return (
-    <Tooltip>
-      <TooltipTrigger>
-        <p>Hover me</p>
-      </TooltipTrigger>
-      <TooltipPopup>
-        <p>Tooltip Content</p>
-      </TooltipPopup>
-    </Tooltip>
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger>
+          <p>Hover me</p>
+        </TooltipTrigger>
+        <TooltipPopup animationPreset="fade" transitionPreset="quickOut">
+          <p>Tooltip Content</p>
+        </TooltipPopup>
+      </Tooltip>
+    </TooltipProvider>
   );
 };

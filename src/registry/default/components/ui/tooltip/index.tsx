@@ -1,293 +1,185 @@
 "use client";
 
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import React, { useMemo } from "react";
 import { Tooltip as TooltipPrimitive } from "@base-ui-components/react/tooltip";
-import { AnimatePresence, motion } from "motion/react";
 
 import { cn } from "@/lib/classes";
 
-const animationPresets = {
-  scale: {
-    initial: {
-      opacity: 0,
-      transform: "scale(0.8)",
-    },
-    animate: {
-      opacity: 1,
-      transform: "scale(1)",
-    },
-    exit: {
-      opacity: 0,
-      transform: "scale(0.8)",
-    },
-  },
+const cssAnimationPresets = {
+  none: "transition-none",
+  scale: [
+    `[transition-property:scale,opacity]`,
+    `data-starting-style:scale-80 data-starting-style:opacity-0 data-ending-style:opacity-0 data-ending-style:scale-80`,
+  ],
+  fade: [
+    `[transition-property:opacity,scale]`,
+    `data-starting-style:scale-98 data-starting-style:opacity-0 data-ending-style:opacity-0 data-ending-style:scale-98`,
+  ],
+  slideOutside: [
+    `[transition-property:translate,opacity]`,
+    // side=bottom
+    `data-[side=bottom]:data-starting-style:opacity-0 data-[side=bottom]:data-starting-style:translate-y-[10px] data-[side=bottom]:data-ending-style:translate-y-[10px] data-[side=bottom]:data-ending-style:opacity-0`,
+    // side=top
+    `data-[side=top]:data-starting-style:opacity-0 data-[side=top]:data-starting-style:translate-y-[-10px] data-[side=top]:data-ending-style:translate-y-[-10px] data-[side=top]:data-ending-style:opacity-0`,
+    // side=left
+    `data-[side=left]:data-starting-style:opacity-0 data-[side=left]:data-starting-style:translate-x-[-10px] data-[side=left]:data-ending-style:translate-x-[-10px] data-[side=left]:data-ending-style:opacity-0`,
+    // side=right
+    `data-[side=right]:data-starting-style:opacity-0 data-[side=right]:data-starting-style:translate-x-[10px] data-[side=right]:data-ending-style:translate-x-[10px] data-[side=right]:data-ending-style:opacity-0`,
+    // side=inline-start
+    `data-[side=inline-start]:data-starting-style:opacity-0 data-[side=inline-start]:data-starting-style:translate-x-[-10px] data-[side=inline-start]:data-ending-style:translate-x-[-10px] data-[side=inline-start]:data-ending-style:opacity-0`,
+    // side=inline-end
+    `data-[side=inline-end]:data-starting-style:opacity-0 data-[side=inline-end]:data-starting-style:translate-x-[10px] data-[side=inline-end]:data-ending-style:translate-x-[10px] data-[side=inline-end]:data-ending-style:opacity-0`,
+  ],
+  slideInside: [
+    `[transition-property:translate,opacity]`,
+    // side=bottom
+    `data-[side=bottom]:data-starting-style:opacity-0 data-[side=bottom]:data-starting-style:translate-y-[-10px] data-[side=bottom]:data-ending-style:translate-y-[-10px] data-[side=bottom]:data-ending-style:opacity-0`,
+    // side=top
+    `data-[side=top]:data-starting-style:opacity-0 data-[side=top]:data-starting-style:translate-y-[10px] data-[side=top]:data-ending-style:translate-y-[10px] data-[side=top]:data-ending-style:opacity-0`,
+    // side=left
+    `data-[side=left]:data-starting-style:opacity-0 data-[side=left]:data-starting-style:translate-x-[10px] data-[side=left]:data-ending-style:translate-x-[10px] data-[side=left]:data-ending-style:opacity-0`,
+    // side=right
+    `data-[side=right]:data-starting-style:opacity-0 data-[side=right]:data-starting-style:translate-x-[-10px] data-[side=right]:data-ending-style:translate-x-[-10px] data-[side=right]:data-ending-style:opacity-0`,
+    // side=inline-start
+    `data-[side=inline-start]:data-starting-style:opacity-0 data-[side=inline-start]:data-starting-style:translate-x-[10px] data-[side=inline-start]:data-ending-style:translate-x-[10px] data-[side=inline-start]:data-ending-style:opacity-0`,
+    // side=inline-end
+    `data-[side=inline-end]:data-starting-style:opacity-0 data-[side=inline-end]:data-starting-style:translate-x-[-10px] data-[side=inline-end]:data-ending-style:translate-x-[-10px] data-[side=inline-end]:data-ending-style:opacity-0`,
+  ],
+  wipe: [
+    `[transition-property:clip-path] [will-change:clip-path]`,
+    `[clip-path:inset(0_0_0_0_round_var(--radius))] [-webkit-clip-path:inset(0_0_0_0_round_var(--radius))]`,
+    // side=bottom
+    `data-[side=bottom]:data-starting-style:[clip-path:inset(0_0_100%_0_round_var(--radius))] data-[side=bottom]:data-ending-style:[clip-path:inset(0_0_100%_0_round_var(--radius))]`,
+    // side=top
+    `data-[side=top]:data-starting-style:[clip-path:inset(100%_0_0_0_round_var(--radius))] data-[side=top]:data-ending-style:[clip-path:inset(100%_0_0_0_round_var(--radius))]`,
+    // side=left
+    `data-[side=left]:data-starting-style:[clip-path:inset(0_0_0_100%_round_var(--radius))] data-[side=left]:data-ending-style:[clip-path:inset(0_0_0_100%_round_var(--radius))]`,
+    // side=right
+    `data-[side=right]:data-starting-style:[clip-path:inset(0_100%_0_0_round_var(--radius))] data-[side=right]:data-ending-style:[clip-path:inset(0_100%_0_0_round_var(--radius))]`,
+    // side=inline-start
+    `data-[side=inline-start]:data-starting-style:[clip-path:inset(0_0_0_100%_round_var(--radius))] data-[side=inline-start]:data-ending-style:[clip-path:inset(0_0_0_100%_round_var(--radius))]`,
+    // side=inline-end
+    `data-[side=inline-end]:data-starting-style:[clip-path:inset(0_100%_0_0_round_var(--radius))] data-[side=inline-end]:data-ending-style:[clip-path:inset(0_100%_0_0_round_var(--radius))]`,
+  ],
+  wipeScale: [
+    `[transition-property:clip-path,scale] [will-change:clip-path,scale]`,
+    `[clip-path:inset(0_0_0_0_round_var(--radius))] [-webkit-clip-path:inset(0_0_0_0_round_var(--radius))]`,
+    `data-starting-style:scale-80 data-ending-style:scale-80`,
+    // side=bottom
+    `data-[side=bottom]:data-starting-style:[clip-path:inset(0_0_100%_0_round_var(--radius))] data-[side=bottom]:data-ending-style:[clip-path:inset(0_0_100%_0_round_var(--radius))]`,
+    // side=top
+    `data-[side=top]:data-starting-style:[clip-path:inset(100%_0_0_0_round_var(--radius))] data-[side=top]:data-ending-style:[clip-path:inset(100%_0_0_0_round_var(--radius))]`,
+    // side=left
+    `data-[side=left]:data-starting-style:[clip-path:inset(0_0_0_100%_round_var(--radius))] data-[side=left]:data-ending-style:[clip-path:inset(0_0_0_100%_round_var(--radius))]`,
+    // side=right
+    `data-[side=right]:data-starting-style:[clip-path:inset(0_100%_0_0_round_var(--radius))] data-[side=right]:data-ending-style:[clip-path:inset(0_100%_0_0_round_var(--radius))]`,
+    // side=inline-start
+    `data-[side=inline-start]:data-starting-style:[clip-path:inset(0_0_0_100%_round_var(--radius))] data-[side=inline-start]:data-ending-style:[clip-path:inset(0_0_0_100%_round_var(--radius))]`,
+    // side=inline-end
+    `data-[side=inline-end]:data-starting-style:[clip-path:inset(0_100%_0_0_round_var(--radius))] data-[side=inline-end]:data-ending-style:[clip-path:inset(0_100%_0_0_round_var(--radius))]`,
+  ],
+  motion: [
+    `[transition-property:translate,scale,opacity,rotateX,rotateY,transform] [will-change:translate,scale,opacity,rotateX,rotateY,transform]`,
+    `[transform:perspective(1000px)]`,
+    // side=bottom
+    `data-[side=bottom]:data-starting-style:translate-y-[7px] data-[side=bottom]:data-starting-style:opacity-0 data-[side=bottom]:data-starting-style:scale-[0.26] data-[side=bottom]:data-starting-style:rotate-x-[70deg] data-[side=bottom]:data-ending-style:translate-y-[7px] data-[side=bottom]:data-ending-style:opacity-0 data-[side=bottom]:data-ending-style:scale-[0.26] data-[side=bottom]:data-ending-style:rotate-x-[70deg]`,
+    // side=top
+    `data-[side=top]:data-starting-style:translate-y-[7px] data-[side=top]:data-starting-style:opacity-0 data-[side=top]:data-starting-style:scale-[0.26] data-[side=top]:data-starting-style:rotate-x-[70deg] data-[side=top]:data-ending-style:translate-y-[7px] data-[side=top]:data-ending-style:opacity-0 data-[side=top]:data-ending-style:scale-[0.26] data-[side=top]:data-ending-style:rotate-x-[70deg]`,
+    // side=left
+    `data-[side=left]:data-starting-style:translate-x-[-7px] data-[side=left]:data-starting-style:opacity-0 data-[side=left]:data-starting-style:scale-[0.26] data-[side=left]:data-starting-style:rotate-y-[-40deg] data-[side=left]:data-ending-style:translate-x-[-7px] data-[side=left]:data-ending-style:opacity-0 data-[side=left]:data-ending-style:scale-[0.26] data-[side=left]:data-ending-style:rotate-y-[-40deg]`,
+    // side=right
+    `data-[side=right]:data-starting-style:translate-x-[7px] data-[side=right]:data-starting-style:opacity-0 data-[side=right]:data-starting-style:scale-[0.26] data-[side=right]:data-starting-style:rotate-y-[40deg] data-[side=right]:data-ending-style:translate-x-[7px] data-[side=right]:data-ending-style:opacity-0 data-[side=right]:data-ending-style:scale-[0.26] data-[side=right]:data-ending-style:rotate-y-[40deg]`,
+    // side=inline-start
+    `data-[side=inline-start]:data-starting-style:translate-x-[-7px] data-[side=inline-start]:data-starting-style:opacity-0 data-[side=inline-start]:data-starting-style:scale-[0.26] data-[side=inline-start]:data-starting-style:rotate-y-[-40deg] data-[side=inline-start]:data-ending-style:translate-x-[-7px] data-[side=inline-start]:data-ending-style:opacity-0 data-[side=inline-start]:data-ending-style:scale-[0.26] data-[side=inline-start]:data-ending-style:rotate-y-[-40deg]`,
+    // side=inline-end
+    `data-[side=inline-end]:data-starting-style:translate-x-[7px] data-[side=inline-end]:data-starting-style:opacity-0 data-[side=inline-end]:data-starting-style:scale-[0.26] data-[side=inline-end]:data-starting-style:rotate-y-[40deg] data-[side=inline-end]:data-ending-style:translate-x-[7px] data-[side=inline-end]:data-ending-style:opacity-0 data-[side=inline-end]:data-ending-style:scale-[0.26] data-[side=inline-end]:data-ending-style:rotate-y-[40deg]`,
+  ],
+  motionBlur: [
+    `[transition-property:translate,scale,opacity,rotateX,rotateY,transform,filter] [will-change:translate,scale,opacity,rotateX,rotateY,transform,filter]`,
+    `[transform:perspective(1000px)]`,
+    `data-starting-style:blur-[9px] data-ending-style:blur-[9px]`,
+    // side=bottom
+    `data-[side=bottom]:data-starting-style:translate-y-[7px] data-[side=bottom]:data-starting-style:opacity-0 data-[side=bottom]:data-starting-style:scale-[0.26] data-[side=bottom]:data-starting-style:rotate-x-[70deg] data-[side=bottom]:data-ending-style:translate-y-[7px] data-[side=bottom]:data-ending-style:opacity-0 data-[side=bottom]:data-ending-style:scale-[0.26] data-[side=bottom]:data-ending-style:rotate-x-[70deg]`,
+    // side=top
+    `data-[side=top]:data-starting-style:translate-y-[7px] data-[side=top]:data-starting-style:opacity-0 data-[side=top]:data-starting-style:scale-[0.26] data-[side=top]:data-starting-style:rotate-x-[70deg] data-[side=top]:data-ending-style:translate-y-[7px] data-[side=top]:data-ending-style:opacity-0 data-[side=top]:data-ending-style:scale-[0.26] data-[side=top]:data-ending-style:rotate-x-[70deg]`,
+    // side=left
+    `data-[side=left]:data-starting-style:translate-x-[-7px] data-[side=left]:data-starting-style:opacity-0 data-[side=left]:data-starting-style:scale-[0.26] data-[side=left]:data-starting-style:rotate-y-[-40deg] data-[side=left]:data-ending-style:translate-x-[-7px] data-[side=left]:data-ending-style:opacity-0 data-[side=left]:data-ending-style:scale-[0.26] data-[side=left]:data-ending-style:rotate-y-[-40deg]`,
+    // side=right
+    `data-[side=right]:data-starting-style:translate-x-[7px] data-[side=right]:data-starting-style:opacity-0 data-[side=right]:data-starting-style:scale-[0.26] data-[side=right]:data-starting-style:rotate-y-[40deg] data-[side=right]:data-ending-style:translate-x-[7px] data-[side=right]:data-ending-style:opacity-0 data-[side=right]:data-ending-style:scale-[0.26] data-[side=right]:data-ending-style:rotate-y-[40deg]`,
+    // side=inline-start
+    `data-[side=inline-start]:data-starting-style:translate-x-[-7px] data-[side=inline-start]:data-starting-style:opacity-0 data-[side=inline-start]:data-starting-style:scale-[0.26] data-[side=inline-start]:data-starting-style:rotate-y-[-40deg] data-[side=inline-start]:data-ending-style:translate-x-[-7px] data-[side=inline-start]:data-ending-style:opacity-0 data-[side=inline-start]:data-ending-style:scale-[0.26] data-[side=inline-start]:data-ending-style:rotate-y-[-40deg]`,
+    // side=inline-end
+    `data-[side=inline-end]:data-starting-style:translate-x-[7px] data-[side=inline-end]:data-starting-style:opacity-0 data-[side=inline-end]:data-starting-style:scale-[0.26] data-[side=inline-end]:data-starting-style:rotate-y-[40deg] data-[side=inline-end]:data-ending-style:translate-x-[7px] data-[side=inline-end]:data-ending-style:opacity-0 data-[side=inline-end]:data-ending-style:scale-[0.26] data-[side=inline-end]:data-ending-style:rotate-y-[40deg]`,
+  ],
 };
 
-const transitionPresets = {
-  inExpo: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.95, 0.05, 0.795, 0.035],
-  },
-  outExpo: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.19, 1, 0.22, 1],
-  },
-  inOutExpo: {
-    type: "tween",
-    duration: 0.35,
-    ease: [1, 0, 0, 1],
-  },
-  anticipate: {
-    type: "tween",
-    duration: 0.35,
-    ease: [1, -0.4, 0.35, 0.95],
-  },
-  quickOut: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0, 0, 0.2, 1],
-  },
-  overshootOut: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.175, 0.885, 0.32, 1.275],
-  },
-  swiftOut: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.175, 0.885, 0.32, 1.1],
-  },
-  snappyOut: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.19, 1, 0.22, 1],
-  },
-  in: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.42, 0, 1, 1],
-  },
-  out: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0, 0, 0.58, 1],
-  },
-  inOut: {
-    type: "tween",
-    duration: 0.25,
-    ease: [0.42, 0, 0.58, 1],
-  },
-  outIn: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.1, 0.7, 0.9, 0.5],
-  },
-  inQuad: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.55, 0.085, 0.68, 0.53],
-  },
-  outQuad: {
-    type: "tween",
-    duration: 0.25,
-    ease: [0.25, 0.46, 0.45, 0.94],
-  },
-  inOutQuad: {
-    type: "tween",
-    duration: 0.32,
-    ease: [0.455, 0.03, 0.515, 0.955],
-  },
-  inCubic: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.55, 0.055, 0.675, 0.19],
-  },
-  outCubic: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.215, 0.61, 0.355, 1],
-  },
-  inOutCubic: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.645, 0.045, 0.355, 1],
-  },
-  inQuart: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.895, 0.03, 0.685, 0.22],
-  },
-  outQuart: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.165, 0.84, 0.44, 1],
-  },
-  inOutQuart: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.77, 0, 0.175, 1],
-  },
-  inQuint: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.755, 0.05, 0.855, 0.06],
-  },
-  outQuint: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.23, 1, 0.32, 1],
-  },
-  inOutQuint: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.86, 0, 0.07, 1],
-  },
-  inCirc: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.6, 0.04, 0.98, 0.335],
-  },
-  outCirc: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.075, 0.82, 0.165, 1],
-  },
-  inOutCirc: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.785, 0.135, 0.15, 0.86],
-  },
-  inOutBase: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.25, 0.1, 0.25, 1],
-  },
-} as const;
+const cssTransitionPresets = {
+  inExpo: `duration-[0.25s] ease-[cubic-bezier(0.95,0.05,0.795,0.035)]`,
+  outExpo: `duration-[0.25s] ease-[cubic-bezier(0.19,1,0.22,1)]`,
+  inOutExpo: `duration-[0.25s] ease-[cubic-bezier(1,0,0,1)]`,
+  anticipate: `duration-[0.25s] ease-[cubic-bezier(1,-0.4,0.35,0.95)]`,
+  quickOut: `duration-[0.25s] ease-out`,
+  overshootOut: `duration-[0.25s] ease-[cubic-bezier(0.175,0.885,0.32,1.275)]`,
+  swiftOut: `duration-[0.25s] ease-[cubic-bezier(0.175,0.885,0.32,1.1)]`,
+  snappyOut: `duration-[0.25s] ease-[cubic-bezier(0.19,1,0.22,1)]`,
+  in: `duration-[0.25s] ease-[cubic-bezier(0.42,0,1,1)]`,
+  out: `duration-[0.25s] ease-[cubic-bezier(0,0,0.58,1)]`,
+  inOut: `duration-[0.25s] ease-[cubic-bezier(0.42,0,0.58,1)]`,
+  outIn: `duration-[0.25s] ease-[cubic-bezier(0.1,0.7,0.9,0.5)]`,
+  inQuad: `duration-[0.25s] ease-[cubic-bezier(0.55,0.085,0.68,0.53)]`,
+  outQuad: `duration-[0.25s] ease-[cubic-bezier(0.25,0.46,0.45,0.94)]`,
+  inOutQuad: `duration-[0.32s] ease-[cubic-bezier(0.455,0.03,0.515,0.955)]`,
+  inCubic: `duration-[0.25s] ease-[cubic-bezier(0.55,0.055,0.675,0.19)]`,
+  outCubic: `duration-[0.25s] ease-[cubic-bezier(0.215,0.61,0.355,1)]`,
+  inOutCubic: `duration-[0.25s] ease-[cubic-bezier(0.645,0.045,0.355,1)]`,
+  inQuart: `duration-[0.25s] ease-[cubic-bezier(0.895,0.03,0.685,0.22)]`,
+  outQuart: `duration-[0.25s] ease-[cubic-bezier(0.165,0.84,0.44,1)]`,
+  inOutQuart: `duration-[0.25s] ease-[cubic-bezier(0.77,0,0.175,1)]`,
+  inQuint: `duration-[0.25s] ease-[cubic-bezier(0.755,0.05,0.855,0.06)]`,
+  outQuint: `duration-[0.25s] ease-[cubic-bezier(0.23,1,0.32,1)]`,
+  inOutQuint: `duration-[0.25s] ease-[cubic-bezier(0.86,0,0.07,1)]`,
+  inCirc: `duration-[0.25s] ease-[cubic-bezier(0.6,0.04,0.98,0.335)]`,
+  outCirc: `duration-[0.25s] ease-[cubic-bezier(0.075,0.82,0.165,1)]`,
+  inOutCirc: `duration-[0.25s] ease-[cubic-bezier(0.785,0.135,0.15,0.86)]`,
+  inOutBase: `duration-[0.25s] ease-[cubic-bezier(0.25,0.1,0.25,1)]`,
+  none: `duration-0 ease-none`,
+};
 
-type AnimationPreset = keyof typeof animationPresets;
-type TransitionPreset = keyof typeof transitionPresets;
+type CSSAnimationPresets = keyof typeof cssAnimationPresets;
+type CSSTransitionPresets = keyof typeof cssTransitionPresets;
 
-interface TooltipContextType {
-  open: boolean;
-  onOpenChange: TooltipProps["onOpenChange"];
-}
-
-const TooltipContext = createContext<TooltipContextType | undefined>(undefined);
-
-function useTooltip() {
-  const context = useContext(TooltipContext);
-  if (!context) {
-    throw new Error("useTooltip must be used within a TooltipProvider");
-  }
-  return context;
-}
-
-interface TooltipDefaultProviderProps
+interface TooltipProviderProps
   extends React.ComponentProps<typeof TooltipPrimitive.Provider> {}
 
-function TooltipDefaultProvider(props: TooltipDefaultProviderProps) {
-  return <TooltipPrimitive.Provider data-slot="tooltip-provider" {...props} />;
+function TooltipProvider({ delay = 300, ...props }: TooltipProviderProps) {
+  return (
+    <TooltipPrimitive.Provider
+      data-slot="tooltip-provider"
+      delay={delay}
+      {...props}
+    />
+  );
 }
 
 interface TooltipProps
-  extends React.ComponentProps<typeof TooltipPrimitive.Root>,
-    Pick<TooltipDefaultProviderProps, "delay" | "closeDelay"> {}
+  extends React.ComponentProps<typeof TooltipPrimitive.Root> {}
 
-function Tooltip({
-  open,
-  defaultOpen,
-  onOpenChange,
-  delay = 10,
-  closeDelay = 10,
-  ...props
-}: TooltipProps) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    if (open !== undefined) setIsOpen(open);
-  }, [open]);
-
-  const handleOpenChange: TooltipProps["onOpenChange"] = (
-    open,
-    eventDetails
-  ) => {
-    setIsOpen(open);
-    onOpenChange?.(open, eventDetails);
-  };
-
-  return (
-    <TooltipContext.Provider
-      value={{ open: isOpen, onOpenChange: handleOpenChange }}
-    >
-      <TooltipDefaultProvider delay={delay} closeDelay={closeDelay}>
-        <TooltipPrimitive.Root
-          data-slot="tooltip"
-          open={isOpen}
-          onOpenChange={handleOpenChange}
-          {...props}
-        />
-      </TooltipDefaultProvider>
-    </TooltipContext.Provider>
-  );
+function Tooltip({ ...props }: TooltipProps) {
+  return <TooltipPrimitive.Root data-slot="tooltip" {...props} />;
 }
 
 interface TooltipTriggerProps
-  extends Omit<
-    React.ComponentProps<typeof TooltipPrimitive.Trigger>,
-    "render"
-  > {
-  asChild?: boolean;
-}
+  extends React.ComponentProps<typeof TooltipPrimitive.Trigger> {}
 
-function TooltipTrigger({
-  asChild = false,
-  children,
-  ...props
-}: TooltipTriggerProps) {
-  if (asChild) {
-    return (
-      <TooltipPrimitive.Trigger
-        data-slot="tooltip-trigger"
-        render={children as React.ReactElement<Record<string, unknown>>}
-        {...props}
-      />
-    );
-  }
-
-  return (
-    <TooltipPrimitive.Trigger
-      data-slot="tooltip-trigger"
-      {...props}
-      children={children}
-    />
-  );
+function TooltipTrigger(props: TooltipTriggerProps) {
+  return <TooltipPrimitive.Trigger data-slot="tooltip-trigger" {...props} />;
 }
 
 interface TooltipPortalProps
   extends React.ComponentProps<typeof TooltipPrimitive.Portal> {}
 
 function TooltipPortal(props: TooltipPortalProps) {
-  const { open } = useTooltip();
-
-  return (
-    <AnimatePresence>
-      {open && (
-        <TooltipPrimitive.Portal
-          data-slot="tooltip-portal"
-          keepMounted
-          {...props}
-        />
-      )}
-    </AnimatePresence>
-  );
+  return <TooltipPrimitive.Portal data-slot="tooltip-portal" {...props} />;
 }
 
 interface TooltipPositionerProps
@@ -305,28 +197,12 @@ function TooltipPositioner({
         data-slot="tooltip-positioner"
         className={cn(
           (side === "inline-end" || side === "inline-start") &&
-            "[&_[data-slot=tooltip-arrow]]:hidden",
+            "**:data-[slot=tooltip-arrow]:hidden",
           className
         )}
         {...rest}
       />
     </TooltipPortal>
-  );
-}
-
-interface TooltipArrowProps
-  extends React.ComponentProps<typeof TooltipPrimitive.Arrow> {}
-
-function TooltipArrow({ className, ...rest }: TooltipArrowProps) {
-  return (
-    <TooltipPrimitive.Arrow
-      data-slot="tooltip-arrow"
-      className={cn(
-        "data-[side=bottom]:top-[-9px] data-[side=left]:right-[-14px] data-[side=left]:rotate-90 data-[side=right]:left-[-12px] data-[side=right]:-rotate-90 data-[side=top]:bottom-[-9px] data-[side=top]:rotate-180",
-        className
-      )}
-      {...rest}
-    />
   );
 }
 
@@ -336,8 +212,8 @@ interface TooltipPopupProps
       TooltipPositionerProps,
       "side" | "sideOffset" | "align" | "alignOffset"
     > {
-  animationPreset?: AnimationPreset;
-  transitionPreset?: TransitionPreset;
+  animationPreset?: CSSAnimationPresets;
+  transitionPreset?: CSSTransitionPresets;
   reduceMotion?: boolean;
   showArrow?: boolean;
 }
@@ -345,33 +221,34 @@ interface TooltipPopupProps
 function TooltipPopup({
   className,
   animationPreset = "scale",
-  transitionPreset = "snappyOut",
+  transitionPreset = "outQuint",
   reduceMotion = false,
   showArrow = false,
   side = "top",
   sideOffset = 4,
   align = "center",
   alignOffset = 0,
-  children,
   ...rest
 }: TooltipPopupProps) {
-  const animationConfig = useMemo(() => {
-    if (reduceMotion) return animationPresets.scale;
+  const cssAnimationConfig = useMemo(() => {
+    if (reduceMotion) return "none";
 
     if (animationPreset) {
-      return animationPresets[animationPreset];
+      return cssAnimationPresets[animationPreset];
     }
 
-    return animationPresets.scale;
+    return cssAnimationPresets.scale;
   }, [animationPreset, reduceMotion, side]);
 
-  const transitionConfig = useMemo(() => {
-    if (reduceMotion) return {};
+  const cssTransitionConfig = useMemo(() => {
+    if (reduceMotion) return "none";
 
     if (transitionPreset) {
-      return transitionPresets[transitionPreset];
+      return cssTransitionPresets[transitionPreset];
     }
-  }, [transitionPreset, reduceMotion]);
+
+    return cssTransitionPresets.snappyOut;
+  }, [transitionPreset, reduceMotion, side]);
 
   return (
     <TooltipPositioner
@@ -382,40 +259,32 @@ function TooltipPopup({
     >
       <TooltipPrimitive.Popup
         data-slot="tooltip-popup"
-        render={
-          <motion.div
-            key="tooltip-popup"
-            initial={animationConfig.initial}
-            animate={animationConfig.animate}
-            exit={animationConfig.exit}
-            transition={transitionConfig}
-            className={cn(
-              "pointer-events-auto origin-(--transform-origin) bg-popover px-2 py-1 shadow-xs border border-border rounded-lg text-sm",
-              className,
-              showArrow && [
-                `before:content-[''] before: z-[-1] before:absolute before:rotate-45 before:w-2 before:h-2 before:bg-popover`,
-                side === "top" &&
-                  `before:-bottom-[4.7px] before:left-1/2 before:-translate-x-1/2 before:border-r before:border-b before:border-border`,
-                side === "right" &&
-                  `before:-left-[4.07px] before:top-1/2 before:-translate-y-1/2 before:border-l before:border-b before:border-border`,
-                side === "bottom" &&
-                  `before:-top-[4.7px] before:left-1/2 before:-translate-x-1/2 before:border-l before:border-t before:border-border`,
-                side === "left" &&
-                  `before:-right-[4.07px] before:top-1/2 before:-translate-y-1/2 before:border-r before:border-t before:border-border`,
-                side === "inline-start" &&
-                  `before:-right-[4.07px] before:top-1/2 before:-translate-y-1/2 before:border-r before:border-t before:border-border`,
-                side === "inline-end" &&
-                  `before:-left-[4.07px] before:top-1/2 before:-translate-y-1/2 before:border-l before:border-b before:border-border`,
-              ]
-            )}
-          >
-            {children}
-          </motion.div>
-        }
+        className={cn(
+          "[--radius:10px]",
+          "pointer-events-auto origin-(--transform-origin) bg-popover w-fit text-balance px-2 py-1 shadow-xs border border-border rounded-(--radius) text-[13px] data-instant:duration-0!",
+          className,
+          cssAnimationConfig,
+          cssTransitionConfig,
+          showArrow && [
+            `before:content-[''] before: z-[-1] before:absolute before:rotate-45 before:w-2 before:h-2 before:bg-popover`,
+            side === "top" &&
+              `before:-bottom-[4.7px] before:left-1/2 before:-translate-x-1/2 before:border-r before:border-b before:border-border`,
+            side === "right" &&
+              `before:-left-[4.07px] before:top-1/2 before:-translate-y-1/2 before:border-l before:border-b before:border-border`,
+            side === "bottom" &&
+              `before:-top-[4.7px] before:left-1/2 before:-translate-x-1/2 before:border-l before:border-t before:border-border`,
+            side === "left" &&
+              `before:-right-[4.07px] before:top-1/2 before:-translate-y-1/2 before:border-r before:border-t before:border-border`,
+            side === "inline-start" &&
+              `before:-right-[4.07px] before:top-1/2 before:-translate-y-1/2 before:border-r before:border-t before:border-border`,
+            side === "inline-end" &&
+              `before:-left-[4.07px] before:top-1/2 before:-translate-y-1/2 before:border-l before:border-b before:border-border`,
+          ]
+        )}
         {...rest}
       />
     </TooltipPositioner>
   );
 }
 
-export { Tooltip, TooltipTrigger, TooltipPopup };
+export { Tooltip, TooltipTrigger, TooltipPopup, TooltipProvider };

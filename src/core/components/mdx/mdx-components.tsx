@@ -17,7 +17,6 @@ import {
   TabsTrigger,
   TabsContent,
 } from "./components/mdx-tabs";
-import { Steps, Step } from "./components/steps";
 import { InstallationCommands } from "./components/installation-commands";
 import { ComponentCodePreview } from "./components/component-code-preview";
 
@@ -97,7 +96,7 @@ export const mdxComponents: MDXComponents = {
   p: ({ className, ...props }: React.ComponentProps<"p">) => (
     <p
       className={cn(
-        "PureP !leading-[1.8] text-pretty text-muted-foreground text-base mb-6 last:mb-0 not-first:mt-6 [.PureUIComponentShowcase+&]:mt-0!",
+        "PureP has-[+_.PureP]:mb-0 [.PureP+&]:mt-2 [.PureCodeBlockWrapper+&]:mt-10 !leading-[1.8] text-pretty text-muted-foreground text-base mb-6 last:mb-0 not-first:mt-6 [.PureUIComponentShowcase+&]:mt-0!",
         className
       )}
       {...props}
@@ -113,7 +112,7 @@ export const mdxComponents: MDXComponents = {
   ul: ({ className, ...props }: React.ComponentProps<"ul">) => (
     <ul
       className={cn(
-        "PureUL my-6 ml-6 list-disc space-y-2 [&>li]:mt-2 marker:text-muted-foreground UnorderedList ps-6 in-[.ListItem]:my-[1em]",
+        "PureUL my-6 ml-6 list-disc space-y-2 [&>li]:mt-2 marker:text-muted-foreground text-muted-foreground text-sm UnorderedList ps-6 in-[.ListItem]:my-[1em]",
         className
       )}
       {...props}
@@ -122,7 +121,7 @@ export const mdxComponents: MDXComponents = {
   ol: ({ className, ...props }: React.ComponentProps<"ol">) => (
     <ol
       className={cn(
-        "PureOL my-6 ml-6 list-decimal space-y-2 [&>li]:mt-2 marker:text-muted-foreground marker:font-medium",
+        "PureOL my-6 ml-6 list-decimal space-y-2 [&>li]:mt-2 marker:text-muted-foreground marker:font-medium text-muted-foreground text-sm",
         className
       )}
       {...props}
@@ -151,8 +150,18 @@ export const mdxComponents: MDXComponents = {
   TabsTrigger,
   TabsContent,
   ColorCard,
-  Steps,
-  Step,
+  Step: ({ className, ...props }: React.ComponentProps<"h3">) => (
+    <h3
+      className={cn("mt-8 scroll-m-32 font-medium tracking-tight", className)}
+      {...props}
+    />
+  ),
+  Steps: ({ ...props }) => (
+    <div
+      className="steps [&>h3]:step mb-12 [counter-reset:step] *:[h3]:first:mt-2.5!"
+      {...props}
+    />
+  ),
 
   InstallationCommands,
   ComponentCodePreview,

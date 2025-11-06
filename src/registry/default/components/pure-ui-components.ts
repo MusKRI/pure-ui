@@ -217,6 +217,19 @@ export const pureUIShadcnComponents: RegistryItem[] = [
       "@base-ui-components/react",
     ],
   },
+  {
+    name: "spinner",
+    type: "registry:ui",
+    title: "Spinner",
+    description: "A customizable spinner component",
+    files: [
+      {
+        path: "ui/spinner/index.tsx",
+        type: "registry:ui",
+      },
+    ],
+    dependencies: ["tailwind-merge", "clsx"],
+  },
   // Tooltip
   {
     name: "tooltip",

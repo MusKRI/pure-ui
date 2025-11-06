@@ -1,147 +1,148 @@
 "use client";
 
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, useContext, useMemo } from "react";
 import { Select as SelectPrimitive } from "@base-ui-components/react/select";
 
 import { cn } from "@/lib/classes";
+import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 
 const cssAnimationPresets = {
   none: "transition-none",
   scale: [
-    `[transition-property:scale,opacity]`,
-    `data-[starting-style]:scale-80 data-[starting-style]:opacity-0 data-[ending-style]:opacity-0 data-[ending-style]:scale-80`,
+    `[transition-property:scale,opacity] [will-change:scale,opacity]`,
+    `data-starting-style:scale-80 data-starting-style:opacity-0 data-ending-style:opacity-0 data-ending-style:scale-80`,
   ],
   fade: [
-    `[transition-property:opacity]`,
-    `data-[starting-style]:opacity-0 data-[ending-style]:opacity-0`,
+    `[transition-property:opacity] [will-change:opacity]`,
+    `data-starting-style:opacity-0 data-ending-style:opacity-0`,
   ],
   slideOutside: [
-    `[transition-property:translate,opacity]`,
+    `[transition-property:translate,opacity] [will-change:translate,opacity]`,
     // side=bottom
-    `data-[side=bottom]:data-[starting-style]:opacity-0 data-[side=bottom]:data-[starting-style]:translate-y-[10px] data-[side=bottom]:data-[ending-style]:translate-y-[10px] data-[side=bottom]:data-[ending-style]:opacity-0`,
+    `data-[side=bottom]:data-starting-style:opacity-0 data-[side=bottom]:data-starting-style:translate-y-[10px] data-[side=bottom]:data-ending-style:translate-y-[10px] data-[side=bottom]:data-ending-style:opacity-0`,
     // side=top
-    `data-[side=top]:data-[starting-style]:opacity-0 data-[side=top]:data-[starting-style]:translate-y-[-10px] data-[side=top]:data-[ending-style]:translate-y-[-10px] data-[side=top]:data-[ending-style]:opacity-0`,
+    `data-[side=top]:data-starting-style:opacity-0 data-[side=top]:data-starting-style:translate-y-[-10px] data-[side=top]:data-ending-style:translate-y-[-10px] data-[side=top]:data-ending-style:opacity-0`,
     // side=left
-    `data-[side=left]:data-[starting-style]:opacity-0 data-[side=left]:data-[starting-style]:translate-x-[-10px] data-[side=left]:data-[ending-style]:translate-x-[-10px] data-[side=left]:data-[ending-style]:opacity-0`,
+    `data-[side=left]:data-starting-style:opacity-0 data-[side=left]:data-starting-style:translate-x-[-10px] data-[side=left]:data-ending-style:translate-x-[-10px] data-[side=left]:data-ending-style:opacity-0`,
     // side=right
-    `data-[side=right]:data-[starting-style]:opacity-0 data-[side=right]:data-[starting-style]:translate-x-[10px] data-[side=right]:data-[ending-style]:translate-x-[10px] data-[side=right]:data-[ending-style]:opacity-0`,
+    `data-[side=right]:data-starting-style:opacity-0 data-[side=right]:data-starting-style:translate-x-[10px] data-[side=right]:data-ending-style:translate-x-[10px] data-[side=right]:data-ending-style:opacity-0`,
     // side=inline-start
-    `data-[side=inline-start]:data-[starting-style]:opacity-0 data-[side=inline-start]:data-[starting-style]:translate-x-[-10px] data-[side=inline-start]:data-[ending-style]:translate-x-[-10px] data-[side=inline-start]:data-[ending-style]:opacity-0`,
+    `data-[side=inline-start]:data-starting-style:opacity-0 data-[side=inline-start]:data-starting-style:translate-x-[-10px] data-[side=inline-start]:data-ending-style:translate-x-[-10px] data-[side=inline-start]:data-ending-style:opacity-0`,
     // side=inline-end
-    `data-[side=inline-end]:data-[starting-style]:opacity-0 data-[side=inline-end]:data-[starting-style]:translate-x-[10px] data-[side=inline-end]:data-[ending-style]:translate-x-[10px] data-[side=inline-end]:data-[ending-style]:opacity-0`,
+    `data-[side=inline-end]:data-starting-style:opacity-0 data-[side=inline-end]:data-starting-style:translate-x-[10px] data-[side=inline-end]:data-ending-style:translate-x-[10px] data-[side=inline-end]:data-ending-style:opacity-0`,
   ],
   slideInside: [
-    `[transition-property:translate,opacity]`,
+    `[transition-property:translate,opacity] [will-change:translate,opacity]`,
     // side=bottom
-    `data-[side=bottom]:data-[starting-style]:opacity-0 data-[side=bottom]:data-[starting-style]:translate-y-[-10px] data-[side=bottom]:data-[ending-style]:translate-y-[-10px] data-[side=bottom]:data-[ending-style]:opacity-0`,
+    `data-[side=bottom]:data-starting-style:opacity-0 data-[side=bottom]:data-starting-style:translate-y-[-10px] data-[side=bottom]:data-ending-style:translate-y-[-10px] data-[side=bottom]:data-ending-style:opacity-0`,
     // side=top
-    `data-[side=top]:data-[starting-style]:opacity-0 data-[side=top]:data-[starting-style]:translate-y-[10px] data-[side=top]:data-[ending-style]:translate-y-[10px] data-[side=top]:data-[ending-style]:opacity-0`,
+    `data-[side=top]:data-starting-style:opacity-0 data-[side=top]:data-starting-style:translate-y-[10px] data-[side=top]:data-ending-style:translate-y-[10px] data-[side=top]:data-ending-style:opacity-0`,
     // side=left
-    `data-[side=left]:data-[starting-style]:opacity-0 data-[side=left]:data-[starting-style]:translate-x-[10px] data-[side=left]:data-[ending-style]:translate-x-[10px] data-[side=left]:data-[ending-style]:opacity-0`,
+    `data-[side=left]:data-starting-style:opacity-0 data-[side=left]:data-starting-style:translate-x-[10px] data-[side=left]:data-ending-style:translate-x-[10px] data-[side=left]:data-ending-style:opacity-0`,
     // side=right
-    `data-[side=right]:data-[starting-style]:opacity-0 data-[side=right]:data-[starting-style]:translate-x-[-10px] data-[side=right]:data-[ending-style]:translate-x-[-10px] data-[side=right]:data-[ending-style]:opacity-0`,
+    `data-[side=right]:data-starting-style:opacity-0 data-[side=right]:data-starting-style:translate-x-[-10px] data-[side=right]:data-ending-style:translate-x-[-10px] data-[side=right]:data-ending-style:opacity-0`,
     // side=inline-start
-    `data-[side=inline-start]:data-[starting-style]:opacity-0 data-[side=inline-start]:data-[starting-style]:translate-x-[10px] data-[side=inline-start]:data-[ending-style]:translate-x-[10px] data-[side=inline-start]:data-[ending-style]:opacity-0`,
+    `data-[side=inline-start]:data-starting-style:opacity-0 data-[side=inline-start]:data-starting-style:translate-x-[10px] data-[side=inline-start]:data-ending-style:translate-x-[10px] data-[side=inline-start]:data-ending-style:opacity-0`,
     // side=inline-end
-    `data-[side=inline-end]:data-[starting-style]:opacity-0 data-[side=inline-end]:data-[starting-style]:translate-x-[-10px] data-[side=inline-end]:data-[ending-style]:translate-x-[-10px] data-[side=inline-end]:data-[ending-style]:opacity-0`,
+    `data-[side=inline-end]:data-starting-style:opacity-0 data-[side=inline-end]:data-starting-style:translate-x-[-10px] data-[side=inline-end]:data-ending-style:translate-x-[-10px] data-[side=inline-end]:data-ending-style:opacity-0`,
   ],
   wipe: [
     `[transition-property:clip-path] [will-change:clip-path]`,
     `[clip-path:inset(0_0_0_0_round_12px)] [-webkit-clip-path:inset(0_0_0_0_round_12px)]`,
     // side=bottom
-    `data-[side=bottom]:data-[starting-style]:[clip-path:inset(0_0_100%_0_round_12px)] data-[side=bottom]:data-[ending-style]:[clip-path:inset(0_0_100%_0_round_12px)]`,
+    `data-[side=bottom]:data-starting-style:[clip-path:inset(0_0_100%_0_round_12px)] data-[side=bottom]:data-ending-style:[clip-path:inset(0_0_100%_0_round_12px)]`,
     // side=top
-    `data-[side=top]:data-[starting-style]:[clip-path:inset(100%_0_0_0_round_12px)] data-[side=top]:data-[ending-style]:[clip-path:inset(100%_0_0_0_round_12px)]`,
+    `data-[side=top]:data-starting-style:[clip-path:inset(100%_0_0_0_round_12px)] data-[side=top]:data-ending-style:[clip-path:inset(100%_0_0_0_round_12px)]`,
     // side=left
-    `data-[side=left]:data-[starting-style]:[clip-path:inset(0_0_0_100%_round_12px)] data-[side=left]:data-[ending-style]:[clip-path:inset(0_0_0_100%_round_12px)]`,
+    `data-[side=left]:data-starting-style:[clip-path:inset(0_0_0_100%_round_12px)] data-[side=left]:data-ending-style:[clip-path:inset(0_0_0_100%_round_12px)]`,
     // side=right
-    `data-[side=right]:data-[starting-style]:[clip-path:inset(0_100%_0_0_round_12px)] data-[side=right]:data-[ending-style]:[clip-path:inset(0_100%_0_0_round_12px)]`,
+    `data-[side=right]:data-starting-style:[clip-path:inset(0_100%_0_0_round_12px)] data-[side=right]:data-ending-style:[clip-path:inset(0_100%_0_0_round_12px)]`,
     // side=inline-start
-    `data-[side=inline-start]:data-[starting-style]:[clip-path:inset(0_0_0_100%_round_12px)] data-[side=inline-start]:data-[ending-style]:[clip-path:inset(0_0_0_100%_round_12px)]`,
+    `data-[side=inline-start]:data-starting-style:[clip-path:inset(0_0_0_100%_round_12px)] data-[side=inline-start]:data-ending-style:[clip-path:inset(0_0_0_100%_round_12px)]`,
     // side=inline-end
-    `data-[side=inline-end]:data-[starting-style]:[clip-path:inset(0_100%_0_0_round_12px)] data-[side=inline-end]:data-[ending-style]:[clip-path:inset(0_100%_0_0_round_12px)]`,
+    `data-[side=inline-end]:data-starting-style:[clip-path:inset(0_100%_0_0_round_12px)] data-[side=inline-end]:data-ending-style:[clip-path:inset(0_100%_0_0_round_12px)]`,
   ],
   wipeScale: [
     `[transition-property:clip-path,scale] [will-change:clip-path,scale]`,
     `[clip-path:inset(0_0_0_0_round_12px)] [-webkit-clip-path:inset(0_0_0_0_round_12px)]`,
-    `data-[starting-style]:scale-80 data-[ending-style]:scale-80`,
+    `data-starting-style:scale-80 data-ending-style:scale-80`,
     // side=bottom
-    `data-[side=bottom]:data-[starting-style]:[clip-path:inset(0_0_100%_0_round_12px)] data-[side=bottom]:data-[ending-style]:[clip-path:inset(0_0_100%_0_round_12px)]`,
+    `data-[side=bottom]:data-starting-style:[clip-path:inset(0_0_100%_0_round_12px)] data-[side=bottom]:data-ending-style:[clip-path:inset(0_0_100%_0_round_12px)]`,
     // side=top
-    `data-[side=top]:data-[starting-style]:[clip-path:inset(100%_0_0_0_round_12px)] data-[side=top]:data-[ending-style]:[clip-path:inset(100%_0_0_0_round_12px)]`,
+    `data-[side=top]:data-starting-style:[clip-path:inset(100%_0_0_0_round_12px)] data-[side=top]:data-ending-style:[clip-path:inset(100%_0_0_0_round_12px)]`,
     // side=left
-    `data-[side=left]:data-[starting-style]:[clip-path:inset(0_0_0_100%_round_12px)] data-[side=left]:data-[ending-style]:[clip-path:inset(0_0_0_100%_round_12px)]`,
+    `data-[side=left]:data-starting-style:[clip-path:inset(0_0_0_100%_round_12px)] data-[side=left]:data-ending-style:[clip-path:inset(0_0_0_100%_round_12px)]`,
     // side=right
-    `data-[side=right]:data-[starting-style]:[clip-path:inset(0_100%_0_0_round_12px)] data-[side=right]:data-[ending-style]:[clip-path:inset(0_100%_0_0_round_12px)]`,
+    `data-[side=right]:data-starting-style:[clip-path:inset(0_100%_0_0_round_12px)] data-[side=right]:data-ending-style:[clip-path:inset(0_100%_0_0_round_12px)]`,
     // side=inline-start
-    `data-[side=inline-start]:data-[starting-style]:[clip-path:inset(0_0_0_100%_round_12px)] data-[side=inline-start]:data-[ending-style]:[clip-path:inset(0_0_0_100%_round_12px)]`,
+    `data-[side=inline-start]:data-starting-style:[clip-path:inset(0_0_0_100%_round_12px)] data-[side=inline-start]:data-ending-style:[clip-path:inset(0_0_0_100%_round_12px)]`,
     // side=inline-end
-    `data-[side=inline-end]:data-[starting-style]:[clip-path:inset(0_100%_0_0_round_12px)] data-[side=inline-end]:data-[ending-style]:[clip-path:inset(0_100%_0_0_round_12px)]`,
+    `data-[side=inline-end]:data-starting-style:[clip-path:inset(0_100%_0_0_round_12px)] data-[side=inline-end]:data-ending-style:[clip-path:inset(0_100%_0_0_round_12px)]`,
   ],
   motion: [
     `[transition-property:translate,scale,opacity,rotateX,rotateY,transform] [will-change:translate,scale,opacity,rotateX,rotateY,transform]`,
     `[transform:perspective(1000px)]`,
     // side=bottom
-    `data-[side=bottom]:data-[starting-style]:translate-y-[7px] data-[side=bottom]:data-[starting-style]:opacity-0 data-[side=bottom]:data-[starting-style]:scale-[0.26] data-[side=bottom]:data-[starting-style]:rotate-x-[70deg] data-[side=bottom]:data-[ending-style]:translate-y-[7px] data-[side=bottom]:data-[ending-style]:opacity-0 data-[side=bottom]:data-[ending-style]:scale-[0.26] data-[side=bottom]:data-[ending-style]:rotate-x-[70deg]`,
+    `data-[side=bottom]:data-starting-style:translate-y-[7px] data-[side=bottom]:data-starting-style:opacity-0 data-[side=bottom]:data-starting-style:scale-[0.26] data-[side=bottom]:data-starting-style:rotate-x-[70deg] data-[side=bottom]:data-ending-style:translate-y-[7px] data-[side=bottom]:data-ending-style:opacity-0 data-[side=bottom]:data-ending-style:scale-[0.26] data-[side=bottom]:data-ending-style:rotate-x-[70deg]`,
     // side=top
-    `data-[side=top]:data-[starting-style]:translate-y-[7px] data-[side=top]:data-[starting-style]:opacity-0 data-[side=top]:data-[starting-style]:scale-[0.26] data-[side=top]:data-[starting-style]:rotate-x-[70deg] data-[side=top]:data-[ending-style]:translate-y-[7px] data-[side=top]:data-[ending-style]:opacity-0 data-[side=top]:data-[ending-style]:scale-[0.26] data-[side=top]:data-[ending-style]:rotate-x-[70deg]`,
+    `data-[side=top]:data-starting-style:translate-y-[7px] data-[side=top]:data-starting-style:opacity-0 data-[side=top]:data-starting-style:scale-[0.26] data-[side=top]:data-starting-style:rotate-x-[70deg] data-[side=top]:data-ending-style:translate-y-[7px] data-[side=top]:data-ending-style:opacity-0 data-[side=top]:data-ending-style:scale-[0.26] data-[side=top]:data-ending-style:rotate-x-[70deg]`,
     // side=left
-    `data-[side=left]:data-[starting-style]:translate-x-[-7px] data-[side=left]:data-[starting-style]:opacity-0 data-[side=left]:data-[starting-style]:scale-[0.26] data-[side=left]:data-[starting-style]:rotate-y-[-40deg] data-[side=left]:data-[ending-style]:translate-x-[-7px] data-[side=left]:data-[ending-style]:opacity-0 data-[side=left]:data-[ending-style]:scale-[0.26] data-[side=left]:data-[ending-style]:rotate-y-[-40deg]`,
+    `data-[side=left]:data-starting-style:translate-x-[-7px] data-[side=left]:data-starting-style:opacity-0 data-[side=left]:data-starting-style:scale-[0.26] data-[side=left]:data-starting-style:rotate-y-[-40deg] data-[side=left]:data-ending-style:translate-x-[-7px] data-[side=left]:data-ending-style:opacity-0 data-[side=left]:data-ending-style:scale-[0.26] data-[side=left]:data-ending-style:rotate-y-[-40deg]`,
     // side=right
-    `data-[side=right]:data-[starting-style]:translate-x-[7px] data-[side=right]:data-[starting-style]:opacity-0 data-[side=right]:data-[starting-style]:scale-[0.26] data-[side=right]:data-[starting-style]:rotate-y-[40deg] data-[side=right]:data-[ending-style]:translate-x-[7px] data-[side=right]:data-[ending-style]:opacity-0 data-[side=right]:data-[ending-style]:scale-[0.26] data-[side=right]:data-[ending-style]:rotate-y-[40deg]`,
+    `data-[side=right]:data-starting-style:translate-x-[7px] data-[side=right]:data-starting-style:opacity-0 data-[side=right]:data-starting-style:scale-[0.26] data-[side=right]:data-starting-style:rotate-y-[40deg] data-[side=right]:data-ending-style:translate-x-[7px] data-[side=right]:data-ending-style:opacity-0 data-[side=right]:data-ending-style:scale-[0.26] data-[side=right]:data-ending-style:rotate-y-[40deg]`,
     // side=inline-start
-    `data-[side=inline-start]:data-[starting-style]:translate-x-[-7px] data-[side=inline-start]:data-[starting-style]:opacity-0 data-[side=inline-start]:data-[starting-style]:scale-[0.26] data-[side=inline-start]:data-[starting-style]:rotate-y-[-40deg] data-[side=inline-start]:data-[ending-style]:translate-x-[-7px] data-[side=inline-start]:data-[ending-style]:opacity-0 data-[side=inline-start]:data-[ending-style]:scale-[0.26] data-[side=inline-start]:data-[ending-style]:rotate-y-[-40deg]`,
+    `data-[side=inline-start]:data-starting-style:translate-x-[-7px] data-[side=inline-start]:data-starting-style:opacity-0 data-[side=inline-start]:data-starting-style:scale-[0.26] data-[side=inline-start]:data-starting-style:rotate-y-[-40deg] data-[side=inline-start]:data-ending-style:translate-x-[-7px] data-[side=inline-start]:data-ending-style:opacity-0 data-[side=inline-start]:data-ending-style:scale-[0.26] data-[side=inline-start]:data-ending-style:rotate-y-[-40deg]`,
     // side=inline-end
-    `data-[side=inline-end]:data-[starting-style]:translate-x-[7px] data-[side=inline-end]:data-[starting-style]:opacity-0 data-[side=inline-end]:data-[starting-style]:scale-[0.26] data-[side=inline-end]:data-[starting-style]:rotate-y-[40deg] data-[side=inline-end]:data-[ending-style]:translate-x-[7px] data-[side=inline-end]:data-[ending-style]:opacity-0 data-[side=inline-end]:data-[ending-style]:scale-[0.26] data-[side=inline-end]:data-[ending-style]:rotate-y-[40deg]`,
+    `data-[side=inline-end]:data-starting-style:translate-x-[7px] data-[side=inline-end]:data-starting-style:opacity-0 data-[side=inline-end]:data-starting-style:scale-[0.26] data-[side=inline-end]:data-starting-style:rotate-y-[40deg] data-[side=inline-end]:data-ending-style:translate-x-[7px] data-[side=inline-end]:data-ending-style:opacity-0 data-[side=inline-end]:data-ending-style:scale-[0.26] data-[side=inline-end]:data-ending-style:rotate-y-[40deg]`,
   ],
   motionBlur: [
     `[transition-property:translate,scale,opacity,rotateX,rotateY,transform,filter] [will-change:translate,scale,opacity,rotateX,rotateY,transform,filter]`,
     `[transform:perspective(1000px)]`,
-    `data-[starting-style]:blur-[9px] data-[ending-style]:blur-[9px]`,
+    `data-starting-style:blur-[9px] data-ending-style:blur-[9px]`,
     // side=bottom
-    `data-[side=bottom]:data-[starting-style]:translate-y-[7px] data-[side=bottom]:data-[starting-style]:opacity-0 data-[side=bottom]:data-[starting-style]:scale-[0.26] data-[side=bottom]:data-[starting-style]:rotate-x-[70deg] data-[side=bottom]:data-[ending-style]:translate-y-[7px] data-[side=bottom]:data-[ending-style]:opacity-0 data-[side=bottom]:data-[ending-style]:scale-[0.26] data-[side=bottom]:data-[ending-style]:rotate-x-[70deg]`,
+    `data-[side=bottom]:data-starting-style:translate-y-[7px] data-[side=bottom]:data-starting-style:opacity-0 data-[side=bottom]:data-starting-style:scale-[0.26] data-[side=bottom]:data-starting-style:rotate-x-[70deg] data-[side=bottom]:data-ending-style:translate-y-[7px] data-[side=bottom]:data-ending-style:opacity-0 data-[side=bottom]:data-ending-style:scale-[0.26] data-[side=bottom]:data-ending-style:rotate-x-[70deg]`,
     // side=top
-    `data-[side=top]:data-[starting-style]:translate-y-[7px] data-[side=top]:data-[starting-style]:opacity-0 data-[side=top]:data-[starting-style]:scale-[0.26] data-[side=top]:data-[starting-style]:rotate-x-[70deg] data-[side=top]:data-[ending-style]:translate-y-[7px] data-[side=top]:data-[ending-style]:opacity-0 data-[side=top]:data-[ending-style]:scale-[0.26] data-[side=top]:data-[ending-style]:rotate-x-[70deg]`,
+    `data-[side=top]:data-starting-style:translate-y-[7px] data-[side=top]:data-starting-style:opacity-0 data-[side=top]:data-starting-style:scale-[0.26] data-[side=top]:data-starting-style:rotate-x-[70deg] data-[side=top]:data-ending-style:translate-y-[7px] data-[side=top]:data-ending-style:opacity-0 data-[side=top]:data-ending-style:scale-[0.26] data-[side=top]:data-ending-style:rotate-x-[70deg]`,
     // side=left
-    `data-[side=left]:data-[starting-style]:translate-x-[-7px] data-[side=left]:data-[starting-style]:opacity-0 data-[side=left]:data-[starting-style]:scale-[0.26] data-[side=left]:data-[starting-style]:rotate-y-[-40deg] data-[side=left]:data-[ending-style]:translate-x-[-7px] data-[side=left]:data-[ending-style]:opacity-0 data-[side=left]:data-[ending-style]:scale-[0.26] data-[side=left]:data-[ending-style]:rotate-y-[-40deg]`,
+    `data-[side=left]:data-starting-style:translate-x-[-7px] data-[side=left]:data-starting-style:opacity-0 data-[side=left]:data-starting-style:scale-[0.26] data-[side=left]:data-starting-style:rotate-y-[-40deg] data-[side=left]:data-ending-style:translate-x-[-7px] data-[side=left]:data-ending-style:opacity-0 data-[side=left]:data-ending-style:scale-[0.26] data-[side=left]:data-ending-style:rotate-y-[-40deg]`,
     // side=right
-    `data-[side=right]:data-[starting-style]:translate-x-[7px] data-[side=right]:data-[starting-style]:opacity-0 data-[side=right]:data-[starting-style]:scale-[0.26] data-[side=right]:data-[starting-style]:rotate-y-[40deg] data-[side=right]:data-[ending-style]:translate-x-[7px] data-[side=right]:data-[ending-style]:opacity-0 data-[side=right]:data-[ending-style]:scale-[0.26] data-[side=right]:data-[ending-style]:rotate-y-[40deg]`,
+    `data-[side=right]:data-starting-style:translate-x-[7px] data-[side=right]:data-starting-style:opacity-0 data-[side=right]:data-starting-style:scale-[0.26] data-[side=right]:data-starting-style:rotate-y-[40deg] data-[side=right]:data-ending-style:translate-x-[7px] data-[side=right]:data-ending-style:opacity-0 data-[side=right]:data-ending-style:scale-[0.26] data-[side=right]:data-ending-style:rotate-y-[40deg]`,
     // side=inline-start
-    `data-[side=inline-start]:data-[starting-style]:translate-x-[-7px] data-[side=inline-start]:data-[starting-style]:opacity-0 data-[side=inline-start]:data-[starting-style]:scale-[0.26] data-[side=inline-start]:data-[starting-style]:rotate-y-[-40deg] data-[side=inline-start]:data-[ending-style]:translate-x-[-7px] data-[side=inline-start]:data-[ending-style]:opacity-0 data-[side=inline-start]:data-[ending-style]:scale-[0.26] data-[side=inline-start]:data-[ending-style]:rotate-y-[-40deg]`,
+    `data-[side=inline-start]:data-starting-style:translate-x-[-7px] data-[side=inline-start]:data-starting-style:opacity-0 data-[side=inline-start]:data-starting-style:scale-[0.26] data-[side=inline-start]:data-starting-style:rotate-y-[-40deg] data-[side=inline-start]:data-ending-style:translate-x-[-7px] data-[side=inline-start]:data-ending-style:opacity-0 data-[side=inline-start]:data-ending-style:scale-[0.26] data-[side=inline-start]:data-ending-style:rotate-y-[-40deg]`,
     // side=inline-end
-    `data-[side=inline-end]:data-[starting-style]:translate-x-[7px] data-[side=inline-end]:data-[starting-style]:opacity-0 data-[side=inline-end]:data-[starting-style]:scale-[0.26] data-[side=inline-end]:data-[starting-style]:rotate-y-[40deg] data-[side=inline-end]:data-[ending-style]:translate-x-[7px] data-[side=inline-end]:data-[ending-style]:opacity-0 data-[side=inline-end]:data-[ending-style]:scale-[0.26] data-[side=inline-end]:data-[ending-style]:rotate-y-[40deg]`,
+    `data-[side=inline-end]:data-starting-style:translate-x-[7px] data-[side=inline-end]:data-starting-style:opacity-0 data-[side=inline-end]:data-starting-style:scale-[0.26] data-[side=inline-end]:data-starting-style:rotate-y-[40deg] data-[side=inline-end]:data-ending-style:translate-x-[7px] data-[side=inline-end]:data-ending-style:opacity-0 data-[side=inline-end]:data-ending-style:scale-[0.26] data-[side=inline-end]:data-ending-style:rotate-y-[40deg]`,
   ],
 };
 
 const cssTransitionPresets = {
-  inExpo: `[transition-duration:0.35s] [transition-timing-function:cubic-bezier(0.95,0.05,0.795,0.035)]`,
-  outExpo: `[transition-duration:0.35s] [transition-timing-function:cubic-bezier(0.19,1,0.22,1)]`,
-  inOutExpo: `[transition-duration:0.35s] [transition-timing-function:cubic-bezier(1,0,0,1)]`,
-  anticipate: `[transition-duration:0.35s] [transition-timing-function:cubic-bezier(1,-0.4,0.35,0.95)]`,
-  quickOut: `[transition-duration:0.35s] [transition-timing-function:cubic-bezier(0,0,0.2,1)]`,
-  overshootOut: `[transition-duration:0.35s] [transition-timing-function:cubic-bezier(0.175,0.885,0.32,1.275)]`,
-  swiftOut: `[transition-duration:0.35s] [transition-timing-function:cubic-bezier(0.175,0.885,0.32,1.1)]`,
-  snappyOut: `[transition-duration:0.35s] [transition-timing-function:cubic-bezier(0.19,1,0.22,1)]`,
-  in: `[transition-duration:0.35s] [transition-timing-function:cubic-bezier(0.42,0,1,1)]`,
-  out: `[transition-duration:0.35s] [transition-timing-function:cubic-bezier(0,0,0.58,1)]`,
-  inOut: `[transition-duration:0.25s] [transition-timing-function:cubic-bezier(0.42,0,0.58,1)]`,
-  outIn: `[transition-duration:0.35s] [transition-timing-function:cubic-bezier(0.1,0.7,0.9,0.5)]`,
-  inQuad: `[transition-duration:0.35s] [transition-timing-function:cubic-bezier(0.55,0.085,0.68,0.53)]`,
-  outQuad: `[transition-duration:0.25s] [transition-timing-function:cubic-bezier(0.25,0.46,0.45,0.94)]`,
-  inOutQuad: `[transition-duration:0.32s] [transition-timing-function:cubic-bezier(0.455,0.03,0.515,0.955)]`,
-  inCubic: `[transition-duration:0.35s] [transition-timing-function:cubic-bezier(0.55,0.055,0.675,0.19)]`,
-  outCubic: `[transition-duration:0.35s] [transition-timing-function:cubic-bezier(0.215,0.61,0.355,1)]`,
-  inOutCubic: `[transition-duration:0.35s] [transition-timing-function:cubic-bezier(0.645,0.045,0.355,1)]`,
-  inQuart: `[transition-duration:0.35s] [transition-timing-function:cubic-bezier(0.895,0.03,0.685,0.22)]`,
-  outQuart: `[transition-duration:0.35s] [transition-timing-function:cubic-bezier(0.165,0.84,0.44,1)]`,
-  inOutQuart: `[transition-duration:0.35s] [transition-timing-function:cubic-bezier(0.77,0,0.175,1)]`,
-  inQuint: `[transition-duration:0.35s] [transition-timing-function:cubic-bezier(0.755,0.05,0.855,0.06)]`,
-  outQuint: `[transition-duration:0.35s] [transition-timing-function:cubic-bezier(0.23,1,0.32,1)]`,
-  inOutQuint: `[transition-duration:0.35s] [transition-timing-function:cubic-bezier(0.86,0,0.07,1)]`,
-  inCirc: `[transition-duration:0.35s] [transition-timing-function:cubic-bezier(0.6,0.04,0.98,0.335)]`,
-  outCirc: `[transition-duration:0.35s] [transition-timing-function:cubic-bezier(0.075,0.82,0.165,1)]`,
-  inOutCirc: `[transition-duration:0.35s] [transition-timing-function:cubic-bezier(0.785,0.135,0.15,0.86)]`,
-  inOutBase: `[transition-duration:0.35s] [transition-timing-function:cubic-bezier(0.25,0.1,0.25,1)]`,
+  inExpo: `duration-[0.35s] ease-[cubic-bezier(0.95,0.05,0.795,0.035)]`,
+  outExpo: `duration-[0.35s] ease-[cubic-bezier(0.19,1,0.22,1)]`,
+  inOutExpo: `duration-[0.35s] ease-[cubic-bezier(1,0,0,1)]`,
+  anticipate: `duration-[0.35s] ease-[cubic-bezier(1,-0.4,0.35,0.95)]`,
+  quickOut: `duration-[0.35s] ease-out`,
+  overshootOut: `duration-[0.35s] ease-[cubic-bezier(0.175,0.885,0.32,1.275)]`,
+  swiftOut: `duration-[0.35s] ease-[cubic-bezier(0.175,0.885,0.32,1.1)]`,
+  snappyOut: `duration-[0.35s] ease-[cubic-bezier(0.19,1,0.22,1)]`,
+  in: `duration-[0.35s] ease-[cubic-bezier(0.42,0,1,1)]`,
+  out: `duration-[0.35s] ease-[cubic-bezier(0,0,0.58,1)]`,
+  inOut: `duration-[0.25s] ease-[cubic-bezier(0.42,0,0.58,1)]`,
+  outIn: `duration-[0.35s] ease-[cubic-bezier(0.1,0.7,0.9,0.5)]`,
+  inQuad: `duration-[0.35s] ease-[cubic-bezier(0.55,0.085,0.68,0.53)]`,
+  outQuad: `duration-[0.25s] ease-[cubic-bezier(0.25,0.46,0.45,0.94)]`,
+  inOutQuad: `duration-[0.32s] ease-[cubic-bezier(0.455,0.03,0.515,0.955)]`,
+  inCubic: `duration-[0.35s] ease-[cubic-bezier(0.55,0.055,0.675,0.19)]`,
+  outCubic: `duration-[0.35s] ease-[cubic-bezier(0.215,0.61,0.355,1)]`,
+  inOutCubic: `duration-[0.35s] ease-[cubic-bezier(0.645,0.045,0.355,1)]`,
+  inQuart: `duration-[0.35s] ease-[cubic-bezier(0.895,0.03,0.685,0.22)]`,
+  outQuart: `duration-[0.35s] ease-[cubic-bezier(0.165,0.84,0.44,1)]`,
+  inOutQuart: `duration-[0.35s] ease-[cubic-bezier(0.77,0,0.175,1)]`,
+  inQuint: `duration-[0.35s] ease-[cubic-bezier(0.755,0.05,0.855,0.06)]`,
+  outQuint: `duration-[0.35s] ease-[cubic-bezier(0.23,1,0.32,1)]`,
+  inOutQuint: `duration-[0.35s] ease-[cubic-bezier(0.86,0,0.07,1)]`,
+  inCirc: `duration-[0.35s] ease-[cubic-bezier(0.6,0.04,0.98,0.335)]`,
+  outCirc: `duration-[0.35s] ease-[cubic-bezier(0.075,0.82,0.165,1)]`,
+  inOutCirc: `duration-[0.35s] ease-[cubic-bezier(0.785,0.135,0.15,0.86)]`,
+  inOutBase: `duration-[0.35s] ease-[cubic-bezier(0.25,0.1,0.25,1)]`,
 };
 
 type CSSAnimationPresets = keyof typeof cssAnimationPresets;
@@ -150,9 +151,6 @@ type CSSTransitionPresets = keyof typeof cssTransitionPresets;
 type Backdrop = "opaque" | "blur" | "transparent";
 
 interface SelectContextType {
-  open: boolean;
-  onOpenChange: SelectRootProps["onOpenChange"];
-  modal: SelectRootProps["modal"];
   backdrop?: Backdrop;
 }
 
@@ -171,46 +169,10 @@ interface SelectRootProps
   backdrop?: Backdrop;
 }
 
-function Select({
-  open = undefined,
-  defaultOpen = undefined,
-  onOpenChange,
-  modal = false,
-  backdrop = "transparent",
-  defaultValue = undefined,
-  value = undefined,
-  ...props
-}: SelectRootProps) {
-  const [isOpen, setIsOpen] = useState(defaultOpen ?? open ?? false);
-
-  useEffect(() => {
-    if (open !== undefined) setIsOpen(open);
-  }, [open]);
-
-  const handleOpenChange: SelectRootProps["onOpenChange"] = (
-    open,
-    eventDetails
-  ) => {
-    setIsOpen(open);
-    onOpenChange?.(open, eventDetails);
-  };
-
-  // Determine if component is controlled
-  const isControlledOpen = open !== undefined;
-  const isControlledValue = value !== undefined;
-
+function Select({ backdrop = "transparent", ...props }: SelectRootProps) {
   return (
-    <SelectContext.Provider
-      value={{ open: isOpen, onOpenChange: handleOpenChange, modal, backdrop }}
-    >
-      <SelectPrimitive.Root
-        data-slot="select"
-        {...(isControlledOpen ? { open: isOpen } : { defaultOpen })}
-        onOpenChange={handleOpenChange}
-        modal={modal}
-        {...(isControlledValue ? { value } : { defaultValue })}
-        {...props}
-      />
+    <SelectContext.Provider value={{ backdrop }}>
+      <SelectPrimitive.Root data-slot="select" {...props} />
     </SelectContext.Provider>
   );
 }
@@ -223,7 +185,7 @@ function SelectTrigger({ className, ...props }: SelectTriggerProps) {
     <SelectPrimitive.Trigger
       data-slot="select-trigger"
       className={cn(
-        "group/select-trigger flex h-fit items-center justify-between gap-3 rounded-md border border-border/60 select-none touch-none text-foreground focus-visible:outline-none focus-visible:border-primary text-sm p-3 bg-accent hover:bg-accent/80 transition-colors ease-out",
+        "group/select-trigger inline-flex h-fit items-center justify-between gap-3 rounded-lg border border-input select-none touch-none text-foreground shadow-xs focus-visible:outline-none focus-visible:border-primary text-sm px-[calc(--spacing(2.5)-1px)] py-[calc(--spacing(2)-1px)] bg-background dark:bg-input/40 hover:bg-input/20 dark:hover:bg-input/50 transition-colors ease-out min-w-36",
         className
       )}
       {...props}
@@ -264,7 +226,7 @@ function SelectValue({
           <span
             key={newValue}
             {...renderProps}
-            className={cn("w-full fadeIn", className)}
+            className={cn("w-full fadeIn truncate", className)}
           />
         );
       }}
@@ -279,7 +241,7 @@ function SelectIcon({ className, ...props }: SelectIconProps) {
   return (
     <SelectPrimitive.Icon
       data-slot="select-icon"
-      className={cn("size-4 text-foreground/60", className)}
+      className={cn("size-3.5 text-foreground/72 shrink-0", className)}
       {...props}
     />
   );
@@ -303,9 +265,9 @@ function SelectBackdrop({ className, ...props }: SelectBackdropProps) {
       data-slot="select-backdrop"
       className={cn(
         backdrop === "opaque" &&
-          "fixed inset-0 bg-black z-100 opacity-40 transition-all duration-200 data-[ending-style]:opacity-0 data-[starting-style]:opacity-0 dark:opacity-60",
+          "fixed inset-0 bg-black z-100 opacity-40 transition-all duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0 dark:opacity-60",
         backdrop === "blur" &&
-          "fixed inset-0 z-100 backdrop-blur-sm transition-all duration-200 data-[ending-style]:opacity-0 data-[starting-style]:opacity-0",
+          "fixed inset-0 z-100 backdrop-blur-sm transition-all duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0",
         backdrop === "transparent" && "hidden",
         className
       )}
@@ -385,7 +347,7 @@ interface SelectPopupProps
 function SelectPopup({
   className,
   animationPreset = "scale",
-  transitionPreset = "snappyOut",
+  transitionPreset = "outQuint",
   reduceMotion = false,
   showArrow = false,
   side = "bottom",
@@ -433,7 +395,7 @@ function SelectPopup({
                 key="select-popup"
                 {...renderProps}
                 className={cn(
-                  "pointer-events-auto origin-(--transform-origin) bg-popover text-popover-foreground p-1 shadow-sm border border-border/60 overflow-clip rounded-[12px]",
+                  "pointer-events-auto origin-(--transform-origin)",
                   className
                 )}
                 style={{
@@ -445,7 +407,25 @@ function SelectPopup({
                     <ArrowSvg />
                   </SelectArrow>
                 )}
+                <SelectPrimitive.ScrollUpArrow
+                  className={cn(
+                    "top-0 z-50 flex h-6 w-full cursor-default items-center justify-center",
+                    "before:pointer-events-none before:absolute before:inset-x-px before:top-px before:h-[140%] before:rounded-t-[calc(var(--radius-lg)-1px)] before:bg-linear-to-b before:from-popover before:from-50%"
+                  )}
+                  data-slot="select-scroll-up-arrow"
+                >
+                  <ChevronUpIcon className="relative size-4" />
+                </SelectPrimitive.ScrollUpArrow>
                 {children}
+                <SelectPrimitive.ScrollDownArrow
+                  className={cn(
+                    "bottom-0 z-50 flex h-6 w-full cursor-default items-center justify-center",
+                    "before:pointer-events-none before:absolute before:inset-x-px before:bottom-px before:h-[140%] before:rounded-b-[calc(var(--radius-lg)-1px)] before:bg-linear-to-t before:from-popover before:from-50%"
+                  )}
+                  data-slot="select-scroll-down-arrow"
+                >
+                  <ChevronDownIcon className="relative size-4" />
+                </SelectPrimitive.ScrollDownArrow>
               </div>
             );
           }
@@ -455,7 +435,7 @@ function SelectPopup({
               key="select-popup"
               {...renderProps}
               className={cn(
-                "pointer-events-auto origin-(--transform-origin) bg-popover text-popover-foreground p-1 shadow-sm border border-border/60 overflow-clip rounded-[12px]",
+                "pointer-events-auto origin-(--transform-origin)",
                 className,
                 renderProps.className,
                 cssTransitionConfig,
@@ -467,7 +447,25 @@ function SelectPopup({
                   <ArrowSvg />
                 </SelectArrow>
               )}
+              <SelectPrimitive.ScrollUpArrow
+                className={cn(
+                  "top-0 z-50 flex h-6 w-full cursor-default items-center justify-center",
+                  "before:pointer-events-none before:absolute before:inset-x-px before:top-px before:h-[140%] before:rounded-t-[calc(var(--radius-lg)-1px)] before:bg-linear-to-b before:from-popover before:from-50%"
+                )}
+                data-slot="select-scroll-up-arrow"
+              >
+                <ChevronUpIcon className="relative size-4" />
+              </SelectPrimitive.ScrollUpArrow>
               {children}
+              <SelectPrimitive.ScrollDownArrow
+                className={cn(
+                  "bottom-0 z-50 flex h-6 w-full cursor-default items-center justify-center",
+                  "before:pointer-events-none before:absolute before:inset-x-px before:bottom-px before:h-[140%] before:rounded-b-[calc(var(--radius-lg)-1px)] before:bg-linear-to-t before:from-popover before:from-50%"
+                )}
+                data-slot="select-scroll-down-arrow"
+              >
+                <ChevronDownIcon className="relative size-4" />
+              </SelectPrimitive.ScrollDownArrow>
             </div>
           );
         }}
@@ -485,7 +483,7 @@ function SelectList({ className, ...props }: SelectListProps) {
     <SelectPrimitive.List
       data-slot="select-list"
       className={cn(
-        "relative overflow-y-auto max-h-[min(var(--available-height),260px)] [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden vertical-scroll-shadow",
+        "relative overflow-y-auto p-1 block h-full rounded-lg border bg-popover max-h-[min(var(--available-height),260px)] min-w-(--anchor-width) [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden",
         className
       )}
       {...props}
@@ -501,8 +499,8 @@ function SelectItem({ className, ...props }: SelectItemProps) {
     <SelectPrimitive.Item
       data-slot="select-item"
       className={cn(
-        "flex relative min-w-(--anchor-width) cursor-default items-center gap-2 py-2 px-4 text-sm outline-none select-none group-data-[side=none]:min-w-[calc(var(--anchor-width))]",
-        `data-[highlighted]:z-0 data-[highlighted]:before:absolute data-[highlighted]:before:inset-x-0 data-[highlighted]:before:inset-y-0 data-[highlighted]:before:z-[-1] data-[highlighted]:before:rounded-sm data-[highlighted]:before:bg-accent/70 dark:data-[highlighted]:before:bg-accent data-[highlighted]:text-accent-foreground data-[highlighted]:before:border-border/30 data-[highlighted]:before:border`,
+        "flex relative min-w-(--anchor-width) cursor-default items-center gap-2 py-1.5 px-4 text-sm outline-none select-none group-data-[side=none]:min-w-[calc(var(--anchor-width))]",
+        `data-highlighted:z-0 data-highlighted:before:absolute data-highlighted:before:inset-x-0 data-highlighted:before:inset-y-0 data-highlighted:before:z-[-1] data-highlighted:before:rounded-md data-highlighted:before:bg-accent/70 dark:data-highlighted:before:bg-accent data-highlighted:text-accent-foreground data-highlighted:before:border-border/30 data-highlighted:before:border`,
         className
       )}
       {...props}

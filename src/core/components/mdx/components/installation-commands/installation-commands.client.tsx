@@ -94,9 +94,9 @@ export function InstallationCommandsClient({
                       {activeTab === tab.name && (
                         <motion.div
                           key={activeTab}
-                          initial={{ opacity: 0.4, filter: "blur(6px)" }}
-                          animate={{ opacity: 1, filter: "blur(0px)" }}
-                          exit={{ opacity: 0.4, filter: "blur(6px)" }}
+                          initial={{ opacity: 0.4 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0.4 }}
                           transition={{
                             duration: 0.2,
                             ease: "circInOut",

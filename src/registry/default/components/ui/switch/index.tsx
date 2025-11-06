@@ -8,9 +8,9 @@ import { cn, type SlotsToClasses } from "@/lib/classes";
 
 const switchStyles = tv({
   slots: {
-    base: `group relative max-w-fit inline-flex items-center justify-center cursor-pointer touch-none select-none data-[disabled]:cursor-not-allowed data-[disabled]:opacity-70`,
-    wrapper: `px-1 relative inline-flex items-center justify-start overflow-hidden bg-accent rounded-full group-data-[checked]:bg-primary`,
-    thumb: `z-2 flex items-center justify-center bg-white shadow-sm rounded-full origin-right pointer-events-none data-[checked]:bg-primary-foreground`,
+    base: `group relative max-w-fit rounded-full inline-flex items-center justify-center cursor-pointer touch-none select-none data-disabled:cursor-not-allowed data-disabled:opacity-70`,
+    wrapper: `px-1 relative inline-flex items-center justify-start overflow-hidden bg-input inset-shadow-[0_1px_--theme(--color-black/4%)] rounded-full group-data-checked:bg-primary `,
+    thumb: `z-2 flex items-center justify-center bg-white shadow-sm rounded-full origin-right pointer-events-none data-checked:bg-primary-foreground`,
     startContent: `z-0 absolute start-1.5 text-primary-foreground`,
     endContent: `z-0 absolute end-1.5`,
   },
@@ -18,19 +18,19 @@ const switchStyles = tv({
     size: {
       sm: {
         wrapper: `w-10 h-6`,
-        thumb: `size-4 text-xs data-[checked]:ms-4`,
+        thumb: `size-4 text-xs data-checked:ms-4`,
         startContent: `size-2.5`,
         endContent: `size-2.5`,
       },
       md: {
         wrapper: `w-12 h-7`,
-        thumb: `size-5 text-sm data-[checked]:ms-5`,
+        thumb: `size-5 text-sm data-checked:ms-5`,
         startContent: `size-3.5`,
         endContent: `size-3.5`,
       },
       lg: {
         wrapper: `w-14 h-8`,
-        thumb: `size-6 text-base data-[checked]:ms-6`,
+        thumb: `size-6 text-base data-checked:ms-6`,
         startContent: `size-4.5`,
         endContent: `size-4.5`,
       },
@@ -38,10 +38,10 @@ const switchStyles = tv({
     reduceMotion: {
       true: {},
       false: {
-        wrapper: `[transition-property:background-color] [transition-timing-function:cubic-bezier(0.25,0.1,0.25,1)] [transition-duration:250ms]`,
-        thumb: `[transition-property:margin,transform,width,background-color] [transition-timing-function:cubic-bezier(0.25,0.1,0.25,1)] [transition-duration:200ms]`,
-        startContent: `opacity-0 scale-50 [transition-property:opacity,scale] [transition-duration:250ms] group-data-[checked]:opacity-100 group-data-[checked]:scale-100 [transition-timing-function:cubic-bezier(0.25,0.1,0.25,1)]`,
-        endContent: `opacity-100 scale-100 [transition-property:opacity,scale] [transition-duration:250ms] group-data-[checked]:opacity-0 group-data-[checked]:scale-50 [transition-timing-function:cubic-bezier(0.25,0.1,0.25,1)]`,
+        wrapper: `[transition-property:background-color] ease-[cubic-bezier(0.25,0.1,0.25,1)] duration-250`,
+        thumb: `[transition-property:margin,transform,width,background-color] ease-[cubic-bezier(0.25,0.1,0.25,1)] duration-200`,
+        startContent: `opacity-0 scale-50 [transition-property:opacity,scale] duration-250 group-data-checked:opacity-100 group-data-checked:scale-100 ease-[cubic-bezier(0.25,0.1,0.25,1)]`,
+        endContent: `opacity-100 scale-100 [transition-property:opacity,scale] duration-250 group-data-checked:opacity-0 group-data-checked:scale-50 ease-[cubic-bezier(0.25,0.1,0.25,1)]`,
       },
     },
     isInteractive: {
@@ -59,21 +59,21 @@ const switchStyles = tv({
       isInteractive: true,
       size: "sm",
       class: {
-        thumb: `group-active:w-5 data-[checked]:group-active:ml-3`,
+        thumb: `group-active:w-5 data-checked:group-active:ml-3`,
       },
     },
     {
       isInteractive: true,
       size: "md",
       class: {
-        thumb: `group-active:w-6 data-[checked]:group-active:ml-4`,
+        thumb: `group-active:w-6 data-checked:group-active:ml-4`,
       },
     },
     {
       isInteractive: true,
       size: "lg",
       class: {
-        thumb: `group-active:w-7 data-[checked]:group-active:ml-5`,
+        thumb: `group-active:w-7 data-checked:group-active:ml-5`,
       },
     },
   ],
@@ -181,8 +181,6 @@ function SwitchRoot({
     </SwitchContext.Provider>
   );
 }
-
-type SwitchThumbVariants = VariantProps<typeof switchStyles>;
 
 interface SwitchThumbProps
   extends React.ComponentProps<typeof SwitchPrimitive.Thumb> {}

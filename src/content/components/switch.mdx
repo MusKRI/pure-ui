@@ -25,54 +25,52 @@ description: The Switch component is used as an alternative between checked and 
     />
   </TabsContent>
   <TabsContent value="manual">
-    <Steps currentStep={1}>
-      <Step stepNumber={1} title="Install dependencies">
-        <InstallationCommands
-          type="package-installation"
-          npmCommand="npm install tailwind-variants clsx tailwind-merge"
-          pnpmCommand="pnpm add tailwind-variants clsx tailwind-merge"
-          yarnCommand="yarn add tailwind-variants clsx tailwind-merge"
-          bunCommand="bun add tailwind-variants clsx tailwind-merge"
-        />
-      </Step>
-      <Step
-        stepNumber={2}
-        title="Add cn function to your utils"
-      >
-        ```ts
-        import { clsx, type ClassValue } from "clsx";
-        import { twMerge } from "tailwind-merge";
+    <Steps>
+      <Step>Install dependencies</Step>
 
-        export function cn(...inputs: ClassValue[]) {
-          return twMerge(clsx(inputs));
-        }
-        ```
-      </Step>
-      <Step
-        stepNumber={3}
-        title="Add this type utility to your utils"
-      >
-        ```ts
-        import type { ClassValue } from "tailwind-variants";
+      <InstallationCommands
+        type="package-installation"
+        npmCommand="npm install tailwind-variants clsx tailwind-merge"
+        pnpmCommand="pnpm add tailwind-variants clsx tailwind-merge"
+        yarnCommand="yarn add tailwind-variants clsx tailwind-merge"
+        bunCommand="bun add tailwind-variants clsx tailwind-merge"
+      />
 
-        type SlotsToClasses<S extends string> = {
+      <Step>Add following code to your classes.ts file</Step>
+
+      ```ts filename="lib/classes.ts"
+      import { clsx, type ClassValue } from "clsx";
+      import { twMerge } from "tailwind-merge";
+      import type { ClassValue } from "tailwind-variants";
+
+      export function cn(...inputs: ClassValue[]) {
+        return twMerge(clsx(inputs));
+      }
+
+      export type SlotsToClasses<S extends string> = {
           [key in S]?: Exclude<ClassValue, 0n>;
-        };
-        ```
-      </Step>
-      <Step
-        stepNumber={4}
-        title="Copy and paste the following code into your project"
-        isLast
-      >
-        <ComponentCodePreview name="switch" />
-      </Step>
+      };
+      ```
+
+      <Step>Copy and paste the following code into your project</Step>
+
+      <ComponentCodePreview name="switch" />
     </Steps>
 
   </TabsContent>
 </Tabs>
 
 ## Usage
+
+```tsx
+import { Switch } from "@/components/ui/switch";
+```
+
+```tsx
+<Switch />
+```
+
+## Examples
 
 ### Interactive
 
@@ -101,3 +99,7 @@ You can add icons to the start and end of the switch by passing the `startConten
 ### Controlled
 
 <ComponentShowcase name="switch-controlled-demo" />
+
+### Custom Card Style
+
+<ComponentShowcase name="custom-switch-card-style-demo" />

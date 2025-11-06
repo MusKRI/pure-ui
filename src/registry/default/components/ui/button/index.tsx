@@ -84,6 +84,9 @@ function Button({
   const contentTransition = reduceMotion
     ? "transition-none"
     : "transition-transform duration-200 ease-[cubic-bezier(.25,.46,.45,.94)]";
+  const isIcon = size === "icon" || size === "icon-sm" || size === "icon-lg";
+  const spinnerSize =
+    size === "xs" || size === "sm" || size === "default" ? "sm" : "md";
 
   const typeValue: React.ButtonHTMLAttributes<HTMLButtonElement>["type"] =
     render ? undefined : "button";
@@ -104,9 +107,9 @@ function Button({
         <span
           aria-hidden="true"
           className={cn(
-            "flex h-4.5 shrink-0 items-center justify-center overflow-hidden",
+            "flex h-4.5 shrink-0 items-center justify-center",
             loaderTransition,
-            pending
+            pending && !isIcon
               ? "mr-2 w-4.5 opacity-100 translate-x-0 scale-100"
               : "mr-0 w-0 opacity-0 translate-x-2 scale-60"
           )}

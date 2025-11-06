@@ -25,92 +25,52 @@ description: A common form component for choosing a predefined value in a dropdo
     />
   </TabsContent>
   <TabsContent value="manual">
-    <Steps currentStep={1}>
-      <Step stepNumber={1} title="Install dependencies">
-        <InstallationCommands
-          type="package-installation"
-          npmCommand="npm install motion @base-ui-components/react clsx tailwind-merge"
-          pnpmCommand="pnpm add motion @base-ui-components/react clsx tailwind-merge"
-          yarnCommand="yarn add motion @base-ui-components/react clsx tailwind-merge"
-          bunCommand="bun add motion @base-ui-components/react clsx tailwind-merge"
-        />
-      </Step>
-      <Step
-        stepNumber={2}
-        title="Add cn function to your utils"
-      >
-        ```ts
-        import { clsx, type ClassValue } from "clsx";
-        import { twMerge } from "tailwind-merge";
+    <Steps>
+      <Step>Install dependencies</Step>
 
-        export function cn(...inputs: ClassValue[]) {
-          return twMerge(clsx(inputs));
-        }
-        ```
-      </Step>
-      <Step
-        stepNumber={3}
-        title="Add vertical scroll shadow to your styles"
-      >
-        ```css
-        @supports (animation-timeline: scroll()) {
-          @property --ft {
-            syntax: "<length>";
-            inherits: false;
-            initial-value: 0;
-          }
+      <InstallationCommands
+        type="package-installation"
+        npmCommand="npm install @base-ui-components/react clsx tailwind-merge"
+        pnpmCommand="pnpm add @base-ui-components/react clsx tailwind-merge"
+        yarnCommand="yarn add @base-ui-components/react clsx tailwind-merge"
+        bunCommand="bun add @base-ui-components/react clsx tailwind-merge"
+      />
 
-          @property --fb {
-            syntax: "<length>";
-            inherits: false;
-            initial-value: 0px;
-          }
+      <Step>Add cn function to your utils</Step>
 
-          .vertical-scroll-shadow {
-            --ft: 0;
-            --fb: 0px;
+      ```ts filename="lib/classes.ts"
+      import { clsx, type ClassValue } from "clsx";
+      import { twMerge } from "tailwind-merge";
 
-            mask-image: linear-gradient(
-              to bottom,
-              transparent 0,
-              #000 var(--ft),
-              #000 calc(100% - var(--fb)),
-              transparent 100%
-            );
-            mask-size: 100% 100%;
-            mask-repeat: no-repeat;
-            animation: fadeTop 1 linear both, fadeBottom 1 linear both;
-            animation-timeline: scroll(self), scroll(self);
-            animation-range: 0% 4%, 49% 100%;
-          }
-
-          @keyframes fadeTop {
-            from {
-              --ft: 0px;
-            }
-            to {
-              --ft: 30px;
-            }
-          }
-
-          @keyframes fadeBottom {
-            from {
-              --fb: 30px;
-            }
-            to {
-              --fb: 0px;
-            }
-          }
+      export function cn(...inputs: ClassValue[]) {
+        return twMerge(clsx(inputs));
       }
-        ```
-      </Step>
-      <Step
-        stepNumber={4}
-        title="Copy and paste the following code into your project"
-        isLast
-      >
-        <ComponentCodePreview name="select" />
-      </Step>
+      ```
+
+      <Step>Add fade in keyframes to your styles</Step>
+
+      ```css filename="styles/keyframes.css"
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(6px);
+            filter: blur(6px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+          }
+        }
+
+        .fadeIn {
+          animation: fadeIn 0.2s ease-out;
+        }
+      ```
+
+      <Step>Copy and paste the following code into your project</Step>
+
+      <ComponentCodePreview name="select" />
     </Steps>
 
   </TabsContent>
@@ -202,3 +162,63 @@ Select items can use objects as values instead of primitives. This lets you acce
 ### Motion Blur
 
 <ComponentShowcase name="select-motion-blur-demo" />
+
+## Comparing with Radix / shadcn
+
+If you’re already familiar with Radix UI and shadcn/ui, this guide highlights the small differences and similarities so you can get started with **Pure UI** quickly.
+
+**Important:** Base UI changes how options are provided. Instead of deriving options from children only (Radix pattern), you should pass an `items` prop (array or record) so values and labels are known before hydration. This avoids SSR pitfalls and improves mount performance. Alternatively, provide a function child to `SelectValue` to format the label. See the [Base UI Select docs](https://base-ui.com/react/components/select).
+
+### Quick Checklist
+
+- Set `items` prop on `Select`
+- We've added `placeholder` prop to the `SelectValue` component, although Base UI doesn't have a placeholder prop on the `Select.Value` component.
+- Prefer `SelectPopup` instead of `SelectContent`
+- If you used `asChild` on parts, switch to the `render` prop
+
+**New Prop**
+
+Base UI introduces the `alignItemWithTrigger` prop to control whether the `SelectPopup` overlaps the `SelectTrigger` so the selected item's text is aligned with the trigger's value text.
+
+### Comparison Example
+
+```tsx filename="shadcn ui"
+<Select>
+  <SelectTrigger>
+    <SelectValue placeholder="Select a framework" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectItem value="next">Next.js</SelectItem>
+    <SelectItem value="vite">Vite</SelectItem>
+    <SelectItem value="astro">Astro</SelectItem>
+  </SelectContent>
+</Select>
+```
+
+```tsx filename="base ui" add=2-7,14,16,22 remove=12,24
+<Select
+  items={[
+    { label: "Select a framework", value: null },
+    { label: "Next.js", value: "next" },
+    { label: "Vite", value: "vite" },
+    { label: "Astro", value: "astro" },
+  ]}
+>
+  <SelectTrigger>
+    <SelectValue placeholder="Select a framework"/>
+  </SelectTrigger>
+  <SelectContent>
+  <SelectPopup
+   alignItemWithTrigger={false}
+  >
+    <SelectList>
+      {items.map((item) => (
+        <SelectItem key={item.value} value={item}>
+          {item.label}
+        </SelectItem>
+      ))}
+    </SelectList>
+  </SelectPopup>
+  <SelectContent>
+</Select>
+```

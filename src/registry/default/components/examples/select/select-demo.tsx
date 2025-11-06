@@ -1,4 +1,4 @@
-import { CheckIcon, PlusIcon } from "lucide-react";
+import { CheckIcon, ChevronsUpDownIcon } from "lucide-react";
 
 import {
   Select,
@@ -31,7 +31,7 @@ export const SelectDemo = () => {
       <SelectTrigger className="min-w-46">
         <SelectValue />
         <SelectIcon>
-          <PlusIcon className="size-4" />
+          <ChevronsUpDownIcon className="size-3.5" />
         </SelectIcon>
       </SelectTrigger>
       <SelectPopup>

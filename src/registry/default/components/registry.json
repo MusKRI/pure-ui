@@ -221,6 +221,22 @@
       ]
     },
     {
+      "name": "spinner",
+      "type": "registry:ui",
+      "title": "Spinner",
+      "description": "A customizable spinner component",
+      "dependencies": [
+        "tailwind-merge",
+        "clsx"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/ui/spinner/index.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "tooltip",
       "type": "registry:ui",
       "title": "Tooltip",
@@ -1500,6 +1516,45 @@
       ]
     },
     {
+      "name": "spinner-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "spinner"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/spinners/spinner-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "spinner-sizes-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "spinner"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/spinners/spinner-sizes-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "spinner-variants-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "spinner"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/spinners/spinner-variants-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "switch-demo",
       "type": "registry:example",
       "registryDependencies": [
@@ -1591,6 +1646,19 @@
       ]
     },
     {
+      "name": "custom-switch-card-style-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "switch"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/switch/custom-switch-card-style-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "tooltip-demo",
       "type": "registry:example",
       "registryDependencies": [
@@ -1677,6 +1745,110 @@
       "files": [
         {
           "path": "src/registry/default/components/examples/tooltip/tooltip-custom-content.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "tooltip-scale-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "tooltip"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/tooltip/tooltip-scale-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "tooltip-fade-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "tooltip"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/tooltip/tooltip-fade-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "tooltip-slide-outside-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "tooltip"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/tooltip/tooltip-slide-outside-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "tooltip-slide-inside-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "tooltip"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/tooltip/tooltip-slide-inside-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "tooltip-wipe-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "tooltip"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/tooltip/tooltip-wipe-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "tooltip-wipe-scale-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "tooltip"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/tooltip/tooltip-wipe-scale-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "tooltip-motion-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "tooltip"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/tooltip/tooltip-motion-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "tooltip-motion-blur-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "tooltip"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/tooltip/tooltip-motion-blur-demo.tsx",
           "type": "registry:example"
         }
       ]

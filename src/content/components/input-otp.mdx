@@ -33,36 +33,31 @@ features:
     />
   </TabsContent>
   <TabsContent value="manual">
-    <Steps currentStep={1}>
-      <Step stepNumber={1} title="Install dependencies">
-        <InstallationCommands
-          type="package-installation"
-          npmCommand="npm install input-otp motion class-variance-authority clsx"
-          pnpmCommand="pnpm add input-otp motion class-variance-authority clsx"
-          yarnCommand="yarn add input-otp motion class-variance-authority clsx"
-          bunCommand="bun add input-otp motion class-variance-authority clsx"
-        />
-      </Step>
-      <Step
-        stepNumber={2}
-        title="Add cn function to your utils"
-      >
-        ```ts
-        import { clsx, type ClassValue } from "clsx";
-        import { twMerge } from "tailwind-merge";
+    <Steps>
+      <Step>Install dependencies</Step>
 
-        export function cn(...inputs: ClassValue[]) {
-          return twMerge(clsx(inputs));
-        }
-        ```
-      </Step>
-      <Step
-        stepNumber={3}
-        title="Copy and paste the following code into your project"
-        isLast
-      >
-        <ComponentCodePreview name="input-otp" />
-      </Step>
+      <InstallationCommands
+        type="package-installation"
+        npmCommand="npm install input-otp motion class-variance-authority clsx"
+        pnpmCommand="pnpm add input-otp motion class-variance-authority clsx"
+        yarnCommand="yarn add input-otp motion class-variance-authority clsx"
+        bunCommand="bun add input-otp motion class-variance-authority clsx"
+      />
+
+      <Step>Add cn function to your utils</Step>
+
+      ```ts filename="lib/classes.ts"
+      import { clsx, type ClassValue } from "clsx";
+      import { twMerge } from "tailwind-merge";
+
+      export function cn(...inputs: ClassValue[]) {
+        return twMerge(clsx(inputs));
+      }
+      ```
+
+      <Step>Copy and paste the following code into your project</Step>
+
+      <ComponentCodePreview name="input-otp" />
     </Steps>
 
   </TabsContent>

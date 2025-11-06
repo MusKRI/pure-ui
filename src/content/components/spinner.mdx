@@ -1,0 +1,141 @@
+---
+title: Spinner
+description: An indicator that can be used to show a loading state.
+---
+
+<ComponentShowcase name="spinner-demo" />
+
+## Installation
+
+<Tabs defaultValue="terminal">
+  <TabsList>
+    <TabsTrigger value="terminal">
+      <Terminal className="w-4 h-4" />
+      Terminal
+    </TabsTrigger>
+    <TabsTrigger value="manual">
+      <Code2 className="w-4 h-4" />
+      Manual
+    </TabsTrigger>
+  </TabsList>
+  <TabsContent value="terminal">
+    <InstallationCommands
+      type="registry-installation"
+      registryPath="components/spinner"
+    />
+  </TabsContent>
+  <TabsContent value="manual">
+    <Steps>
+      <Step>Install dependencies</Step>
+
+      <InstallationCommands
+        type="package-installation"
+        npmCommand="npm install clsx tailwind-merge"
+        pnpmCommand="pnpm add clsx tailwind-merge"
+        yarnCommand="yarn add clsx tailwind-merge"
+        bunCommand="bun add clsx tailwind-merge"
+      />
+
+      <Step>Add cn function to your utils</Step>
+
+      ```ts filename="lib/classes.ts"
+      import { clsx, type ClassValue } from "clsx";
+      import { twMerge } from "tailwind-merge";
+
+      export function cn(...inputs: ClassValue[]) {
+        return twMerge(clsx(inputs));
+      }
+      ```
+
+       <Step>Add following keyframes to your styles</Step>
+
+       ```css filename="styles/keyframes.css"
+        /* Default Spinner */
+        @keyframes spinner-spin {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(1turn);
+          }
+        }
+
+        .animate-spinner-ease-spin {
+          animation: spinner-spin 0.8s ease infinite;
+        }
+
+        .animate-spinner-linear-spin {
+          animation: spinner-spin 0.8s linear infinite;
+        }
+
+        /* Bars Spinner */
+        @keyframes fade-out {
+          0% {
+            opacity: 1;
+          }
+          100% {
+            opacity: 0.15;
+          }
+        }
+
+        .animate-fade-out {
+          animation: fade-out 1.2s linear 0s infinite normal none running;
+        }
+
+        /* Wave Spinner */
+        @keyframes sway {
+          0% {
+            transform: translate(0);
+          }
+
+          50% {
+            transform: translateY(-150%);
+          }
+          100% {
+            transform: translate(0);
+          }
+        }
+
+        .animate-sway {
+          animation: sway 0.75s ease infinite;
+        }
+
+        /* Dots Spinner */
+        @keyframes blink {
+          0% {
+            opacity: 0.2;
+          }
+          20% {
+            opacity: 1;
+          }
+          100% {
+            opacity: 0.2;
+          }
+        }
+
+        .animate-blink {
+          animation: blink 1.4s infinite both;
+        }
+       ```
+
+      <Step>Copy and paste the following code into your project</Step>
+
+      <ComponentCodePreview name="spinner" />
+    </Steps>
+
+  </TabsContent>
+</Tabs>
+
+**Note**: Spinner adds Loading as `aria-label` by default. This is required for accessibility. You can change it by passing a `label` or `aria-label` prop.
+
+## Examples
+
+### Size
+
+You can pass `size` to `Spinner` component to change the size of the spinner. By default, it is `md`.
+
+<ComponentShowcase name="spinner-sizes-demo" />
+
+### Variants
+
+<ComponentShowcase name="spinner-variants-demo" />

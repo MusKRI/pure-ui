@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spinner-sizes-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "spinner"
+  ],
+  "files": [
+    {
+      "path": "src/registry/default/components/examples/spinners/spinner-sizes-demo.tsx",
+      "content": "import { DefaultSpinner } from \"@/registry/default/components/ui/spinner\";\r\n\r\nexport function SpinnerSizesDemo() {\r\n  return (\r\n    <div className=\"flex items-center gap-4\">\r\n      <DefaultSpinner size=\"sm\" />\r\n      <DefaultSpinner size=\"md\" />\r\n      <DefaultSpinner size=\"lg\" />\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}
