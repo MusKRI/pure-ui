@@ -6,7 +6,7 @@ import { Button } from "@/registry/default/components/ui/button";
 export function CardWithBackgroundImagesDemo() {
   return (
     <div className="flex flex-col gap-6 md:flex-row">
-      <Card className="w-[320px] aspect-square before:absolute before:left-0 before:right-0 before:top-0 before:h-[44px] before:bg-gradient-to-b before:from-black/80 before:to-transparent before:z-10">
+      <Card className="w-[320px] aspect-square before:absolute before:left-0 before:right-0 before:top-0 before:h-[44px] before:bg-linear-to-b before:from-black/80 before:to-transparent before:z-10">
         <img
           alt="Beautiful aerial view of Buenos Aires cityscape"
           aria-hidden="true"

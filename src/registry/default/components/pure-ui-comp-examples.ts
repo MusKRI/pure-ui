@@ -202,12 +202,56 @@ export const pureUICompExamples: RegistryItem[] = [
     ],
   },
   {
+    name: "button-icon-size-demo",
+    type: "registry:example",
+    registryDependencies: ["button"],
+    files: [
+      {
+        path: "examples/button/button-icon-size-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
     name: "button-pending-demo",
     type: "registry:example",
     registryDependencies: ["button"],
     files: [
       {
         path: "examples/button/button-pending-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "button-disabled-demo",
+    type: "registry:example",
+    registryDependencies: ["button"],
+    files: [
+      {
+        path: "examples/button/button-disabled-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "button-with-icons-demo",
+    type: "registry:example",
+    registryDependencies: ["button"],
+    files: [
+      {
+        path: "examples/button/button-with-icons-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "button-loading-demo",
+    type: "registry:example",
+    registryDependencies: ["button"],
+    files: [
+      {
+        path: "examples/button/button-loading-demo.tsx",
         type: "registry:example",
       },
     ],
@@ -1090,7 +1134,7 @@ export const pureUICompExamples: RegistryItem[] = [
     registryDependencies: ["spinner"],
     files: [
       {
-        path: "examples/spinners/spinner-demo.tsx",
+        path: "examples/spinner/spinner-demo.tsx",
         type: "registry:example",
       },
     ],
@@ -1101,18 +1145,7 @@ export const pureUICompExamples: RegistryItem[] = [
     registryDependencies: ["spinner"],
     files: [
       {
-        path: "examples/spinners/spinner-sizes-demo.tsx",
-        type: "registry:example",
-      },
-    ],
-  },
-  {
-    name: "spinner-variants-demo",
-    type: "registry:example",
-    registryDependencies: ["spinner"],
-    files: [
-      {
-        path: "examples/spinners/spinner-variants-demo.tsx",
+        path: "examples/spinner/spinner-sizes-demo.tsx",
         type: "registry:example",
       },
     ],

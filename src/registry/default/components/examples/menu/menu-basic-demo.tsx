@@ -39,7 +39,7 @@ const DANGER_ITEMS = [
     icon: <TrashIcon size={16} />,
     name: "Delete account",
     className:
-      "text-red-400 data-[highlighted]:before:!bg-red-500/20 data-[highlighted]:!text-red-400 data-[highlighted]:before:border-red-400/30",
+      "text-red-400 data-highlighted:before:bg-red-500/20! data-highlighted:text-red-400! data-highlighted:before:border-red-400/30!",
   },
 ];
 
@@ -48,7 +48,6 @@ export const MenuBasicDemo = () => {
     <Menu>
       <MenuTrigger asChild>
         <Button
-          reduceMotion
           variant="ghost"
           className="flex items-center gap-2 active:scale-100"
           size="sm"

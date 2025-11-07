@@ -489,6 +489,19 @@
       ]
     },
     {
+      "name": "button-icon-size-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/button/button-icon-size-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "button-pending-demo",
       "type": "registry:example",
       "registryDependencies": [
@@ -497,6 +510,45 @@
       "files": [
         {
           "path": "src/registry/default/components/examples/button/button-pending-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "button-disabled-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/button/button-disabled-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "button-with-icons-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/button/button-with-icons-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "button-loading-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/button/button-loading-demo.tsx",
           "type": "registry:example"
         }
       ]
@@ -1523,7 +1575,7 @@
       ],
       "files": [
         {
-          "path": "src/registry/default/components/examples/spinners/spinner-demo.tsx",
+          "path": "src/registry/default/components/examples/spinner/spinner-demo.tsx",
           "type": "registry:example"
         }
       ]
@@ -1536,20 +1588,7 @@
       ],
       "files": [
         {
-          "path": "src/registry/default/components/examples/spinners/spinner-sizes-demo.tsx",
-          "type": "registry:example"
-        }
-      ]
-    },
-    {
-      "name": "spinner-variants-demo",
-      "type": "registry:example",
-      "registryDependencies": [
-        "spinner"
-      ],
-      "files": [
-        {
-          "path": "src/registry/default/components/examples/spinners/spinner-variants-demo.tsx",
+          "path": "src/registry/default/components/examples/spinner/spinner-sizes-demo.tsx",
           "type": "registry:example"
         }
       ]

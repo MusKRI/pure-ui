@@ -60,7 +60,6 @@ export const PopoverWithFormDemo = () => {
               className="w-full"
               size="sm"
               onClick={handleSubmit}
-              pending={isSubmitting}
               disabled={isSubmitting}
             >
               Submit

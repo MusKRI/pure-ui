@@ -1,291 +1,95 @@
+"use client";
+
+import { useId, SVGProps } from "react";
+import { tv, type VariantProps } from "tailwind-variants";
 import { cn } from "@/lib/classes";
 
-interface DefaultSpinnerProps extends React.ComponentProps<"div"> {
-  size?: "sm" | "md" | "lg";
-}
+interface SpinnerPrimitiveProps extends SVGProps<SVGSVGElement> {}
 
-const DefaultSpinner = ({
-  className,
-  size = "md",
-  ...props
-}: DefaultSpinnerProps) => {
+function SpinnerPrimitive({ className, ...props }: SpinnerPrimitiveProps) {
+  const id = useId();
+
   return (
-    <div
-      aria-label="Loading..."
-      data-slot="spinner-base"
-      data-size={size}
+    <svg
+      data-slot="spinner-icon"
+      viewBox="0 0 24 24"
+      className={cn("size-full", className)}
       {...props}
-      className={cn(
-        "group relative inline-flex flex-col gap-2 items-center justify-center",
-        className
-      )}
     >
-      <div
-        data-slot="spinner-wrapper"
-        className={cn([
-          "relative flex",
-          "group-data-[size=sm]:w-4 group-data-[size=sm]:h-4 group-data-[size=md]:w-8 group-data-[size=md]:h-8 group-data-[size=lg]:w-10 group-data-[size=lg]:h-10",
-        ])}
-      >
-        <i
-          data-slot="spinner-c1"
-          className={cn([
-            "absolute w-full h-full rounded-full border-b-current border-solid border-t-transparent border-l-transparent border-r-transparent animate-spinner-ease-spin",
-            "group-data-[size=sm]:border-2 group-data-[size=md]:border-3 group-data-[size=lg]:border-3",
-          ])}
-        />
-        <i
-          data-slot="spinner-c2"
-          className={cn([
-            "absolute w-full h-full rounded-full opacity-75 border-b-current border-dotted border-t-transparent border-l-transparent border-r-transparent animate-spinner-linear-spin",
-            "group-data-[size=sm]:border-2 group-data-[size=md]:border-3 group-data-[size=lg]:border-3",
-          ])}
-        />
-      </div>
-    </div>
-  );
-};
-
-interface SimpleSpinnerProps extends React.ComponentProps<"div"> {
-  size?: "sm" | "md" | "lg";
-}
-
-const SimpleSpinner = ({
-  className,
-  size = "md",
-  ...props
-}: SimpleSpinnerProps) => {
-  return (
-    <div
-      {...props}
-      aria-label="Loading..."
-      data-slot="spinner-base"
-      data-size={size}
-      className={cn([
-        "group relative inline-flex flex-col gap-2 items-center justify-center",
-        className,
-      ])}
-    >
-      <svg
-        fill="none"
-        viewBox="0 0 24 24"
-        className={cn([
-          "relative flex",
-          "group-data-[size=sm]:w-5 group-data-[size=sm]:h-5 group-data-[size=md]:w-8 group-data-[size=md]:h-8 group-data-[size=lg]:w-12 group-data-[size=lg]:h-12",
-          "animate-spin",
-        ])}
-      >
-        <circle
-          cx="12"
-          cy="12"
-          r="10"
-          stroke="currentColor"
-          strokeWidth="4"
-          className={cn([
-            "absolute w-full h-full rounded-full opacity-25",
-            "border-b-current group-data-[size=sm]:border-2 group-data-[size=md]:border-3 group-data-[size=lg]:border-3",
-          ])}
+      <defs>
+        <linearGradient
+          id={`data-slot-icon-def-1-${id}`}
+          x1="50%"
+          x2="50%"
+          y1="5.271%"
+          y2="91.793%"
+        >
+          <stop offset="0%" stopColor="currentColor" />
+          <stop offset="100%" stopColor="currentColor" stopOpacity={0.55} />
+        </linearGradient>
+        <linearGradient
+          id={`data-slot-icon-def-2-${id}`}
+          x1="50%"
+          x2="50%"
+          y1="15.24%"
+          y2="87.15%"
+        >
+          <stop offset="0%" stopColor="currentColor" stopOpacity={0} />
+          <stop offset="100%" stopColor="currentColor" stopOpacity={0.55} />
+        </linearGradient>
+      </defs>
+      <g fill="none">
+        <path d="m12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z" />
+        <path
+          d="M8.749.021a1.5 1.5 0 0 1 .497 2.958A7.5 7.5 0 0 0 3 10.375a7.5 7.5 0 0 0 7.5 7.5v3c-5.799 0-10.5-4.7-10.5-10.5C0 5.23 3.726.865 8.749.021"
+          fill={`url(#data-slot-icon-def-1-${id})`}
+          transform="translate(1.5 1.625)"
         />
         <path
-          className={cn([
-            "absolute w-full h-full rounded-full opacity-75",
-            "border-b-current group-data-[size=sm]:border-2 group-data-[size=md]:border-3 group-data-[size=lg]:border-3",
-          ])}
-          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-          fill="currentColor"
+          d="M15.392 2.673a1.5 1.5 0 0 1 2.119-.115A10.48 10.48 0 0 1 21 10.375c0 5.8-4.701 10.5-10.5 10.5v-3a7.5 7.5 0 0 0 5.007-13.084a1.5 1.5 0 0 1-.115-2.118"
+          fill={`url(#data-slot-icon-def-2-${id})`}
+          transform="translate(1.5 1.625)"
         />
-      </svg>
-    </div>
+      </g>
+    </svg>
   );
-};
-
-interface GradientSpinnerProps extends React.ComponentProps<"div"> {
-  size?: "sm" | "md" | "lg";
 }
 
-const GradientSpinner = ({
-  className,
-  size = "md",
-  ...props
-}: GradientSpinnerProps) => {
-  return (
-    <div
-      aria-label="Loading..."
-      data-slot="spinner-base"
-      data-size={size}
-      {...props}
-      className={cn(
-        "group relative inline-flex flex-col gap-2 items-center justify-center",
-        className
-      )}
-    >
-      <div
-        data-slot="spinner-wrapper"
-        className={cn([
-          "relative flex",
-          "group-data-[size=sm]:w-4 group-data-[size=sm]:h-4 group-data-[size=md]:w-8 group-data-[size=md]:h-8 group-data-[size=lg]:w-10 group-data-[size=lg]:h-10",
-        ])}
-      >
-        <i
-          data-slot="spinner-c1"
-          className={cn([
-            "absolute w-full h-full rounded-full",
-            "border-0 bg-linear-to-b from-transparent via-transparent to-primary-foreground animate-spinner-linear-spin duration-1000 [-webkit-mask:radial-gradient(closest-side,rgba(0,0,0,0.0)calc(100%-3px),rgba(0,0,0,1)calc(100%-3px))]",
-          ])}
-        />
-      </div>
-    </div>
-  );
-};
+const spinnerVariants = tv({
+  base: `pointer-events-none relative size-6 animate-spin animation-duration-[0.75s] text-current`,
+  variants: {
+    size: {
+      sm: `size-4`,
+      md: `size-6`,
+      lg: `size-8`,
+      xl: `size-10`,
+    },
+  },
+  defaultVariants: {
+    size: `md`,
+  },
+});
 
-interface BarsSpinnerProps extends React.ComponentProps<"div"> {
-  size?: "sm" | "md" | "lg";
+interface SpinnerRootProps
+  extends Omit<React.ComponentProps<"svg">, "display" | "opacity" | "color">,
+    VariantProps<typeof spinnerVariants> {}
+
+function Spinner({ size = "md", ...props }: SpinnerRootProps) {
+  return (
+    <span
+      data-slot="spinner"
+      className={spinnerVariants({
+        size,
+      })}
+    >
+      <SpinnerPrimitive
+        aria-hidden
+        aria-label="Loading"
+        role="presentation"
+        {...props}
+      />
+    </span>
+  );
 }
 
-const BarsSpinner = ({
-  className,
-  size = "md",
-  ...props
-}: BarsSpinnerProps) => {
-  return (
-    <div
-      {...props}
-      aria-label="Loading..."
-      data-slot="spinner-base"
-      data-size={size}
-      className={cn([
-        "group relative inline-flex flex-col gap-2 items-center justify-center",
-        className,
-      ])}
-    >
-      <div
-        data-slot="spinner-wrapper"
-        className={cn([
-          "relative flex",
-          "group-data-[size=sm]:w-4 group-data-[size=sm]:h-4 group-data-[size=md]:w-8 group-data-[size=md]:h-8 group-data-[size=lg]:w-10 group-data-[size=lg]:h-10",
-        ])}
-      >
-        {[...new Array(12)].map((_, index) => (
-          <i
-            key={`star-${index}`}
-            className={cn([
-              "absolute rounded-full w-[25%] h-[8%] left-[calc(37.5%)] top-[calc(46%)] animate-fade-out bg-current",
-            ])}
-            style={
-              {
-                "--bar-index": index,
-                animationDelay: `calc(-1.2s + (.1s * var(--bar-index)))`,
-                transform: `rotate(calc(30deg * var(--bar-index))) translate(140%)`,
-              } as React.CSSProperties
-            }
-          />
-        ))}
-      </div>
-    </div>
-  );
-};
-
-interface WaveSpinnerProps extends React.ComponentProps<"div"> {
-  size?: "sm" | "md" | "lg";
-}
-
-const WaveSpinner = ({
-  className,
-  size = "md",
-  ...props
-}: WaveSpinnerProps) => {
-  return (
-    <div
-      {...props}
-      aria-label="Loading..."
-      data-slot="spinner-base"
-      data-size={size}
-      className={cn([
-        "group relative inline-flex flex-col gap-2 items-center justify-center",
-        className,
-      ])}
-    >
-      <div
-        data-slot="spinner-wrapper"
-        className={cn([
-          "relative flex",
-          "group-data-[size=sm]:w-4 group-data-[size=sm]:h-4 group-data-[size=md]:w-8 group-data-[size=md]:h-8 group-data-[size=lg]:w-10 group-data-[size=lg]:h-10",
-          "translate-y-3/4",
-        ])}
-      >
-        {[...new Array(3)].map((_, index) => (
-          <i
-            key={`dot-${index}`}
-            className={cn([
-              "relative rounded-full mx-auto bg-current animate-sway",
-              "group-data-[size=sm]:size-1 group-data-[size=md]:size-1.5 group-data-[size=lg]:size-2",
-            ])}
-            style={
-              {
-                "--dot-index": index,
-                animationDelay: `calc(.25s * var(--dot-index))`,
-              } as React.CSSProperties
-            }
-          />
-        ))}
-      </div>
-    </div>
-  );
-};
-
-interface DotsSpinnerProps extends React.ComponentProps<"div"> {
-  size?: "sm" | "md" | "lg";
-}
-
-const DotsSpinner = ({
-  className,
-  size = "md",
-  ...props
-}: DotsSpinnerProps) => {
-  return (
-    <div
-      {...props}
-      aria-label="Loading..."
-      data-slot="spinner-base"
-      data-size={size}
-      className={cn([
-        "group relative inline-flex flex-col gap-2 items-center justify-center",
-        className,
-      ])}
-    >
-      <div
-        data-slot="spinner-wrapper"
-        className={cn([
-          "relative flex",
-          "group-data-[size=sm]:w-4 group-data-[size=sm]:h-4 group-data-[size=md]:w-8 group-data-[size=md]:h-8 group-data-[size=lg]:w-10 group-data-[size=lg]:h-10",
-          "translate-y-1/2",
-        ])}
-      >
-        {[...new Array(3)].map((_, index) => (
-          <i
-            key={`dot-${index}`}
-            className={cn([
-              "relative rounded-full mx-auto bg-current animate-blink",
-              "group-data-[size=sm]:size-1 group-data-[size=md]:size-1.5 group-data-[size=lg]:size-2",
-            ])}
-            style={
-              {
-                "--dot-index": index,
-                animationDelay: `calc(.2s * var(--dot-index))`,
-              } as React.CSSProperties
-            }
-          />
-        ))}
-      </div>
-    </div>
-  );
-};
-
-export {
-  DefaultSpinner,
-  SimpleSpinner,
-  GradientSpinner,
-  BarsSpinner,
-  WaveSpinner,
-  DotsSpinner,
-};
+export { Spinner };

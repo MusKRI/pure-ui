@@ -7,8 +7,8 @@
   ],
   "files": [
     {
-      "path": "src/registry/default/components/examples/spinners/spinner-sizes-demo.tsx",
-      "content": "import { DefaultSpinner } from \"@/registry/default/components/ui/spinner\";\r\n\r\nexport function SpinnerSizesDemo() {\r\n  return (\r\n    <div className=\"flex items-center gap-4\">\r\n      <DefaultSpinner size=\"sm\" />\r\n      <DefaultSpinner size=\"md\" />\r\n      <DefaultSpinner size=\"lg\" />\r\n    </div>\r\n  );\r\n}\r\n",
+      "path": "src/registry/default/components/examples/spinner/spinner-sizes-demo.tsx",
+      "content": "import { Spinner } from \"@/registry/default/components/ui/spinner\";\r\n\r\nexport function SpinnerSizesDemo() {\r\n  return (\r\n    <div className=\"flex items-center gap-8\">\r\n      <div className=\"flex flex-col items-center gap-2\">\r\n        <Spinner size=\"sm\" />\r\n        <span className=\"text-muted-foreground text-xs\">Small</span>\r\n      </div>\r\n      <div className=\"flex flex-col items-center gap-2\">\r\n        <Spinner size=\"md\" />\r\n        <span className=\"text-muted-foreground text-xs\">Medium</span>\r\n      </div>\r\n      <div className=\"flex flex-col items-center gap-2\">\r\n        <Spinner size=\"lg\" />\r\n        <span className=\"text-muted-foreground text-xs\">Large</span>\r\n      </div>\r\n      <div className=\"flex flex-col items-center gap-2\">\r\n        <Spinner size=\"xl\" />\r\n        <span className=\"text-muted-foreground text-xs\">Extra Large</span>\r\n      </div>\r\n    </div>\r\n  );\r\n}\r\n",
       "type": "registry:example"
     }
   ]

@@ -9,7 +9,6 @@ export function ButtonVariantsDemo() {
       <Button variant="ghost">Ghost Button</Button>
       <Button variant="link">Link Button</Button>
       <Button variant="destructive">Destructive Button</Button>
-      <Button variant="destructive-outline">Destructive Outline Button</Button>
     </div>
   );
 }

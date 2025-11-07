@@ -8,7 +8,7 @@
   "files": [
     {
       "path": "src/registry/default/components/examples/button/button-reduce-motion-demo.tsx",
-      "content": "import { Button } from \"@/registry/default/components/ui/button\";\r\n\r\nexport function ButtonReduceMotionDemo() {\r\n  return <Button reduceMotion>Shadcn Button</Button>;\r\n}\r\n",
+      "content": "import { Button } from \"@/registry/default/components/ui/button\";\r\n\r\nexport function ButtonReduceMotionDemo() {\r\n  return <Button>Shadcn Button</Button>;\r\n}\r\n",
       "type": "registry:example"
     }
   ]

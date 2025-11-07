@@ -1,5 +1,3 @@
-import { PlayIcon } from "lucide-react";
-
 import { Button } from "@/registry/default/components/ui/button";
 
 export function ButtonSizeDemo() {
@@ -11,17 +9,6 @@ export function ButtonSizeDemo() {
         <Button size="default">Default Button</Button>
         <Button size="lg">LG Button</Button>
         <Button size="xl">XL Button</Button>
-      </div>
-      <div className="flex flex-wrap items-center justify-center gap-4">
-        <Button size="icon-sm">
-          <PlayIcon className="size-4" />
-        </Button>
-        <Button size="icon">
-          <PlayIcon className="size-4" />
-        </Button>
-        <Button size="icon-lg">
-          <PlayIcon className="size-4" />
-        </Button>
       </div>
     </div>
   );

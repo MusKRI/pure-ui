@@ -55,7 +55,6 @@ export const DropdownMenuBasicDemo = () => {
     <Menu backdrop="blur">
       <MenuTrigger asChild>
         <Button
-          reduceMotion
           variant="ghost"
           className="flex items-center gap-2 active:scale-100"
           size="sm"

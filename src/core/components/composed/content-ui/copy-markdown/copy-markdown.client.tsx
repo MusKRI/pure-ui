@@ -16,8 +16,7 @@ export const CopyMarkdownClient = ({ rawContent }: Props) => {
       variant="outline"
       size="xs"
       onClick={() => copyToClipboard(rawContent)}
-      className="w-fit"
-      contentClassName="flex items-center gap-1 text-[13px]"
+      className="flex items-center gap-1 text-[13px]"
     >
       {isCopied ? (
         <svg className="size-3.5" fill="currentColor" viewBox="0 0 20 20">

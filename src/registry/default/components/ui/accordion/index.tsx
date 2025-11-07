@@ -317,7 +317,8 @@ function Accordion({
           className={cn(
             "w-full contain-layout",
             variant === "outline" &&
-              "border border-border/60 rounded-[11px] bg-popover shadow-md",
+              "border border-border/60 rounded-2xl bg-popover shadow-sm",
+            variant === "swiss" && "rounded-2xl",
             className
           )}
           {...props}
@@ -380,19 +381,42 @@ function AccordionItem({
         value={itemValue}
         onOpenChange={handleItemOpenChange}
         className={cn(
-          `w-full contain-layout outline-hidden [transition-property:border-radius,margin,box-shadow] will-change-[border-radius,margin,box-shadow] duration-200 ease-out`,
+          `w-full contain-layout outline-hidden`,
+          // Base transitions - smooth all property changes
+          `[transition-property:border-radius,margin,border,transform,z-index]
+           duration-260
+           ease-[cubic-bezier(0.215,0.61,0.355,1)]
+           will-change-[border-radius,margin,border]`,
           variant === "default" && "border-b border-border/60 last:border-b-0",
           variant === "outline" &&
-            `border-b border-border/60 last:border-b-0 first:**:data-[slot="accordion-trigger"]:rounded-t-md last:not-data-open:**:data-[slot="accordion-trigger"]:rounded-b-md`,
+            `border-b border-border/60 last:border-b-0 first:**:data-[slot="accordion-trigger"]:rounded-t-2xl last:not-data-open:**:data-[slot="accordion-trigger"]:rounded-b-2xl`,
           variant === "swiss" && [
-            "bg-popover border-x",
-            "first:rounded-t-[11px] last:rounded-b-[11px] data-closed:border-b data-closed:first:border-t",
-            // Active state styles for swiss variant
-            "data-open:rounded-[11px] data-open:shadow-sm data-open:my-3.5 data-open:first:mt-0 data-open:last:mb-0 data-open:border-b! data-open:border-t!",
-            // target previous accordion item before the open one
-            "has-[+_[data-slot='accordion-item'][data-open]]:border-b! has-[+_[data-slot='accordion-item'][data-open]]:rounded-b-[11px]",
-            // target next accordion item after the open one
-            "data-open:[&+[data-slot='accordion-item'][data-closed]]:border-t! data-open:[&+[data-slot='accordion-item']]:rounded-t-[11px]",
+            "bg-popover border-x border-border/60 relative overflow-hidden",
+
+            // Base state - closed items
+            "data-closed:border-b data-closed:border-border/60",
+
+            // First and last items
+            "first:rounded-t-2xl first:border-t first:border-border/60",
+            "last:rounded-b-2xl last:border-b last:border-border/60",
+
+            // Open state - full rounded with margins
+            "data-open:rounded-2xl data-open:border data-open:border-primary/70 data-open:z-2",
+            "data-open:my-6 data-open:first:mt-0 data-open:last:mb-0",
+
+            // Item before open item - gets bottom rounded corners
+            "has-[+_[data-slot='accordion-item'][data-open]]:rounded-b-2xl",
+            "has-[+_[data-slot='accordion-item'][data-open]]:border-b!",
+            "has-[+_[data-slot='accordion-item'][data-open]]:border-border/60",
+
+            // Item after open item - gets top rounded corners
+            "data-open:[&+[data-slot='accordion-item']]:rounded-t-2xl",
+            "data-open:[&+[data-slot='accordion-item'][data-closed]]:border-t",
+            "data-open:[&+[data-slot='accordion-item']]:border-border/60",
+
+            // Remove middle borders between closed items
+            "data-closed:first:border-t",
+            "data-closed:last:border-b",
           ],
           className
         )}
@@ -433,8 +457,8 @@ function AccordionTrigger({
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          "w-full text-left p-4 flex items-center cursor-pointer",
-          `hover:bg-accent/40 focus-visible:bg-accent/40 dark:hover:bg-accent/55 dark:focus-visible:bg-accent/55`,
+          "w-full text-left text-sm p-4 flex items-center cursor-pointer",
+          `not-data-panel-open:hover:bg-accent/40 focus-visible:bg-accent/40 not-data-panel-open:dark:hover:bg-accent/55 dark:focus-visible:bg-accent/55`,
           `data-disabled:cursor-not-allowed data-disabled:opacity-50 data-disabled:pointer-events-none`,
           `focus-visible:outline-2 focus-visible:outline-ring focus-visible:outline-offset-2`,
           className
@@ -536,7 +560,7 @@ function AccordionPanel({
                   willChange: "height, opacity, transform",
                   ...renderProps.style,
                 }}
-                className={cn(`overflow-hidden`, className)}
+                className={cn(`overflow-hidden text-sm`, className)}
               >
                 <div data-slot="accordion-panel-content" className="p-4 pt-0.5">
                   {renderProps.children}

@@ -8,7 +8,7 @@
   "files": [
     {
       "path": "src/registry/default/components/examples/button/button-pending-demo.tsx",
-      "content": "\"use client\";\r\n\r\nimport React, { useEffect, useState } from \"react\";\r\n\r\nimport { Button } from \"@/registry/default/components/ui/button\";\r\n\r\nexport function ButtonPendingDemo() {\r\n  const [isPending, setIsPending] = useState(false);\r\n\r\n  useEffect(() => {\r\n    isPending && setTimeout(() => setIsPending(false), 2000);\r\n  }, [isPending]);\r\n\r\n  return (\r\n    <Button onClick={() => setIsPending(true)} pending={isPending}>\r\n      Pure UI Button\r\n    </Button>\r\n  );\r\n}\r\n",
+      "content": "\"use client\";\r\n\r\nimport { Button } from \"@/registry/default/components/ui/button\";\r\n\r\nexport function ButtonPendingDemo() {\r\n  return <Button>Pure UI Button</Button>;\r\n}\r\n",
       "type": "registry:example"
     }
   ]

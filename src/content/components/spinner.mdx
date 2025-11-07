@@ -30,93 +30,11 @@ description: An indicator that can be used to show a loading state.
 
       <InstallationCommands
         type="package-installation"
-        npmCommand="npm install clsx tailwind-merge"
-        pnpmCommand="pnpm add clsx tailwind-merge"
-        yarnCommand="yarn add clsx tailwind-merge"
-        bunCommand="bun add clsx tailwind-merge"
+        npmCommand="npm install tailwind-variants"
+        pnpmCommand="pnpm add tailwind-variants"
+        yarnCommand="yarn add tailwind-variants"
+        bunCommand="bun add tailwind-variants"
       />
-
-      <Step>Add cn function to your utils</Step>
-
-      ```ts filename="lib/classes.ts"
-      import { clsx, type ClassValue } from "clsx";
-      import { twMerge } from "tailwind-merge";
-
-      export function cn(...inputs: ClassValue[]) {
-        return twMerge(clsx(inputs));
-      }
-      ```
-
-       <Step>Add following keyframes to your styles</Step>
-
-       ```css filename="styles/keyframes.css"
-        /* Default Spinner */
-        @keyframes spinner-spin {
-          0% {
-            transform: rotate(0deg);
-          }
-          100% {
-            transform: rotate(1turn);
-          }
-        }
-
-        .animate-spinner-ease-spin {
-          animation: spinner-spin 0.8s ease infinite;
-        }
-
-        .animate-spinner-linear-spin {
-          animation: spinner-spin 0.8s linear infinite;
-        }
-
-        /* Bars Spinner */
-        @keyframes fade-out {
-          0% {
-            opacity: 1;
-          }
-          100% {
-            opacity: 0.15;
-          }
-        }
-
-        .animate-fade-out {
-          animation: fade-out 1.2s linear 0s infinite normal none running;
-        }
-
-        /* Wave Spinner */
-        @keyframes sway {
-          0% {
-            transform: translate(0);
-          }
-
-          50% {
-            transform: translateY(-150%);
-          }
-          100% {
-            transform: translate(0);
-          }
-        }
-
-        .animate-sway {
-          animation: sway 0.75s ease infinite;
-        }
-
-        /* Dots Spinner */
-        @keyframes blink {
-          0% {
-            opacity: 0.2;
-          }
-          20% {
-            opacity: 1;
-          }
-          100% {
-            opacity: 0.2;
-          }
-        }
-
-        .animate-blink {
-          animation: blink 1.4s infinite both;
-        }
-       ```
 
       <Step>Copy and paste the following code into your project</Step>
 
@@ -126,16 +44,16 @@ description: An indicator that can be used to show a loading state.
   </TabsContent>
 </Tabs>
 
-**Note**: Spinner adds Loading as `aria-label` by default. This is required for accessibility. You can change it by passing a `label` or `aria-label` prop.
+## Usage
 
-## Examples
+```tsx
+import { Spinner } from "@/components/ui/spinner";
+```
 
-### Size
+```tsx
+<Spinner />
+```
 
-You can pass `size` to `Spinner` component to change the size of the spinner. By default, it is `md`.
+### Sizes
 
 <ComponentShowcase name="spinner-sizes-demo" />
-
-### Variants
-
-<ComponentShowcase name="spinner-variants-demo" />

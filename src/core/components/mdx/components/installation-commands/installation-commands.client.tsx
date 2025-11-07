@@ -141,7 +141,6 @@ export function InstallationCommandsClient({
                               </code>
                             </pre>
                           )}
-                          {/* Copy Button */}
                           <CopyButton value={tab.content} />
                         </motion.div>
                       )}
