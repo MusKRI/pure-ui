@@ -13,9 +13,7 @@ import { Button } from "@/registry/default/components/ui/button";
 export const DialogNonModalDemo = () => {
   return (
     <Dialog modal={false}>
-      <DialogTrigger asChild>
-        <Button>Open</Button>
-      </DialogTrigger>
+      <DialogTrigger render={<Button />}>Open</DialogTrigger>
 
       <DialogPopup>
         <DialogHeader>

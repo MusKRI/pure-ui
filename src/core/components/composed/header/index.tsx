@@ -4,6 +4,7 @@ import { cn } from "@/lib/classes";
 import { HeaderNav } from "./header-nav";
 import { ThemeToggle } from "../theme-toggle";
 import { PureUISidebarToggleButton } from "./sidebar-toggle-button";
+import { PureUILogo } from "../logo";
 
 export function Header() {
   return (
@@ -14,11 +15,12 @@ export function Header() {
             <PureUISidebarToggleButton />
 
             <div className="flex items-center gap-1">
-              <Link href="/" className="flex items-center gap-2">
+              <Link href="/" className="flex items-center gap-1">
+                <PureUILogo className="w-6 h-6 text-primary" />
                 <div
                   className={cn(
                     "[--text-color:linear-gradient(180deg,#555_0%,#000_100%)] dark:[--text-color:linear-gradient(180deg,#fff_0%,#adadad_100%)]",
-                    "bg-clip-text text-transparent bg-[image:var(--text-color)] font-semibold relative text-xl font-chillax"
+                    "bg-clip-text text-transparent bg-(image:--text-color) font-semibold relative text-xl font-chillax"
                   )}
                 >
                   Pure UI

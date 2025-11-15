@@ -1,10 +1,12 @@
 import { Input } from "@/registry/default/components/ui/input";
 
-export const InputDemo = () => {
+export default function InputDemo() {
   return (
-    <div className="flex w-full items-center justify-center flex-wrap md:flex-nowrap gap-4">
-      <Input label="Email" type="email" />
-      <Input label="Email" placeholder="Enter your email" type="email" />
-    </div>
+    <Input
+      type="text"
+      placeholder="Enter text"
+      aria-label="Enter text"
+      className="w-full max-w-sm"
+    />
   );
-};
+}

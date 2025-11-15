@@ -108,6 +108,26 @@ export const pureUIShadcnComponents: RegistryItem[] = [
     ],
     dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
   },
+  // Input Group
+  {
+    name: "input-group",
+    type: "registry:ui",
+    title: "Input Group",
+    description: "A customizable input group component",
+    files: [
+      {
+        path: "ui/input-group/index.tsx",
+        type: "registry:ui",
+      },
+    ],
+    registryDependencies: ["input", "textarea"],
+    dependencies: [
+      "clsx",
+      "tailwind-merge",
+      "tailwind-variants",
+      "@base-ui-components/react",
+    ],
+  },
   // Input OTP
   {
     name: "input-otp",
@@ -127,6 +147,20 @@ export const pureUIShadcnComponents: RegistryItem[] = [
       "input-otp",
       "motion",
     ],
+  },
+  // Label
+  {
+    name: "label",
+    type: "registry:ui",
+    title: "Label",
+    description: "A customizable label component",
+    files: [
+      {
+        path: "ui/label/index.tsx",
+        type: "registry:ui",
+      },
+    ],
+    dependencies: ["clsx", "tailwind-merge"],
   },
   // Menu
   {
@@ -229,6 +263,20 @@ export const pureUIShadcnComponents: RegistryItem[] = [
       },
     ],
     dependencies: ["tailwind-merge", "clsx"],
+  },
+  // Textarea
+  {
+    name: "textarea",
+    type: "registry:ui",
+    title: "Textarea",
+    description: "A customizable textarea component",
+    files: [
+      {
+        path: "ui/textarea/index.tsx",
+        type: "registry:ui",
+      },
+    ],
+    dependencies: ["@base-ui-components/react", "clsx", "tailwind-merge"],
   },
   // Tooltip
   {

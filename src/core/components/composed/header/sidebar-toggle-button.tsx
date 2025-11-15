@@ -16,7 +16,7 @@ export const PureUISidebarToggleButton = () => {
       ref={buttonRef}
       onClick={toggle}
       data-open={isOpen}
-      className="group cursor-pointer p-[5px] hover:bg-sidebar-accent rounded-md mr-2"
+      className="group cursor-pointer p-[5px] hover:bg-sidebar-accent rounded-md mr-3"
     >
       <div className="relative">
         <svg

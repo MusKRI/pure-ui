@@ -114,6 +114,28 @@
       ]
     },
     {
+      "name": "input-group",
+      "type": "registry:ui",
+      "title": "Input Group",
+      "description": "A customizable input group component",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge",
+        "tailwind-variants",
+        "@base-ui-components/react"
+      ],
+      "registryDependencies": [
+        "input",
+        "textarea"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/ui/input-group/index.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "input-otp",
       "type": "registry:ui",
       "title": "Input OTP",
@@ -128,6 +150,22 @@
       "files": [
         {
           "path": "src/registry/default/components/ui/input-otp/index.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "description": "A customizable label component",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/ui/label/index.tsx",
           "type": "registry:ui"
         }
       ]
@@ -232,6 +270,23 @@
       "files": [
         {
           "path": "src/registry/default/components/ui/spinner/index.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "A customizable textarea component",
+      "dependencies": [
+        "@base-ui-components/react",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/ui/textarea/index.tsx",
           "type": "registry:ui"
         }
       ]
@@ -697,6 +752,19 @@
       ]
     },
     {
+      "name": "dialog-nested-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "dialog"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/dialog/dialog-nested-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "dialog-non-dismissible-demo",
       "type": "registry:example",
       "registryDependencies": [
@@ -892,6 +960,58 @@
       ]
     },
     {
+      "name": "input-types-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "input"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/input/input-types-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "input-small-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "input"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/input/input-small-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "input-large-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "input"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/input/input-large-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "input-controlled-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "input"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/input/input-controlled-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "input-disabled-demo",
       "type": "registry:example",
       "registryDependencies": [
@@ -905,53 +1025,131 @@
       ]
     },
     {
-      "name": "input-read-only-demo",
+      "name": "input-file-type-demo",
       "type": "registry:example",
       "registryDependencies": [
         "input"
       ],
       "files": [
         {
-          "path": "src/registry/default/components/examples/input/input-read-only-demo.tsx",
+          "path": "src/registry/default/components/examples/input/input-file-type-demo.tsx",
           "type": "registry:example"
         }
       ]
     },
     {
-      "name": "input-required-demo",
+      "name": "input-group-demo",
       "type": "registry:example",
       "registryDependencies": [
-        "input"
+        "input-otp"
       ],
       "files": [
         {
-          "path": "src/registry/default/components/examples/input/input-required-demo.tsx",
+          "path": "src/registry/default/components/examples/input-group/input-group-demo.tsx",
           "type": "registry:example"
         }
       ]
     },
     {
-      "name": "input-sizes-demo",
+      "name": "input-group-icon-demo",
       "type": "registry:example",
       "registryDependencies": [
-        "input"
+        "input-group"
       ],
       "files": [
         {
-          "path": "src/registry/default/components/examples/input/input-sizes-demo.tsx",
+          "path": "src/registry/default/components/examples/input-group/input-group-icon-demo.tsx",
           "type": "registry:example"
         }
       ]
     },
     {
-      "name": "input-variants-demo",
+      "name": "input-group-text-demo",
       "type": "registry:example",
       "registryDependencies": [
-        "input"
+        "input-group"
       ],
       "files": [
         {
-          "path": "src/registry/default/components/examples/input/input-variants-demo.tsx",
+          "path": "src/registry/default/components/examples/input-group/input-group-text-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "input-group-button-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "input-group"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/input-group/input-group-button-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "input-group-tooltip-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "input-group"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/input-group/input-group-tooltip-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "input-group-textarea-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "input-group"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/input-group/input-group-textarea-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "input-group-spinner-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "input-group"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/input-group/input-group-spinner-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "input-group-label-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "input-group"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/input-group/input-group-label-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "input-group-menu-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "input-group"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/input-group/input-group-menu-demo.tsx",
           "type": "registry:example"
         }
       ]
@@ -965,7 +1163,7 @@
       "files": [
         {
           "path": "src/registry/default/components/examples/input-otp/input-otp-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:example"
         }
       ]
     },
@@ -978,7 +1176,7 @@
       "files": [
         {
           "path": "src/registry/default/components/examples/input-otp/input-otp-disabled-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:example"
         }
       ]
     },
@@ -991,7 +1189,7 @@
       "files": [
         {
           "path": "src/registry/default/components/examples/input-otp/input-otp-sizes-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:example"
         }
       ]
     },
@@ -1004,7 +1202,7 @@
       "files": [
         {
           "path": "src/registry/default/components/examples/input-otp/input-otp-variants-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:example"
         }
       ]
     },
@@ -1017,7 +1215,7 @@
       "files": [
         {
           "path": "src/registry/default/components/examples/input-otp/input-otp-separator-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:example"
         }
       ]
     },
@@ -1030,7 +1228,7 @@
       "files": [
         {
           "path": "src/registry/default/components/examples/input-otp/input-otp-patterns-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:example"
         }
       ]
     },
@@ -1043,7 +1241,33 @@
       "files": [
         {
           "path": "src/registry/default/components/examples/input-otp/input-otp-controlled-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "label-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "label"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/label/label-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "label-with-checkbox",
+      "type": "registry:example",
+      "registryDependencies": [
+        "label"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/label/label-with-checkbox.tsx",
+          "type": "registry:example"
         }
       ]
     },
@@ -1693,6 +1917,71 @@
       "files": [
         {
           "path": "src/registry/default/components/examples/switch/custom-switch-card-style-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "textarea-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "textarea"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/textarea/textarea-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "textarea-small-size-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "textarea"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/textarea/textarea-small-size-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "textarea-large-size-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "textarea"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/textarea/textarea-large-size-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "textarea-disabled-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "textarea"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/textarea/textarea-disabled-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "textarea-controlled-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "textarea"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/textarea/textarea-controlled-demo.tsx",
           "type": "registry:example"
         }
       ]

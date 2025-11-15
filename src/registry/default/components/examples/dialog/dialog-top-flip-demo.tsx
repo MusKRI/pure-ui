@@ -13,11 +13,9 @@ import { Button } from "@/registry/default/components/ui/button";
 export const DialogTopFlipDemo = () => {
   return (
     <Dialog>
-      <DialogTrigger asChild>
-        <Button>Open</Button>
-      </DialogTrigger>
+      <DialogTrigger render={<Button />}>Open</DialogTrigger>
 
-      <DialogPopup animationPreset="top-flip">
+      <DialogPopup animationPreset="topFlip">
         <DialogHeader>
           <DialogTitle>Terms of Service</DialogTitle>
           <DialogDescription>

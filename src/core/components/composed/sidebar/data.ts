@@ -116,10 +116,22 @@ const pureUIComponents = [
     href: "/components/input",
   },
   {
+    id: "input-group",
+    title: "Input Group",
+    type: "link",
+    href: "/components/input-group",
+  },
+  {
     id: "input-otp",
     title: "Input OTP",
     type: "link",
     href: "/components/input-otp",
+  },
+  {
+    id: "label",
+    title: "Label",
+    type: "link",
+    href: "/components/label",
   },
   {
     id: "menu",
@@ -156,6 +168,12 @@ const pureUIComponents = [
     title: "Switch",
     type: "link",
     href: "/components/switch",
+  },
+  {
+    id: "textarea",
+    title: "Textarea",
+    type: "link",
+    href: "/components/textarea",
   },
   {
     id: "tooltip",

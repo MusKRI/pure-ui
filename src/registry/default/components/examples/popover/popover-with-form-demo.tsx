@@ -25,37 +25,17 @@ export const PopoverWithFormDemo = () => {
   return (
     <div className="flex flex-col gap-4">
       <Popover open={open} onOpenChange={setOpen}>
-        <PopoverTrigger asChild>
-          <Button size="sm" radius="none" variant="outline">
-            <span>Customize</span>
-          </Button>
+        <PopoverTrigger
+          render={<Button size="sm" radius="none" variant="outline" />}
+        >
+          <span>Customize</span>
         </PopoverTrigger>
         <PopoverPopup>
           <div className="flex flex-col gap-2">
-            <Input
-              defaultValue="100%"
-              label="Width"
-              size="sm"
-              variant="bordered"
-            />
-            <Input
-              defaultValue="300px"
-              label="Max. width"
-              size="sm"
-              variant="bordered"
-            />
-            <Input
-              defaultValue="24px"
-              label="Height"
-              size="sm"
-              variant="bordered"
-            />
-            <Input
-              defaultValue="30px"
-              label="Max. height"
-              size="sm"
-              variant="bordered"
-            />
+            <Input defaultValue="100%" size="sm" />
+            <Input defaultValue="300px" size="sm" />
+            <Input defaultValue="24px" size="sm" />
+            <Input defaultValue="30px" size="sm" />
             <Button
               className="w-full"
               size="sm"

@@ -139,8 +139,10 @@ const inputOtpSlotVariants = tv({
   base: "relative font-semibold flex items-center justify-center",
   variants: {
     variant: {
-      bordered: "rounded-[10px] border border-border bg-background",
-      underlined: "rounded-none border-b border-border bg-background",
+      bordered:
+        "rounded-[10px] border border-border bg-background dark:bg-input/32",
+      underlined:
+        "rounded-none border-b border-border bg-background dark:bg-input/32",
     },
     slotSize: {
       sm: "h-8 min-h-8 w-8 min-w-8 text-sm",

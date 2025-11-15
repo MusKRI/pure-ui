@@ -21,8 +21,8 @@ export function MenuRadioGroupDemo() {
 
   return (
     <Menu open={open} onOpenChange={setOpen}>
-      <MenuTrigger asChild>
-        <Button variant="outline">Open</Button>
+      <MenuTrigger render={<Button variant="outline" />}>
+        <span>Open</span>
       </MenuTrigger>
       <MenuPopup className="w-56" align="center">
         <MenuLabel>My Account</MenuLabel>

@@ -13,11 +13,9 @@ import { Button } from "@/registry/default/components/ui/button";
 export const DialogRightFlipDemo = () => {
   return (
     <Dialog>
-      <DialogTrigger asChild>
-        <Button>Open</Button>
-      </DialogTrigger>
+      <DialogTrigger render={<Button />}>Open</DialogTrigger>
 
-      <DialogPopup animationPreset="right-flip">
+      <DialogPopup animationPreset="rightFlip">
         <DialogHeader>
           <DialogTitle>Terms of Service</DialogTitle>
           <DialogDescription>

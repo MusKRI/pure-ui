@@ -127,8 +127,10 @@ By default, Menu opens when the trigger is clicked. You can pass `openOnHover` t
 
 By default, clicking on a checkbox item will not close the menu. You can pass `closeOnClick` to `MenuCheckboxItem` to close the menu when the checkbox item is clicked.
 
-```tsx
-<MenuCheckboxItem closeOnClick>
+```tsx add=2
+<MenuCheckboxItem
+  closeOnClick
+>
   <span>Checkbox Item</span>
 </MenuCheckboxItem>
 ```
@@ -139,8 +141,10 @@ By default, clicking on a checkbox item will not close the menu. You can pass `c
 
 By default, clicking on a radio item will not close the menu. You can pass `closeOnClick` to `MenuRadioItem` to close the menu when the radio item is clicked.
 
-```tsx
-<MenuRadioItem closeOnClick>
+```tsx add=2
+<MenuRadioItem
+  closeOnClick
+>
   <span>Radio Item</span>
 </MenuRadioItem>
 ```
@@ -161,8 +165,10 @@ You can use custom active icon for the radio group by passing the `activeIcon` p
 
 Use the `render` prop to compose a menu item with an anchor element.
 
-```tsx
-<MenuItem render={<a href="/projects">Go to Projects</a>} />
+```tsx add=2
+<MenuItem
+  render={<a href="/projects">Go to Projects</a>}
+/>
 ```
 
 ## Popup Animation

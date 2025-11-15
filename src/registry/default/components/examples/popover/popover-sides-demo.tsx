@@ -22,13 +22,15 @@ export const PopoverSidesDemo = () => {
       {sides.map((side) => {
         return (
           <Popover key={side}>
-            <PopoverTrigger asChild>
-              <button className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md border border-border/40 bg-secondary/50 hover:bg-secondary cursor-pointer">
-                <CheckCheck className="size-3.5 text-secondary-foreground" />
-                <span className="text-secondary-foreground text-sm capitalize">
-                  {side.replace("-", " ")}
-                </span>
-              </button>
+            <PopoverTrigger
+              render={
+                <button className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md border border-border/40 bg-secondary/50 hover:bg-secondary cursor-pointer" />
+              }
+            >
+              <CheckCheck className="size-3.5 text-secondary-foreground" />
+              <span className="text-secondary-foreground text-sm capitalize">
+                {side.replace("-", " ")}
+              </span>
             </PopoverTrigger>
             <PopoverPopup showArrow side={side} sideOffset={8}>
               <PopoverDescription>Opened 4 times</PopoverDescription>

@@ -13,9 +13,7 @@ import { Button } from "@/registry/default/components/ui/button";
 export const DialogReduceMotionDemo = () => {
   return (
     <Dialog>
-      <DialogTrigger asChild>
-        <Button>Open</Button>
-      </DialogTrigger>
+      <DialogTrigger render={<Button />}>Open</DialogTrigger>
 
       <DialogPopup reduceMotion>
         <DialogHeader>

@@ -1,13 +1,13 @@
 import { Input } from "@/registry/default/components/ui/input";
 
-export const InputDisabledDemo = () => {
+export default function InputDisabledDemo() {
   return (
     <Input
+      type="text"
+      placeholder="Disabled"
       disabled
-      className="max-w-xs"
-      defaultValue="krishna@kam-ui.com"
-      label="Email"
-      type="email"
+      aria-label="Disabled"
+      className="w-full max-w-sm"
     />
   );
-};
+}

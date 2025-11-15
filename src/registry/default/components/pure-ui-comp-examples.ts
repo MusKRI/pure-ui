@@ -384,6 +384,17 @@ export const pureUICompExamples: RegistryItem[] = [
     ],
   },
   {
+    name: "dialog-nested-demo",
+    type: "registry:example",
+    registryDependencies: ["dialog"],
+    files: [
+      {
+        path: "examples/dialog/dialog-nested-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
     name: "dialog-non-dismissible-demo",
     type: "registry:example",
     registryDependencies: ["dialog"],
@@ -551,6 +562,50 @@ export const pureUICompExamples: RegistryItem[] = [
     ],
   },
   {
+    name: "input-types-demo",
+    type: "registry:example",
+    registryDependencies: ["input"],
+    files: [
+      {
+        path: "examples/input/input-types-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "input-small-demo",
+    type: "registry:example",
+    registryDependencies: ["input"],
+    files: [
+      {
+        path: "examples/input/input-small-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "input-large-demo",
+    type: "registry:example",
+    registryDependencies: ["input"],
+    files: [
+      {
+        path: "examples/input/input-large-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "input-controlled-demo",
+    type: "registry:example",
+    registryDependencies: ["input"],
+    files: [
+      {
+        path: "examples/input/input-controlled-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
     name: "input-disabled-demo",
     type: "registry:example",
     registryDependencies: ["input"],
@@ -562,49 +617,118 @@ export const pureUICompExamples: RegistryItem[] = [
     ],
   },
   {
-    name: "input-read-only-demo",
+    name: "input-file-type-demo",
     type: "registry:example",
     registryDependencies: ["input"],
     files: [
       {
-        path: "examples/input/input-read-only-demo.tsx",
+        path: "examples/input/input-file-type-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+
+  // Input Group
+  {
+    name: "input-group-demo",
+    type: "registry:example",
+    registryDependencies: ["input-otp"],
+    files: [
+      {
+        path: "examples/input-group/input-group-demo.tsx",
         type: "registry:example",
       },
     ],
   },
   {
-    name: "input-required-demo",
+    name: "input-group-icon-demo",
     type: "registry:example",
-    registryDependencies: ["input"],
+    registryDependencies: ["input-group"],
     files: [
       {
-        path: "examples/input/input-required-demo.tsx",
+        path: "examples/input-group/input-group-icon-demo.tsx",
         type: "registry:example",
       },
     ],
   },
   {
-    name: "input-sizes-demo",
+    name: "input-group-text-demo",
     type: "registry:example",
-    registryDependencies: ["input"],
+    registryDependencies: ["input-group"],
     files: [
       {
-        path: "examples/input/input-sizes-demo.tsx",
+        path: "examples/input-group/input-group-text-demo.tsx",
         type: "registry:example",
       },
     ],
   },
   {
-    name: "input-variants-demo",
+    name: "input-group-button-demo",
     type: "registry:example",
-    registryDependencies: ["input"],
+    registryDependencies: ["input-group"],
     files: [
       {
-        path: "examples/input/input-variants-demo.tsx",
+        path: "examples/input-group/input-group-button-demo.tsx",
         type: "registry:example",
       },
     ],
   },
+  {
+    name: "input-group-tooltip-demo",
+    type: "registry:example",
+    registryDependencies: ["input-group"],
+    files: [
+      {
+        path: "examples/input-group/input-group-tooltip-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "input-group-textarea-demo",
+    type: "registry:example",
+    registryDependencies: ["input-group"],
+    files: [
+      {
+        path: "examples/input-group/input-group-textarea-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "input-group-spinner-demo",
+    type: "registry:example",
+    registryDependencies: ["input-group"],
+    files: [
+      {
+        path: "examples/input-group/input-group-spinner-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "input-group-label-demo",
+    type: "registry:example",
+    registryDependencies: ["input-group"],
+    files: [
+      {
+        path: "examples/input-group/input-group-label-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "input-group-menu-demo",
+    type: "registry:example",
+    registryDependencies: ["input-group"],
+    files: [
+      {
+        path: "examples/input-group/input-group-menu-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+
   // Input OTP
   {
     name: "input-otp-demo",
@@ -613,7 +737,7 @@ export const pureUICompExamples: RegistryItem[] = [
     files: [
       {
         path: "examples/input-otp/input-otp-demo.tsx",
-        type: "registry:component",
+        type: "registry:example",
       },
     ],
   },
@@ -624,7 +748,7 @@ export const pureUICompExamples: RegistryItem[] = [
     files: [
       {
         path: "examples/input-otp/input-otp-disabled-demo.tsx",
-        type: "registry:component",
+        type: "registry:example",
       },
     ],
   },
@@ -635,7 +759,7 @@ export const pureUICompExamples: RegistryItem[] = [
     files: [
       {
         path: "examples/input-otp/input-otp-sizes-demo.tsx",
-        type: "registry:component",
+        type: "registry:example",
       },
     ],
   },
@@ -646,7 +770,7 @@ export const pureUICompExamples: RegistryItem[] = [
     files: [
       {
         path: "examples/input-otp/input-otp-variants-demo.tsx",
-        type: "registry:component",
+        type: "registry:example",
       },
     ],
   },
@@ -657,7 +781,7 @@ export const pureUICompExamples: RegistryItem[] = [
     files: [
       {
         path: "examples/input-otp/input-otp-separator-demo.tsx",
-        type: "registry:component",
+        type: "registry:example",
       },
     ],
   },
@@ -668,7 +792,7 @@ export const pureUICompExamples: RegistryItem[] = [
     files: [
       {
         path: "examples/input-otp/input-otp-patterns-demo.tsx",
-        type: "registry:component",
+        type: "registry:example",
       },
     ],
   },
@@ -679,10 +803,35 @@ export const pureUICompExamples: RegistryItem[] = [
     files: [
       {
         path: "examples/input-otp/input-otp-controlled-demo.tsx",
-        type: "registry:component",
+        type: "registry:example",
       },
     ],
   },
+
+  // Label
+  {
+    name: "label-demo",
+    type: "registry:example",
+    registryDependencies: ["label"],
+    files: [
+      {
+        path: "examples/label/label-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "label-with-checkbox",
+    type: "registry:example",
+    registryDependencies: ["label"],
+    files: [
+      {
+        path: "examples/label/label-with-checkbox.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+
   // Menu
   {
     name: "menu-demo",
@@ -1235,6 +1384,63 @@ export const pureUICompExamples: RegistryItem[] = [
     files: [
       {
         path: "examples/switch/custom-switch-card-style-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+
+  // Textarea
+  {
+    name: "textarea-demo",
+    type: "registry:example",
+    registryDependencies: ["textarea"],
+    files: [
+      {
+        path: "examples/textarea/textarea-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "textarea-small-size-demo",
+    type: "registry:example",
+    registryDependencies: ["textarea"],
+    files: [
+      {
+        path: "examples/textarea/textarea-small-size-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "textarea-large-size-demo",
+    type: "registry:example",
+    registryDependencies: ["textarea"],
+    files: [
+      {
+        path: "examples/textarea/textarea-large-size-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "textarea-disabled-demo",
+    type: "registry:example",
+    registryDependencies: ["textarea"],
+    files: [
+      {
+        path: "examples/textarea/textarea-disabled-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "textarea-controlled-demo",
+    type: "registry:example",
+    registryDependencies: ["textarea"],
+    files: [
+      {
+        path: "examples/textarea/textarea-controlled-demo.tsx",
         type: "registry:example",
       },
     ],

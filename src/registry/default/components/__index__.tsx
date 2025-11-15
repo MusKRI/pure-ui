@@ -121,6 +121,25 @@ export const Index: Record<string, any> = {
     categories: undefined,
     meta: undefined,
   },
+  "input-group": {
+    name: "input-group",
+    description: "A customizable input group component",
+    type: "registry:ui",
+    registryDependencies: ["input","textarea"],
+    dependencies: ["clsx","tailwind-merge","tailwind-variants","@base-ui-components/react"],
+    files: [{
+      path: "src/registry/default/components/ui/input-group/index.tsx",
+      type: "registry:ui",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/ui/input-group/index.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
   "input-otp": {
     name: "input-otp",
     description: "A customizable input OTP component",
@@ -134,6 +153,25 @@ export const Index: Record<string, any> = {
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/default/components/ui/input-otp/index.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
+  "label": {
+    name: "label",
+    description: "A customizable label component",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    dependencies: ["clsx","tailwind-merge"],
+    files: [{
+      path: "src/registry/default/components/ui/label/index.tsx",
+      type: "registry:ui",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/ui/label/index.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -248,6 +286,25 @@ export const Index: Record<string, any> = {
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/default/components/ui/spinner/index.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
+  "textarea": {
+    name: "textarea",
+    description: "A customizable textarea component",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    dependencies: ["@base-ui-components/react","clsx","tailwind-merge"],
+    files: [{
+      path: "src/registry/default/components/ui/textarea/index.tsx",
+      type: "registry:ui",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/ui/textarea/index.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -919,6 +976,25 @@ export const Index: Record<string, any> = {
     categories: undefined,
     meta: undefined,
   },
+  "dialog-nested-demo": {
+    name: "dialog-nested-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["dialog"],
+    dependencies: undefined,
+    files: [{
+      path: "src/registry/default/components/examples/dialog/dialog-nested-demo.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/examples/dialog/dialog-nested-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
   "dialog-non-dismissible-demo": {
     name: "dialog-non-dismissible-demo",
     description: "",
@@ -1204,6 +1280,82 @@ export const Index: Record<string, any> = {
     categories: undefined,
     meta: undefined,
   },
+  "input-types-demo": {
+    name: "input-types-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["input"],
+    dependencies: undefined,
+    files: [{
+      path: "src/registry/default/components/examples/input/input-types-demo.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/examples/input/input-types-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
+  "input-small-demo": {
+    name: "input-small-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["input"],
+    dependencies: undefined,
+    files: [{
+      path: "src/registry/default/components/examples/input/input-small-demo.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/examples/input/input-small-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
+  "input-large-demo": {
+    name: "input-large-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["input"],
+    dependencies: undefined,
+    files: [{
+      path: "src/registry/default/components/examples/input/input-large-demo.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/examples/input/input-large-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
+  "input-controlled-demo": {
+    name: "input-controlled-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["input"],
+    dependencies: undefined,
+    files: [{
+      path: "src/registry/default/components/examples/input/input-controlled-demo.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/examples/input/input-controlled-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
   "input-disabled-demo": {
     name: "input-disabled-demo",
     description: "",
@@ -1223,76 +1375,190 @@ export const Index: Record<string, any> = {
     categories: undefined,
     meta: undefined,
   },
-  "input-read-only-demo": {
-    name: "input-read-only-demo",
+  "input-file-type-demo": {
+    name: "input-file-type-demo",
     description: "",
     type: "registry:example",
     registryDependencies: ["input"],
     dependencies: undefined,
     files: [{
-      path: "src/registry/default/components/examples/input/input-read-only-demo.tsx",
+      path: "src/registry/default/components/examples/input/input-file-type-demo.tsx",
       type: "registry:example",
       target: ""
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/default/components/examples/input/input-read-only-demo.tsx")
+      const mod = await import("@/registry/default/components/examples/input/input-file-type-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
     categories: undefined,
     meta: undefined,
   },
-  "input-required-demo": {
-    name: "input-required-demo",
+  "input-group-demo": {
+    name: "input-group-demo",
     description: "",
     type: "registry:example",
-    registryDependencies: ["input"],
+    registryDependencies: ["input-otp"],
     dependencies: undefined,
     files: [{
-      path: "src/registry/default/components/examples/input/input-required-demo.tsx",
+      path: "src/registry/default/components/examples/input-group/input-group-demo.tsx",
       type: "registry:example",
       target: ""
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/default/components/examples/input/input-required-demo.tsx")
+      const mod = await import("@/registry/default/components/examples/input-group/input-group-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
     categories: undefined,
     meta: undefined,
   },
-  "input-sizes-demo": {
-    name: "input-sizes-demo",
+  "input-group-icon-demo": {
+    name: "input-group-icon-demo",
     description: "",
     type: "registry:example",
-    registryDependencies: ["input"],
+    registryDependencies: ["input-group"],
     dependencies: undefined,
     files: [{
-      path: "src/registry/default/components/examples/input/input-sizes-demo.tsx",
+      path: "src/registry/default/components/examples/input-group/input-group-icon-demo.tsx",
       type: "registry:example",
       target: ""
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/default/components/examples/input/input-sizes-demo.tsx")
+      const mod = await import("@/registry/default/components/examples/input-group/input-group-icon-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
     categories: undefined,
     meta: undefined,
   },
-  "input-variants-demo": {
-    name: "input-variants-demo",
+  "input-group-text-demo": {
+    name: "input-group-text-demo",
     description: "",
     type: "registry:example",
-    registryDependencies: ["input"],
+    registryDependencies: ["input-group"],
     dependencies: undefined,
     files: [{
-      path: "src/registry/default/components/examples/input/input-variants-demo.tsx",
+      path: "src/registry/default/components/examples/input-group/input-group-text-demo.tsx",
       type: "registry:example",
       target: ""
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/default/components/examples/input/input-variants-demo.tsx")
+      const mod = await import("@/registry/default/components/examples/input-group/input-group-text-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
+  "input-group-button-demo": {
+    name: "input-group-button-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["input-group"],
+    dependencies: undefined,
+    files: [{
+      path: "src/registry/default/components/examples/input-group/input-group-button-demo.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/examples/input-group/input-group-button-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
+  "input-group-tooltip-demo": {
+    name: "input-group-tooltip-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["input-group"],
+    dependencies: undefined,
+    files: [{
+      path: "src/registry/default/components/examples/input-group/input-group-tooltip-demo.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/examples/input-group/input-group-tooltip-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
+  "input-group-textarea-demo": {
+    name: "input-group-textarea-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["input-group"],
+    dependencies: undefined,
+    files: [{
+      path: "src/registry/default/components/examples/input-group/input-group-textarea-demo.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/examples/input-group/input-group-textarea-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
+  "input-group-spinner-demo": {
+    name: "input-group-spinner-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["input-group"],
+    dependencies: undefined,
+    files: [{
+      path: "src/registry/default/components/examples/input-group/input-group-spinner-demo.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/examples/input-group/input-group-spinner-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
+  "input-group-label-demo": {
+    name: "input-group-label-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["input-group"],
+    dependencies: undefined,
+    files: [{
+      path: "src/registry/default/components/examples/input-group/input-group-label-demo.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/examples/input-group/input-group-label-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
+  "input-group-menu-demo": {
+    name: "input-group-menu-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["input-group"],
+    dependencies: undefined,
+    files: [{
+      path: "src/registry/default/components/examples/input-group/input-group-menu-demo.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/examples/input-group/input-group-menu-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -1307,7 +1573,7 @@ export const Index: Record<string, any> = {
     dependencies: undefined,
     files: [{
       path: "src/registry/default/components/examples/input-otp/input-otp-demo.tsx",
-      type: "registry:component",
+      type: "registry:example",
       target: ""
     }],
     component: React.lazy(async () => {
@@ -1326,7 +1592,7 @@ export const Index: Record<string, any> = {
     dependencies: undefined,
     files: [{
       path: "src/registry/default/components/examples/input-otp/input-otp-disabled-demo.tsx",
-      type: "registry:component",
+      type: "registry:example",
       target: ""
     }],
     component: React.lazy(async () => {
@@ -1345,7 +1611,7 @@ export const Index: Record<string, any> = {
     dependencies: undefined,
     files: [{
       path: "src/registry/default/components/examples/input-otp/input-otp-sizes-demo.tsx",
-      type: "registry:component",
+      type: "registry:example",
       target: ""
     }],
     component: React.lazy(async () => {
@@ -1364,7 +1630,7 @@ export const Index: Record<string, any> = {
     dependencies: undefined,
     files: [{
       path: "src/registry/default/components/examples/input-otp/input-otp-variants-demo.tsx",
-      type: "registry:component",
+      type: "registry:example",
       target: ""
     }],
     component: React.lazy(async () => {
@@ -1383,7 +1649,7 @@ export const Index: Record<string, any> = {
     dependencies: undefined,
     files: [{
       path: "src/registry/default/components/examples/input-otp/input-otp-separator-demo.tsx",
-      type: "registry:component",
+      type: "registry:example",
       target: ""
     }],
     component: React.lazy(async () => {
@@ -1402,7 +1668,7 @@ export const Index: Record<string, any> = {
     dependencies: undefined,
     files: [{
       path: "src/registry/default/components/examples/input-otp/input-otp-patterns-demo.tsx",
-      type: "registry:component",
+      type: "registry:example",
       target: ""
     }],
     component: React.lazy(async () => {
@@ -1421,11 +1687,49 @@ export const Index: Record<string, any> = {
     dependencies: undefined,
     files: [{
       path: "src/registry/default/components/examples/input-otp/input-otp-controlled-demo.tsx",
-      type: "registry:component",
+      type: "registry:example",
       target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/default/components/examples/input-otp/input-otp-controlled-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
+  "label-demo": {
+    name: "label-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["label"],
+    dependencies: undefined,
+    files: [{
+      path: "src/registry/default/components/examples/label/label-demo.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/examples/label/label-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
+  "label-with-checkbox": {
+    name: "label-with-checkbox",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["label"],
+    dependencies: undefined,
+    files: [{
+      path: "src/registry/default/components/examples/label/label-with-checkbox.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/examples/label/label-with-checkbox.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2376,6 +2680,101 @@ export const Index: Record<string, any> = {
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/default/components/examples/switch/custom-switch-card-style-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
+  "textarea-demo": {
+    name: "textarea-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["textarea"],
+    dependencies: undefined,
+    files: [{
+      path: "src/registry/default/components/examples/textarea/textarea-demo.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/examples/textarea/textarea-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
+  "textarea-small-size-demo": {
+    name: "textarea-small-size-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["textarea"],
+    dependencies: undefined,
+    files: [{
+      path: "src/registry/default/components/examples/textarea/textarea-small-size-demo.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/examples/textarea/textarea-small-size-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
+  "textarea-large-size-demo": {
+    name: "textarea-large-size-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["textarea"],
+    dependencies: undefined,
+    files: [{
+      path: "src/registry/default/components/examples/textarea/textarea-large-size-demo.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/examples/textarea/textarea-large-size-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
+  "textarea-disabled-demo": {
+    name: "textarea-disabled-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["textarea"],
+    dependencies: undefined,
+    files: [{
+      path: "src/registry/default/components/examples/textarea/textarea-disabled-demo.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/examples/textarea/textarea-disabled-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
+  "textarea-controlled-demo": {
+    name: "textarea-controlled-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["textarea"],
+    dependencies: undefined,
+    files: [{
+      path: "src/registry/default/components/examples/textarea/textarea-controlled-demo.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/examples/textarea/textarea-controlled-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),

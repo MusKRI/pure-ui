@@ -29,14 +29,12 @@ export const PopoverControlledDemo = () => {
       </div>
 
       <Popover open={open} onOpenChange={setOpen}>
-        <PopoverTrigger asChild>
-          <Button size="sm" radius="none">
-            <span>Receive News</span>
-          </Button>
+        <PopoverTrigger render={<Button size="sm" radius="none" />}>
+          <span>Receive News</span>
         </PopoverTrigger>
         <PopoverPopup>
           <div className="flex flex-col gap-2">
-            <Input disabled={isSubmitting} label="Your Email" />
+            <Input disabled={isSubmitting} placeholder="Your Email" />
             <Button
               className="w-full"
               size="sm"

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-group-icon-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "input-group"
+  ],
+  "files": [
+    {
+      "path": "src/registry/default/components/examples/input-group/input-group-icon-demo.tsx",
+      "content": "import {\r\n  CheckIcon,\r\n  CreditCardIcon,\r\n  InfoIcon,\r\n  MailIcon,\r\n  SearchIcon,\r\n  StarIcon,\r\n} from \"lucide-react\";\r\n\r\nimport {\r\n  InputGroup,\r\n  InputGroupAddon,\r\n  InputGroupInput,\r\n} from \"@/registry/default/components/ui/input-group\";\r\n\r\nexport function InputGroupIconDemo() {\r\n  return (\r\n    <div className=\"grid w-full max-w-sm gap-6\">\r\n      <InputGroup>\r\n        <InputGroupInput placeholder=\"Search...\" />\r\n        <InputGroupAddon>\r\n          <SearchIcon />\r\n        </InputGroupAddon>\r\n      </InputGroup>\r\n\r\n      <InputGroup>\r\n        <InputGroupInput type=\"email\" placeholder=\"Enter your email\" />\r\n        <InputGroupAddon>\r\n          <MailIcon />\r\n        </InputGroupAddon>\r\n      </InputGroup>\r\n\r\n      <InputGroup>\r\n        <InputGroupInput placeholder=\"Card number\" />\r\n        <InputGroupAddon>\r\n          <CreditCardIcon />\r\n        </InputGroupAddon>\r\n        <InputGroupAddon align=\"inline-end\">\r\n          <CheckIcon />\r\n        </InputGroupAddon>\r\n      </InputGroup>\r\n\r\n      <InputGroup>\r\n        <InputGroupInput placeholder=\"Card number\" />\r\n        <InputGroupAddon align=\"inline-end\">\r\n          <StarIcon />\r\n          <InfoIcon />\r\n        </InputGroupAddon>\r\n      </InputGroup>\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

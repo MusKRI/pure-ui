@@ -11,10 +11,8 @@ import { Switch } from "@/registry/default/components/ui/switch";
 export const PopoverWithArrowDemo = () => {
   return (
     <Popover>
-      <PopoverTrigger asChild>
-        <Button variant="ghost" size="sm">
-          <MoreHorizontal />
-        </Button>
+      <PopoverTrigger render={<Button variant="ghost" size="sm" />}>
+        <MoreHorizontal />
       </PopoverTrigger>
       <PopoverPopup
         showArrow

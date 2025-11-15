@@ -53,15 +53,17 @@ import { Button } from "@/registry/default/components/ui/button";
 export const DropdownMenuBasicDemo = () => {
   return (
     <Menu backdrop="blur">
-      <MenuTrigger asChild>
-        <Button
-          variant="ghost"
-          className="flex items-center gap-2 active:scale-100"
-          size="sm"
-        >
-          <SettingsIcon size={16} />
-          <span className="text-sm">Account settings</span>
-        </Button>
+      <MenuTrigger
+        render={
+          <Button
+            variant="ghost"
+            className="flex items-center gap-2 active:scale-100"
+            size="sm"
+          />
+        }
+      >
+        <SettingsIcon size={16} />
+        <span className="text-sm">Account settings</span>
       </MenuTrigger>
       <MenuPopup className="w-64">
         <MenuItem className="cursor-pointer">
@@ -86,10 +88,8 @@ export const DropdownMenuBasicDemo = () => {
           </MenuSubTrigger>
           <MenuSubPopup>
             <MenuItem className="cursor-pointer">
-              <div className="flex items-center gap-3 w-full">
-                <ListChecks size={16} color="#7b7a80" />
-                <span className="flex-1">List</span>
-              </div>
+              <ListChecks size={16} color="#7b7a80" />
+              <span className="flex-1">List</span>
             </MenuItem>
             <MenuSeparator />
             <MenuItem className="cursor-pointer">
@@ -273,10 +273,10 @@ export const DropdownMenuBasicDemo = () => {
         </MenuItem>
         <MenuItem className="cursor-pointer">
           <div className="flex items-start gap-3 w-full">
-            <EyeOff size={16} color="#7b7a80" className="shrink-0 h-[1lh]" />
+            <EyeOff size={16} color="#7b7a80" className="shrink-0 h-lh" />
             <div className="flex flex-col">
               <span className="flex-1">Hide Space</span>
-              <p className="text-[12px] font-light text-(--muted-foreground)">
+              <p className="text-[12px] font-light text-muted-foreground">
                 Yo'll retain access to this Space, but it won't show in your
                 sidebar
               </p>
@@ -296,7 +296,7 @@ export const DropdownMenuBasicDemo = () => {
             <span className="flex-1">Archive</span>
           </div>
         </MenuItem>
-        <MenuItem className="cursor-pointer text-red-500 data-[highlighted]:text-red-500 data-[highlighted]:before:!bg-red-500/20 data-[highlighted]:before:border-red-500/10">
+        <MenuItem className="cursor-pointer text-red-500 data-highlighted:text-red-500 data-highlighted:before:bg-red-500/20! data-highlighted:before:border-red-500/10">
           <div className="flex items-center gap-3 w-full">
             <Trash2 size={16} />
             <span className="flex-1">Delete</span>

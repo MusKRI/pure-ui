@@ -31,7 +31,7 @@ export const ContentInfoHeader = ({ content, relativePath }: Props) => {
         </div>
 
         {/* Features Section */}
-        {features.length > 0 && (
+        {/* {features.length > 0 && (
           <div className="relative">
             <ul className="flex flex-col gap-3 md:gap-4">
               {features.map((feature: string, index: number) => (
@@ -53,7 +53,7 @@ export const ContentInfoHeader = ({ content, relativePath }: Props) => {
               ))}
             </ul>
           </div>
-        )}
+        )} */}
 
         <div className="flex flex-col justify-between gap-0 border-t border-dashed border-border py-6">
           <CopyMarkdown relativePath={relativePath} />

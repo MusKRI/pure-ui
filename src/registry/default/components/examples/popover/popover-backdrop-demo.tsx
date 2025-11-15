@@ -16,12 +16,12 @@ export const PopoverBackdropDemo = () => {
       {backdrops.map((backdrop) => {
         return (
           <Popover key={backdrop} backdrop={backdrop}>
-            <PopoverTrigger asChild>
-              <Button size="sm" radius="none" variant="outline">
-                <span className="text-secondary-foreground text-sm capitalize">
-                  {backdrop.replace("-", " ")}
-                </span>
-              </Button>
+            <PopoverTrigger
+              render={<Button size="sm" radius="none" variant="outline" />}
+            >
+              <span className="text-secondary-foreground text-sm capitalize">
+                {backdrop.replace("-", " ")}
+              </span>
             </PopoverTrigger>
             <PopoverPopup
               showArrow

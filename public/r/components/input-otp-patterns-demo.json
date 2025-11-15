@@ -9,7 +9,7 @@
     {
       "path": "src/registry/default/components/examples/input-otp/input-otp-patterns-demo.tsx",
       "content": "import {\r\n  InputOTP,\r\n  InputOTPGroup,\r\n  InputOTPSlot,\r\n} from \"@/registry/default/components/ui/input-otp\";\r\n\r\nexport const InputOTPPatternDemo = () => {\r\n  const patternConfig = [\r\n    {\r\n      name: \"Only lowercase letters (a-z):\",\r\n      value: \"^[a-z]*$\",\r\n    },\r\n    {\r\n      name: \"Only uppercase letters (A-Z):\",\r\n      value: \"^[A-Z]*$\",\r\n    },\r\n    {\r\n      name: \"Numbers only (0-9):\",\r\n      value: \"^[0-9]*$\",\r\n    },\r\n    {\r\n      name: \"Letters only (a-z, A-Z):\",\r\n      value: \"^[a-zA-Z]*$\",\r\n    },\r\n  ];\r\n\r\n  return (\r\n    <div className=\"flex flex-col gap-4\">\r\n      {patternConfig.map((config) => (\r\n        <div className=\"flex flex-col gap-1\" key={config.name}>\r\n          <InputOTP maxLength={6} pattern={config.value}>\r\n            <InputOTPGroup>\r\n              <InputOTPSlot index={0} />\r\n              <InputOTPSlot index={1} />\r\n              <InputOTPSlot index={2} />\r\n              <InputOTPSlot index={3} />\r\n              <InputOTPSlot index={4} />\r\n              <InputOTPSlot index={5} />\r\n            </InputOTPGroup>\r\n          </InputOTP>\r\n          <p className=\"text-sm text-muted-foreground\">{config.name}</p>\r\n        </div>\r\n      ))}\r\n    </div>\r\n  );\r\n};\r\n",
-      "type": "registry:component"
+      "type": "registry:example"
     }
   ]
 }

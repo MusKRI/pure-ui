@@ -13,11 +13,9 @@ import { Button } from "@/registry/default/components/ui/button";
 export const DialogLeftSlideDemo = () => {
   return (
     <Dialog>
-      <DialogTrigger asChild>
-        <Button>Open</Button>
-      </DialogTrigger>
+      <DialogTrigger render={<Button />}>Open</DialogTrigger>
 
-      <DialogPopup animationPreset="left-slide">
+      <DialogPopup animationPreset="leftSlide">
         <DialogHeader>
           <DialogTitle>Terms of Service</DialogTitle>
           <DialogDescription>

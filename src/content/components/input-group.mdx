@@ -1,0 +1,129 @@
+---
+title: Input Group
+description: Display additional information or actions to an input or textarea.
+---
+
+<ComponentShowcase name="input-group-demo" />
+
+## Installation
+
+<Tabs defaultValue="terminal">
+  <TabsList>
+    <TabsTrigger value="terminal">
+      <Terminal className="w-4 h-4" />
+      Terminal
+    </TabsTrigger>
+    <TabsTrigger value="manual">
+      <Code2 className="w-4 h-4" />
+      Manual
+    </TabsTrigger>
+  </TabsList>
+  <TabsContent value="terminal">
+    <InstallationCommands
+      type="registry-installation"
+      registryPath="components/input-group"
+    />
+  </TabsContent>
+  <TabsContent value="manual">
+    <Steps>
+      <Step>Install dependencies</Step>
+
+      <InstallationCommands
+        type="package-installation"
+        npmCommand="npm install clsx tailwind-merge @base-ui-components/react"
+        pnpmCommand="pnpm add clsx tailwind-merge @base-ui-components/react"
+        yarnCommand="yarn add clsx tailwind-merge @base-ui-components/react"
+        bunCommand="bun add clsx tailwind-merge @base-ui-components/react"
+      />
+
+      <Step>Add cn function to your utils</Step>
+
+      ```ts filename="lib/classes.ts"
+      import { clsx, type ClassValue } from "clsx";
+      import { twMerge } from "tailwind-merge";
+
+      export function cn(...inputs: ClassValue[]) {
+        return twMerge(clsx(inputs));
+      }
+      ```
+
+      <Step>Copy and paste the following code into your project</Step>
+
+      <ComponentCodePreview name="input-group" />
+    </Steps>
+
+  </TabsContent>
+</Tabs>
+
+## Usage
+
+```tsx
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
+  InputGroupText,
+  InputGroupTextarea,
+} from "@/components/ui/input-group";
+```
+
+```tsx
+<InputGroup>
+  <InputGroupInput placeholder="Search..." />
+  <InputGroupAddon>
+    <SearchIcon />
+  </InputGroupAddon>
+  <InputGroupAddon align="inline-end">
+    <InputGroupButton>Search</InputGroupButton>
+  </InputGroupAddon>
+</InputGroup>
+```
+
+## Examples
+
+### Icon
+
+<ComponentShowcase name="input-group-icon-demo" />
+
+### Text
+
+Display additional text information alongside inputs.
+
+<ComponentShowcase name="input-group-text-demo" />
+
+### Button
+
+Add buttons to perform actions within the input group.
+
+<ComponentShowcase name="input-group-button-demo" />
+
+### Tooltip
+
+Add tooltips to provide additional context or help.
+
+<ComponentShowcase name="input-group-tooltip-demo" />
+
+### Textarea
+
+Input groups also work with textarea components. Use `block-start` or `block-end` for alignment.
+
+<ComponentShowcase name="input-group-textarea-demo" />
+
+### Spinner
+
+Show loading indicators while processing input.
+
+<ComponentShowcase name="input-group-spinner-demo" />
+
+### Label
+
+Add labels within input groups to improve accessibility.
+
+<ComponentShowcase name="input-group-label-demo" />
+
+### Menu / Dropdown
+
+Pair input groups with menu / dropdown menus for complex interactions.
+
+<ComponentShowcase name="input-group-menu-demo" />

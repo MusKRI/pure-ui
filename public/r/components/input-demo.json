@@ -8,7 +8,7 @@
   "files": [
     {
       "path": "src/registry/default/components/examples/input/input-demo.tsx",
-      "content": "import { Input } from \"@/registry/default/components/ui/input\";\r\n\r\nexport const InputDemo = () => {\r\n  return (\r\n    <div className=\"flex w-full items-center justify-center flex-wrap md:flex-nowrap gap-4\">\r\n      <Input label=\"Email\" type=\"email\" />\r\n      <Input label=\"Email\" placeholder=\"Enter your email\" type=\"email\" />\r\n    </div>\r\n  );\r\n};\r\n",
+      "content": "import { Input } from \"@/registry/default/components/ui/input\";\r\n\r\nexport default function InputDemo() {\r\n  return (\r\n    <Input\r\n      type=\"text\"\r\n      placeholder=\"Enter text\"\r\n      aria-label=\"Enter text\"\r\n      className=\"w-full max-w-sm\"\r\n    />\r\n  );\r\n}\r\n",
       "type": "registry:example"
     }
   ]

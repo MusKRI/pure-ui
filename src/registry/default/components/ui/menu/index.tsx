@@ -1,656 +1,156 @@
 "use client";
 
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, useContext, useMemo } from "react";
 import { Menu as MenuPrimitive } from "@base-ui-components/react/menu";
-import { AnimatePresence, LayoutGroup, motion } from "motion/react";
 import { CheckIcon, ChevronRightIcon, CircleIcon } from "lucide-react";
 
 import { cn } from "@/lib/classes";
 
-const animationPresets = {
-  none: {
-    initial: {},
-    animate: {},
-    exit: {},
-  },
-  scale: {
-    initial: {
-      opacity: 0,
-      transform: "scale(0.8)",
-    },
-    animate: {
-      opacity: 1,
-      transform: "scale(1)",
-    },
-    exit: {
-      opacity: 0,
-      transform: "scale(0.8)",
-    },
-  },
-  wipe: {},
-  wipeScale: {},
-  motion: {},
-  motionBlur: {},
-  slideOutside: {},
-  slideInside: {},
+const cssAnimationPresets = {
+  none: "transition-none",
+  scale: [
+    `[transition-property:scale,opacity] [will-change:scale,opacity]`,
+    `data-starting-style:scale-80 data-starting-style:opacity-0 data-ending-style:opacity-0 data-ending-style:scale-80`,
+  ],
+  fade: [
+    `[transition-property:opacity] [will-change:opacity]`,
+    `data-starting-style:opacity-0 data-ending-style:opacity-0`,
+  ],
+  slideOutside: [
+    `[transition-property:translate,opacity] [will-change:translate,opacity]`,
+    // side=bottom
+    `data-[side=bottom]:data-starting-style:opacity-0 data-[side=bottom]:data-starting-style:translate-y-[10px] data-[side=bottom]:data-ending-style:translate-y-[10px] data-[side=bottom]:data-ending-style:opacity-0`,
+    // side=top
+    `data-[side=top]:data-starting-style:opacity-0 data-[side=top]:data-starting-style:translate-y-[-10px] data-[side=top]:data-ending-style:translate-y-[-10px] data-[side=top]:data-ending-style:opacity-0`,
+    // side=left
+    `data-[side=left]:data-starting-style:opacity-0 data-[side=left]:data-starting-style:translate-x-[-10px] data-[side=left]:data-ending-style:translate-x-[-10px] data-[side=left]:data-ending-style:opacity-0`,
+    // side=right
+    `data-[side=right]:data-starting-style:opacity-0 data-[side=right]:data-starting-style:translate-x-[10px] data-[side=right]:data-ending-style:translate-x-[10px] data-[side=right]:data-ending-style:opacity-0`,
+    // side=inline-start
+    `data-[side=inline-start]:data-starting-style:opacity-0 data-[side=inline-start]:data-starting-style:translate-x-[-10px] data-[side=inline-start]:data-ending-style:translate-x-[-10px] data-[side=inline-start]:data-ending-style:opacity-0`,
+    // side=inline-end
+    `data-[side=inline-end]:data-starting-style:opacity-0 data-[side=inline-end]:data-starting-style:translate-x-[10px] data-[side=inline-end]:data-ending-style:translate-x-[10px] data-[side=inline-end]:data-ending-style:opacity-0`,
+  ],
+  slideInside: [
+    `[transition-property:translate,opacity] [will-change:translate,opacity]`,
+    // side=bottom
+    `data-[side=bottom]:data-starting-style:opacity-0 data-[side=bottom]:data-starting-style:translate-y-[-10px] data-[side=bottom]:data-ending-style:translate-y-[-10px] data-[side=bottom]:data-ending-style:opacity-0`,
+    // side=top
+    `data-[side=top]:data-starting-style:opacity-0 data-[side=top]:data-starting-style:translate-y-[10px] data-[side=top]:data-ending-style:translate-y-[10px] data-[side=top]:data-ending-style:opacity-0`,
+    // side=left
+    `data-[side=left]:data-starting-style:opacity-0 data-[side=left]:data-starting-style:translate-x-[10px] data-[side=left]:data-ending-style:translate-x-[10px] data-[side=left]:data-ending-style:opacity-0`,
+    // side=right
+    `data-[side=right]:data-starting-style:opacity-0 data-[side=right]:data-starting-style:translate-x-[-10px] data-[side=right]:data-ending-style:translate-x-[-10px] data-[side=right]:data-ending-style:opacity-0`,
+    // side=inline-start
+    `data-[side=inline-start]:data-starting-style:opacity-0 data-[side=inline-start]:data-starting-style:translate-x-[10px] data-[side=inline-start]:data-ending-style:translate-x-[10px] data-[side=inline-start]:data-ending-style:opacity-0`,
+    // side=inline-end
+    `data-[side=inline-end]:data-starting-style:opacity-0 data-[side=inline-end]:data-starting-style:translate-x-[-10px] data-[side=inline-end]:data-ending-style:translate-x-[-10px] data-[side=inline-end]:data-ending-style:opacity-0`,
+  ],
+  wipe: [
+    `[transition-property:clip-path] [will-change:clip-path]`,
+    `[clip-path:inset(0_0_0_0_round_12px)] [-webkit-clip-path:inset(0_0_0_0_round_12px)]`,
+    // side=bottom
+    `data-[side=bottom]:data-starting-style:[clip-path:inset(0_0_100%_0_round_12px)] data-[side=bottom]:data-ending-style:[clip-path:inset(0_0_100%_0_round_12px)]`,
+    // side=top
+    `data-[side=top]:data-starting-style:[clip-path:inset(100%_0_0_0_round_12px)] data-[side=top]:data-ending-style:[clip-path:inset(100%_0_0_0_round_12px)]`,
+    // side=left
+    `data-[side=left]:data-starting-style:[clip-path:inset(0_0_0_100%_round_12px)] data-[side=left]:data-ending-style:[clip-path:inset(0_0_0_100%_round_12px)]`,
+    // side=right
+    `data-[side=right]:data-starting-style:[clip-path:inset(0_100%_0_0_round_12px)] data-[side=right]:data-ending-style:[clip-path:inset(0_100%_0_0_round_12px)]`,
+    // side=inline-start
+    `data-[side=inline-start]:data-starting-style:[clip-path:inset(0_0_0_100%_round_12px)] data-[side=inline-start]:data-ending-style:[clip-path:inset(0_0_0_100%_round_12px)]`,
+    // side=inline-end
+    `data-[side=inline-end]:data-starting-style:[clip-path:inset(0_100%_0_0_round_12px)] data-[side=inline-end]:data-ending-style:[clip-path:inset(0_100%_0_0_round_12px)]`,
+  ],
+  wipeScale: [
+    `[transition-property:clip-path,scale] [will-change:clip-path,scale]`,
+    `[clip-path:inset(0_0_0_0_round_12px)] [-webkit-clip-path:inset(0_0_0_0_round_12px)]`,
+    `data-starting-style:scale-80 data-ending-style:scale-80`,
+    // side=bottom
+    `data-[side=bottom]:data-starting-style:[clip-path:inset(0_0_100%_0_round_12px)] data-[side=bottom]:data-ending-style:[clip-path:inset(0_0_100%_0_round_12px)]`,
+    // side=top
+    `data-[side=top]:data-starting-style:[clip-path:inset(100%_0_0_0_round_12px)] data-[side=top]:data-ending-style:[clip-path:inset(100%_0_0_0_round_12px)]`,
+    // side=left
+    `data-[side=left]:data-starting-style:[clip-path:inset(0_0_0_100%_round_12px)] data-[side=left]:data-ending-style:[clip-path:inset(0_0_0_100%_round_12px)]`,
+    // side=right
+    `data-[side=right]:data-starting-style:[clip-path:inset(0_100%_0_0_round_12px)] data-[side=right]:data-ending-style:[clip-path:inset(0_100%_0_0_round_12px)]`,
+    // side=inline-start
+    `data-[side=inline-start]:data-starting-style:[clip-path:inset(0_0_0_100%_round_12px)] data-[side=inline-start]:data-ending-style:[clip-path:inset(0_0_0_100%_round_12px)]`,
+    // side=inline-end
+    `data-[side=inline-end]:data-starting-style:[clip-path:inset(0_100%_0_0_round_12px)] data-[side=inline-end]:data-ending-style:[clip-path:inset(0_100%_0_0_round_12px)]`,
+  ],
+  motion: [
+    `[transition-property:translate,scale,opacity,rotateX,rotateY,transform] [will-change:translate,scale,opacity,rotateX,rotateY,transform]`,
+    `[transform:perspective(1000px)]`,
+    // side=bottom
+    `data-[side=bottom]:data-starting-style:translate-y-[7px] data-[side=bottom]:data-starting-style:opacity-0 data-[side=bottom]:data-starting-style:scale-[0.26] data-[side=bottom]:data-starting-style:rotate-x-[70deg] data-[side=bottom]:data-ending-style:translate-y-[7px] data-[side=bottom]:data-ending-style:opacity-0 data-[side=bottom]:data-ending-style:scale-[0.26] data-[side=bottom]:data-ending-style:rotate-x-[70deg]`,
+    // side=top
+    `data-[side=top]:data-starting-style:translate-y-[7px] data-[side=top]:data-starting-style:opacity-0 data-[side=top]:data-starting-style:scale-[0.26] data-[side=top]:data-starting-style:rotate-x-[70deg] data-[side=top]:data-ending-style:translate-y-[7px] data-[side=top]:data-ending-style:opacity-0 data-[side=top]:data-ending-style:scale-[0.26] data-[side=top]:data-ending-style:rotate-x-[70deg]`,
+    // side=left
+    `data-[side=left]:data-starting-style:translate-x-[-7px] data-[side=left]:data-starting-style:opacity-0 data-[side=left]:data-starting-style:scale-[0.26] data-[side=left]:data-starting-style:rotate-y-[-40deg] data-[side=left]:data-ending-style:translate-x-[-7px] data-[side=left]:data-ending-style:opacity-0 data-[side=left]:data-ending-style:scale-[0.26] data-[side=left]:data-ending-style:rotate-y-[-40deg]`,
+    // side=right
+    `data-[side=right]:data-starting-style:translate-x-[7px] data-[side=right]:data-starting-style:opacity-0 data-[side=right]:data-starting-style:scale-[0.26] data-[side=right]:data-starting-style:rotate-y-[40deg] data-[side=right]:data-ending-style:translate-x-[7px] data-[side=right]:data-ending-style:opacity-0 data-[side=right]:data-ending-style:scale-[0.26] data-[side=right]:data-ending-style:rotate-y-[40deg]`,
+    // side=inline-start
+    `data-[side=inline-start]:data-starting-style:translate-x-[-7px] data-[side=inline-start]:data-starting-style:opacity-0 data-[side=inline-start]:data-starting-style:scale-[0.26] data-[side=inline-start]:data-starting-style:rotate-y-[-40deg] data-[side=inline-start]:data-ending-style:translate-x-[-7px] data-[side=inline-start]:data-ending-style:opacity-0 data-[side=inline-start]:data-ending-style:scale-[0.26] data-[side=inline-start]:data-ending-style:rotate-y-[-40deg]`,
+    // side=inline-end
+    `data-[side=inline-end]:data-starting-style:translate-x-[7px] data-[side=inline-end]:data-starting-style:opacity-0 data-[side=inline-end]:data-starting-style:scale-[0.26] data-[side=inline-end]:data-starting-style:rotate-y-[40deg] data-[side=inline-end]:data-ending-style:translate-x-[7px] data-[side=inline-end]:data-ending-style:opacity-0 data-[side=inline-end]:data-ending-style:scale-[0.26] data-[side=inline-end]:data-ending-style:rotate-y-[40deg]`,
+  ],
+  motionBlur: [
+    `[transition-property:translate,scale,opacity,rotateX,rotateY,transform,filter] [will-change:translate,scale,opacity,rotateX,rotateY,transform,filter]`,
+    `[transform:perspective(1000px)]`,
+    `data-starting-style:blur-[9px] data-ending-style:blur-[9px]`,
+    // side=bottom
+    `data-[side=bottom]:data-starting-style:translate-y-[7px] data-[side=bottom]:data-starting-style:opacity-0 data-[side=bottom]:data-starting-style:scale-[0.26] data-[side=bottom]:data-starting-style:rotate-x-[70deg] data-[side=bottom]:data-ending-style:translate-y-[7px] data-[side=bottom]:data-ending-style:opacity-0 data-[side=bottom]:data-ending-style:scale-[0.26] data-[side=bottom]:data-ending-style:rotate-x-[70deg]`,
+    // side=top
+    `data-[side=top]:data-starting-style:translate-y-[7px] data-[side=top]:data-starting-style:opacity-0 data-[side=top]:data-starting-style:scale-[0.26] data-[side=top]:data-starting-style:rotate-x-[70deg] data-[side=top]:data-ending-style:translate-y-[7px] data-[side=top]:data-ending-style:opacity-0 data-[side=top]:data-ending-style:scale-[0.26] data-[side=top]:data-ending-style:rotate-x-[70deg]`,
+    // side=left
+    `data-[side=left]:data-starting-style:translate-x-[-7px] data-[side=left]:data-starting-style:opacity-0 data-[side=left]:data-starting-style:scale-[0.26] data-[side=left]:data-starting-style:rotate-y-[-40deg] data-[side=left]:data-ending-style:translate-x-[-7px] data-[side=left]:data-ending-style:opacity-0 data-[side=left]:data-ending-style:scale-[0.26] data-[side=left]:data-ending-style:rotate-y-[-40deg]`,
+    // side=right
+    `data-[side=right]:data-starting-style:translate-x-[7px] data-[side=right]:data-starting-style:opacity-0 data-[side=right]:data-starting-style:scale-[0.26] data-[side=right]:data-starting-style:rotate-y-[40deg] data-[side=right]:data-ending-style:translate-x-[7px] data-[side=right]:data-ending-style:opacity-0 data-[side=right]:data-ending-style:scale-[0.26] data-[side=right]:data-ending-style:rotate-y-[40deg]`,
+    // side=inline-start
+    `data-[side=inline-start]:data-starting-style:translate-x-[-7px] data-[side=inline-start]:data-starting-style:opacity-0 data-[side=inline-start]:data-starting-style:scale-[0.26] data-[side=inline-start]:data-starting-style:rotate-y-[-40deg] data-[side=inline-start]:data-ending-style:translate-x-[-7px] data-[side=inline-start]:data-ending-style:opacity-0 data-[side=inline-start]:data-ending-style:scale-[0.26] data-[side=inline-start]:data-ending-style:rotate-y-[-40deg]`,
+    // side=inline-end
+    `data-[side=inline-end]:data-starting-style:translate-x-[7px] data-[side=inline-end]:data-starting-style:opacity-0 data-[side=inline-end]:data-starting-style:scale-[0.26] data-[side=inline-end]:data-starting-style:rotate-y-[40deg] data-[side=inline-end]:data-ending-style:translate-x-[7px] data-[side=inline-end]:data-ending-style:opacity-0 data-[side=inline-end]:data-ending-style:scale-[0.26] data-[side=inline-end]:data-ending-style:rotate-y-[40deg]`,
+  ],
 };
 
-function getWipeAnimation(side: PopupSide) {
-  const wipeConfigs = {
-    top: {
-      initial: {
-        clipPath: "inset(100% 0 0 0 round 12px)",
-      },
-      animate: {
-        clipPath: "inset(0 0 0 0 round 12px)",
-      },
-      exit: {
-        clipPath: "inset(100% 0 0 0 round 12px)",
-      },
-    },
-    right: {
-      initial: {
-        clipPath: "inset(0 100% 0 0 round 12px)",
-      },
-      animate: {
-        clipPath: "inset(0 0 0 0 round 12px)",
-      },
-      exit: {
-        clipPath: "inset(0 100% 0 0 round 12px)",
-      },
-    },
-    bottom: {
-      initial: {
-        clipPath: "inset(0 0 100% 0 round 12px)",
-      },
-      animate: {
-        clipPath: "inset(0 0 0 0 round 12px)",
-      },
-      exit: {
-        clipPath: "inset(0 0 100% 0 round 12px)",
-      },
-    },
-    left: {
-      initial: {
-        clipPath: "inset(0 0 0 100% round 12px)",
-      },
-      animate: {
-        clipPath: "inset(0 0 0 0 round 12px)",
-      },
-      exit: {
-        clipPath: "inset(0 0 0 100% round 12px)",
-      },
-    },
-    "inline-start": {
-      initial: {
-        clipPath: "inset(0 0 0 100% round 12px)",
-      },
-      animate: {
-        clipPath: "inset(0 0 0 0 round 12px)",
-      },
-      exit: {
-        clipPath: "inset(0 0 0 100% round 12px)",
-      },
-    },
-    "inline-end": {
-      initial: {
-        clipPath: "inset(0 100% 0 0 round 12px)",
-      },
-      animate: {
-        clipPath: "inset(0 0 0 0 round 12px)",
-      },
-      exit: {
-        clipPath: "inset(0 100% 0 0 round 12px)",
-      },
-    },
-  };
+const cssTransitionPresets = {
+  inExpo: `duration-[0.35s] ease-[cubic-bezier(0.95,0.05,0.795,0.035)]`,
+  outExpo: `duration-[0.35s] ease-[cubic-bezier(0.19,1,0.22,1)]`,
+  inOutExpo: `duration-[0.35s] ease-[cubic-bezier(1,0,0,1)]`,
+  anticipate: `duration-[0.35s] ease-[cubic-bezier(1,-0.4,0.35,0.95)]`,
+  quickOut: `duration-[0.35s] ease-out`,
+  overshootOut: `duration-[0.35s] ease-[cubic-bezier(0.175,0.885,0.32,1.275)]`,
+  swiftOut: `duration-[0.35s] ease-[cubic-bezier(0.175,0.885,0.32,1.1)]`,
+  snappyOut: `duration-[0.35s] ease-[cubic-bezier(0.19,1,0.22,1)]`,
+  in: `duration-[0.35s] ease-[cubic-bezier(0.42,0,1,1)]`,
+  out: `duration-[0.35s] ease-[cubic-bezier(0,0,0.58,1)]`,
+  inOut: `duration-[0.25s] ease-[cubic-bezier(0.42,0,0.58,1)]`,
+  outIn: `duration-[0.35s] ease-[cubic-bezier(0.1,0.7,0.9,0.5)]`,
+  inQuad: `duration-[0.35s] ease-[cubic-bezier(0.55,0.085,0.68,0.53)]`,
+  outQuad: `duration-[0.25s] ease-[cubic-bezier(0.25,0.46,0.45,0.94)]`,
+  inOutQuad: `duration-[0.32s] ease-[cubic-bezier(0.455,0.03,0.515,0.955)]`,
+  inCubic: `duration-[0.35s] ease-[cubic-bezier(0.55,0.055,0.675,0.19)]`,
+  outCubic: `duration-[0.35s] ease-[cubic-bezier(0.215,0.61,0.355,1)]`,
+  inOutCubic: `duration-[0.35s] ease-[cubic-bezier(0.645,0.045,0.355,1)]`,
+  inQuart: `duration-[0.35s] ease-[cubic-bezier(0.895,0.03,0.685,0.22)]`,
+  outQuart: `duration-[0.35s] ease-[cubic-bezier(0.165,0.84,0.44,1)]`,
+  inOutQuart: `duration-[0.35s] ease-[cubic-bezier(0.77,0,0.175,1)]`,
+  inQuint: `duration-[0.35s] ease-[cubic-bezier(0.755,0.05,0.855,0.06)]`,
+  outQuint: `duration-[0.35s] ease-[cubic-bezier(0.23,1,0.32,1)]`,
+  inOutQuint: `duration-[0.35s] ease-[cubic-bezier(0.86,0,0.07,1)]`,
+  inCirc: `duration-[0.35s] ease-[cubic-bezier(0.6,0.04,0.98,0.335)]`,
+  outCirc: `duration-[0.35s] ease-[cubic-bezier(0.075,0.82,0.165,1)]`,
+  inOutCirc: `duration-[0.35s] ease-[cubic-bezier(0.785,0.135,0.15,0.86)]`,
+  inOutBase: `duration-[0.35s] ease-[cubic-bezier(0.25,0.1,0.25,1)]`,
+};
 
-  if (side) {
-    return wipeConfigs[side];
-  }
-
-  return wipeConfigs.bottom;
-}
-
-function getWipeScaleAnimation(side: PopupSide) {
-  const wipeConfigs = {
-    top: {
-      initial: {
-        clipPath: "inset(100% 0 0 0 round 12px)",
-        scale: 0.8,
-      },
-      animate: {
-        clipPath: "inset(0 0 0 0 round 12px)",
-        scale: 1,
-      },
-      exit: {
-        clipPath: "inset(100% 0 0 0 round 12px)",
-        scale: 0.8,
-      },
-    },
-    right: {
-      initial: {
-        clipPath: "inset(0 100% 0 0 round 12px)",
-        scale: 0.8,
-      },
-      animate: {
-        clipPath: "inset(0 0 0 0 round 12px)",
-        scale: 1,
-      },
-      exit: {
-        clipPath: "inset(0 100% 0 0 round 12px)",
-        scale: 0.8,
-      },
-    },
-    bottom: {
-      initial: {
-        clipPath: "inset(0 0 100% 0 round 12px)",
-        scale: 0.8,
-      },
-      animate: {
-        clipPath: "inset(0 0 0 0 round 12px)",
-        scale: 1,
-      },
-      exit: {
-        clipPath: "inset(0 0 100% 0 round 12px)",
-        scale: 0.8,
-      },
-    },
-    left: {
-      initial: {
-        clipPath: "inset(0 0 0 100% round 12px)",
-        scale: 0.8,
-      },
-      animate: {
-        clipPath: "inset(0 0 0 0 round 12px)",
-        scale: 1,
-      },
-      exit: {
-        clipPath: "inset(0 0 0 100% round 12px)",
-        scale: 0.8,
-      },
-    },
-    "inline-start": {
-      initial: {
-        clipPath: "inset(0 0 0 100% round 12px)",
-        scale: 0.8,
-      },
-      animate: {
-        clipPath: "inset(0 0 0 0 round 12px)",
-        scale: 1,
-      },
-      exit: {
-        clipPath: "inset(0 0 0 100% round 12px)",
-        scale: 0.8,
-      },
-    },
-    "inline-end": {
-      initial: {
-        clipPath: "inset(0 100% 0 0 round 12px)",
-        scale: 0.8,
-      },
-      animate: {
-        clipPath: "inset(0 0 0 0 round 12px)",
-        scale: 1,
-      },
-      exit: {
-        clipPath: "inset(0 100% 0 0 round 12px)",
-        scale: 0.8,
-      },
-    },
-  };
-
-  if (side) {
-    return wipeConfigs[side];
-  }
-
-  return wipeConfigs.bottom;
-}
-
-function getMotionAnimation(side: PopupSide) {
-  const motionConfigs = {
-    top: {
-      initial: {
-        opacity: 0,
-        transform: `perspective(1000px) rotateX(70deg) scale(0.56) translateY(7px)`,
-      },
-      animate: {
-        opacity: 1,
-        transform: `perspective(1000px) rotateX(0deg) scale(1) translateY(0px)`,
-      },
-      exit: {
-        opacity: 0,
-        transform: `perspective(1000px) rotateX(70deg) scale(0.56) translateY(7px)`,
-      },
-    },
-    right: {
-      initial: {
-        opacity: 0,
-        transform: `perspective(1000px) rotateY(40deg) scale(0.56) translateX(7px)`,
-      },
-      animate: {
-        opacity: 1,
-        transform: `perspective(1000px) rotateY(0deg) scale(1) translateX(0px)`,
-      },
-      exit: {
-        opacity: 0,
-        transform: `perspective(1000px) rotateY(40deg) scale(0.56) translateX(7px)`,
-      },
-    },
-    bottom: {
-      initial: {
-        opacity: 0,
-        transform: `perspective(1000px) rotateX(-40deg) scale(0.56) translateY(-7px)`,
-      },
-      animate: {
-        opacity: 1,
-        transform: `perspective(1000px) rotateX(0deg) scale(1) translateY(0px)`,
-      },
-      exit: {
-        opacity: 0,
-        transform: `perspective(1000px) rotateX(-40deg) scale(0.56) translateY(-7px)`,
-      },
-    },
-    left: {
-      initial: {
-        opacity: 0,
-        transform: `perspective(1000px) rotateY(-40deg) scale(0.56) translateX(-7px)`,
-      },
-      animate: {
-        opacity: 1,
-        transform: `perspective(1000px) rotateY(0deg) scale(1) translateX(0px)`,
-      },
-      exit: {
-        opacity: 0,
-        transform: `perspective(1000px) rotateY(-40deg) scale(0.56) translateX(-7px)`,
-      },
-    },
-    "inline-end": {
-      initial: {
-        opacity: 0,
-        transform: `perspective(1000px) rotateY(40deg) scale(0.56) translateX(7px)`,
-      },
-      animate: {
-        opacity: 1,
-        transform: `perspective(1000px) rotateY(0deg) scale(1) translateX(0px)`,
-      },
-      exit: {
-        opacity: 0,
-        transform: `perspective(1000px) rotateY(40deg) scale(0.56) translateX(7px)`,
-      },
-    },
-    "inline-start": {
-      initial: {
-        opacity: 0,
-        transform: `perspective(1000px) rotateY(-40deg) scale(0.56) translateX(-7px)`,
-      },
-      animate: {
-        opacity: 1,
-        transform: `perspective(1000px) rotateY(0deg) scale(1) translateX(0px)`,
-      },
-      exit: {
-        opacity: 0,
-        transform: `perspective(1000px) rotateY(-40deg) scale(0.56) translateX(-7px)`,
-      },
-    },
-  };
-
-  if (side) {
-    return motionConfigs[side];
-  }
-
-  return motionConfigs.bottom;
-}
-
-function getMotionBlurAnimation(side: PopupSide) {
-  const motionBlurConfigs = {
-    top: {
-      initial: {
-        opacity: 0,
-        filter: "blur(9px)",
-        transform: `perspective(1000px) rotateX(70deg) scale(0.56) translateY(7px)`,
-      },
-      animate: {
-        opacity: 1,
-        filter: "blur(0px)",
-        transform: `perspective(1000px) rotateX(0deg) scale(1) translateY(0px)`,
-      },
-      exit: {
-        opacity: 0,
-        filter: "blur(9px)",
-        transform: `perspective(1000px) rotateX(70deg) scale(0.56) translateY(7px)`,
-      },
-    },
-    right: {
-      initial: {
-        opacity: 0,
-        filter: "blur(9px)",
-        transform: `perspective(1000px) rotateY(40deg) scale(0.56) translateX(7px)`,
-      },
-      animate: {
-        opacity: 1,
-        filter: "blur(0px)",
-        transform: `perspective(1000px) rotateY(0deg) scale(1) translateX(0px)`,
-      },
-      exit: {
-        opacity: 0,
-        filter: "blur(9px)",
-        transform: `perspective(1000px) rotateY(40deg) scale(0.56) translateX(7px)`,
-      },
-    },
-    bottom: {
-      initial: {
-        opacity: 0,
-        filter: "blur(9px)",
-        transform: `perspective(1000px) rotateX(-40deg) scale(0.56) translateY(-7px)`,
-      },
-      animate: {
-        opacity: 1,
-        filter: "blur(0px)",
-        transform: `perspective(1000px) rotateX(0deg) scale(1) translateY(0px)`,
-      },
-      exit: {
-        opacity: 0,
-        filter: "blur(9px)",
-        transform: `perspective(1000px) rotateX(-40deg) scale(0.56) translateY(-7px)`,
-      },
-    },
-    left: {
-      initial: {
-        opacity: 0,
-        filter: "blur(9px)",
-        transform: `perspective(1000px) rotateY(-40deg) scale(0.56) translateX(-7px)`,
-      },
-      animate: {
-        opacity: 1,
-        filter: "blur(0px)",
-        transform: `perspective(1000px) rotateY(0deg) scale(1) translateX(0px)`,
-      },
-      exit: {
-        opacity: 0,
-        filter: "blur(9px)",
-        transform: `perspective(1000px) rotateY(-40deg) scale(0.56) translateX(-7px)`,
-      },
-    },
-    "inline-start": {
-      initial: {
-        opacity: 0,
-        filter: "blur(9px)",
-        transform: `perspective(1000px) rotateY(-40deg) scale(0.56) translateX(-7px)`,
-      },
-      animate: {
-        opacity: 1,
-        filter: "blur(0px)",
-        transform: `perspective(1000px) rotateY(0deg) scale(1) translateX(0px)`,
-      },
-      exit: {
-        opacity: 0,
-        filter: "blur(9px)",
-        transform: `perspective(1000px) rotateY(-40deg) scale(0.56) translateX(-7px)`,
-      },
-    },
-    "inline-end": {
-      initial: {
-        opacity: 0,
-        filter: "blur(9px)",
-        transform: `perspective(1000px) rotateY(40deg) scale(0.56) translateX(7px)`,
-      },
-      animate: {
-        opacity: 1,
-        filter: "blur(0px)",
-        transform: `perspective(1000px) rotateY(0deg) scale(1) translateX(0px)`,
-      },
-      exit: {
-        opacity: 0,
-        filter: "blur(9px)",
-        transform: `perspective(1000px) rotateY(40deg) scale(0.56) translateX(7px)`,
-      },
-    },
-  };
-
-  if (side) {
-    return motionBlurConfigs[side];
-  }
-
-  return motionBlurConfigs.bottom;
-}
-
-function getSlideOutsideAnimation(side: PopupSide) {
-  const slideOutsideConfigs = {
-    top: {
-      initial: { opacity: 0, y: -10 },
-      animate: { opacity: 1, y: 0 },
-      exit: { opacity: 0, y: -10 },
-    },
-    right: {
-      initial: { opacity: 0, x: 10 },
-      animate: { opacity: 1, x: 0 },
-      exit: { opacity: 0, x: 10 },
-    },
-    bottom: {
-      initial: { opacity: 0, y: 10 },
-      animate: { opacity: 1, y: 0 },
-      exit: { opacity: 0, y: 10 },
-    },
-    left: {
-      initial: { opacity: 0, x: -10 },
-      animate: { opacity: 1, x: 0 },
-      exit: { opacity: 0, x: -10 },
-    },
-    "inline-start": {
-      initial: { opacity: 0, x: -10 },
-      animate: { opacity: 1, x: 0 },
-      exit: { opacity: 0, x: -10 },
-    },
-    "inline-end": {
-      initial: { opacity: 0, x: 10 },
-      animate: { opacity: 1, x: 0 },
-      exit: { opacity: 0, x: 10 },
-    },
-  };
-
-  if (side) {
-    return slideOutsideConfigs[side];
-  }
-
-  return slideOutsideConfigs.bottom;
-}
-
-function getSlideInsideAnimation(side: PopupSide) {
-  const slideInsideConfigs = {
-    top: {
-      initial: { opacity: 0, y: 10 },
-      animate: { opacity: 1, y: 0 },
-      exit: { opacity: 0, y: 10 },
-    },
-    right: {
-      initial: { opacity: 0, x: -10 },
-      animate: { opacity: 1, x: 0 },
-      exit: { opacity: 0, x: -10 },
-    },
-    bottom: {
-      initial: { opacity: 0, y: -10 },
-      animate: { opacity: 1, y: 0 },
-      exit: { opacity: 0, y: -10 },
-    },
-    left: {
-      initial: { opacity: 0, x: 10 },
-      animate: { opacity: 1, x: 0 },
-      exit: { opacity: 0, x: 10 },
-    },
-    "inline-start": {
-      initial: { opacity: 0, x: 10 },
-      animate: { opacity: 1, x: 0 },
-      exit: { opacity: 0, x: 10 },
-    },
-    "inline-end": {
-      initial: { opacity: 0, x: -10 },
-      animate: { opacity: 1, x: 0 },
-      exit: { opacity: 0, x: -10 },
-    },
-  };
-
-  if (side) {
-    return slideInsideConfigs[side];
-  }
-
-  return slideInsideConfigs.bottom;
-}
-
-const transitionPresets = {
-  inExpo: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.95, 0.05, 0.795, 0.035],
-  },
-  outExpo: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.19, 1, 0.22, 1],
-  },
-  inOutExpo: {
-    type: "tween",
-    duration: 0.35,
-    ease: [1, 0, 0, 1],
-  },
-  anticipate: {
-    type: "tween",
-    duration: 0.35,
-    ease: [1, -0.4, 0.35, 0.95],
-  },
-  quickOut: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0, 0, 0.2, 1],
-  },
-  overshootOut: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.175, 0.885, 0.32, 1.275],
-  },
-  swiftOut: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.175, 0.885, 0.32, 1.1],
-  },
-  snappyOut: {
-    type: "tween",
-    duration: 0.4,
-    ease: [0.19, 1, 0.22, 1],
-  },
-  in: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.42, 0, 1, 1],
-  },
-  out: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0, 0, 0.58, 1],
-  },
-  inOut: {
-    type: "tween",
-    duration: 0.25,
-    ease: [0.42, 0, 0.58, 1],
-  },
-  outIn: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.1, 0.7, 0.9, 0.5],
-  },
-  inQuad: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.55, 0.085, 0.68, 0.53],
-  },
-  outQuad: {
-    type: "tween",
-    duration: 0.25,
-    ease: [0.25, 0.46, 0.45, 0.94],
-  },
-  inOutQuad: {
-    type: "tween",
-    duration: 0.32,
-    ease: [0.455, 0.03, 0.515, 0.955],
-  },
-  inCubic: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.55, 0.055, 0.675, 0.19],
-  },
-  outCubic: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.215, 0.61, 0.355, 1],
-  },
-  inOutCubic: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.645, 0.045, 0.355, 1],
-  },
-  inQuart: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.895, 0.03, 0.685, 0.22],
-  },
-  outQuart: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.165, 0.84, 0.44, 1],
-  },
-  inOutQuart: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.77, 0, 0.175, 1],
-  },
-  inQuint: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.755, 0.05, 0.855, 0.06],
-  },
-  outQuint: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.23, 1, 0.32, 1],
-  },
-  inOutQuint: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.86, 0, 0.07, 1],
-  },
-  inCirc: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.6, 0.04, 0.98, 0.335],
-  },
-  outCirc: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.075, 0.82, 0.165, 1],
-  },
-  inOutCirc: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.785, 0.135, 0.15, 0.86],
-  },
-  inOutBase: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.25, 0.1, 0.25, 1],
-  },
-} as const;
-
-type AnimationPreset = keyof typeof animationPresets;
-type TransitionPreset = keyof typeof transitionPresets;
-
-type PopupSide = MenuPositionerProps["side"];
+type CSSAnimationPresets = keyof typeof cssAnimationPresets;
+type CSSTransitionPresets = keyof typeof cssTransitionPresets;
 
 type Backdrop = "opaque" | "blur" | "transparent";
 
 interface MenuContextType {
-  open: boolean;
-  onOpenChange: MenuProps["onOpenChange"];
-  modal: MenuProps["modal"];
   backdrop?: Backdrop;
 }
 
@@ -668,59 +168,18 @@ interface MenuProps extends React.ComponentProps<typeof MenuPrimitive.Root> {
   backdrop?: Backdrop;
 }
 
-function Menu({
-  open,
-  defaultOpen,
-  onOpenChange,
-  modal = false,
-  backdrop = "transparent",
-  ...props
-}: MenuProps) {
-  const [isOpen, setIsOpen] = useState(defaultOpen ?? open ?? false);
-
-  useEffect(() => {
-    if (open !== undefined) setIsOpen(open);
-  }, [open]);
-
-  const handleOpenChange: MenuProps["onOpenChange"] = (open, eventDetails) => {
-    setIsOpen(open);
-    onOpenChange?.(open, eventDetails);
-  };
-
+function Menu({ backdrop = "transparent", ...props }: MenuProps) {
   return (
-    <MenuContext.Provider
-      value={{ open: isOpen, onOpenChange: handleOpenChange, modal, backdrop }}
-    >
-      <MenuPrimitive.Root
-        data-slot="menu"
-        open={isOpen}
-        onOpenChange={handleOpenChange}
-        modal={modal}
-        {...props}
-      />
+    <MenuContext.Provider value={{ backdrop }}>
+      <MenuPrimitive.Root data-slot="menu" {...props} />
     </MenuContext.Provider>
   );
 }
 
 interface MenuTriggerProps
-  extends Omit<React.ComponentProps<typeof MenuPrimitive.Trigger>, "render"> {
-  asChild?: boolean;
-}
+  extends React.ComponentProps<typeof MenuPrimitive.Trigger> {}
 
-function MenuTrigger({
-  asChild = false,
-  children,
-  ...props
-}: MenuTriggerProps) {
-  if (asChild) {
-    return (
-      <MenuPrimitive.Trigger
-        data-slot="menu-trigger"
-        render={children as React.ReactElement<Record<string, unknown>>}
-        {...props}
-      />
-    );
-  }
+function MenuTrigger({ ...props }: MenuTriggerProps) {
   return <MenuPrimitive.Trigger data-slot="menu-trigger" {...props} />;
 }
 
@@ -728,15 +187,7 @@ interface MenuPortalProps
   extends React.ComponentProps<typeof MenuPrimitive.Portal> {}
 
 function MenuPortal(props: MenuPortalProps) {
-  const { open } = useMenu();
-
-  return (
-    <AnimatePresence>
-      {open && (
-        <MenuPrimitive.Portal data-slot="menu-portal" keepMounted {...props} />
-      )}
-    </AnimatePresence>
-  );
+  return <MenuPrimitive.Portal data-slot="menu-portal" {...props} />;
 }
 
 interface MenuBackdropProps
@@ -750,9 +201,9 @@ function MenuBackdrop({ className, ...props }: MenuBackdropProps) {
       data-slot="menu-backdrop"
       className={cn(
         backdrop === "opaque" &&
-          "fixed inset-0 bg-black z-100 opacity-40 transition-all duration-200 data-[ending-style]:opacity-0 data-[starting-style]:opacity-0 dark:opacity-60",
+          "fixed inset-0 bg-black z-100 opacity-40 transition-all duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0 dark:opacity-60",
         backdrop === "blur" &&
-          "fixed inset-0 z-100 backdrop-blur-sm transition-all duration-200 data-[ending-style]:opacity-0 data-[starting-style]:opacity-0",
+          "fixed inset-0 z-100 backdrop-blur-sm transition-all duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0",
         backdrop === "transparent" && "hidden",
         className
       )}
@@ -778,9 +229,9 @@ function MenuPositioner({
         side={side}
         data-slot="menu-positioner"
         className={cn(
-          "z-100",
+          "z-100 [--item-inline-padding:8px] [--item-block-padding:6px]",
           (side === "inline-end" || side === "inline-start") &&
-            "[&_[data-slot=menu-arrow]]:hidden",
+            "**:data-[slot=menu-arrow]:hidden",
           className
         )}
         {...rest}
@@ -823,8 +274,8 @@ function ArrowSvg(props: React.ComponentProps<"svg">) {
 interface MenuPopupProps
   extends React.ComponentProps<typeof MenuPrimitive.Popup>,
     Pick<MenuPositionerProps, "side" | "sideOffset" | "align" | "alignOffset"> {
-  animationPreset?: AnimationPreset;
-  transitionPreset?: TransitionPreset;
+  animationPreset?: CSSAnimationPresets;
+  transitionPreset?: CSSTransitionPresets;
   reduceMotion?: boolean;
   showArrow?: boolean;
 }
@@ -842,41 +293,25 @@ function MenuPopup({
   children,
   ...rest
 }: MenuPopupProps) {
-  const animationConfig = useMemo(() => {
-    if (reduceMotion) return animationPresets.none;
+  const cssAnimationConfig = useMemo(() => {
+    if (reduceMotion) return "none";
 
     if (animationPreset) {
-      if (animationPreset === "wipe") {
-        return getWipeAnimation(side);
-      }
-      if (animationPreset === "wipeScale") {
-        return getWipeScaleAnimation(side);
-      }
-      if (animationPreset === "motion") {
-        return getMotionAnimation(side);
-      }
-      if (animationPreset === "motionBlur") {
-        return getMotionBlurAnimation(side);
-      }
-      if (animationPreset === "slideOutside") {
-        return getSlideOutsideAnimation(side);
-      }
-      if (animationPreset === "slideInside") {
-        return getSlideInsideAnimation(side);
-      }
-      return animationPresets[animationPreset];
+      return cssAnimationPresets[animationPreset];
     }
 
-    return animationPresets.scale;
+    return cssAnimationPresets.scale;
   }, [animationPreset, reduceMotion, side]);
 
-  const transitionConfig = useMemo(() => {
-    if (reduceMotion) return {};
+  const cssTransitionConfig = useMemo(() => {
+    if (reduceMotion) return "none";
 
     if (transitionPreset) {
-      return transitionPresets[transitionPreset];
+      return cssTransitionPresets[transitionPreset];
     }
-  }, [transitionPreset, reduceMotion]);
+
+    return cssTransitionPresets.snappyOut;
+  }, [transitionPreset, reduceMotion, side]);
 
   return (
     <MenuPositioner
@@ -888,15 +323,13 @@ function MenuPopup({
       <MenuPrimitive.Popup
         data-slot="menu-popup"
         render={
-          <motion.div
+          <div
             key="menu-popup"
-            initial={animationConfig.initial}
-            animate={animationConfig.animate}
-            exit={animationConfig.exit}
-            transition={transitionConfig}
             className={cn(
-              "pointer-events-auto origin-(--transform-origin) bg-popover text-popover-foreground p-1 shadow-xs border border-border rounded-[12px] min-w-[8rem]",
-              className
+              "pointer-events-auto origin-(--transform-origin) bg-popover text-popover-foreground p-1 shadow-xs border border-border/60 rounded-[12px] w-[max(var(--anchor-width),226px)]",
+              className,
+              cssTransitionConfig,
+              cssAnimationConfig
             )}
           >
             {showArrow && (
@@ -905,7 +338,7 @@ function MenuPopup({
               </MenuArrow>
             )}
             {children}
-          </motion.div>
+          </div>
         }
         {...rest}
       />
@@ -957,8 +390,8 @@ function MenuItem({ className, ...rest }: MenuItemProps) {
     <MenuPrimitive.Item
       data-slot="menu-item"
       className={cn(
-        `border-[0.5px] border-transparent relative flex cursor-default items-center gap-2 rounded-[10px] px-2 py-1.5 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4`,
-        `data-[highlighted]:z-0 data-[highlighted]:before:absolute data-[highlighted]:before:inset-x-0 data-[highlighted]:before:inset-y-0 data-[highlighted]:before:z-[-1] data-[highlighted]:before:rounded-sm data-[highlighted]:before:bg-accent/70 dark:data-[highlighted]:before:bg-accent data-[highlighted]:text-accent-foreground data-[highlighted]:before:border-border/30 data-[highlighted]:before:border`,
+        `border-[0.5px] border-transparent relative flex cursor-default items-center gap-2 rounded-[10px] px-(--item-inline-padding) py-(--item-block-padding) text-sm outline-hidden select-none data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4`,
+        `data-highlighted:z-0 data-highlighted:before:absolute data-highlighted:before:-inset-px data-highlighted:before:z-[-1] data-highlighted:before:rounded-[10px] data-highlighted:before:bg-accent/70 dark:data-highlighted:before:bg-accent data-highlighted:text-accent-foreground data-highlighted:before:border-border/30 data-highlighted:before:border`,
         className
       )}
       {...rest}
@@ -1008,7 +441,6 @@ function MenuCheckboxItem({
 }
 
 interface MenuRadioGroupContextType {
-  selectedValue?: string;
   activeIcon?: React.ReactNode;
 }
 
@@ -1019,36 +451,10 @@ interface MenuRadioGroupProps
   activeIcon?: React.ReactNode;
 }
 
-function MenuRadioGroup({
-  className,
-  activeIcon,
-  ...props
-}: MenuRadioGroupProps) {
-  const [selectedValue, setSelectedValue] = useState<string | undefined>(
-    props.value ?? undefined
-  );
-
-  useEffect(() => {
-    setSelectedValue(props.value ?? undefined);
-  }, [props.value]);
-
-  const handleValueChange: MenuRadioGroupProps["onValueChange"] = (
-    value,
-    eventDetails
-  ) => {
-    setSelectedValue(value);
-    props.onValueChange?.(value, eventDetails);
-  };
-
+function MenuRadioGroup({ activeIcon, ...props }: MenuRadioGroupProps) {
   return (
-    <MenuRadioGroupContext.Provider value={{ selectedValue, activeIcon }}>
-      <LayoutGroup>
-        <MenuPrimitive.RadioGroup
-          data-slot="menu-radio-group"
-          {...props}
-          onValueChange={handleValueChange}
-        />
-      </LayoutGroup>
+    <MenuRadioGroupContext.Provider value={{ activeIcon }}>
+      <MenuPrimitive.RadioGroup data-slot="menu-radio-group" {...props} />
     </MenuRadioGroupContext.Provider>
   );
 }
@@ -1059,8 +465,7 @@ function MenuRadioItem({
   value,
   ...props
 }: React.ComponentProps<typeof MenuPrimitive.RadioItem>) {
-  const { selectedValue, activeIcon } = useContext(MenuRadioGroupContext);
-  const isSelected = selectedValue === value;
+  const { activeIcon } = useContext(MenuRadioGroupContext);
 
   return (
     <MenuPrimitive.RadioItem
@@ -1074,24 +479,16 @@ function MenuRadioItem({
       {...props}
     >
       {children}
-      {isSelected && (
-        <motion.span
-          layoutId="dropdown-menu-radio-indicator"
-          className="pointer-events-none absolute right-2 flex size-3.5 items-center justify-center"
-          style={{
-            willChange: "transform",
-          }}
-          transition={{
-            type: "spring",
-            stiffness: 300,
-            damping: 30,
-          }}
-        >
-          <MenuPrimitive.RadioItemIndicator>
-            {activeIcon ?? <CircleIcon className="size-2 fill-current" />}
-          </MenuPrimitive.RadioItemIndicator>
-        </motion.span>
-      )}
+      <span
+        className="pointer-events-none absolute right-2 flex size-3.5 items-center justify-center"
+        style={{
+          willChange: "transform",
+        }}
+      >
+        <MenuPrimitive.RadioItemIndicator>
+          {activeIcon ?? <CircleIcon className="size-2 fill-current" />}
+        </MenuPrimitive.RadioItemIndicator>
+      </span>
     </MenuPrimitive.RadioItem>
   );
 }
@@ -1109,41 +506,11 @@ function MenuShortcut({ className, ...props }: React.ComponentProps<"span">) {
   );
 }
 
-interface MenuSubContextType {
-  isOpen?: boolean;
-}
-
-const MenuSubContext = createContext<MenuSubContextType>({});
-
 interface MenuSubProps
   extends React.ComponentProps<typeof MenuPrimitive.SubmenuRoot> {}
 
 function MenuSub(props: MenuSubProps) {
-  const [isOpen, setIsOpen] = useState(
-    props?.open ?? props?.defaultOpen ?? false
-  );
-
-  useEffect(() => {
-    if (props?.open !== undefined) setIsOpen(props.open);
-  }, [props?.open]);
-
-  const handleOpenChange: MenuSubProps["onOpenChange"] = (
-    open,
-    eventDetails
-  ) => {
-    setIsOpen(open);
-    props.onOpenChange?.(open, eventDetails);
-  };
-
-  return (
-    <MenuSubContext.Provider value={{ isOpen }}>
-      <MenuPrimitive.SubmenuRoot
-        data-slot="menu-submenu"
-        onOpenChange={handleOpenChange}
-        {...props}
-      />
-    </MenuSubContext.Provider>
-  );
+  return <MenuPrimitive.SubmenuRoot data-slot="menu-submenu" {...props} />;
 }
 
 interface MenuSubTriggerProps
@@ -1154,8 +521,8 @@ function MenuSubTrigger({ className, children, ...rest }: MenuSubTriggerProps) {
     <MenuPrimitive.SubmenuTrigger
       data-slot="menu-submenu-trigger"
       className={cn(
-        `text-foreground border-[0.5px] border-transparent relative flex cursor-default items-center gap-2 rounded-[10px] px-2 py-1.5 text-sm`,
-        `hover:bg-accent/70 focus-visible:bg-accent/70 dark:hover:bg-accent dark:focus-visible:bg-accent hover:text-accent-foreground hover:border-border/30 data-[popup-open]:bg-accent/70 data-[popup-open]:text-accent-foreground data-[popup-open]:border-border/30 outline-hidden`,
+        `text-foreground border-[0.5px] border-transparent relative flex cursor-default items-center gap-2 rounded-[10px] px-(--item-inline-padding) py-(--item-block-padding) text-sm`,
+        `hover:bg-accent/70 focus-visible:bg-accent/70 dark:hover:bg-accent dark:focus-visible:bg-accent hover:text-accent-foreground hover:border-border/30 data-popup-open:bg-accent/70 data-popup-open:text-accent-foreground data-popup-open:border-border/30 outline-hidden`,
         className
       )}
       {...rest}
@@ -1170,19 +537,7 @@ interface MenuSubmenuPortalProps
   extends React.ComponentProps<typeof MenuPrimitive.Portal> {}
 
 function MenuSubmenuPortal(props: MenuSubmenuPortalProps) {
-  const { isOpen } = useContext(MenuSubContext);
-
-  return (
-    <AnimatePresence>
-      {isOpen && (
-        <MenuPrimitive.Portal
-          data-slot="menu-submenu-portal"
-          keepMounted
-          {...props}
-        />
-      )}
-    </AnimatePresence>
-  );
+  return <MenuPrimitive.Portal data-slot="menu-submenu-portal" {...props} />;
 }
 
 interface MenuSubPositionerProps
@@ -1199,11 +554,11 @@ function MenuSubPositioner({
       <MenuPrimitive.Positioner
         sideOffset={sideOffset}
         side={side}
-        data-slot="menu-sub-positioner"
+        data-slot="menu-sub-positioner "
         className={cn(
-          "z-100",
+          "z-100 [--item-inline-padding:8px] [--item-block-padding:6px] -top-[calc(var(--item-block-padding)-1.8px)]!",
           (side === "inline-end" || side === "inline-start") &&
-            "[&_[data-slot=menu-arrow]]:hidden",
+            "**:data-[slot=menu-arrow]:hidden",
           className
         )}
         {...rest}
@@ -1238,20 +593,17 @@ function MenuSubPopup({
       <MenuPrimitive.Popup
         data-slot="menu-sub-content"
         render={
-          <motion.div
+          <div
             key="menu-sub-content"
-            variants={animationPresets.scale}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            transition={{ duration: 0.1 }}
             className={cn(
-              "pointer-events-auto origin-(--transform-origin) bg-popover text-popover-foreground p-1 shadow-sm border border-border/60 rounded-[12px] !min-w-[max(8rem,calc(var(--anchor-width)-1rem))]",
+              "pointer-events-auto origin-(--transform-origin) bg-popover text-popover-foreground p-1 shadow-sm border border-border/60 rounded-[12px] min-w-[max(8rem,calc(var(--anchor-width)-1rem))]!",
+              cssAnimationPresets.scale,
+              cssTransitionPresets.snappyOut,
               className
             )}
           >
             {children}
-          </motion.div>
+          </div>
         }
         {...rest}
       />

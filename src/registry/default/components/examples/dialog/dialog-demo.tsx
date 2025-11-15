@@ -11,54 +11,34 @@ import {
 
 import { Button } from "@/registry/default/components/ui/button";
 import { Input } from "@/registry/default/components/ui/input";
+import { Label } from "@/registry/default/components/ui/label";
 
 export const DialogDemo = () => {
   return (
     <Dialog>
-      <DialogTrigger asChild>
-        <Button>Open parent</Button>
+      <DialogTrigger render={<Button variant="outline" />}>
+        Edit profile
       </DialogTrigger>
-      <DialogPopup showCloseButton={false}>
+      <DialogPopup className="sm:max-w-sm">
         <DialogHeader>
-          <DialogTitle>Manage team member</DialogTitle>
+          <DialogTitle>Edit profile</DialogTitle>
           <DialogDescription>
-            View and manage a user in your team.
+            Make changes to your profile here. Click save when you&apos;re done.
           </DialogDescription>
         </DialogHeader>
-        <div className="grid gap-4">
-          <div className="grid gap-1">
-            <p className="text-sm text-muted-foreground">Name</p>
-            <p className="text-sm font-medium">Bora Baloglu</p>
+        <div className="flex flex-col gap-4">
+          <div className="">
+            <Label>Name</Label>
+            <Input type="text" defaultValue="Krishna" />
           </div>
-          <div className="grid gap-1">
-            <p className="text-sm text-muted-foreground">Email</p>
-            <p className="text-sm font-medium">bora@example.com</p>
+          <div className="">
+            <Label>Username</Label>
+            <Input type="text" defaultValue="@krishna" />
           </div>
         </div>
         <DialogFooter>
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button variant="outline">Edit details</Button>
-            </DialogTrigger>
-            <DialogPopup showCloseButton={false}>
-              <DialogHeader>
-                <DialogTitle>Edit details</DialogTitle>
-                <DialogDescription>
-                  Make changes to the member&apos;s information.
-                </DialogDescription>
-              </DialogHeader>
-              <div className="flex flex-col gap-4">
-                <Input />
-                <Input />
-              </div>
-              <DialogFooter>
-                <DialogClose render={<Button variant="ghost" />}>
-                  Cancel
-                </DialogClose>
-                <Button type="submit">Save changes</Button>
-              </DialogFooter>
-            </DialogPopup>
-          </Dialog>
+          <DialogClose render={<Button variant="ghost" />}>Cancel</DialogClose>
+          <Button type="submit">Save</Button>
         </DialogFooter>
       </DialogPopup>
     </Dialog>

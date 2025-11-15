@@ -19,6 +19,7 @@
     "@effect/platform-node": "^0.98.3",
     "@radix-ui/react-slot": "^1.2.3",
     "@shikijs/rehype": "^3.14.0",
+    "@tabler/icons-react": "^3.35.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "effect": "^3.18.4",

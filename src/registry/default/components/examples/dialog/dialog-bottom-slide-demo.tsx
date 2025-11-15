@@ -13,11 +13,9 @@ import { Button } from "@/registry/default/components/ui/button";
 export const DialogBottomSlideDemo = () => {
   return (
     <Dialog>
-      <DialogTrigger asChild>
-        <Button>Open</Button>
-      </DialogTrigger>
+      <DialogTrigger render={<Button />}>Open</DialogTrigger>
 
-      <DialogPopup animationPreset="bottom-slide">
+      <DialogPopup animationPreset="bottomSlide">
         <DialogHeader>
           <DialogTitle>Terms of Service</DialogTitle>
           <DialogDescription>

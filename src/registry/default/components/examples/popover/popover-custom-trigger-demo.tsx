@@ -19,24 +19,24 @@ export const PopoverCustomTriggerDemo = () => {
   const [isFollowing, setIsFollowing] = useState(false);
 
   return (
-    <Popover>
-      <PopoverTrigger asChild>
-        <button className="flex items-center gap-2 cursor-pointer">
-          <img
-            src="https://pbs.twimg.com/profile_images/1829339621072809984/xNqEQbYK_400x400.jpg"
-            alt="Avatar"
-            className="size-8 rounded-full"
-          />
-          <div className="flex flex-col items-start">
-            <span className="text-sm font-medium">Gukesh D</span>
-            <span className="text-xs text-foreground/70">
-              World Chess Champion
-            </span>
-          </div>
-        </button>
+    <Popover openOnHover>
+      <PopoverTrigger
+        render={<button className="flex items-center gap-2 cursor-pointer" />}
+      >
+        <img
+          src="https://pbs.twimg.com/profile_images/1829339621072809984/xNqEQbYK_400x400.jpg"
+          alt="Avatar"
+          className="size-8 rounded-full"
+        />
+        <div className="flex flex-col items-start">
+          <span className="text-sm font-medium">Gukesh D</span>
+          <span className="text-xs text-foreground/70">
+            World Chess Champion
+          </span>
+        </div>
       </PopoverTrigger>
       <PopoverPopup>
-        <Card className="min-w-[260px] border-none p-1">
+        <Card className="min-w-[260px] border-none p-1 shadow-none!">
           <CardHeader className="justify-between flex flex-row">
             <div className="flex gap-3">
               <img

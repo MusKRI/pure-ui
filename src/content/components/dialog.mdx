@@ -69,14 +69,11 @@ import { Dialog } from "@/components/ui/dialog";
 
 <Dialog>
   <DialogTrigger />
-  <DialogPortal>
-    <DialogBackdrop />
-    <DialogPopup>
-      <DialogTitle />
-      <DialogDescription />
-      <DialogClose />
-    </DialogPopup>
-  </DialogPortal>
+  <DialogPopup>
+    <DialogTitle />
+    <DialogDescription />
+    <DialogClose />
+  </DialogPopup>
 </Dialog>;
 ```
 
@@ -102,6 +99,10 @@ Users can interact with both the dialog and the rest of the page freely.
 Focus is trapped for keyboard navigation, but scrolling and outside pointer interactions remain enabled.
 
 <ComponentShowcase name="dialog-non-modal-demo" />
+
+### Nested Dialogs
+
+<ComponentShowcase name="dialog-nested-demo" />
 
 ### Reduce Motion
 

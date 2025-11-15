@@ -13,10 +13,8 @@ import { Input } from "@/registry/default/components/ui/input";
 export const PopoverDemo = () => {
   return (
     <Popover>
-      <PopoverTrigger asChild>
-        <Button variant="default" size="sm">
-          <span>Open Popover</span>
-        </Button>
+      <PopoverTrigger render={<Button variant="default" size="sm" />}>
+        <span>Open Popover</span>
       </PopoverTrigger>
       <PopoverPopup className="min-w-70">
         <div className="mb-4">
@@ -29,8 +27,8 @@ export const PopoverDemo = () => {
           </PopoverDescription>
         </div>
         <div className="flex flex-col gap-2">
-          <Input label="Email" type="email" />
-          <Button className="w-full" variant="default" size="sm">
+          <Input placeholder="Enter your email" type="email" />
+          <Button className="w-full" variant="default">
             Submit
           </Button>
         </div>

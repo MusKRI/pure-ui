@@ -35,7 +35,7 @@ const DANGER_ITEMS = [
     icon: <TrashIcon size={16} />,
     name: "Delete account",
     className:
-      "text-red-400 data-[highlighted]:before:!bg-red-500/20 data-[highlighted]:!text-red-400 data-[highlighted]:before:border-red-400/30",
+      "text-red-400 data-highlighted:before:bg-red-500/20! data-highlighted:text-red-400! data-highlighted:before:border-red-400/30",
   },
 ];
 
@@ -54,13 +54,15 @@ export const MenuMotionDemo = () => {
       {sides.map((side) => {
         return (
           <Menu key={side}>
-            <MenuTrigger asChild>
-              <button className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md border border-border/40 bg-secondary/50 hover:bg-secondary cursor-pointer">
-                <CheckCheck className="size-3.5 text-secondary-foreground" />
-                <span className="text-secondary-foreground text-sm capitalize">
-                  {side.replace("-", " ")}
-                </span>
-              </button>
+            <MenuTrigger
+              render={
+                <button className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md border border-border/40 bg-secondary/50 hover:bg-secondary cursor-pointer" />
+              }
+            >
+              <CheckCheck className="size-3.5 text-secondary-foreground" />
+              <span className="text-secondary-foreground text-sm capitalize">
+                {side.replace("-", " ")}
+              </span>
             </MenuTrigger>
             <MenuPopup
               showArrow

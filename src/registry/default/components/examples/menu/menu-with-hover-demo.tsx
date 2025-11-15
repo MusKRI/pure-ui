@@ -46,15 +46,17 @@ const DANGER_ITEMS = [
 export const MenuWithHoverDemo = () => {
   return (
     <Menu openOnHover>
-      <MenuTrigger asChild>
-        <Button
-          variant="ghost"
-          className="flex items-center gap-2 active:scale-100"
-          size="sm"
-        >
-          <SettingsIcon size={16} />
-          <span className="text-sm">Account settings</span>
-        </Button>
+      <MenuTrigger
+        render={
+          <Button
+            variant="ghost"
+            className="flex items-center gap-2 active:scale-100"
+            size="sm"
+          />
+        }
+      >
+        <SettingsIcon size={16} />
+        <span className="text-sm">Account settings</span>
       </MenuTrigger>
       <MenuPopup className="w-56">
         {MENU_ITEMS.map(({ icon, name, shortcut }, index) => (

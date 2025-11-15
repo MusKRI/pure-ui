@@ -30,10 +30,10 @@ description: Input is a component that allows users to enter text. It can be use
 
       <InstallationCommands
         type="package-installation"
-        npmCommand="npm install tailwind-variants clsx tailwind-merge"
-        pnpmCommand="pnpm add tailwind-variants clsx tailwind-merge"
-        yarnCommand="yarn add tailwind-variants clsx tailwind-merge"
-        bunCommand="bun add tailwind-variants clsx tailwind-merge"
+        npmCommand="npm install clsx tailwind-merge @base-ui-components/react"
+        pnpmCommand="pnpm add clsx tailwind-merge @base-ui-components/react"
+        yarnCommand="yarn add clsx tailwind-merge @base-ui-components/react"
+        bunCommand="bun add clsx tailwind-merge @base-ui-components/react"
       />
 
       <Step>Add cn function to your utils</Step>
@@ -57,24 +57,36 @@ description: Input is a component that allows users to enter text. It can be use
 
 ## Usage
 
-### Disabled
+```tsx
+import { Input } from "@/components/ui/input";
+```
+
+```tsx
+<Input />
+```
+
+## Examples
+
+### Input Types
+
+<ComponentShowcase name="input-types-demo" />
+
+### Small Size
+
+<ComponentShowcase name="input-small-demo" />
+
+### Large Size
+
+<ComponentShowcase name="input-large-demo" />
+
+### Controlled Input
+
+<ComponentShowcase name="input-controlled-demo" />
+
+### Disabled Input
 
 <ComponentShowcase name="input-disabled-demo" />
 
-### Read Only
+### File Type Input
 
-<ComponentShowcase name="input-read-only-demo" />
-
-### Required
-
-If you pass the `required` property to the input, it will have a `danger` asterisk at the end of the label and the input will be required.
-
-<ComponentShowcase name="input-required-demo" />
-
-### Sizes
-
-<ComponentShowcase name="input-sizes-demo" />
-
-### Variants
-
-<ComponentShowcase name="input-variants-demo" />
+<ComponentShowcase name="input-file-type-demo" />

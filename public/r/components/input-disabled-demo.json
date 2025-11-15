@@ -8,7 +8,7 @@
   "files": [
     {
       "path": "src/registry/default/components/examples/input/input-disabled-demo.tsx",
-      "content": "import { Input } from \"@/registry/default/components/ui/input\";\r\n\r\nexport const InputDisabledDemo = () => {\r\n  return (\r\n    <Input\r\n      disabled\r\n      className=\"max-w-xs\"\r\n      defaultValue=\"krishna@kam-ui.com\"\r\n      label=\"Email\"\r\n      type=\"email\"\r\n    />\r\n  );\r\n};\r\n",
+      "content": "import { Input } from \"@/registry/default/components/ui/input\";\r\n\r\nexport default function InputDisabledDemo() {\r\n  return (\r\n    <Input\r\n      type=\"text\"\r\n      placeholder=\"Disabled\"\r\n      disabled\r\n      aria-label=\"Disabled\"\r\n      className=\"w-full max-w-sm\"\r\n    />\r\n  );\r\n}\r\n",
       "type": "registry:example"
     }
   ]

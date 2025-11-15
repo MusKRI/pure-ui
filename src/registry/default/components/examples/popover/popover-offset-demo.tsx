@@ -10,11 +10,13 @@ import {
 export const PopoverOffsetDemo = () => {
   return (
     <Popover>
-      <PopoverTrigger asChild>
-        <button className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md border border-border/40 bg-secondary/50 hover:bg-secondary cursor-pointer">
-          <CheckCheck className="size-3.5 text-secondary-foreground" />
-          <span className="text-secondary-foreground text-sm">4</span>
-        </button>
+      <PopoverTrigger
+        render={
+          <button className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md border border-border/40 bg-secondary/50 hover:bg-secondary cursor-pointer" />
+        }
+      >
+        <CheckCheck className="size-3.5 text-secondary-foreground" />
+        <span className="text-secondary-foreground text-sm">4</span>
       </PopoverTrigger>
       <PopoverPopup showArrow sideOffset={20} side="right">
         <PopoverDescription>Opened 4 times</PopoverDescription>

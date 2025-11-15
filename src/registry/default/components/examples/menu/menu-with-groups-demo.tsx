@@ -24,8 +24,8 @@ export function MenuWithGroupsDemo() {
 
   return (
     <Menu>
-      <MenuTrigger asChild>
-        <Button variant="outline">Open</Button>
+      <MenuTrigger render={<Button variant="outline" />}>
+        <span>Open</span>
       </MenuTrigger>
       <MenuPopup className="w-56" align="center">
         <MenuGroup>

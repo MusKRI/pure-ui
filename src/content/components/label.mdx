@@ -1,0 +1,72 @@
+---
+title: Label
+description: Label is a component that allows users to enter text. It can be used to get user inputs in forms, search fields, and more.
+---
+
+<ComponentShowcase name="label-demo" />
+
+## Installation
+
+<Tabs defaultValue="terminal">
+  <TabsList>
+    <TabsTrigger value="terminal">
+      <Terminal className="w-4 h-4" />
+      Terminal
+    </TabsTrigger>
+    <TabsTrigger value="manual">
+      <Code2 className="w-4 h-4" />
+      Manual
+    </TabsTrigger>
+  </TabsList>
+  <TabsContent value="terminal">
+    <InstallationCommands
+      type="registry-installation"
+      registryPath="components/label"
+    />
+  </TabsContent>
+  <TabsContent value="manual">
+    <Steps>
+      <Step>Install dependencies</Step>
+
+      <InstallationCommands
+        type="package-installation"
+        npmCommand="npm install clsx tailwind-merge"
+        pnpmCommand="pnpm add clsx tailwind-merge"
+        yarnCommand="yarn add clsx tailwind-merge"
+        bunCommand="bun add clsx tailwind-merge"
+      />
+
+      <Step>Add cn function to your utils</Step>
+
+      ```ts filename="lib/classes.ts"
+      import { clsx, type ClassValue } from "clsx";
+      import { twMerge } from "tailwind-merge";
+
+      export function cn(...inputs: ClassValue[]) {
+        return twMerge(clsx(inputs));
+      }
+      ```
+
+      <Step>Copy and paste the following code into your project</Step>
+
+      <ComponentCodePreview name="label" />
+    </Steps>
+
+  </TabsContent>
+</Tabs>
+
+## Usage
+
+```tsx
+import { Label } from "@/components/ui/label";
+```
+
+```tsx
+<Label htmlFor="email">Email</Label>
+```
+
+## Examples
+
+### With Checkbox
+
+<ComponentShowcase name="label-with-checkbox" />

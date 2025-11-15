@@ -330,9 +330,100 @@ const transitionPresets = {
 type AnimationPreset = keyof typeof animationPresets;
 type TransitionPreset = keyof typeof transitionPresets;
 
+const cssAnimationPresets = {
+  none: "transition-none",
+  scale: [
+    `[transition-property:scale,opacity,translate] [will-change:scale,opacity,translate]`,
+    `data-starting-style:opacity-0 data-ending-style:opacity-0 max-sm:opacity-[calc(1-min(var(--nested-dialogs),1))] max-sm:data-starting-style:translate-y-4 max-sm:data-ending-style:translate-y-4 max-sm:data-starting-style:scale-98 max-sm:data-ending-style:scale-98 max-sm:origin-bottom`,
+    `sm:-translate-y-[calc(2rem*var(--nested-dialogs))] sm:scale-[calc(1-0.1*var(--nested-dialogs))] sm:data-starting-style:scale-98 sm:data-ending-style:scale-98 sm:data-nested:data-ending-style:translate-y-8 sm:data-nested:data-starting-style:translate-y-8`,
+  ],
+  fade: [
+    `[transition-property:opacity,translate,scale] [will-change:opacity,translate,scale]`,
+    `data-starting-style:opacity-0 data-ending-style:opacity-0 max-sm:opacity-[calc(1-min(var(--nested-dialogs),1))] max-sm:data-starting-style:translate-y-4 max-sm:data-ending-style:translate-y-4`,
+    `sm:-translate-y-[calc(2rem*var(--nested-dialogs))] sm:scale-[calc(1-0.1*var(--nested-dialogs))]`,
+  ],
+  topFlip: [
+    `[transition-property:opacity,filter,transform,translate,scale] [will-change:opacity,filter,transform,translate,scale]`,
+    `data-starting-style:opacity-0 data-ending-style:opacity-0 data-starting-style:blur-[4px] data-ending-style:blur-[4px] data-starting-style:transform-[perspective(1000px)_rotateX(50deg)_scale(0.8)] data-ending-style:transform-[perspective(1000px)_rotateX(50deg)_scale(0.8)]`,
+    `sm:-translate-y-[calc(2rem*var(--nested-dialogs))] sm:scale-[calc(1-0.1*var(--nested-dialogs))]`,
+  ],
+  bottomFlip: [
+    `[transition-property:opacity,filter,transform,translate,scale] [will-change:opacity,filter,transform,translate,scale]`,
+    `data-starting-style:opacity-0 data-ending-style:opacity-0 data-starting-style:blur-[4px] data-ending-style:blur-[4px] data-starting-style:transform-[perspective(1000px)_rotateX(-50deg)_scale(0.8)] data-ending-style:transform-[perspective(1000px)_rotateX(-50deg)_scale(0.8)]`,
+    `sm:-translate-y-[calc(2rem*var(--nested-dialogs))] sm:scale-[calc(1-0.1*var(--nested-dialogs))]`,
+  ],
+  rightFlip: [
+    `[transition-property:opacity,filter,transform,translate,scale] [will-change:opacity,filter,transform,translate,scale]`,
+    `data-starting-style:opacity-0 data-ending-style:opacity-0 data-starting-style:blur-[4px] data-ending-style:blur-[4px] data-starting-style:transform-[perspective(1000px)_rotateY(50deg)_scale(0.8)] data-ending-style:transform-[perspective(1000px)_rotateY(50deg)_scale(0.8)]`,
+    `sm:-translate-y-[calc(2rem*var(--nested-dialogs))] sm:scale-[calc(1-0.1*var(--nested-dialogs))]`,
+  ],
+  leftFlip: [
+    `[transition-property:opacity,filter,transform,translate,scale] [will-change:opacity,filter,transform,translate,scale]`,
+    `data-starting-style:opacity-0 data-ending-style:opacity-0 data-starting-style:blur-[4px] data-ending-style:blur-[4px] data-starting-style:transform-[perspective(1000px)_rotateY(-50deg)_scale(0.8)] data-ending-style:transform-[perspective(1000px)_rotateY(-50deg)_scale(0.8)]`,
+    `sm:-translate-y-[calc(2rem*var(--nested-dialogs))] sm:scale-[calc(1-0.1*var(--nested-dialogs))]`,
+  ],
+  topSlide: [
+    `[transition-property:opacity,transform,translate,scale] [will-change:opacity,transform,translate,scale]`,
+    `data-starting-style:opacity-0 data-ending-style:opacity-0 data-starting-style:translate-y-[-20px] data-ending-style:translate-y-[-20px] max-sm:data-starting-style:-translate-y-4 max-sm:data-ending-style:-translate-y-4`,
+    `sm:translate-y-[calc(3.5rem*var(--nested-dialogs))] sm:scale-[calc(1-0.1*var(--nested-dialogs))]`,
+  ],
+  bottomSlide: [
+    `[transition-property:opacity,transform,translate,scale] [will-change:opacity,transform,translate,scale]`,
+    `data-starting-style:opacity-0 data-ending-style:opacity-0 data-starting-style:translate-y-[20px] data-ending-style:translate-y-[20px] max-sm:data-starting-style:translate-y-4 max-sm:data-ending-style:translate-y-4`,
+    `sm:-translate-y-[calc(2rem*var(--nested-dialogs))] sm:scale-[calc(1-0.1*var(--nested-dialogs))]`,
+  ],
+  leftSlide: [
+    `[transition-property:opacity,transform,translate,scale] [will-change:opacity,transform,translate,scale]`,
+    `data-starting-style:opacity-0 data-ending-style:opacity-0 data-starting-style:translate-x-[-20px] data-ending-style:translate-x-[-20px] max-sm:data-starting-style:-translate-x-4 max-sm:data-ending-style:-translate-x-4`,
+    `sm:translate-x-[calc(2.5rem*var(--nested-dialogs))] sm:scale-[calc(1-0.1*var(--nested-dialogs))]`,
+  ],
+  rightSlide: [
+    `[transition-property:opacity,transform,translate,scale] [will-change:opacity,transform,translate,scale]`,
+    `data-starting-style:opacity-0 data-ending-style:opacity-0 data-starting-style:translate-x-[20px] data-ending-style:translate-x-[20px] max-sm:data-starting-style:translate-x-4 max-sm:data-ending-style:translate-x-4`,
+    `sm:-translate-x-[calc(2.5rem*var(--nested-dialogs))] sm:scale-[calc(1-0.1*var(--nested-dialogs))]`,
+  ],
+  wipe: [
+    `[transition-property:clip-path,translate,scale] [will-change:clip-path,translate,scale] [clip-path:inset(0_0_0_0_round_12px)] [-webkit-clip-path:inset(0_0_0_0_round_12px)]`,
+    `data-starting-style:[clip-path:inset(0_0_100%_0_round_12px)] data-ending-style:[clip-path:inset(0_0_100%_0_round_12px)]`,
+    `sm:-translate-y-[calc(2rem*var(--nested-dialogs))] sm:scale-[calc(1-0.1*var(--nested-dialogs))]`,
+  ],
+};
+
+const cssTransitionPresets = {
+  inExpo: `duration-[0.35s] ease-[cubic-bezier(0.95,0.05,0.795,0.035)]`,
+  outExpo: `duration-[0.35s] ease-[cubic-bezier(0.19,1,0.22,1)]`,
+  inOutExpo: `duration-[0.35s] ease-[cubic-bezier(1,0,0,1)]`,
+  anticipate: `duration-[0.35s] ease-[cubic-bezier(1,-0.4,0.35,0.95)]`,
+  quickOut: `duration-[0.35s] ease-out`,
+  overshootOut: `duration-[0.35s] ease-[cubic-bezier(0.175,0.885,0.32,1.275)]`,
+  swiftOut: `duration-[0.35s] ease-[cubic-bezier(0.175,0.885,0.32,1.1)]`,
+  snappyOut: `duration-[0.35s] ease-[cubic-bezier(0.19,1,0.22,1)]`,
+  in: `duration-[0.35s] ease-[cubic-bezier(0.42,0,1,1)]`,
+  out: `duration-[0.35s] ease-[cubic-bezier(0,0,0.58,1)]`,
+  inOut: `duration-[0.25s] ease-[cubic-bezier(0.42,0,0.58,1)]`,
+  outIn: `duration-[0.35s] ease-[cubic-bezier(0.1,0.7,0.9,0.5)]`,
+  inQuad: `duration-[0.35s] ease-[cubic-bezier(0.55,0.085,0.68,0.53)]`,
+  outQuad: `duration-[0.25s] ease-[cubic-bezier(0.25,0.46,0.45,0.94)]`,
+  inOutQuad: `duration-[0.32s] ease-[cubic-bezier(0.455,0.03,0.515,0.955)]`,
+  inCubic: `duration-[0.35s] ease-[cubic-bezier(0.55,0.055,0.675,0.19)]`,
+  outCubic: `duration-[0.35s] ease-[cubic-bezier(0.215,0.61,0.355,1)]`,
+  inOutCubic: `duration-[0.35s] ease-[cubic-bezier(0.645,0.045,0.355,1)]`,
+  inQuart: `duration-[0.35s] ease-[cubic-bezier(0.895,0.03,0.685,0.22)]`,
+  outQuart: `duration-[0.35s] ease-[cubic-bezier(0.165,0.84,0.44,1)]`,
+  inOutQuart: `duration-[0.35s] ease-[cubic-bezier(0.77,0,0.175,1)]`,
+  inQuint: `duration-[0.35s] ease-[cubic-bezier(0.755,0.05,0.855,0.06)]`,
+  outQuint: `duration-[0.35s] ease-[cubic-bezier(0.23,1,0.32,1)]`,
+  inOutQuint: `duration-[0.35s] ease-[cubic-bezier(0.86,0,0.07,1)]`,
+  inCirc: `duration-[0.35s] ease-[cubic-bezier(0.6,0.04,0.98,0.335)]`,
+  outCirc: `duration-[0.35s] ease-[cubic-bezier(0.075,0.82,0.165,1)]`,
+  inOutCirc: `duration-[0.35s] ease-[cubic-bezier(0.785,0.135,0.15,0.86)]`,
+  inOutBase: `duration-[0.35s] ease-[cubic-bezier(0.25,0.1,0.25,1)]`,
+};
+
+type CSSAnimationPresets = keyof typeof cssAnimationPresets;
+type CSSTransitionPresets = keyof typeof cssTransitionPresets;
+
 interface DialogContextType {
-  open: boolean;
-  onOpenChange: DialogProps["onOpenChange"];
   modal: DialogProps["modal"];
 }
 
@@ -349,62 +440,18 @@ function useDialog() {
 interface DialogProps
   extends React.ComponentProps<typeof DialogPrimitive.Root> {}
 
-function Dialog({
-  open,
-  defaultOpen,
-  onOpenChange,
-  modal = true,
-  ...props
-}: DialogProps) {
-  const [isOpen, setIsOpen] = useState(open ?? defaultOpen ?? false);
-
-  useEffect(() => {
-    if (open !== undefined) setIsOpen(open);
-  }, [open]);
-
-  const handleOpenChange: DialogProps["onOpenChange"] = (
-    open,
-    eventDetails
-  ) => {
-    setIsOpen(open);
-    onOpenChange?.(open, eventDetails);
-  };
-
+function Dialog({ modal = true, ...props }: DialogProps) {
   return (
-    <DialogContext.Provider
-      value={{ open: isOpen, onOpenChange: handleOpenChange, modal }}
-    >
-      <DialogPrimitive.Root
-        data-slot="dialog"
-        open={isOpen}
-        onOpenChange={handleOpenChange}
-        modal={modal}
-        {...props}
-      />
+    <DialogContext.Provider value={{ modal }}>
+      <DialogPrimitive.Root data-slot="dialog" modal={modal} {...props} />
     </DialogContext.Provider>
   );
 }
 
 interface DialogTriggerProps
-  extends Omit<React.ComponentProps<typeof DialogPrimitive.Trigger>, "render"> {
-  asChild?: boolean;
-}
+  extends React.ComponentProps<typeof DialogPrimitive.Trigger> {}
 
-function DialogTrigger({
-  asChild = false,
-  children,
-  ...props
-}: DialogTriggerProps) {
-  if (asChild) {
-    return (
-      <DialogPrimitive.Trigger
-        data-slot="dialog-trigger"
-        render={children as React.ReactElement<Record<string, unknown>>}
-        {...props}
-      />
-    );
-  }
-
+function DialogTrigger({ ...props }: DialogTriggerProps) {
   return <DialogPrimitive.Trigger data-slot="dialog-trigger" {...props} />;
 }
 
@@ -412,19 +459,7 @@ interface DialogPortalProps
   extends React.ComponentProps<typeof DialogPrimitive.Portal> {}
 
 function DialogPortal(props: DialogPortalProps) {
-  const { open } = useDialog();
-
-  return (
-    <AnimatePresence>
-      {open && (
-        <DialogPrimitive.Portal
-          data-slot="dialog-portal"
-          keepMounted
-          {...props}
-        />
-      )}
-    </AnimatePresence>
-  );
+  return <DialogPrimitive.Portal data-slot="dialog-portal" {...props} />;
 }
 
 interface DialogBackdropProps
@@ -450,8 +485,10 @@ function DialogBackdrop({ className, ...props }: DialogBackdropProps) {
 
 interface DialogPopupProps
   extends React.ComponentProps<typeof DialogPrimitive.Popup> {
-  animationPreset?: AnimationPreset;
-  transitionPreset?: TransitionPreset;
+  // animationPreset?: AnimationPreset;
+  // transitionPreset?: TransitionPreset;
+  animationPreset?: CSSAnimationPresets;
+  transitionPreset?: CSSTransitionPresets;
   reduceMotion?: boolean;
   showCloseButton?: boolean;
 }
@@ -459,7 +496,7 @@ interface DialogPopupProps
 function DialogPopup({
   className,
   animationPreset = "scale",
-  transitionPreset = "snappyOut",
+  transitionPreset = "outCubic",
   children,
   reduceMotion = false,
   showCloseButton = true,
@@ -467,40 +504,41 @@ function DialogPopup({
 }: DialogPopupProps) {
   const { modal } = useDialog();
 
-  const animationConfig = useMemo(() => {
-    if (reduceMotion) return animationPresets.none;
+  const cssAnimationConfig = useMemo(() => {
+    if (reduceMotion) return "none";
 
     if (animationPreset) {
-      return animationPresets[animationPreset];
+      return cssAnimationPresets[animationPreset];
     }
 
-    return animationPresets.scale;
+    return cssAnimationPresets.scale;
   }, [animationPreset, reduceMotion]);
 
-  const transitionConfig = useMemo(() => {
-    if (reduceMotion) return {};
+  const cssTransitionConfig = useMemo(() => {
+    if (reduceMotion) return "none";
 
     if (transitionPreset) {
-      return transitionPresets[transitionPreset];
+      return cssTransitionPresets[transitionPreset];
     }
+
+    return cssTransitionPresets.snappyOut;
   }, [transitionPreset, reduceMotion]);
 
   return (
     <DialogPortal>
       {modal && <DialogBackdrop />}
       <div className="fixed inset-0 z-50">
-        <div className="flex h-[100dvh] flex-col items-center overflow-hidden pt-6 max-sm:before:flex-1 sm:overflow-y-auto sm:p-4 sm:before:basis-[30vh] sm:after:flex-1">
+        <div className="flex h-dvh flex-col items-center overflow-hidden pt-6 max-sm:before:flex-1 sm:overflow-y-auto sm:p-4 sm:before:basis-[30vh] sm:after:flex-1">
           <DialogPrimitive.Popup
             data-slot="dialog-popup"
             render={
-              <motion.div
+              <div
                 key="dialog-popup"
-                initial={animationConfig.initial}
-                animate={animationConfig.animate}
-                exit={animationConfig.exit}
-                transition={transitionConfig}
                 className={cn(
-                  "row-start-2 pointer-events-auto grid w-full max-w-[calc(100%-2rem)] gap-4 rounded-lg border border-border/80 p-6 shadow-lg sm:max-w-lg bg-popover max-sm:overflow-y-auto max-sm:border-none max-sm:opacity-[calc(1-min(var(--nested-dialogs),1))] sm:-translate-y-[calc(1.25rem*var(--nested-dialogs))] sm:scale-[calc(1-0.1*var(--nested-dialogs))] sm:rounded-2xl",
+                  "relative row-start-2 grid w-full min-w-0 gap-4 border bg-popover p-6 text-popover-foreground shadow-lg",
+                  "max-sm:overflow-y-auto max-sm:border-none sm:max-w-lg sm:rounded-2xl",
+                  cssTransitionConfig,
+                  cssAnimationConfig,
                   className
                 )}
               >
@@ -508,13 +546,13 @@ function DialogPopup({
                 {showCloseButton && (
                   <DialogPrimitive.Close
                     data-slot="dialog-close"
-                    className="ring-offset-background focus:ring-ring data-[open]:bg-accent data-[open]:text-muted-foreground absolute top-4 right-4 rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+                    className="ring-offset-background focus:ring-ring data-open:bg-accent data-open:text-muted-foreground absolute top-4 right-4 rounded-full opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
                   >
                     <XIcon />
                     <span className="sr-only">Close</span>
                   </DialogPrimitive.Close>
                 )}
-              </motion.div>
+              </div>
             }
             {...rest}
           />

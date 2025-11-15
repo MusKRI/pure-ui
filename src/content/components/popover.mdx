@@ -97,16 +97,22 @@ By default, Popover opens when the trigger is clicked. You can pass `openOnHover
 
 You can pass `delay` to Popover to change the delay time for opening the popover. By default, it is 100ms.
 
-```tsx
-<Popover openOnHover delay={200}>
+```tsx add=3
+<Popover
+  openOnHover
+  delay={200}
+>
   ...
 </Popover>
 ```
 
 You can also pass `closeDelay` of Popover to change the delay time for closing the popover. By default, it is 0ms.
 
-```tsx
-<Popover openOnHover closeDelay={200}>
+```tsx add=3
+<Popover
+  openOnHover
+  closeDelay={200}
+>
   ...
 </Popover>
 ```
@@ -149,5 +155,7 @@ You can pass `sideOffset` to `PopoverPopup` to change the offset of the popover.
 <ComponentShowcase name="popover-backdrop-demo" />
 
 ### Custom trigger
+
+This example shows how to use a custom trigger for the popover. It also uses the `openOnHover` prop to open the popover when the trigger is hovered.
 
 <ComponentShowcase name="popover-custom-trigger-demo" />

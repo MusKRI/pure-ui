@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "textarea-large-size-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "textarea"
+  ],
+  "files": [
+    {
+      "path": "src/registry/default/components/examples/textarea/textarea-large-size-demo.tsx",
+      "content": "import { Textarea } from \"@/registry/default/components/ui/textarea\";\r\n\r\nexport function TextareaLargeSizeDemo() {\r\n  return (\r\n    <Textarea\r\n      size=\"lg\"\r\n      placeholder=\"Type your message here\"\r\n      className=\"max-w-72\"\r\n    />\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

@@ -13,14 +13,16 @@ import { Button } from "@/registry/default/components/ui/button";
 export const MenuScaleDemo = () => {
   return (
     <Menu>
-      <MenuTrigger asChild>
-        <Button
-          variant="ghost"
-          className="flex items-center gap-2 active:scale-100"
-          size="sm"
-        >
-          <span className="text-sm">Song</span>
-        </Button>
+      <MenuTrigger
+        render={
+          <Button
+            variant="ghost"
+            className="flex items-center gap-2 active:scale-100"
+            size="sm"
+          />
+        }
+      >
+        <span className="text-sm">Song</span>
       </MenuTrigger>
       <MenuPopup className="w-44" sideOffset={8} animationPreset="scale">
         <MenuItem className="cursor-pointer">
