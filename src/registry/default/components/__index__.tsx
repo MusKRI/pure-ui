@@ -995,6 +995,25 @@ export const Index: Record<string, any> = {
     categories: undefined,
     meta: undefined,
   },
+  "dialog-nested-direction-aware-demo": {
+    name: "dialog-nested-direction-aware-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["dialog"],
+    dependencies: undefined,
+    files: [{
+      path: "src/registry/default/components/examples/dialog/dialog-nested-direction-aware-demo.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/examples/dialog/dialog-nested-direction-aware-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
   "dialog-non-dismissible-demo": {
     name: "dialog-non-dismissible-demo",
     description: "",

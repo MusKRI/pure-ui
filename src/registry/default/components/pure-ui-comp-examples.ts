@@ -395,6 +395,17 @@ export const pureUICompExamples: RegistryItem[] = [
     ],
   },
   {
+    name: "dialog-nested-direction-aware-demo",
+    type: "registry:example",
+    registryDependencies: ["dialog"],
+    files: [
+      {
+        path: "examples/dialog/dialog-nested-direction-aware-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
     name: "dialog-non-dismissible-demo",
     type: "registry:example",
     registryDependencies: ["dialog"],
