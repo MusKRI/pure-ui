@@ -56,7 +56,7 @@ function SpinnerPrimitive({ className, ...props }: SpinnerPrimitiveProps) {
 }
 
 const spinnerVariants = tv({
-  base: `pointer-events-none relative size-6 animate-spin animation-duration-[0.75s] text-current`,
+  base: `pointer-events-none relative size-6 inline-block animate-spin animation-duration-[0.75s] text-current`,
   variants: {
     size: {
       sm: `size-4`,
@@ -78,9 +78,12 @@ function Spinner({ size = "md", ...props }: SpinnerRootProps) {
   return (
     <span
       data-slot="spinner"
-      className={spinnerVariants({
-        size,
-      })}
+      className={cn(
+        "in-data-[slot='toast-content']:size-5!",
+        spinnerVariants({
+          size,
+        })
+      )}
     >
       <SpinnerPrimitive
         aria-hidden

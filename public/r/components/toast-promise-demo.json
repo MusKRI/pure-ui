@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toast-promise-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "toast"
+  ],
+  "files": [
+    {
+      "path": "src/registry/default/components/examples/toast/toast-promise-demo.tsx",
+      "content": "\"use client\";\r\n\r\nimport { Button } from \"@/registry/default/components/ui/button\";\r\nimport { toast } from \"@/registry/default/components/ui/toast\";\r\n\r\nexport function ToastPromiseDemo() {\r\n  return (\r\n    <Button\r\n      variant=\"outline\"\r\n      onClick={() => {\r\n        toast.promise(\r\n          new Promise<string>((resolve, reject) => {\r\n            const shouldSucceed = Math.random() > 0.3;\r\n            setTimeout(() => {\r\n              if (shouldSucceed) {\r\n                resolve(\"Data loaded successfully\");\r\n              } else {\r\n                reject(new Error(\"Failed to load data\"));\r\n              }\r\n            }, 2000);\r\n          }),\r\n          {\r\n            loading: {\r\n              title: \"Loading…\",\r\n              description: \"The promise is loading.\",\r\n            },\r\n            success: (data: string) => ({\r\n              title: \"This is a success toast!\",\r\n              description: `Success: ${data}`,\r\n            }),\r\n            error: () => ({\r\n              title: \"Something went wrong\",\r\n              description: \"Please try again.\",\r\n            }),\r\n          }\r\n        );\r\n      }}\r\n    >\r\n      Run Promise\r\n    </Button>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

@@ -4,6 +4,7 @@ import "@/styles/globals.css";
 import { cn } from "@/lib/classes";
 import { fontVariables } from "@/lib/fonts";
 import { ThemeProvider } from "@/core/providers";
+import { ToastProvider } from "@/registry/default/components/ui/toast";
 
 export const metadata: Metadata = {
   title: "Pure UI",
@@ -29,7 +30,7 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange={false}
         >
-          {children}
+          <ToastProvider position="bottom-right">{children}</ToastProvider>
         </ThemeProvider>
       </body>
     </html>

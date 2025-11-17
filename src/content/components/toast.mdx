@@ -1,0 +1,153 @@
+---
+title: Toast
+description: Toasts are temporary notifications that provide concise feedback about an action or event.
+---
+
+<ComponentShowcase name="toast-demo" />
+
+## Installation
+
+<Tabs defaultValue="terminal">
+  <TabsList>
+    <TabsTrigger value="terminal">
+      <Terminal className="w-4 h-4" />
+      Terminal
+    </TabsTrigger>
+    <TabsTrigger value="manual">
+      <Code2 className="w-4 h-4" />
+      Manual
+    </TabsTrigger>
+  </TabsList>
+  <TabsContent value="terminal">
+    <Steps>
+
+    <InstallationCommands
+      type="registry-installation"
+      registryPath="components/toast"
+    />
+
+    <Step>Add the `ToastProvider` to your app.</Step>
+
+    ```tsx filename="app/layout.tsx" highlight={1,12,14}
+    import { ToastProvider } from "@/components/ui/toast"
+
+    export default function RootLayout({
+      children,
+    }: Readonly<{
+      children: React.ReactNode;
+    }>) {
+      return (
+        <html lang="en">
+          <head />
+          <body>
+            <ToastProvider>
+              <main>{children}</main>
+            </ToastProvider>
+          </body>
+        </html>
+      )
+    }
+    ```
+    </Steps>
+
+  </TabsContent>
+  <TabsContent value="manual">
+    <Steps>
+      <Step>Install dependencies</Step>
+
+      <InstallationCommands
+        type="package-installation"
+        npmCommand="npm install @base-ui-components/react clsx tailwind-merge"
+        pnpmCommand="pnpm add @base-ui-components/react clsx tailwind-merge"
+        yarnCommand="yarn add @base-ui-components/react clsx tailwind-merge"
+        bunCommand="bun add @base-ui-components/react clsx tailwind-merge"
+      />
+
+      <Step>Add cn function to your utils</Step>
+
+      ```ts filename="lib/classes.ts"
+      import { clsx, type ClassValue } from "clsx";
+      import { twMerge } from "tailwind-merge";
+
+      export function cn(...inputs: ClassValue[]) {
+        return twMerge(clsx(inputs));
+      }
+      ```
+
+      <Step>Copy and paste the following code into your project</Step>
+
+      <ComponentCodePreview name="toast" />
+
+      <Step>Add the `ToastProvider` to your app.</Step>
+
+      ```tsx filename="app/layout.tsx" highlight={1,12,14}
+      import { ToastProvider } from "@/components/ui/toast"
+
+      export default function RootLayout({
+        children,
+      }: Readonly<{
+        children: React.ReactNode;
+      }>) {
+        return (
+          <html lang="en">
+            <head />
+            <body>
+              <ToastProvider>
+                <main>{children}</main>
+              </ToastProvider>
+            </body>
+          </html>
+        )
+      }
+      ```
+    </Steps>
+
+  </TabsContent>
+</Tabs>
+
+## Usage
+
+```tsx
+import { toast } from "@/components/ui/toast";
+```
+
+```tsx
+toast.add({
+  title: "Event has been created",
+  description: "Monday, January 3rd at 6:00pm",
+});
+```
+
+By default, toasts appear in the **bottom-right** corner. You can change this by setting the `position` prop on the `ToastProvider`.
+
+**Allowed values**: `top-left`, `top-center`, `top-right`, `bottom-left`, `bottom-center`, `bottom-right`. For example:
+
+```tsx
+<ToastProvider position="top-center">{children}</ToastProvider>
+```
+
+## Examples
+
+### With Status
+
+<ComponentShowcase name="toast-with-status-demo" />
+
+### Radius
+
+You can change the radius of the toast by passing the `radius` property in `data` prop to the `toast.add` method.
+
+**Allowed values**: `none`, `sm`, `md`, `lg`, `full`.
+
+<ComponentShowcase name="toast-radius-demo" />
+
+### Loading
+
+<ComponentShowcase name="toast-loading-demo" />
+
+### Action
+
+<ComponentShowcase name="toast-action-demo" />
+
+### Promise
+
+<ComponentShowcase name="toast-promise-demo" />

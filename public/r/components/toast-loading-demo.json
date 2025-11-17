@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toast-loading-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "toast"
+  ],
+  "files": [
+    {
+      "path": "src/registry/default/components/examples/toast/toast-loading-demo.tsx",
+      "content": "\"use client\";\r\n\r\nimport { Button } from \"@/registry/default/components/ui/button\";\r\nimport { toast } from \"@/registry/default/components/ui/toast\";\r\n\r\nexport function ToastLoadingDemo() {\r\n  return (\r\n    <Button\r\n      variant=\"outline\"\r\n      onClick={() => {\r\n        toast.add({\r\n          title: \"Loading…\",\r\n          description: \"Please wait while we process your request.\",\r\n          type: \"loading\",\r\n          timeout: 3000,\r\n        });\r\n      }}\r\n    >\r\n      Loading Toast\r\n    </Button>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

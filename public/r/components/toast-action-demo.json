@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toast-action-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "toast"
+  ],
+  "files": [
+    {
+      "path": "src/registry/default/components/examples/toast/toast-action-demo.tsx",
+      "content": "\"use client\";\r\n\r\nimport { Button } from \"@/registry/default/components/ui/button\";\r\nimport { toast } from \"@/registry/default/components/ui/toast\";\r\n\r\nexport function ToastActionDemo() {\r\n  return (\r\n    <Button\r\n      variant=\"outline\"\r\n      onClick={() => {\r\n        const id = toast.add({\r\n          title: \"Action performed\",\r\n          description: \"You can undo this action.\",\r\n          type: \"success\",\r\n          actionProps: {\r\n            children: \"Undo\",\r\n            onClick: () => {\r\n              toast.close(id);\r\n              toast.add({\r\n                title: \"Action undone\",\r\n                description: \"The action has been reverted.\",\r\n                type: \"info\",\r\n              });\r\n            },\r\n          },\r\n          timeout: 1000000,\r\n        });\r\n      }}\r\n    >\r\n      Perform Action\r\n    </Button>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

@@ -278,6 +278,21 @@ export const pureUIShadcnComponents: RegistryItem[] = [
     ],
     dependencies: ["@base-ui-components/react", "clsx", "tailwind-merge"],
   },
+  // Toast
+  {
+    name: "toast",
+    type: "registry:ui",
+    title: "Toast",
+    description: "A customizable toast component",
+    files: [
+      {
+        path: "ui/toast/index.tsx",
+        type: "registry:ui",
+      },
+    ],
+    registryDependencies: ["button", "spinner"],
+    dependencies: ["@base-ui-components/react", "clsx", "tailwind-merge"],
+  },
   // Tooltip
   {
     name: "tooltip",

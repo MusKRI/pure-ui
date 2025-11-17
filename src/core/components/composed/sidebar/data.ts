@@ -176,6 +176,12 @@ const pureUIComponents = [
     href: "/components/textarea",
   },
   {
+    id: "toast",
+    title: "Toast",
+    type: "link",
+    href: "/components/toast",
+  },
+  {
     id: "tooltip",
     title: "Tooltip",
     type: "link",

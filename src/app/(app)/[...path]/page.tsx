@@ -35,6 +35,7 @@ export async function generateMetadata(props: PageProps<"/[...path]">) {
   const { title, description, features = [] } = content.frontmatter;
 
   return {
+    metadataBase: new URL(getAppUrl()),
     title: `${title} - Pure UI`,
     description: description,
     keywords: [

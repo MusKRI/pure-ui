@@ -292,6 +292,27 @@
       ]
     },
     {
+      "name": "toast",
+      "type": "registry:ui",
+      "title": "Toast",
+      "description": "A customizable toast component",
+      "dependencies": [
+        "@base-ui-components/react",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "button",
+        "spinner"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/ui/toast/index.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "tooltip",
       "type": "registry:ui",
       "title": "Tooltip",
@@ -1995,6 +2016,84 @@
       "files": [
         {
           "path": "src/registry/default/components/examples/textarea/textarea-controlled-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "toast-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "toast"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/toast/toast-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "toast-with-status-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "toast"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/toast/toast-with-status-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "toast-radius-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "toast"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/toast/toast-radius-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "toast-loading-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "toast"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/toast/toast-loading-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "toast-action-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "toast"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/toast/toast-action-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "toast-promise-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "toast"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/toast/toast-promise-demo.tsx",
           "type": "registry:example"
         }
       ]

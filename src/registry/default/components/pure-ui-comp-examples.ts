@@ -1457,6 +1457,74 @@ export const pureUICompExamples: RegistryItem[] = [
     ],
   },
 
+  // Toast
+  {
+    name: "toast-demo",
+    type: "registry:example",
+    registryDependencies: ["toast"],
+    files: [
+      {
+        path: "examples/toast/toast-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "toast-with-status-demo",
+    type: "registry:example",
+    registryDependencies: ["toast"],
+    files: [
+      {
+        path: "examples/toast/toast-with-status-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "toast-radius-demo",
+    type: "registry:example",
+    registryDependencies: ["toast"],
+    files: [
+      {
+        path: "examples/toast/toast-radius-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "toast-loading-demo",
+    type: "registry:example",
+    registryDependencies: ["toast"],
+    files: [
+      {
+        path: "examples/toast/toast-loading-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "toast-action-demo",
+    type: "registry:example",
+    registryDependencies: ["toast"],
+    files: [
+      {
+        path: "examples/toast/toast-action-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "toast-promise-demo",
+    type: "registry:example",
+    registryDependencies: ["toast"],
+    files: [
+      {
+        path: "examples/toast/toast-promise-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+
   // Tooltip
   {
     name: "tooltip-demo",
