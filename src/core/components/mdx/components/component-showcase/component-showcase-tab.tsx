@@ -16,7 +16,7 @@ export function ComponentShowcaseTab({ tab, isActive }: ShowcaseTabProps) {
     <Tabs.Tab
       value={tab.name}
       className={cn(
-        "relative flex items-center gap-2 px-3 py-1.5 text-[13px] font-medium transition-colors duration-200 ease-spring-soft rounded-lg transform cursor-pointer z-2 transform-gpu font-mono",
+        "relative flex items-center gap-2 px-3 py-1.5 text-[13px] font-medium transition-colors duration-200 ease-spring-soft rounded-lg transform cursor-pointer transform-gpu font-mono",
         isActive
           ? "text-foreground"
           : "text-muted-foreground hover:text-foreground"

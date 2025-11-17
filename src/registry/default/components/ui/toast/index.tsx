@@ -101,7 +101,7 @@ function ToastList({
               }
               className={cn(
                 "[--toast-calc-height:var(--toast-frontmost-height,var(--toast-height))] [--toast-gap:--spacing(3)] [--toast-peek:--spacing(3)] [--toast-scale:calc(max(0,1-(var(--toast-index)*.1)))] [--toast-shrink:calc(1-var(--toast-scale))]",
-                "absolute z-[calc(9999-var(--toast-index))] h-(--toast-calc-height) w-full border bg-popover px-3.5 py-3.5 text-popover-foreground shadow-lg select-none [transition:transform_.5s_cubic-bezier(.22,1,.36,1),opacity_.5s,height_.15s]",
+                "absolute z-[calc(9999999-var(--toast-index))] h-(--toast-calc-height) w-full border bg-popover px-3.5 py-3.5 text-popover-foreground shadow-lg select-none [transition:transform_.5s_cubic-bezier(.22,1,.36,1),opacity_.5s,height_.15s]",
                 // radius of toast
                 getRadiusClass((toast.data as CustomToastData)?.radius || "md"),
                 // Base positioning using data-position

@@ -22,10 +22,7 @@ export function ToastDemo() {
           toast.add({
             title: "Event has been created",
             description: "Monday, January 3rd at 6:00pm",
-            data: {
-              radius: "md",
-              position: "top-center",
-            },
+            timeout: 10000000,
           });
         }}
       >

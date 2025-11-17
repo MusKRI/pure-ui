@@ -86,7 +86,7 @@ export function TabsList({ children, className }: TabsListProps) {
       className={cn("relative flex items-center gap-3", className)}
     >
       {children}
-      <TabsPrimitive.Indicator className="absolute top-1/2 left-0 z-[-1] h-(--active-tab-height) w-(--active-tab-width) translate-x-(--active-tab-left) -translate-y-1/2 rounded-sm bg-muted transition-all duration-[270ms] ease-[cubic-bezier(0.175,0.885,0.32,1.1)] pointer-events-none">
+      <TabsPrimitive.Indicator className="absolute top-1/2 left-0 z-[-1] h-(--active-tab-height) w-(--active-tab-width) translate-x-(--active-tab-left) -translate-y-1/2 rounded-sm bg-muted transition-all duration-270 ease-[cubic-bezier(0.175,0.885,0.32,1.1)] pointer-events-none">
         {/* <span className="absolute left-0 right-0 top-[0px] h-4.5 rounded-full bg-gradient-to-t z-1 from-background to-primary opacity-10 blur-[2px]" /> */}
       </TabsPrimitive.Indicator>
     </TabsPrimitive.List>
@@ -114,7 +114,7 @@ export function TabsTrigger({
     <TabsPrimitive.Tab
       value={value}
       className={cn(
-        "relative flex items-center gap-2 px-3 py-1.5 text-[13px] font-medium transition-colors duration-200 ease-[cubic-bezier(0.175,0.885,0.32,1.1)] rounded-lg transform-gpu z-2 cursor-pointer font-mono",
+        "relative flex items-center gap-2 px-3 py-1.5 text-[13px] font-medium transition-colors duration-200 ease-[cubic-bezier(0.175,0.885,0.32,1.1)] rounded-lg transform-gpu cursor-pointer font-mono",
         isActive
           ? "text-foreground"
           : "text-muted-foreground hover:text-foreground",
