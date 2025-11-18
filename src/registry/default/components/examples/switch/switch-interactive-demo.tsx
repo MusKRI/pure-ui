@@ -1,10 +1,11 @@
 import { Switch } from "@/registry/default/components/ui/switch";
+import { Label } from "@/registry/default/components/ui/label";
 
 export function SwitchInteractiveDemo() {
   return (
-    <label className="flex items-center gap-2 cursor-pointer">
+    <Label className="cursor-pointer">
       <Switch isInteractive />
       <span>Enable notifications</span>
-    </label>
+    </Label>
   );
 }

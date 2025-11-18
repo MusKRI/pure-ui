@@ -38,7 +38,8 @@
       "files": [
         {
           "path": "src/registry/default/components/ui/button/index.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/ui/button.tsx"
         }
       ]
     },
@@ -55,7 +56,8 @@
       "files": [
         {
           "path": "src/registry/default/components/ui/card/index.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/ui/card.tsx"
         }
       ]
     },
@@ -73,7 +75,8 @@
       "files": [
         {
           "path": "src/registry/default/components/ui/checkbox/index.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/ui/checkbox.tsx"
         }
       ]
     },
@@ -92,7 +95,8 @@
       "files": [
         {
           "path": "src/registry/default/components/ui/dialog/index.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/ui/dialog.tsx"
         }
       ]
     },
@@ -109,7 +113,8 @@
       "files": [
         {
           "path": "src/registry/default/components/ui/input/index.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/ui/input.tsx"
         }
       ]
     },
@@ -131,7 +136,8 @@
       "files": [
         {
           "path": "src/registry/default/components/ui/input-group/index.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/ui/input-group.tsx"
         }
       ]
     },
@@ -150,7 +156,8 @@
       "files": [
         {
           "path": "src/registry/default/components/ui/input-otp/index.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/ui/input-otp.tsx"
         }
       ]
     },
@@ -166,7 +173,8 @@
       "files": [
         {
           "path": "src/registry/default/components/ui/label/index.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/ui/label.tsx"
         }
       ]
     },
@@ -184,7 +192,8 @@
       "files": [
         {
           "path": "src/registry/default/components/ui/menu/index.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/ui/menu.tsx"
         }
       ]
     },
@@ -202,7 +211,8 @@
       "files": [
         {
           "path": "src/registry/default/components/ui/popover/index.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/ui/popover.tsx"
         }
       ]
     },
@@ -220,7 +230,8 @@
       "files": [
         {
           "path": "src/registry/default/components/ui/select/index.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/ui/select.tsx"
         }
       ]
     },
@@ -237,7 +248,8 @@
       "files": [
         {
           "path": "src/registry/default/components/ui/separator/index.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/ui/separator.tsx"
         }
       ]
     },
@@ -254,7 +266,8 @@
       "files": [
         {
           "path": "src/registry/default/components/ui/switch/index.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/ui/switch.tsx"
         }
       ]
     },
@@ -270,7 +283,8 @@
       "files": [
         {
           "path": "src/registry/default/components/ui/spinner/index.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/ui/spinner.tsx"
         }
       ]
     },
@@ -287,7 +301,8 @@
       "files": [
         {
           "path": "src/registry/default/components/ui/textarea/index.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/ui/textarea.tsx"
         }
       ]
     },
@@ -308,7 +323,8 @@
       "files": [
         {
           "path": "src/registry/default/components/ui/toast/index.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/ui/toast.tsx"
         }
       ]
     },
@@ -326,7 +342,8 @@
       "files": [
         {
           "path": "src/registry/default/components/ui/tooltip/index.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/ui/tooltip.tsx"
         }
       ]
     },
@@ -1904,14 +1921,14 @@
       ]
     },
     {
-      "name": "switch-with-icons-demo",
+      "name": "switch-reduce-motion-demo",
       "type": "registry:example",
       "registryDependencies": [
         "switch"
       ],
       "files": [
         {
-          "path": "src/registry/default/components/examples/switch/switch-with-icons-demo.tsx",
+          "path": "src/registry/default/components/examples/switch/switch-reduce-motion-demo.tsx",
           "type": "registry:example"
         }
       ]

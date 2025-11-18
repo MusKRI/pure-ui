@@ -1,9 +1,10 @@
 import { cn } from "@/lib/classes";
 import { Switch } from "@/registry/default/components/ui/switch";
+import { Label } from "@/registry/default/components/ui/label";
 
 export function CustomSwitchCardStyleDemo() {
   return (
-    <label
+    <Label
       htmlFor="custom-switch-card-style-demo"
       className="flex items-center gap-6 rounded-lg border-2 p-3 bg-card hover:bg-accent/50 has-data-checked:border-primary/88 has-data-checked:bg-accent/50 cursor-pointer"
     >
@@ -17,16 +18,8 @@ export function CustomSwitchCardStyleDemo() {
         id="custom-switch-card-style-demo"
         defaultChecked
         isInteractive
-        classNames={{
-          wrapper: "p-0 h-4 overflow-visible",
-          thumb: cn(
-            "size-6 border-2 border-border shadow-lg",
-            "group-hover:border-primary",
-            "data-checked:ms-6",
-            "group-active:w-7 data-checked:group-active:ml-5"
-          ),
-        }}
+        className="p-0 h-4 overflow-visible *:data-[slot=switch-thumb]:size-6 *:data-[slot=switch-thumb]:border-2 *:data-[slot=switch-thumb]:border-border *:data-[slot=switch-thumb]:shadow-lg hover:*:data-[slot=switch-thumb]:border-primary data-checked:*:data-[slot=switch-thumb]:ms-6.5 active:*:data-[slot=switch-thumb]:w-7 data-checked:active:*:data-[slot=switch-thumb]:ml-5"
       />
-    </label>
+    </Label>
   );
 }

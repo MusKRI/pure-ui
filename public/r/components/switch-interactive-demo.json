@@ -8,7 +8,7 @@
   "files": [
     {
       "path": "src/registry/default/components/examples/switch/switch-interactive-demo.tsx",
-      "content": "import { Switch } from \"@/registry/default/components/ui/switch\";\r\n\r\nexport function SwitchInteractiveDemo() {\r\n  return (\r\n    <label className=\"flex items-center gap-2 cursor-pointer\">\r\n      <Switch isInteractive />\r\n      <span>Enable notifications</span>\r\n    </label>\r\n  );\r\n}\r\n",
+      "content": "import { Switch } from \"@/registry/default/components/ui/switch\";\r\nimport { Label } from \"@/registry/default/components/ui/label\";\r\n\r\nexport function SwitchInteractiveDemo() {\r\n  return (\r\n    <Label className=\"cursor-pointer\">\r\n      <Switch isInteractive />\r\n      <span>Enable notifications</span>\r\n    </Label>\r\n  );\r\n}\r\n",
       "type": "registry:example"
     }
   ]

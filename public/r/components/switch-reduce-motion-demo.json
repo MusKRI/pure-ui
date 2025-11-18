@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "switch-reduce-motion-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "switch"
+  ],
+  "files": [
+    {
+      "path": "src/registry/default/components/examples/switch/switch-reduce-motion-demo.tsx",
+      "content": "import { Switch } from \"@/registry/default/components/ui/switch\";\r\n\r\nexport function SwitchReduceMotionDemo() {\r\n  return <Switch reduceMotion />;\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

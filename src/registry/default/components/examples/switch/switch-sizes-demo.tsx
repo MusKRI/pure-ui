@@ -1,4 +1,5 @@
 import { Switch } from "@/registry/default/components/ui/switch";
+import { Label } from "@/registry/default/components/ui/label";
 
 export function SwitchSizesDemo() {
   const sizes = ["sm", "md", "lg"] as const;
@@ -6,10 +7,10 @@ export function SwitchSizesDemo() {
   return (
     <div className="flex flex-col gap-4">
       {sizes.map((size) => (
-        <label key={size} className="flex items-center gap-2 cursor-pointer">
+        <Label key={size} className="cursor-pointer">
           <Switch size={size} />
           <span>Enable Polar Payments</span>
-        </label>
+        </Label>
       ))}
     </div>
   );

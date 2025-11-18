@@ -30,10 +30,10 @@ description: The Switch component is used as an alternative between checked and 
 
       <InstallationCommands
         type="package-installation"
-        npmCommand="npm install tailwind-variants clsx tailwind-merge"
-        pnpmCommand="pnpm add tailwind-variants clsx tailwind-merge"
-        yarnCommand="yarn add tailwind-variants clsx tailwind-merge"
-        bunCommand="bun add tailwind-variants clsx tailwind-merge"
+        npmCommand="npm install clsx tailwind-merge @base-ui-components/react"
+        pnpmCommand="pnpm add clsx tailwind-merge @base-ui-components/react"
+        yarnCommand="yarn add clsx tailwind-merge @base-ui-components/react"
+        bunCommand="bun add clsx tailwind-merge @base-ui-components/react"
       />
 
       <Step>Add following code to your classes.ts file</Step>
@@ -41,15 +41,10 @@ description: The Switch component is used as an alternative between checked and 
       ```ts filename="lib/classes.ts"
       import { clsx, type ClassValue } from "clsx";
       import { twMerge } from "tailwind-merge";
-      import type { ClassValue } from "tailwind-variants";
 
       export function cn(...inputs: ClassValue[]) {
         return twMerge(clsx(inputs));
       }
-
-      export type SlotsToClasses<S extends string> = {
-          [key in S]?: Exclude<ClassValue, 0n>;
-      };
       ```
 
       <Step>Copy and paste the following code into your project</Step>
@@ -89,12 +84,6 @@ The switch component is non interactive by default. You can make it interactive 
 ### Sizes
 
 <ComponentShowcase name="switch-sizes-demo" />
-
-### With Icons
-
-You can add icons to the start and end of the switch by passing the `startContent` and `endContent` props.
-
-<ComponentShowcase name="switch-with-icons-demo" />
 
 ### Controlled
 

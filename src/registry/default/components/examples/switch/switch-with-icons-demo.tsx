@@ -1,11 +1,12 @@
 import { MoonIcon, SunIcon } from "lucide-react";
 import { Switch } from "@/registry/default/components/ui/switch";
+import { Label } from "@/registry/default/components/ui/label";
 
 export function SwitchWithIconsDemo() {
   return (
-    <label className="flex items-center gap-2 cursor-pointer">
-      <Switch startContent={<SunIcon />} endContent={<MoonIcon />} />
+    <Label className="cursor-pointer">
+      <Switch />
       <span>Dark Mode</span>
-    </label>
+    </Label>
   );
 }

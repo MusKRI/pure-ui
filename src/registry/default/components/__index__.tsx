@@ -35,7 +35,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "src/registry/default/components/ui/button/index.tsx",
       type: "registry:ui",
-      target: ""
+      target: "components/ui/button.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/default/components/ui/button/index.tsx")
@@ -54,7 +54,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "src/registry/default/components/ui/card/index.tsx",
       type: "registry:ui",
-      target: ""
+      target: "components/ui/card.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/default/components/ui/card/index.tsx")
@@ -73,7 +73,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "src/registry/default/components/ui/checkbox/index.tsx",
       type: "registry:ui",
-      target: ""
+      target: "components/ui/checkbox.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/default/components/ui/checkbox/index.tsx")
@@ -92,7 +92,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "src/registry/default/components/ui/dialog/index.tsx",
       type: "registry:ui",
-      target: ""
+      target: "components/ui/dialog.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/default/components/ui/dialog/index.tsx")
@@ -111,7 +111,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "src/registry/default/components/ui/input/index.tsx",
       type: "registry:ui",
-      target: ""
+      target: "components/ui/input.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/default/components/ui/input/index.tsx")
@@ -130,7 +130,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "src/registry/default/components/ui/input-group/index.tsx",
       type: "registry:ui",
-      target: ""
+      target: "components/ui/input-group.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/default/components/ui/input-group/index.tsx")
@@ -149,7 +149,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "src/registry/default/components/ui/input-otp/index.tsx",
       type: "registry:ui",
-      target: ""
+      target: "components/ui/input-otp.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/default/components/ui/input-otp/index.tsx")
@@ -168,7 +168,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "src/registry/default/components/ui/label/index.tsx",
       type: "registry:ui",
-      target: ""
+      target: "components/ui/label.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/default/components/ui/label/index.tsx")
@@ -187,7 +187,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "src/registry/default/components/ui/menu/index.tsx",
       type: "registry:ui",
-      target: ""
+      target: "components/ui/menu.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/default/components/ui/menu/index.tsx")
@@ -206,7 +206,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "src/registry/default/components/ui/popover/index.tsx",
       type: "registry:ui",
-      target: ""
+      target: "components/ui/popover.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/default/components/ui/popover/index.tsx")
@@ -225,7 +225,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "src/registry/default/components/ui/select/index.tsx",
       type: "registry:ui",
-      target: ""
+      target: "components/ui/select.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/default/components/ui/select/index.tsx")
@@ -244,7 +244,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "src/registry/default/components/ui/separator/index.tsx",
       type: "registry:ui",
-      target: ""
+      target: "components/ui/separator.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/default/components/ui/separator/index.tsx")
@@ -263,7 +263,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "src/registry/default/components/ui/switch/index.tsx",
       type: "registry:ui",
-      target: ""
+      target: "components/ui/switch.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/default/components/ui/switch/index.tsx")
@@ -282,7 +282,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "src/registry/default/components/ui/spinner/index.tsx",
       type: "registry:ui",
-      target: ""
+      target: "components/ui/spinner.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/default/components/ui/spinner/index.tsx")
@@ -301,7 +301,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "src/registry/default/components/ui/textarea/index.tsx",
       type: "registry:ui",
-      target: ""
+      target: "components/ui/textarea.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/default/components/ui/textarea/index.tsx")
@@ -320,7 +320,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "src/registry/default/components/ui/toast/index.tsx",
       type: "registry:ui",
-      target: ""
+      target: "components/ui/toast.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/default/components/ui/toast/index.tsx")
@@ -339,7 +339,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "src/registry/default/components/ui/tooltip/index.tsx",
       type: "registry:ui",
-      target: ""
+      target: "components/ui/tooltip.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/default/components/ui/tooltip/index.tsx")
@@ -2648,19 +2648,19 @@ export const Index: Record<string, any> = {
     categories: undefined,
     meta: undefined,
   },
-  "switch-with-icons-demo": {
-    name: "switch-with-icons-demo",
+  "switch-reduce-motion-demo": {
+    name: "switch-reduce-motion-demo",
     description: "",
     type: "registry:example",
     registryDependencies: ["switch"],
     dependencies: undefined,
     files: [{
-      path: "src/registry/default/components/examples/switch/switch-with-icons-demo.tsx",
+      path: "src/registry/default/components/examples/switch/switch-reduce-motion-demo.tsx",
       type: "registry:example",
       target: ""
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/default/components/examples/switch/switch-with-icons-demo.tsx")
+      const mod = await import("@/registry/default/components/examples/switch/switch-reduce-motion-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),

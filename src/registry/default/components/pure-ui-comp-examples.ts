@@ -1356,12 +1356,12 @@ export const pureUICompExamples: RegistryItem[] = [
     ],
   },
   {
-    name: "switch-with-icons-demo",
+    name: "switch-reduce-motion-demo",
     type: "registry:example",
     registryDependencies: ["switch"],
     files: [
       {
-        path: "examples/switch/switch-with-icons-demo.tsx",
+        path: "examples/switch/switch-reduce-motion-demo.tsx",
         type: "registry:example",
       },
     ],

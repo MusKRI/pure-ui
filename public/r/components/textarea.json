@@ -13,7 +13,8 @@
     {
       "path": "src/registry/default/components/ui/textarea/index.tsx",
       "content": "\"use client\";\r\n\r\nimport * as React from \"react\";\r\nimport { Field as FieldPrimitive } from \"@base-ui-components/react/field\";\r\nimport { mergeProps } from \"@base-ui-components/react/merge-props\";\r\n\r\nimport { cn } from \"@/lib/classes\";\r\n\r\nexport interface TextareaProps extends React.ComponentProps<\"textarea\"> {\r\n  size?: \"sm\" | \"default\" | \"lg\" | number;\r\n}\r\n\r\nfunction Textarea({ className, size = \"default\", ...props }: TextareaProps) {\r\n  return (\r\n    <FieldPrimitive.Control\r\n      render={(defaultProps) => (\r\n        <textarea\r\n          data-slot=\"textarea\"\r\n          className={cn(\r\n            \"field-sizing-content relative min-h-17.5 w-full rounded-lg border border-input/70 bg-background dark:bg-input/32 shadow-xs text-base/5 sm:text-sm px-3 py-2 outline-none max-sm:min-h-20.5 placeholder:text-muted-foreground/80 [transition:box-shadow_150ms_ease-out]\",\r\n            // Focus State\r\n            \"focus-visible:border-ring focus-visible:ring-[1px] disabled:opacity-64 focus-visible:aria-invalid:border-destructive/64 focus-visible:aria-invalid:ring-destructive/16 [disabled,focus-visible,aria-invalid]:shadow-none dark:aria-invalid:ring-destructive/24\",\r\n            size === \"sm\" &&\r\n              \"min-h-16.5 px-[calc(--spacing(2.5)-1px)] py-[calc(--spacing(1)-1px)] max-sm:min-h-19.5\",\r\n            size === \"lg\" &&\r\n              \"min-h-18.5 py-[calc(--spacing(2)-1px)] max-sm:min-h-21.5\",\r\n            className\r\n          )}\r\n          {...mergeProps(defaultProps, props)}\r\n        />\r\n      )}\r\n    />\r\n  );\r\n}\r\n\r\nexport { Textarea };\r\n",
-      "type": "registry:ui"
+      "type": "registry:ui",
+      "target": "components/ui/textarea.tsx"
     }
   ]
 }

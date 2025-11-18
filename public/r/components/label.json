@@ -12,7 +12,8 @@
     {
       "path": "src/registry/default/components/ui/label/index.tsx",
       "content": "import * as React from \"react\"\r\n\r\nimport { cn } from \"@/lib/classes\"\r\n\r\nfunction Label({ className, ...props }: React.ComponentProps<\"label\">) {\r\n  return (\r\n    <label\r\n      data-slot=\"label\"\r\n      className={cn(\"inline-flex items-center gap-2 text-sm/4\", className)}\r\n      {...props}\r\n    />\r\n  )\r\n}\r\n\r\nexport { Label }\r\n",
-      "type": "registry:ui"
+      "type": "registry:ui",
+      "target": "components/ui/label.tsx"
     }
   ]
 }
