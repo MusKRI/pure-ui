@@ -32,6 +32,7 @@ export const pureUIShadcnComponents: RegistryItem[] = [
       {
         path: "ui/button/index.tsx",
         type: "registry:ui",
+        target: "components/ui/button.tsx",
       },
     ],
     dependencies: [
@@ -51,6 +52,7 @@ export const pureUIShadcnComponents: RegistryItem[] = [
       {
         path: "ui/card/index.tsx",
         type: "registry:ui",
+        target: "components/ui/card.tsx",
       },
     ],
     dependencies: ["clsx", "tailwind-merge", "@radix-ui/react-slot"],
@@ -65,6 +67,7 @@ export const pureUIShadcnComponents: RegistryItem[] = [
       {
         path: "ui/checkbox/index.tsx",
         type: "registry:ui",
+        target: "components/ui/checkbox.tsx",
       },
     ],
     dependencies: [
@@ -84,6 +87,7 @@ export const pureUIShadcnComponents: RegistryItem[] = [
       {
         path: "ui/dialog/index.tsx",
         type: "registry:ui",
+        target: "components/ui/dialog.tsx",
       },
     ],
     dependencies: [
@@ -104,6 +108,7 @@ export const pureUIShadcnComponents: RegistryItem[] = [
       {
         path: "ui/input/index.tsx",
         type: "registry:ui",
+        target: "components/ui/input.tsx",
       },
     ],
     dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
@@ -118,6 +123,7 @@ export const pureUIShadcnComponents: RegistryItem[] = [
       {
         path: "ui/input-group/index.tsx",
         type: "registry:ui",
+        target: "components/ui/input-group.tsx",
       },
     ],
     registryDependencies: ["input", "textarea"],
@@ -138,6 +144,7 @@ export const pureUIShadcnComponents: RegistryItem[] = [
       {
         path: "ui/input-otp/index.tsx",
         type: "registry:ui",
+        target: "components/ui/input-otp.tsx",
       },
     ],
     dependencies: [
@@ -158,6 +165,7 @@ export const pureUIShadcnComponents: RegistryItem[] = [
       {
         path: "ui/label/index.tsx",
         type: "registry:ui",
+        target: "components/ui/label.tsx",
       },
     ],
     dependencies: ["clsx", "tailwind-merge"],
@@ -172,6 +180,7 @@ export const pureUIShadcnComponents: RegistryItem[] = [
       {
         path: "ui/menu/index.tsx",
         type: "registry:ui",
+        target: "components/ui/menu.tsx",
       },
     ],
     dependencies: [
@@ -191,6 +200,7 @@ export const pureUIShadcnComponents: RegistryItem[] = [
       {
         path: "ui/popover/index.tsx",
         type: "registry:ui",
+        target: "components/ui/popover.tsx",
       },
     ],
     dependencies: [
@@ -210,6 +220,7 @@ export const pureUIShadcnComponents: RegistryItem[] = [
       {
         path: "ui/select/index.tsx",
         type: "registry:ui",
+        target: "components/ui/select.tsx",
       },
     ],
     dependencies: [
@@ -229,6 +240,7 @@ export const pureUIShadcnComponents: RegistryItem[] = [
       {
         path: "ui/separator/index.tsx",
         type: "registry:ui",
+        target: "components/ui/separator.tsx",
       },
     ],
     dependencies: ["@base-ui-components/react", "clsx", "tailwind-merge"],
@@ -243,6 +255,7 @@ export const pureUIShadcnComponents: RegistryItem[] = [
       {
         path: "ui/switch/index.tsx",
         type: "registry:ui",
+        target: "components/ui/switch.tsx",
       },
     ],
     dependencies: [
@@ -260,6 +273,7 @@ export const pureUIShadcnComponents: RegistryItem[] = [
       {
         path: "ui/spinner/index.tsx",
         type: "registry:ui",
+        target: "components/ui/spinner.tsx",
       },
     ],
     dependencies: ["tailwind-merge", "clsx"],
@@ -274,6 +288,7 @@ export const pureUIShadcnComponents: RegistryItem[] = [
       {
         path: "ui/textarea/index.tsx",
         type: "registry:ui",
+        target: "components/ui/textarea.tsx",
       },
     ],
     dependencies: ["@base-ui-components/react", "clsx", "tailwind-merge"],
@@ -288,6 +303,7 @@ export const pureUIShadcnComponents: RegistryItem[] = [
       {
         path: "ui/toast/index.tsx",
         type: "registry:ui",
+        target: "components/ui/toast.tsx",
       },
     ],
     registryDependencies: ["button", "spinner"],
@@ -303,6 +319,7 @@ export const pureUIShadcnComponents: RegistryItem[] = [
       {
         path: "ui/tooltip/index.tsx",
         type: "registry:ui",
+        target: "components/ui/tooltip.tsx",
       },
     ],
     dependencies: [
