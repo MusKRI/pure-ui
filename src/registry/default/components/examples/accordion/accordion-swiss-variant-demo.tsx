@@ -1,5 +1,3 @@
-import { Box, CreditCard, Handbag, Receipt } from "lucide-react";
-
 import {
   Accordion,
   AccordionPanel,
@@ -12,50 +10,45 @@ export function AccordionSwissVariantDemo() {
     <Accordion variant="swiss" className="w-full max-w-xl">
       <AccordionItem value="item-1">
         <AccordionTrigger className="flex items-center gap-2">
-          <Handbag className="w-4 h-4" />
-          How do I place an order?
+          What Is Football?
         </AccordionTrigger>
         <AccordionPanel className="flex flex-col gap-4 text-balance">
           <p className="text-[15px] text-muted-foreground">
-            Browse our products, add items to your cart, and proceed to
-            checkout. You'll need to provide shipping and payment information to
-            complete your purchase.
+            A global sport where two teams aim to score goals by getting the
+            ball into the opponent’s net.
           </p>
         </AccordionPanel>
       </AccordionItem>
       <AccordionItem value="item-2">
         <AccordionTrigger className="flex items-center gap-2">
-          <Receipt className="w-4 h-4" />
-          Can I modify or cancel my order?
+          Duration of the Game
         </AccordionTrigger>
         <AccordionPanel className="flex flex-col gap-4 text-balance">
           <p className="text-[15px] text-muted-foreground">
-            Yes, you can modify or cancel your order before it's shipped. Once
-            your order is processed, you can't make changes.
+            A match lasts 90 minutes, divided into two halves, with added
+            stoppage time as needed.
           </p>
         </AccordionPanel>
       </AccordionItem>
       <AccordionItem value="item-3">
         <AccordionTrigger className="flex items-center gap-2">
-          <CreditCard className="w-4 h-4" />
-          What payment methods do you accept?
+          Basic Rules
         </AccordionTrigger>
         <AccordionPanel className="flex flex-col gap-4 text-balance">
           <p className="text-[15px] text-muted-foreground">
-            We accept all major credit cards, including Visa, Mastercard, and
-            American Express.
+            Players can use any body part except their hands (goalkeepers
+            excluded). Fouls, offsides, and penalties shape the game.
           </p>
         </AccordionPanel>
       </AccordionItem>
       <AccordionItem value="item-4">
         <AccordionTrigger className="flex items-center gap-2">
-          <Box className="w-4 h-4" />
-          How much does shipping cost?
+          Player Positions
         </AccordionTrigger>
         <AccordionPanel className="flex flex-col gap-4 text-balance">
           <p className="text-[15px] text-muted-foreground">
-            Shipping costs vary based on your location and the size of your
-            order. We offer free shipping for orders over $50.
+            Teams have defenders, midfielders, forwards, and a goalkeeper—each
+            with specific responsibilities on the field.
           </p>
         </AccordionPanel>
       </AccordionItem>

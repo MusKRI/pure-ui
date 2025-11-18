@@ -9,48 +9,47 @@ export function AccordionDemo() {
   return (
     <Accordion className="w-full max-w-xl">
       <AccordionItem value="item-1">
-        <AccordionTrigger>What is Base UI?</AccordionTrigger>
+        <AccordionTrigger>What is Next.js?</AccordionTrigger>
         <AccordionPanel className="flex flex-col gap-4 text-balance">
           <p className="text-sm text-muted-foreground">
-            Base UI is a library of high-quality unstyled React components for
-            design systems and web apps.
+            Next.js is a React framework that makes building fast, SEO-friendly
+            web apps easy with server rendering and automatic routing.
           </p>
         </AccordionPanel>
       </AccordionItem>
       <AccordionItem value="item-2">
-        <AccordionTrigger>How do I get started?</AccordionTrigger>
+        <AccordionTrigger>Why Use the App Router?</AccordionTrigger>
         <AccordionPanel className="flex flex-col gap-4 text-balance">
           <p className="text-sm text-muted-foreground">
-            Head to the “Quick start” guide in the docs. If you’ve used unstyled
-            libraries before, you’ll feel at home.
+            The App Router offers layouts, server components, and better
+            data-fetching, giving you cleaner structure and faster performance.
           </p>
         </AccordionPanel>
       </AccordionItem>
       <AccordionItem value="item-3">
-        <AccordionTrigger>Can I use it for my project?</AccordionTrigger>
+        <AccordionTrigger>Data Fetching in Next.js</AccordionTrigger>
         <AccordionPanel className="flex flex-col gap-4 text-balance">
           <p className="text-sm text-muted-foreground">
-            Of course! Base UI is free and open source.
+            Next.js supports static, dynamic, and server-side data fetching,
+            letting you choose the best method per component.
           </p>
         </AccordionPanel>
       </AccordionItem>
       <AccordionItem value="item-4">
-        <AccordionTrigger>Is it accessible?</AccordionTrigger>
+        <AccordionTrigger>SEO Benefits of Static Generation</AccordionTrigger>
         <AccordionPanel className="flex flex-col gap-4 text-balance">
           <p className="text-sm text-muted-foreground">
-            Yes! All components follow WAI-ARIA guidelines and have been
-            thoroughly tested for keyboard navigation and screen reader
-            compatibility.
+            Static generation ensures pages are pre-rendered with content,
+            improving SEO by providing fully-rendered HTML at build time.
           </p>
         </AccordionPanel>
       </AccordionItem>
       <AccordionItem value="item-5">
-        <AccordionTrigger>Can I customize the animations?</AccordionTrigger>
+        <AccordionTrigger>File-Based Routing</AccordionTrigger>
         <AccordionPanel className="flex flex-col gap-4 text-balance">
           <p className="text-sm text-muted-foreground">
-            Absolutely! Base UI offers multiple animation presets out of the
-            box, and you can also create your own custom animations to match
-            your design system.
+            Pages and routes are created automatically from your folder
+            structure, including support for dynamic and nested routes.
           </p>
         </AccordionPanel>
       </AccordionItem>

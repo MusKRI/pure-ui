@@ -5,76 +5,55 @@ import {
   AccordionTrigger,
 } from "@/registry/default/components/ui/accordion";
 
-export function AccordionDemo() {
+export function AccordionDisabledStateDemo() {
   return (
     <div className="flex flex-col gap-5 max-w-xl w-full">
-      <div className="flex flex-col gap-2">
-        <p className="text-[15px] text-muted-foreground">
-          Entire accordion is disabled
-        </p>
-        <Accordion className="w-full max-w-xl" disabled>
-          <AccordionItem value="item-1">
-            <AccordionTrigger>What is Base UI?</AccordionTrigger>
-            <AccordionPanel className="flex flex-col gap-4 text-balance">
-              <p className="text-[15px] text-muted-foreground">
-                Base UI is a library of high-quality unstyled React components
-                for design systems and web apps.
-              </p>
-            </AccordionPanel>
-          </AccordionItem>
-          <AccordionItem value="item-2">
-            <AccordionTrigger>How do I get started?</AccordionTrigger>
-            <AccordionPanel className="flex flex-col gap-4 text-balance">
-              <p className="text-[15px] text-muted-foreground">
-                Head to the “Quick start” guide in the docs. If you’ve used
-                unstyled libraries before, you’ll feel at home.
-              </p>
-            </AccordionPanel>
-          </AccordionItem>
-          <AccordionItem value="item-3">
-            <AccordionTrigger>Can I use it for my project?</AccordionTrigger>
-            <AccordionPanel className="flex flex-col gap-4 text-balance">
-              <p className="text-[15px] text-muted-foreground">
-                Of course! Base UI is free and open source.
-              </p>
-            </AccordionPanel>
-          </AccordionItem>
-        </Accordion>
-      </div>
-
-      <div className="flex flex-col gap-2">
-        <p className="text-[15px] text-muted-foreground">
-          Individual accordion item is disabled
-        </p>
-        <Accordion className="w-full max-w-xl">
-          <AccordionItem value="item-1" disabled>
-            <AccordionTrigger>What is Base UI?</AccordionTrigger>
-            <AccordionPanel className="flex flex-col gap-4 text-balance">
-              <p className="text-[15px] text-muted-foreground">
-                Base UI is a library of high-quality unstyled React components
-                for design systems and web apps.
-              </p>
-            </AccordionPanel>
-          </AccordionItem>
-          <AccordionItem value="item-2">
-            <AccordionTrigger>How do I get started?</AccordionTrigger>
-            <AccordionPanel className="flex flex-col gap-4 text-balance">
-              <p className="text-[15px] text-muted-foreground">
-                Head to the “Quick start” guide in the docs. If you’ve used
-                unstyled libraries before, you’ll feel at home.
-              </p>
-            </AccordionPanel>
-          </AccordionItem>
-          <AccordionItem value="item-3" disabled>
-            <AccordionTrigger>Can I use it for my project?</AccordionTrigger>
-            <AccordionPanel className="flex flex-col gap-4 text-balance">
-              <p className="text-[15px] text-muted-foreground">
-                Of course! Base UI is free and open source.
-              </p>
-            </AccordionPanel>
-          </AccordionItem>
-        </Accordion>
-      </div>
+      <Accordion variant="default" className="w-full max-w-xl">
+        <AccordionItem value="item-1" disabled>
+          <AccordionTrigger className="flex items-center gap-2">
+            What Is Cricket?
+          </AccordionTrigger>
+          <AccordionPanel className="flex flex-col gap-4 text-balance">
+            <p className="text-[15px] text-muted-foreground">
+              A bat-and-ball sport played between two teams of eleven, focused
+              on scoring runs and taking wickets.
+            </p>
+          </AccordionPanel>
+        </AccordionItem>
+        <AccordionItem value="item-2">
+          <AccordionTrigger className="flex items-center gap-2">
+            Formats of the Game
+          </AccordionTrigger>
+          <AccordionPanel className="flex flex-col gap-4 text-balance">
+            <p className="text-[15px] text-muted-foreground">
+              Cricket has three main formats: Test, ODI, and T20—each with
+              different lengths and strategies.
+            </p>
+          </AccordionPanel>
+        </AccordionItem>
+        <AccordionItem value="item-3">
+          <AccordionTrigger className="flex items-center gap-2">
+            Basic Rules
+          </AccordionTrigger>
+          <AccordionPanel className="flex flex-col gap-4 text-balance">
+            <p className="text-[15px] text-muted-foreground">
+              Teams take turns batting and bowling. The batting side scores
+              runs, while the bowling side tries to dismiss batters.
+            </p>
+          </AccordionPanel>
+        </AccordionItem>
+        <AccordionItem value="item-4" disabled>
+          <AccordionTrigger className="flex items-center gap-2">
+            Key Player Roles
+          </AccordionTrigger>
+          <AccordionPanel className="flex flex-col gap-4 text-balance">
+            <p className="text-[15px] text-muted-foreground">
+              Players specialize as batters, bowlers, all-rounders, or
+              wicketkeepers—each contributing differently to the team.
+            </p>
+          </AccordionPanel>
+        </AccordionItem>
+      </Accordion>
     </div>
   );
 }

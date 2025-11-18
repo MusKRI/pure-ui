@@ -242,7 +242,7 @@ const transitionPresets = {
 type AnimationPreset = keyof typeof animationPresets;
 type TransitionPreset = keyof typeof transitionPresets;
 
-type AccordionVariant = "default" | "outline" | "swiss";
+type AccordionVariant = "default" | "swiss";
 
 interface AccordionContextType {
   animationPreset?: AnimationPreset;
@@ -277,7 +277,7 @@ function Accordion({
   value,
   defaultValue,
   onValueChange,
-  animationPreset = "fade",
+  animationPreset = "slide",
   transitionPreset = "outCubic",
   reduceMotion,
   variant = "default",
@@ -315,9 +315,8 @@ function Accordion({
           onValueChange={handleValueChange}
           multiple={multiple}
           className={cn(
-            "w-full contain-layout",
-            variant === "outline" &&
-              "border border-border/60 rounded-2xl bg-popover shadow-sm",
+            "w-full",
+            variant === "default" && "flex flex-col gap-1.5",
             variant === "swiss" && "rounded-2xl",
             className
           )}
@@ -331,6 +330,7 @@ function Accordion({
 interface AccordionItemContextType {
   open: boolean;
   onOpenChange: AccordionItemProps["onOpenChange"];
+  variant?: AccordionVariant;
 }
 
 const AccordionItemContext = createContext<
@@ -374,7 +374,7 @@ function AccordionItem({
 
   return (
     <AccordionItemContext.Provider
-      value={{ open: isOpen, onOpenChange: handleItemOpenChange }}
+      value={{ open: isOpen, onOpenChange: handleItemOpenChange, variant }}
     >
       <AccordionPrimitive.Item
         data-slot="accordion-item"
@@ -383,13 +383,11 @@ function AccordionItem({
         className={cn(
           `w-full contain-layout outline-hidden`,
           // Base transitions - smooth all property changes
-          `[transition-property:border-radius,margin,border,transform,z-index]
+          `[transition-property:border-radius,margin,border]
            duration-260
            ease-[cubic-bezier(0.215,0.61,0.355,1)]
            will-change-[border-radius,margin,border]`,
-          variant === "default" && "border-b border-border/60 last:border-b-0",
-          variant === "outline" &&
-            `border-b border-border/60 last:border-b-0 first:**:data-[slot="accordion-trigger"]:rounded-t-2xl last:not-data-open:**:data-[slot="accordion-trigger"]:rounded-b-2xl`,
+          variant === "default" && "border p-1 rounded-[14px]",
           variant === "swiss" && [
             "bg-popover border-x border-border/60 relative overflow-hidden",
 
@@ -450,17 +448,18 @@ function AccordionTrigger({
   children,
   ...props
 }: AccordionTriggerProps) {
-  const { open } = useAccordionItem();
+  const { open, variant = "default" } = useAccordionItem();
 
   return (
     <AccordionHeader className="flex">
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          "w-full text-left text-sm p-4 flex items-center cursor-pointer",
-          `not-data-panel-open:hover:bg-accent/40 focus-visible:bg-accent/40 not-data-panel-open:dark:hover:bg-accent/55 dark:focus-visible:bg-accent/55`,
+          "w-full text-left text-sm p-4 flex items-center cursor-pointer [transition-property:border-radius] duration-260 ease-[cubic-bezier(0.215,0.61,0.355,1)] will-change-[border-radius]",
+          `not-data-panel-open:bg-secondary/80 data-panel-open:bg-secondary/80 data-panel-open:rounded-b-none not-data-panel-open:hover:bg-accent focus-visible:bg-accent not-data-panel-open:dark:hover:bg-accent dark:focus-visible:bg-accent`,
           `data-disabled:cursor-not-allowed data-disabled:opacity-50 data-disabled:pointer-events-none`,
           `focus-visible:outline-2 focus-visible:outline-ring focus-visible:outline-offset-2`,
+          variant === "default" && "rounded-lg",
           className
         )}
         {...props}
@@ -516,7 +515,7 @@ function AccordionPanel({
 }: AccordionPanelProps) {
   const { open } = useAccordionItem();
   const {
-    animationPreset = "fade",
+    animationPreset = "slide",
     transitionPreset = "snappyOut",
     reduceMotion = false,
   } = useAccordion();
@@ -528,7 +527,7 @@ function AccordionPanel({
       return animationPresets[animationPreset];
     }
 
-    return animationPresets.fade;
+    return animationPresets.slide;
   }, [animationPreset, reduceMotion]);
 
   const transitionConfig = useMemo(() => {
@@ -562,7 +561,7 @@ function AccordionPanel({
                 }}
                 className={cn(`overflow-hidden text-sm`, className)}
               >
-                <div data-slot="accordion-panel-content" className="p-4 pt-0.5">
+                <div data-slot="accordion-panel-content" className="p-3 pl-4">
                   {renderProps.children}
                 </div>
               </motion.div>

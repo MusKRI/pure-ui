@@ -25,17 +25,6 @@ export const pureUICompExamples: RegistryItem[] = [
     ],
   },
   {
-    name: "accordion-outline-variant-demo",
-    type: "registry:example",
-    registryDependencies: ["accordion"],
-    files: [
-      {
-        path: "examples/accordion/accordion-outline-variant-demo.tsx",
-        type: "registry:example",
-      },
-    ],
-  },
-  {
     name: "accordion-swiss-variant-demo",
     type: "registry:example",
     registryDependencies: ["accordion"],

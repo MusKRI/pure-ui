@@ -32,5 +32,13 @@ function RadioGroup({
 interface RadioProps extends React.ComponentProps<typeof RadioPrimitive.Root> {}
 
 function Radio({ className, ...props }: RadioProps) {
-  return <RadioPrimitive.Root className={cn("", className)} {...props} />;
+  return (
+    <RadioPrimitive.Root
+      className={cn(
+        "peer relativee flex size-5 cursor-pointer justify-center",
+        className
+      )}
+      {...props}
+    />
+  );
 }

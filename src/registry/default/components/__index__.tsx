@@ -387,25 +387,6 @@ export const Index: Record<string, any> = {
     categories: undefined,
     meta: undefined,
   },
-  "accordion-outline-variant-demo": {
-    name: "accordion-outline-variant-demo",
-    description: "",
-    type: "registry:example",
-    registryDependencies: ["accordion"],
-    dependencies: undefined,
-    files: [{
-      path: "src/registry/default/components/examples/accordion/accordion-outline-variant-demo.tsx",
-      type: "registry:example",
-      target: ""
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/default/components/examples/accordion/accordion-outline-variant-demo.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    categories: undefined,
-    meta: undefined,
-  },
   "accordion-swiss-variant-demo": {
     name: "accordion-swiss-variant-demo",
     description: "",
