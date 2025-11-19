@@ -50,7 +50,7 @@ export const Index: Record<string, any> = {
     description: "A customizable card component",
     type: "registry:ui",
     registryDependencies: undefined,
-    dependencies: ["clsx","tailwind-merge","@radix-ui/react-slot"],
+    dependencies: ["clsx","tailwind-merge"],
     files: [{
       path: "src/registry/default/components/ui/card/index.tsx",
       type: "registry:ui",
@@ -780,25 +780,6 @@ export const Index: Record<string, any> = {
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/default/components/examples/card/card-demo.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    categories: undefined,
-    meta: undefined,
-  },
-  "card-variants-demo": {
-    name: "card-variants-demo",
-    description: "",
-    type: "registry:example",
-    registryDependencies: ["card"],
-    dependencies: undefined,
-    files: [{
-      path: "src/registry/default/components/examples/card/card-variants-demo.tsx",
-      type: "registry:example",
-      target: ""
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/default/components/examples/card/card-variants-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),

@@ -55,7 +55,7 @@ export const pureUIShadcnComponents: RegistryItem[] = [
         target: "components/ui/card.tsx",
       },
     ],
-    dependencies: ["clsx", "tailwind-merge", "@radix-ui/react-slot"],
+    dependencies: ["clsx", "tailwind-merge"],
   },
   // Checkbox
   {

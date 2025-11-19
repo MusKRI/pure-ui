@@ -1,9 +1,10 @@
 "use client";
 
-import * as React from "react";
 import { tv, type VariantProps } from "tailwind-variants";
-import { mergeProps } from "@base-ui-components/react/merge-props";
-import { useRender } from "@base-ui-components/react/use-render";
+import {
+  Button as BaseButton,
+  type ButtonProps as BaseButtonProps,
+} from "@base-ui-components/react/button";
 
 import { cn } from "@/lib/classes";
 
@@ -53,34 +54,25 @@ const buttonVariants = tv({
   },
 });
 
-interface ButtonProps extends useRender.ComponentProps<"button"> {
+type ButtonProps = BaseButtonProps & {
   variant?: VariantProps<typeof buttonVariants>["variant"];
   size?: VariantProps<typeof buttonVariants>["size"];
   radius?: VariantProps<typeof buttonVariants>["radius"];
-}
+};
 
 function Button({
   className,
   variant = "default",
   size = "default",
   radius = "default",
-  render,
   ...props
 }: ButtonProps) {
-  const typeValue: React.ButtonHTMLAttributes<HTMLButtonElement>["type"] =
-    render ? undefined : "button";
-
-  const defaultProps = {
-    "data-slot": "button",
-    className: cn(buttonVariants({ variant, size, radius, className })),
-    type: typeValue,
-  };
-
-  return useRender({
-    defaultTagName: "button",
-    render,
-    props: mergeProps<"button">(defaultProps, props),
-  });
+  return (
+    <BaseButton
+      className={cn(buttonVariants({ variant, size, radius }), className)}
+      {...props}
+    />
+  );
 }
 
 export { Button, buttonVariants };

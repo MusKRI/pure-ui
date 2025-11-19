@@ -259,17 +259,6 @@ export const pureUICompExamples: RegistryItem[] = [
     ],
   },
   {
-    name: "card-variants-demo",
-    type: "registry:example",
-    registryDependencies: ["card"],
-    files: [
-      {
-        path: "examples/card/card-variants-demo.tsx",
-        type: "registry:example",
-      },
-    ],
-  },
-  {
     name: "card-horizontal-layout",
     type: "registry:example",
     registryDependencies: ["card"],
