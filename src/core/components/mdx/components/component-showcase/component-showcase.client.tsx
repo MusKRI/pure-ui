@@ -45,7 +45,11 @@ export function ComponentShowcaseClient({
   );
 
   return (
-    <div className={cn("PureUIComponentShowcase relative mb-12")}>
+    <div
+      className={cn(
+        "PureUIComponentShowcase [.PureCodeBlockWrapper+&]:mt-7 relative mb-12"
+      )}
+    >
       <LayoutGroup>
         <Tabs.Root value={activeTab} onValueChange={setActiveTab}>
           <div className="flex flex-col gap-4">

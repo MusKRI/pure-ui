@@ -17,7 +17,7 @@ export const DialogNestedDemo = () => {
   return (
     <Dialog>
       <DialogTrigger render={<Button />}>View details</DialogTrigger>
-      <DialogPopup showCloseButton={false} animationPreset="topFlip">
+      <DialogPopup showCloseButton={false}>
         <DialogHeader>
           <DialogTitle>Manage team member</DialogTitle>
           <DialogDescription>
@@ -39,7 +39,7 @@ export const DialogNestedDemo = () => {
             <DialogTrigger render={<Button variant="outline" />}>
               Edit details
             </DialogTrigger>
-            <DialogPopup showCloseButton={false} animationPreset="topFlip">
+            <DialogPopup showCloseButton={false}>
               <DialogHeader>
                 <DialogTitle>Edit details</DialogTitle>
                 <DialogDescription>

@@ -1,11 +1,6 @@
 ---
 title: Dialog
-description: A customizable dialog component
-features:
-  - "Rich animation presets"
-  - "Customizable transitions & easing curves"
-  - "Reduced motion support & accessibility"
-  - "Composable sub-components & portal rendering"
+description: A popup that opens on top of the entire page.
 ---
 
 <ComponentShowcase name="dialog-demo" />
@@ -79,11 +74,37 @@ import { Dialog } from "@/components/ui/dialog";
 
 ## Usage
 
-### Non Dismissible
+### Controlled
 
-By default, the dialog is dismissible. You can make it non-dismissible by passing `dismissible={false}` to the `Dialog` component. This is useful when you want to prevent the user from closing the dialog by clicking outside of it or by pressing the escape key.
+Use `open` and `onOpenChange` props if you need to access or control the state of the dialog.
+For example, you can control the dialog state in order to open it imperatively from another place in your app.
 
-<ComponentShowcase name="dialog-non-dismissible-demo" />
+```tsx noCopy add=4,5 highlight={14}
+const [open, setOpen] = React.useState(false);
+return (
+  <Dialog.Root
+    open={open}
+    onOpenChange={setOpen}
+  >
+    <Dialog.Trigger>Open</Dialog.Trigger>
+    <Dialog.Portal>
+      <Dialog.Popup>
+        <form
+          // Close the dialog once the form data is submitted
+          onSubmit={async () => {
+            await submitData();
+            setOpen(false);
+          }}
+        >
+          ...
+        </form>
+      </Dialog.Popup>
+    </Dialog.Portal>
+  </Dialog.Root>
+);
+```
+
+<ComponentShowcase name="dialog-controlled-demo" />
 
 ### Non Modal
 
@@ -107,6 +128,10 @@ Focus is trapped for keyboard navigation, but scrolling and outside pointer inte
 Currently, two of animation presets (flip and slide) are direction aware. So, when dialogs are nested, those dialogs will be stacked as they are also direction aware.
 
 <ComponentShowcase name="dialog-nested-direction-aware-demo" />
+
+### Open from a Menu
+
+<ComponentShowcase name="dialog-open-from-menu-demo" />
 
 ### Reduce Motion
 

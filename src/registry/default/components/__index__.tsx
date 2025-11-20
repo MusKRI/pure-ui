@@ -216,6 +216,25 @@ export const Index: Record<string, any> = {
     categories: undefined,
     meta: undefined,
   },
+  "scroll-area": {
+    name: "scroll-area",
+    description: "A customizable scroll area component",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    dependencies: ["@base-ui-components/react","clsx","tailwind-merge"],
+    files: [{
+      path: "src/registry/default/components/ui/scroll-area/index.tsx",
+      type: "registry:ui",
+      target: "components/ui/scroll-area.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/ui/scroll-area/index.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
   "select": {
     name: "select",
     description: "A customizable select component",
@@ -957,6 +976,25 @@ export const Index: Record<string, any> = {
     categories: undefined,
     meta: undefined,
   },
+  "dialog-controlled-demo": {
+    name: "dialog-controlled-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["dialog"],
+    dependencies: undefined,
+    files: [{
+      path: "src/registry/default/components/examples/dialog/dialog-controlled-demo.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/examples/dialog/dialog-controlled-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
   "dialog-nested-demo": {
     name: "dialog-nested-demo",
     description: "",
@@ -995,19 +1033,19 @@ export const Index: Record<string, any> = {
     categories: undefined,
     meta: undefined,
   },
-  "dialog-non-dismissible-demo": {
-    name: "dialog-non-dismissible-demo",
+  "dialog-open-from-menu-demo": {
+    name: "dialog-open-from-menu-demo",
     description: "",
     type: "registry:example",
     registryDependencies: ["dialog"],
     dependencies: undefined,
     files: [{
-      path: "src/registry/default/components/examples/dialog/dialog-non-dismissible-demo.tsx",
+      path: "src/registry/default/components/examples/dialog/dialog-open-from-menu-demo.tsx",
       type: "registry:example",
       target: ""
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/default/components/examples/dialog/dialog-non-dismissible-demo.tsx")
+      const mod = await import("@/registry/default/components/examples/dialog/dialog-open-from-menu-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2243,6 +2281,120 @@ export const Index: Record<string, any> = {
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/default/components/examples/popover/popover-custom-trigger-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
+  "scroll-area-demo": {
+    name: "scroll-area-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["scroll-area"],
+    dependencies: undefined,
+    files: [{
+      path: "src/registry/default/components/examples/scroll-area/scroll-area-demo.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/examples/scroll-area/scroll-area-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
+  "scroll-area-horizontal-demo": {
+    name: "scroll-area-horizontal-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["scroll-area"],
+    dependencies: undefined,
+    files: [{
+      path: "src/registry/default/components/examples/scroll-area/scroll-area-horizontal-demo.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/examples/scroll-area/scroll-area-horizontal-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
+  "scroll-area-both-scroll-demo": {
+    name: "scroll-area-both-scroll-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["scroll-area"],
+    dependencies: undefined,
+    files: [{
+      path: "src/registry/default/components/examples/scroll-area/scroll-area-both-scroll-demo.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/examples/scroll-area/scroll-area-both-scroll-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
+  "scroll-area-vertical-shadow-demo": {
+    name: "scroll-area-vertical-shadow-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["scroll-area"],
+    dependencies: undefined,
+    files: [{
+      path: "src/registry/default/components/examples/scroll-area/scroll-area-vertical-shadow-demo.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/examples/scroll-area/scroll-area-vertical-shadow-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
+  "scroll-area-horizontal-shadow-demo": {
+    name: "scroll-area-horizontal-shadow-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["scroll-area"],
+    dependencies: undefined,
+    files: [{
+      path: "src/registry/default/components/examples/scroll-area/scroll-area-horizontal-shadow-demo.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/examples/scroll-area/scroll-area-horizontal-shadow-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
+  "scroll-area-both-shadow-demo": {
+    name: "scroll-area-both-shadow-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["scroll-area"],
+    dependencies: undefined,
+    files: [{
+      path: "src/registry/default/components/examples/scroll-area/scroll-area-both-shadow-demo.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/examples/scroll-area/scroll-area-both-shadow-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),

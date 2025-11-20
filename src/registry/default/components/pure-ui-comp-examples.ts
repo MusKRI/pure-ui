@@ -362,6 +362,17 @@ export const pureUICompExamples: RegistryItem[] = [
     ],
   },
   {
+    name: "dialog-controlled-demo",
+    type: "registry:example",
+    registryDependencies: ["dialog"],
+    files: [
+      {
+        path: "examples/dialog/dialog-controlled-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
     name: "dialog-nested-demo",
     type: "registry:example",
     registryDependencies: ["dialog"],
@@ -384,12 +395,12 @@ export const pureUICompExamples: RegistryItem[] = [
     ],
   },
   {
-    name: "dialog-non-dismissible-demo",
+    name: "dialog-open-from-menu-demo",
     type: "registry:example",
     registryDependencies: ["dialog"],
     files: [
       {
-        path: "examples/dialog/dialog-non-dismissible-demo.tsx",
+        path: "examples/dialog/dialog-open-from-menu-demo.tsx",
         type: "registry:example",
       },
     ],
@@ -1116,6 +1127,74 @@ export const pureUICompExamples: RegistryItem[] = [
     files: [
       {
         path: "examples/popover/popover-custom-trigger-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+
+  // Scroll Area
+  {
+    name: "scroll-area-demo",
+    type: "registry:example",
+    registryDependencies: ["scroll-area"],
+    files: [
+      {
+        path: "examples/scroll-area/scroll-area-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "scroll-area-horizontal-demo",
+    type: "registry:example",
+    registryDependencies: ["scroll-area"],
+    files: [
+      {
+        path: "examples/scroll-area/scroll-area-horizontal-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "scroll-area-both-scroll-demo",
+    type: "registry:example",
+    registryDependencies: ["scroll-area"],
+    files: [
+      {
+        path: "examples/scroll-area/scroll-area-both-scroll-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "scroll-area-vertical-shadow-demo",
+    type: "registry:example",
+    registryDependencies: ["scroll-area"],
+    files: [
+      {
+        path: "examples/scroll-area/scroll-area-vertical-shadow-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "scroll-area-horizontal-shadow-demo",
+    type: "registry:example",
+    registryDependencies: ["scroll-area"],
+    files: [
+      {
+        path: "examples/scroll-area/scroll-area-horizontal-shadow-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "scroll-area-both-shadow-demo",
+    type: "registry:example",
+    registryDependencies: ["scroll-area"],
+    files: [
+      {
+        path: "examples/scroll-area/scroll-area-both-shadow-demo.tsx",
         type: "registry:example",
       },
     ],

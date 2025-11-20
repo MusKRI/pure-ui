@@ -57,7 +57,7 @@ function SidebarLinkItem({
       key={item.id}
       href={item.href}
       className={cn(
-        "text-sm block py-1.5 px-4 rounded-md font-normal",
+        "text-sm flex items-center gap-2 py-1.5 px-4 rounded-md font-normal",
         pathname === item.href
           ? ["text-sidebar-primary", "bg-sidebar-accent/60", "font-medium"]
           : ["text-sidebar-foreground/60 hover:text-sidebar-primary"]
@@ -65,6 +65,11 @@ function SidebarLinkItem({
       onClick={handleClosingSidebar}
     >
       {item.title}
+      {item.tag && (
+        <span className="text-[10px] text-amber-600 font-medium">
+          {item.tag}
+        </span>
+      )}
     </Link>
   );
 }

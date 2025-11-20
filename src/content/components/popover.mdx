@@ -1,6 +1,6 @@
 ---
 title: Popover
-description: Popover is a non-modal dialog that floats around its disclosure. It's commonly used for displaying additional rich content on top of something.
+description: An accessible popup anchored to a button.
 ---
 
 <ComponentShowcase name="popover-demo" />
@@ -98,10 +98,7 @@ By default, Popover opens when the trigger is clicked. You can pass `openOnHover
 You can pass `delay` to Popover to change the delay time for opening the popover. By default, it is 100ms.
 
 ```tsx add=3
-<Popover
-  openOnHover
-  delay={200}
->
+<Popover openOnHover delay={200}>
   ...
 </Popover>
 ```
@@ -109,10 +106,7 @@ You can pass `delay` to Popover to change the delay time for opening the popover
 You can also pass `closeDelay` of Popover to change the delay time for closing the popover. By default, it is 0ms.
 
 ```tsx add=3
-<Popover
-  openOnHover
-  closeDelay={200}
->
+<Popover openOnHover closeDelay={200}>
   ...
 </Popover>
 ```

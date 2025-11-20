@@ -17,6 +17,22 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     "/*": ["./src/registry/**/*"],
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+      },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "avatar.vercel.sh",
+      },
+    ],
+  },
 };
 
 export default nextConfig;

@@ -210,6 +210,23 @@ export const pureUIShadcnComponents: RegistryItem[] = [
       "tailwind-merge",
     ],
   },
+
+  // Scroll Area
+  {
+    name: "scroll-area",
+    type: "registry:ui",
+    title: "Scroll Area",
+    description: "A customizable scroll area component",
+    files: [
+      {
+        path: "ui/scroll-area/index.tsx",
+        type: "registry:ui",
+        target: "components/ui/scroll-area.tsx",
+      },
+    ],
+    dependencies: ["@base-ui-components/react", "clsx", "tailwind-merge"],
+  },
+
   // Select
   {
     name: "select",

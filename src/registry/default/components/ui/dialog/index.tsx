@@ -131,6 +131,13 @@ function DialogTrigger({ ...props }: DialogTriggerProps) {
   return <DialogPrimitive.Trigger data-slot="dialog-trigger" {...props} />;
 }
 
+interface DialogViewportProps
+  extends React.ComponentProps<typeof DialogPrimitive.Viewport> {}
+
+function DialogViewport({ ...props }: DialogViewportProps) {
+  return <DialogPrimitive.Viewport data-slot="dialog-viewport" {...props} />;
+}
+
 interface DialogPortalProps
   extends React.ComponentProps<typeof DialogPrimitive.Portal> {}
 
@@ -161,8 +168,6 @@ function DialogBackdrop({ className, ...props }: DialogBackdropProps) {
 
 interface DialogPopupProps
   extends React.ComponentProps<typeof DialogPrimitive.Popup> {
-  // animationPreset?: AnimationPreset;
-  // transitionPreset?: TransitionPreset;
   animationPreset?: CSSAnimationPresets;
   transitionPreset?: CSSTransitionPresets;
   reduceMotion?: boolean;
@@ -302,6 +307,7 @@ export {
   DialogFooter,
   DialogHeader,
   DialogBackdrop,
+  DialogViewport,
   DialogPortal,
   DialogTitle,
   DialogTrigger,

@@ -1,0 +1,117 @@
+---
+title: Scroll Area
+description: A native scroll container with custom scrollbars.
+---
+
+<ComponentShowcase name="scroll-area-demo" />
+
+## Installation
+
+<Tabs defaultValue="terminal">
+  <TabsList>
+    <TabsTrigger value="terminal">
+      <Terminal className="w-4 h-4" />
+      Terminal
+    </TabsTrigger>
+    <TabsTrigger value="manual">
+      <Code2 className="w-4 h-4" />
+      Manual
+    </TabsTrigger>
+  </TabsList>
+  <TabsContent value="terminal">
+    <InstallationCommands
+      type="registry-installation"
+      registryPath="components/scroll-area"
+    />
+  </TabsContent>
+  <TabsContent value="manual">
+    <Steps>
+      <Step>Install dependencies</Step>
+
+      <InstallationCommands
+        type="package-installation"
+        npmCommand="npm install @base-ui-components/react clsx tailwind-merge"
+        pnpmCommand="pnpm add @base-ui-components/react clsx tailwind-merge"
+        yarnCommand="yarn add @base-ui-components/react clsx tailwind-merge"
+        bunCommand="bun add @base-ui-components/react clsx tailwind-merge"
+      />
+
+      <Step>Add cn function to your utils</Step>
+
+      ```ts filename="lib/classes.ts"
+      import { clsx, type ClassValue } from "clsx";
+      import { twMerge } from "tailwind-merge";
+
+      export function cn(...inputs: ClassValue[]) {
+        return twMerge(clsx(inputs));
+      }
+      ```
+
+      <Step>Copy and paste the following code into your project</Step>
+
+      <ComponentCodePreview name="scroll-area" />
+    </Steps>
+
+  </TabsContent>
+</Tabs>
+
+## Usage
+
+```tsx
+import { ScrollArea } from "@/components/ui/scroll-area";
+```
+
+```tsx
+<ScrollArea className="h-64 rounded-md border">
+  <ScrollAreaContent className="p-4">
+    Just as suddenly as it had begun, the sensation stopped, leaving Alice
+    feeling slightly disoriented. She looked around and realized that the room
+    hadn't changed at all - it was she who had grown smaller, shrinking down to
+    a fraction of her previous size. Alice felt herself growing larger and
+    larger, filling up the entire room until she feared she might burst. The
+    sensation was both thrilling and terrifying, as if she were expanding beyond
+    the confines of her own body. She wondered if this was what it felt like to
+    be a balloon, swelling with air until it could hold no more.
+  </ScrollAreaContent>
+</ScrollArea>
+```
+
+## Examples
+
+### Horizontal Layout
+
+<ComponentShowcase name="scroll-area-horizontal-demo" />
+
+### Both Scroll
+
+<ComponentShowcase name="scroll-area-both-scroll-demo" />
+
+## Scroll Shadows
+
+The scroll shadows are the small gradient backgrounds that appear at the top and bottom (vertical) or left and right (horizontal) of the scroll area when scrolling. They are useful to indicate that the scroll area is scrollable.
+
+You can control the scroll shadows using the `scrollShadow` prop. It can be set to `vertical`, `horizontal`, `both`, or `none`. The default value is `none`.
+
+```tsx add=2
+<ScrollArea
+  scrollShadow="vertical"
+>
+  <ScrollAreaContent>
+    <div>
+      <p>Vertical scroll shadow</p>
+    </div>
+  </ScrollAreaContent>
+</ScrollArea>
+```
+
+### Vertical
+
+<ComponentShowcase name="scroll-area-vertical-shadow-demo" />
+
+### Horizontal
+
+<ComponentShowcase name="scroll-area-horizontal-shadow-demo" />
+
+### Both
+
+<ComponentShowcase name="scroll-area-both-shadow-demo" />

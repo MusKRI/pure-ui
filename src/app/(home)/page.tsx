@@ -41,7 +41,11 @@ export default function Home() {
 
           <div className="flex flex-col items-center justify-center">
             <div className="flex flex-row items-center gap-4 p-8">
-              <Button size="lg" render={<Link href="/docs" />}>
+              <Button
+                size="lg"
+                render={<Link href="/docs" />}
+                nativeButton={false}
+              >
                 Get Started
               </Button>
             </div>

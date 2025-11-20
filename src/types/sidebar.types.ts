@@ -9,6 +9,7 @@ interface BaseSidebarItem {
 export interface SidebarLinkItem extends BaseSidebarItem {
   type: "link";
   href: string;
+  tag?: "NEW" | "UPDATED";
 }
 
 // Item with nested children

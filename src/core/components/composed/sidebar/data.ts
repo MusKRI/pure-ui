@@ -90,6 +90,7 @@ const pureUIComponents = [
     title: "Button",
     type: "link",
     href: "/components/button",
+    tag: "UPDATED",
   },
   {
     id: "card",
@@ -108,6 +109,7 @@ const pureUIComponents = [
     title: "Dialog",
     type: "link",
     href: "/components/dialog",
+    tag: "UPDATED",
   },
   {
     id: "input",
@@ -146,6 +148,13 @@ const pureUIComponents = [
     href: "/components/popover",
   },
   {
+    id: "scroll-area",
+    title: "Scroll Area",
+    type: "link",
+    href: "/components/scroll-area",
+    tag: "NEW",
+  },
+  {
     id: "select",
     title: "Select",
     type: "link",
@@ -180,6 +189,7 @@ const pureUIComponents = [
     title: "Toast",
     type: "link",
     href: "/components/toast",
+    tag: "NEW",
   },
   {
     id: "tooltip",

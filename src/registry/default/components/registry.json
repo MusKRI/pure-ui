@@ -216,6 +216,24 @@
       ]
     },
     {
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "title": "Scroll Area",
+      "description": "A customizable scroll area component",
+      "dependencies": [
+        "@base-ui-components/react",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/ui/scroll-area/index.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/scroll-area.tsx"
+        }
+      ]
+    },
+    {
       "name": "select",
       "type": "registry:ui",
       "title": "Select",
@@ -763,6 +781,19 @@
       ]
     },
     {
+      "name": "dialog-controlled-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "dialog"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/dialog/dialog-controlled-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "dialog-nested-demo",
       "type": "registry:example",
       "registryDependencies": [
@@ -789,14 +820,14 @@
       ]
     },
     {
-      "name": "dialog-non-dismissible-demo",
+      "name": "dialog-open-from-menu-demo",
       "type": "registry:example",
       "registryDependencies": [
         "dialog"
       ],
       "files": [
         {
-          "path": "src/registry/default/components/examples/dialog/dialog-non-dismissible-demo.tsx",
+          "path": "src/registry/default/components/examples/dialog/dialog-open-from-menu-demo.tsx",
           "type": "registry:example"
         }
       ]
@@ -1642,6 +1673,84 @@
       "files": [
         {
           "path": "src/registry/default/components/examples/popover/popover-custom-trigger-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "scroll-area-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "scroll-area"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/scroll-area/scroll-area-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "scroll-area-horizontal-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "scroll-area"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/scroll-area/scroll-area-horizontal-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "scroll-area-both-scroll-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "scroll-area"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/scroll-area/scroll-area-both-scroll-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "scroll-area-vertical-shadow-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "scroll-area"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/scroll-area/scroll-area-vertical-shadow-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "scroll-area-horizontal-shadow-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "scroll-area"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/scroll-area/scroll-area-horizontal-shadow-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "scroll-area-both-shadow-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "scroll-area"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/scroll-area/scroll-area-both-shadow-demo.tsx",
           "type": "registry:example"
         }
       ]
