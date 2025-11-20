@@ -168,18 +168,14 @@ interface PopoverProps
   backdrop?: Backdrop;
 }
 
-function Popover({
-  backdrop = "transparent",
-  delay = 100,
-  ...props
-}: PopoverProps) {
+function Popover({ backdrop = "transparent", ...props }: PopoverProps) {
   return (
     <PopoverContext.Provider
       value={{
         backdrop,
       }}
     >
-      <PopoverPrimitive.Root data-slot="popover" delay={delay} {...props} />
+      <PopoverPrimitive.Root data-slot="popover" {...props} />
     </PopoverContext.Provider>
   );
 }

@@ -117,7 +117,7 @@ You can pass `side` to `MenuPopup` to change the side of the menu. By default, i
 
 ### Open on Hover
 
-By default, Menu opens when the trigger is clicked. You can pass `openOnHover` to Menu to open it when the trigger is hovered.
+By default, Menu opens when the trigger is clicked. You can pass `openOnHover` to MenuTrigger to open it when the trigger is hovered.
 
 <ComponentShowcase name="menu-with-hover-demo" />
 
@@ -128,7 +128,9 @@ By default, Menu opens when the trigger is clicked. You can pass `openOnHover` t
 By default, clicking on a checkbox item will not close the menu. You can pass `closeOnClick` to `MenuCheckboxItem` to close the menu when the checkbox item is clicked.
 
 ```tsx add=2
-<MenuCheckboxItem closeOnClick>
+<MenuCheckboxItem
+  closeOnClick
+>
   <span>Checkbox Item</span>
 </MenuCheckboxItem>
 ```
@@ -140,7 +142,9 @@ By default, clicking on a checkbox item will not close the menu. You can pass `c
 By default, clicking on a radio item will not close the menu. You can pass `closeOnClick` to `MenuRadioItem` to close the menu when the radio item is clicked.
 
 ```tsx add=2
-<MenuRadioItem closeOnClick>
+<MenuRadioItem
+  closeOnClick
+>
   <span>Radio Item</span>
 </MenuRadioItem>
 ```
@@ -162,8 +166,52 @@ You can use custom active icon for the radio group by passing the `activeIcon` p
 Use the `render` prop to compose a menu item with an anchor element.
 
 ```tsx add=2
-<MenuItem render={<a href="/projects">Go to Projects</a>} />
+<MenuItem
+  render={<a href="/projects">Go to Projects</a>}
+/>
 ```
+
+### Open a dialog
+
+In order to open a dialog using a menu, control the dialog state and open it imperatively using the `onClick` handler on the menu item.
+
+```tsx noCopy
+import * as React from 'react';
+import { Dialog } from '@base-ui-components/react/dialog';
+import { Menu } from '@base-ui-components/react/menu';
+
+function ExampleMenu() {
+  const [dialogOpen, setDialogOpen] = React.useState(false);
+
+  return (
+    <React.Fragment>
+      <Menu.Root>
+        <Menu.Trigger>Open menu</Menu.Trigger>
+        <Menu.Portal>
+          <Menu.Positioner>
+            <Menu.Popup>
+              {/* Open the dialog when the menu item is clicked */}
+              <Menu.Item onClick={() => setDialogOpen(true)}>Open dialog</Menu.Item>
+            </Menu.Popup>
+          </Menu.Positioner>
+        </Menu.Portal>
+      </Menu.Root>
+
+      {/* Control the dialog state */}
+      <Dialog.Root open={dialogOpen} onOpenChange={setDialogOpen}>
+        <Dialog.Portal>
+          <Dialog.Backdrop />
+          <Dialog.Popup>
+            {/* Rest of the dialog */}
+          </Dialog.Popup>
+        </Dialog.Portal>
+      </Dialog.Root>
+    </React.Fragment>
+  );
+}
+```
+
+You can see the full example [here](/components/dialog).
 
 ## Popup Animation
 

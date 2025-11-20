@@ -19,8 +19,9 @@ export const PopoverCustomTriggerDemo = () => {
   const [isFollowing, setIsFollowing] = useState(false);
 
   return (
-    <Popover openOnHover>
+    <Popover>
       <PopoverTrigger
+        openOnHover
         render={<button className="flex items-center gap-2 cursor-pointer" />}
       >
         <img

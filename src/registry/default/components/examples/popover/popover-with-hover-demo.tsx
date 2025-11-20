@@ -9,8 +9,9 @@ import {
 
 export const PopoverWithHoverDemo = () => {
   return (
-    <Popover openOnHover>
+    <Popover>
       <PopoverTrigger
+        openOnHover
         render={
           <button className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md border border-border/40 bg-secondary/50 hover:bg-secondary cursor-pointer" />
         }

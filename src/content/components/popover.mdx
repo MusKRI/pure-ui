@@ -91,22 +91,40 @@ You can pass `side` to `PopoverPopup` to change the side of the popover. By defa
 
 ### Open on Hover
 
-By default, Popover opens when the trigger is clicked. You can pass `openOnHover` to Popover to open it when the trigger is hovered.
+By default, Popover opens when the trigger is clicked. You can pass `openOnHover` to PopoverTrigger to open it when the trigger is hovered.
 
 <ComponentShowcase name="popover-with-hover-demo" />
 
 You can pass `delay` to Popover to change the delay time for opening the popover. By default, it is 100ms.
 
-```tsx add=3
-<Popover openOnHover delay={200}>
+```tsx add=4 noCopy
+<Popover>
+  <PopoverTrigger
+    openOnHover
+    delay={200}
+  >
+    ...
+  </PopoverTrigger>
+  <PopoverPopup>
+    ...
+  </PopoverPopup>
   ...
 </Popover>
 ```
 
 You can also pass `closeDelay` of Popover to change the delay time for closing the popover. By default, it is 0ms.
 
-```tsx add=3
-<Popover openOnHover closeDelay={200}>
+```tsx add=4 noCopy
+<Popover>
+  <PopoverTrigger
+    openOnHover
+    closeDelay={200}
+  >
+    ...
+  </PopoverTrigger>
+  <PopoverPopup>
+    ...
+  </PopoverPopup>
   ...
 </Popover>
 ```

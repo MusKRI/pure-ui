@@ -109,7 +109,9 @@ function InputGroupButton({
   size = "xs",
   ...props
 }: Omit<React.ComponentProps<typeof Button>, "size"> &
-  VariantProps<typeof inputGroupButtonVariants>) {
+  VariantProps<typeof inputGroupButtonVariants> & {
+    type?: "submit" | "reset" | "button";
+  }) {
   return (
     <Button
       type={type}

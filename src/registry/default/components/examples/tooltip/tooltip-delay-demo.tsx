@@ -10,8 +10,9 @@ export const TooltipDelayDemo = () => {
   return (
     <div className="flex items-center flex-wrap gap-4">
       <TooltipProvider>
-        <Tooltip delay={1000}>
+        <Tooltip>
           <TooltipTrigger
+            delay={1000}
             render={<Button size="sm" variant="outline" radius="none" />}
           >
             Delay Open (1000ms)
@@ -21,8 +22,9 @@ export const TooltipDelayDemo = () => {
           </TooltipPopup>
         </Tooltip>
 
-        <Tooltip closeDelay={1000}>
+        <Tooltip>
           <TooltipTrigger
+            closeDelay={1000}
             render={<Button size="sm" variant="outline" radius="none" />}
           >
             Delay Close (1000ms)

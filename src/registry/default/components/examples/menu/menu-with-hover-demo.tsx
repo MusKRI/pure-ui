@@ -45,8 +45,9 @@ const DANGER_ITEMS = [
 
 export const MenuWithHoverDemo = () => {
   return (
-    <Menu openOnHover>
+    <Menu>
       <MenuTrigger
+        openOnHover
         render={
           <Button
             variant="ghost"
