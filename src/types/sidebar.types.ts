@@ -17,6 +17,7 @@ export interface SidebarGroupItem extends BaseSidebarItem {
   type: "group";
   href?: string; // optional link for the group item itself
   defaultExpanded?: boolean;
+  tag?: "NEW" | "UPDATED";
   children: SidebarLinkItem[]; // children can only be link items
 }
 

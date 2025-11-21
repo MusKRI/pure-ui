@@ -13,13 +13,9 @@ export function ButtonLoadingDemo() {
   }, [isPending]);
 
   return (
-    <Button
-      radius="full"
-      disabled={isPending}
-      onClick={() => setIsPending(true)}
-    >
+    <Button disabled={isPending} onClick={() => setIsPending(true)}>
       {isPending ? <Spinner size="sm" /> : null}
-      {isPending ? "Uploading..." : "Upload"}
+      {isPending ? "Submitting..." : "Submit"}
     </Button>
   );
 }

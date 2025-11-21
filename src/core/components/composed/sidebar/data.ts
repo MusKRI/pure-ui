@@ -105,6 +105,23 @@ const pureUIComponents = [
     href: "/components/checkbox",
   },
   {
+    id: "detached-triggers",
+    title: "Detached Triggers",
+    type: "group",
+    href: "/components/detached-triggers",
+    tag: "NEW",
+    defaultExpanded: false,
+    children: [
+      {
+        id: "dialog",
+        title: "Dialog",
+        href: "/components/detached-triggers/dialog",
+        type: "link",
+      },
+    ],
+  },
+
+  {
     id: "dialog",
     title: "Dialog",
     type: "link",

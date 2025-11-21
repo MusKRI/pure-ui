@@ -1,14 +1,31 @@
+import { ArrowUpRightIcon } from "lucide-react";
+
 import { Button } from "@/registry/default/components/ui/button";
 
 export function ButtonSizeDemo() {
   return (
-    <div className="flex flex-col gap-5">
-      <div className="flex flex-wrap items-center justify-center gap-4">
-        <Button size="xs">XS Button</Button>
-        <Button size="sm">SM Button</Button>
-        <Button size="default">Default Button</Button>
-        <Button size="lg">LG Button</Button>
-        <Button size="xl">XL Button</Button>
+    <div className="flex flex-col items-start gap-8 sm:flex-row">
+      <div className="flex items-start gap-2">
+        <Button size="sm" variant="outline">
+          Small
+        </Button>
+        <Button size="icon-sm" aria-label="Submit" variant="outline">
+          <ArrowUpRightIcon />
+        </Button>
+      </div>
+      <div className="flex items-start gap-2">
+        <Button variant="outline">Default</Button>
+        <Button size="icon" aria-label="Submit" variant="outline">
+          <ArrowUpRightIcon />
+        </Button>
+      </div>
+      <div className="flex items-start gap-2">
+        <Button variant="outline" size="lg">
+          Large
+        </Button>
+        <Button size="icon-lg" aria-label="Submit" variant="outline">
+          <ArrowUpRightIcon />
+        </Button>
       </div>
     </div>
   );

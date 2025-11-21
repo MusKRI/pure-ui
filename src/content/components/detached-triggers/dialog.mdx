@@ -1,0 +1,106 @@
+---
+title: Detached Triggers - Dialog
+description: Understand how to use detached triggers with dialog component.
+---
+
+We have already seen what detached triggers are and how it works in the [Detached Triggers](/components/detached-triggers) guide. Now, let's see how to use detached triggers with dialog component.
+
+Let's start with a simple example.
+
+<ComponentShowcase name="detached-trigger-dialog-simple-demo" />
+
+In this example, we have created a detached trigger for the dialog component. When you click the button, the dialog will open.
+
+## Multiple Triggers
+
+A single dialog can have multiple trigger elements. You can achieve this by using the same handle for several detached triggers, or by placing multiple `<DialogTrigger>` components inside a single `<Dialog>`.
+
+We can approach using multiple triggers in two ways:
+
+### Within the root part
+
+Place multiple `<DialogTrigger>` components inside the `<Dialog>` component.
+
+```tsx filename="multiple triggers within the root part"
+<Dialog>
+  <DialogTrigger>Open from here</DialogTrigger>
+  <DialogTrigger>Or from here</DialogTrigger>
+  <DialogTrigger>Or here too</DialogTrigger>
+
+  <DialogPopup>
+    <DialogTitle>Example Dialog</DialogTitle>
+  </DialogPopup>
+</Dialog>
+```
+
+### Multiple detached triggers
+
+Use a handle to connect multiple triggers placed anywhere in the app.
+
+```tsx filename="multiple detached triggers"
+const myDialog = DialogPrimitive.createHandle();
+
+// Trigger in navbar
+<DialogTrigger handle={myDialog}>Open from Navbar</DialogTrigger>
+
+// Trigger in sidebar
+<DialogTrigger handle={myDialog}>Open from Sidebar</DialogTrigger>
+
+// Trigger in footer
+<DialogTrigger handle={myDialog}>Open from Footer</DialogTrigger>
+
+// Dialog defined once, anywhere
+<Dialog handle={myDialog}>
+  <DialogPopup>
+    <DialogTitle>Dialog</DialogTitle>
+  </DialogPopup>
+</Dialog>
+```
+
+## Triggers with different content
+
+The dialog can render different content depending on which trigger opened it.
+This is achieved by passing a `payload` to the `<DialogTrigger>` and using the function-as-a-child pattern in `<Dialog>`.
+
+The payload can be strongly typed by providing a type argument to the `createHandle()` function:
+
+**Step 1**: Create a typed handle
+
+```tsx
+// Define the payload type
+const myDialog = Dialog.createHandle<{ text: string; userId?: number }>();
+```
+
+**Step 2**: Add payload to each trigger
+
+```tsx
+<DialogTrigger handle={myDialog} payload={{ text: 'Profile Button' }}>
+  View Profile
+</DialogTrigger>
+
+<DialogTrigger handle={myDialog} payload={{ text: 'Settings Button', userId: 42 }}>
+  Open Settings
+</DialogTrigger>
+```
+
+**Step 3**: Use function-as-a-child pattern in `<Dialog>`
+
+```tsx
+<Dialog handle={myDialog}>
+  {({ payload }) => (
+    <DialogPopup>
+      <DialogTitle>Dialog</DialogTitle>
+
+      {/* Render different content based on payload */}
+      {payload && (
+        <DialogDescription>
+          Opened by: {payload.text}
+          {payload.userId && ` (User ID: ${payload.userId})`}
+        </DialogDescription>
+      )}
+    </DialogPopup>
+  )}
+</Dialog>
+```
+
+<ComponentShowcase name="detached-triggers-dialog-multiple-triggers-demo" />

@@ -11,9 +11,9 @@ import { cn } from "@/lib/classes";
 const buttonVariants = tv({
   base: [
     `group inline-flex relative isolate shrink-0 items-center gap-1.5 text-sm justify-center w-fit touch-none whitespace-nowrap cursor-pointer outline-hidden transform-gpu motion-reduce:transform-none overflow-hidden`,
-    `focus-visible:ring-ring focus-visible:ring-[2px] focus-visible:ring-offset-2 dark:focus-visible:ring-offset-secondary-foreground`,
+    `focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-secondary-foreground`,
     `disabled:cursor-not-allowed disabled:scale-100 disabled:opacity-60 disabled:bg-secondary`,
-    `[transition:scale_0.1s,box-shadow_0.2s,background_0.45s,width_0.2s] [transition-timing-function:cubic-bezier(.6,.04,.98,.335)]`,
+    `[transition:scale_0.1s,box-shadow_0.2s,background_0.20s,width_0.2s] [transition-timing-function:cubic-bezier(.6,.04,.98,.335)]`,
     `[&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none active:scale-98`,
   ],
   variants: {
@@ -28,15 +28,15 @@ const buttonVariants = tv({
         "bg-destructive text-white hover:bg-destructive/90 focus-visible:border-destructive focus-visible:bg-destructive/90 focus-visible:ring-destructive bg-linear-to-t from-destructive/90 to-destructive",
     },
     size: {
-      default: "px-[calc(--spacing(3)-1px)] py-[calc(--spacing(1.5)-1px)]",
-      xs: "min-h-6 gap-1 rounded-md px-[calc(--spacing(2)-1px)] py-[calc(--spacing(1)-1px)] text-xs [&_svg:not([class*='size-'])]:size-3",
-      sm: "min-h-7 gap-1.5 px-[calc(--spacing(2.5)-1px)] py-[calc(--spacing(1)-1px)]",
-      lg: "min-h-9 px-[calc(--spacing(3.5)-1px)] py-[calc(--spacing(2)-1px)]",
-      xl: "min-h-10 px-[calc(--spacing(4)-1px)] py-[calc(--spacing(2)-1px)] text-base [&_svg:not([class*='size-'])]:size-4.5",
-      "icon-sm": "size-7 [&_svg:not([class*='size-'])]:size-3.5",
-      icon: "size-8 [&_svg:not([class*='size-'])]:size-4",
-      "icon-lg": "size-9 [&_svg:not([class*='size-'])]:size-4.5",
-      "icon-xl": "size-10 [&_svg:not([class*='size-'])]:size-4.5",
+      default: "h-9 px-4 py-2 has-[>svg]:px-3",
+      xs: "h-6 gap-1 rounded-md px-[calc(--spacing(2)-1px)] py-[calc(--spacing(1)-1px)] text-xs [&_svg:not([class*='size-'])]:size-3",
+      sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
+      lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
+      xl: "h-12 px-[calc(--spacing(4)-1px)] py-[calc(--spacing(2)-1px)] text-base [&_svg:not([class*='size-'])]:size-4.5",
+      "icon-sm": "size-8 [&_svg:not([class*='size-'])]:size-3.5",
+      icon: "size-9 [&_svg:not([class*='size-'])]:size-4",
+      "icon-lg": "size-10 [&_svg:not([class*='size-'])]:size-4.5",
+      "icon-xl": "size-12 [&_svg:not([class*='size-'])]:size-4.5",
     },
     radius: {
       none: "rounded-none",

@@ -102,11 +102,18 @@ function SidebarGroupItem({
 
   const content = (
     <>
-      <span>{item.title}</span>
+      <span className="flex gap-2">
+        {item.title}
+        {item.tag && (
+          <span className="text-[10px] text-amber-600 font-medium">
+            {item.tag}
+          </span>
+        )}
+      </span>
       <ChevronDownIcon
         className={cn(
           "w-4 h-4 [transition:rotate_0.2s] ease-[cubic-bezier(0.19.1,0.22,1)]",
-          isExpanded ? "-rotate-90" : "rotate-0"
+          isExpanded ? "rotate-0" : "-rotate-90"
         )}
         onClick={handleChevronClick}
       />

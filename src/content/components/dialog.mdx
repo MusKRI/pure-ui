@@ -74,6 +74,12 @@ import { Dialog } from "@/components/ui/dialog";
 
 ## Usage
 
+### Non Dismissible
+
+By default, the dialog is dismissible. You can make it non dismissible by passing `disablePointerDismissal={true}` to the `Dialog` component. This is useful when you want to prevent the user from closing the dialog by clicking outside of it or by pressing the escape key.
+
+<ComponentShowcase name="dialog-non-dismissible-demo" />
+
 ### Controlled
 
 Use `open` and `onOpenChange` props if you need to access or control the state of the dialog.
@@ -132,6 +138,12 @@ Currently, two of animation presets (flip and slide) are direction aware. So, wh
 ### Open from a Menu
 
 <ComponentShowcase name="dialog-open-from-menu-demo" />
+
+### Detached Triggers
+
+A separate guide is available for [Detached Triggers](/components/detached-triggers) because this concept is also applicable to other components like menu, popover, etc. So, I thought it would be better to keep it in a separate guide.
+
+You'll find using detached triggers with dialog in the [Detached Triggers - Dialog](/components/detached-triggers/dialog) guide.
 
 ### Reduce Motion
 

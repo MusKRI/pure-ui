@@ -69,11 +69,15 @@ import { Button } from "@/components/ui/button";
 <Button>Button</Button>
 ```
 
-## Link
+## Rendering as another tag
 
-You can use the `render` prop to make another component look like a button. Here's an example of a link that looks like a button.
+You can use the `render` prop to make another component look like a button. The button can remain keyboard accessible while being rendered as another tag, such as a `<div>`.
 
-```tsx highlight={8}
+**NOTE**: If your rendered element is not a button, you need to pass the `nativeButton={false}` prop to the button to ensure it is still keyboard accessible. By default, the button will render a native button element.
+
+Here's an example of a link that looks like a button.
+
+```tsx highlight={8,9}
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
@@ -81,7 +85,8 @@ import { Button } from "@/components/ui/button";
 export function LinkAsButton() {
   return (
     <Button
-     render={<Link href="/login" />}
+      render={<Link href="/login" />}
+      nativeButton={false}
     >
       Login
     </Button>
@@ -89,24 +94,47 @@ export function LinkAsButton() {
 }
 ```
 
-
 ## Examples
-
-### Variants
-
-<ComponentShowcase name="button-variants-demo" />
-
-### With Icons
-
-<ComponentShowcase name="button-with-icons-demo" />
 
 ### Size
 
 <ComponentShowcase name="button-size-demo" />
 
+### Default
+
+<ComponentShowcase name="button-default-variant-demo" />
+
+### Outline
+
+<ComponentShowcase name="button-outline-variant-demo" />
+
+### Secondary
+
+<ComponentShowcase name="button-secondary-variant-demo" />
+
+### Ghost
+
+<ComponentShowcase name="button-ghost-variant-demo" />
+
+### Destructive
+
+<ComponentShowcase name="button-destructive-variant-demo" />
+
+### Link
+
+<ComponentShowcase name="button-link-variant-demo" />
+
+### Icon
+
+<ComponentShowcase name="button-icon-demo" />
+
 ### Icon Size
 
 <ComponentShowcase name="button-icon-size-demo" />
+
+### With Icon
+
+<ComponentShowcase name="button-with-icons-demo" />
 
 ### Radius
 
@@ -120,6 +148,8 @@ export function LinkAsButton() {
 
 <ComponentShowcase name="button-loading-demo" />
 
+If you want focus to remain on the button when it becomes disabled, you can specify the `focusableWhenDisabled` prop. This prevents focus from being lost and maintains the tab order.
+
 ## Base UI vs Radix UI
 
 If you’re already familiar with Radix UI and shadcn/ui, this guide highlights the small differences and similarities so you can get started with **Pure UI** quickly.
@@ -130,10 +160,11 @@ If you’re already familiar with Radix UI and shadcn/ui, this guide highlights 
 
 ### Comparison Example
 
-```tsx remove=2,5 add=3
+```tsx remove=2,6 add=3,4
 <Button
   asChild
   render={<Link href="/login" />}
+  nativeButton={false}
 >
   <Link href="/login">Log in</Link>
   Log in

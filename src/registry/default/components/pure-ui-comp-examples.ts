@@ -169,12 +169,78 @@ export const pureUICompExamples: RegistryItem[] = [
     ],
   },
   {
-    name: "button-variants-demo",
+    name: "button-default-variant-demo",
     type: "registry:example",
     registryDependencies: ["button"],
     files: [
       {
-        path: "examples/button/button-variants-demo.tsx",
+        path: "examples/button/button-default-variant-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "button-outline-variant-demo",
+    type: "registry:example",
+    registryDependencies: ["button"],
+    files: [
+      {
+        path: "examples/button/button-outline-variant-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "button-ghost-variant-demo",
+    type: "registry:example",
+    registryDependencies: ["button"],
+    files: [
+      {
+        path: "examples/button/button-ghost-variant-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "button-destructive-variant-demo",
+    type: "registry:example",
+    registryDependencies: ["button"],
+    files: [
+      {
+        path: "examples/button/button-destructive-variant-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "button-link-variant-demo",
+    type: "registry:example",
+    registryDependencies: ["button"],
+    files: [
+      {
+        path: "examples/button/button-link-variant-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "button-secondary-variant-demo",
+    type: "registry:example",
+    registryDependencies: ["button"],
+    files: [
+      {
+        path: "examples/button/button-secondary-variant-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "button-icon-demo",
+    type: "registry:example",
+    registryDependencies: ["button"],
+    files: [
+      {
+        path: "examples/button/button-icon-demo.tsx",
         type: "registry:example",
       },
     ],
@@ -197,17 +263,6 @@ export const pureUICompExamples: RegistryItem[] = [
     files: [
       {
         path: "examples/button/button-icon-size-demo.tsx",
-        type: "registry:example",
-      },
-    ],
-  },
-  {
-    name: "button-pending-demo",
-    type: "registry:example",
-    registryDependencies: ["button"],
-    files: [
-      {
-        path: "examples/button/button-pending-demo.tsx",
         type: "registry:example",
       },
     ],
@@ -349,6 +404,30 @@ export const pureUICompExamples: RegistryItem[] = [
     ],
   },
 
+  // Detached Triggers
+  {
+    name: "detached-trigger-dialog-simple-demo",
+    type: "registry:example",
+    registryDependencies: ["dialog"],
+    files: [
+      {
+        path: "examples/detached-triggers/detached-trigger-dialog-simple-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "detached-triggers-dialog-multiple-triggers-demo",
+    type: "registry:example",
+    registryDependencies: ["dialog"],
+    files: [
+      {
+        path: "examples/detached-triggers/detached-triggers-dialog-multiple-triggers-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+
   // Dialog
   {
     name: "dialog-demo",
@@ -357,6 +436,28 @@ export const pureUICompExamples: RegistryItem[] = [
     files: [
       {
         path: "examples/dialog/dialog-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "dialog-non-dismissible-demo",
+    type: "registry:example",
+    registryDependencies: ["dialog"],
+    files: [
+      {
+        path: "examples/dialog/dialog-non-dismissible-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "dialog-outside-scroll-demo",
+    type: "registry:example",
+    registryDependencies: ["dialog"],
+    files: [
+      {
+        path: "examples/dialog/dialog-outside-scroll-demo.tsx",
         type: "registry:example",
       },
     ],

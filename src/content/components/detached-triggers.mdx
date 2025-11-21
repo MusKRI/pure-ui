@@ -1,0 +1,79 @@
+---
+title: Detached Triggers
+description: Understand how to use detached triggers with base ui components like dialog, popover, menu, etc.
+---
+
+This guide will show you how to use detached triggers with base ui components like dialog, popover, menu, etc.
+
+## Detached Triggers?
+
+**Detached triggers** allow you to physically separate a component's trigger (like a button that opens a dialog) from the component's root element in your JSX structure. They remain functionally connected through a special "**handle**" mechanism.
+
+## Traditional Approach
+
+Normally, you would nest the trigger inside the component's root element.
+
+```tsx highlight={2}
+<Dialog>
+  <DialogTrigger>Open Dialog</DialogTrigger> {/* Trigger INSIDE Root */}
+  <DialogPopup>...</DialogPopup>
+</Dialog>
+```
+
+Here, the `<DialogTrigger>` must be a child of the `<Dialog>`. This works fine but becomes limiting when:
+
+- Your trigger needs to be in different part of the UI hierarchy.
+- You want sevaral buttons in different places to open the same dialog.
+
+## Detached Approach
+
+With detached triggers:
+
+```tsx highlight={4,8,15}
+import { Dialog as DialogPrimitive } from "@base-ui-components/react/dialog";
+
+// 1. Create a handle
+const myDialog = DialogPrimitive.createHandle();
+
+// 2. Place trigger ANYWHERE in your app
+<DialogTrigger
+  handle={myDialog}
+>
+  Open Dialog
+</DialogTrigger>
+
+// 3. Place root ANYWHERE ELSE
+<Dialog
+  handle={myDialog}
+>
+  <DialogPopup>...</DialogPopup>
+</Dialog>
+```
+
+Here, the `handle` acts as a "wireless connection" between the trigger and the root. Both reference the same handle, so they communicate even though they are not parent-child in the DOM.
+
+## How It Works
+
+### The Handle
+
+```tsx
+const myDialog = DialogPrimitive.createHandle();
+```
+
+The `createHandle` function returns a special reference object that:
+
+- Manages the open/close state internally
+- Coordinates between triggers and the root component
+- Maintains accessibility relationships (ARIA attributes)
+- Handles focus management
+
+### Linking Components
+
+Both the `Trigger` and `Root` accept a `handle` prop:
+
+```tsx
+<DialogTrigger handle={myDialog} />  // Links to the handle
+<Dialog handle={myDialog} />     // Links to the same handle
+```
+
+When you click the trigger, it signals through the handle to open the dialog, even if they are not related in the DOM tree.

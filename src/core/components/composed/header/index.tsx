@@ -5,6 +5,7 @@ import { HeaderNav } from "./header-nav";
 import { ThemeToggle } from "../theme-toggle";
 import { PureUISidebarToggleButton } from "./sidebar-toggle-button";
 import { PureUILogo } from "../logo";
+import { GithubButton } from "./github-button";
 
 export function Header() {
   return (
@@ -31,7 +32,8 @@ export function Header() {
 
           <HeaderNav />
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-4">
+            <GithubButton />
             <ThemeToggle />
           </div>
         </div>
