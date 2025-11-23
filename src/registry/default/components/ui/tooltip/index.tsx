@@ -148,8 +148,7 @@ const cssTransitionPresets = {
 type CSSAnimationPresets = keyof typeof cssAnimationPresets;
 type CSSTransitionPresets = keyof typeof cssTransitionPresets;
 
-interface TooltipProviderProps
-  extends React.ComponentProps<typeof TooltipPrimitive.Provider> {}
+interface TooltipProviderProps extends TooltipPrimitive.Provider.Props {}
 
 function TooltipProvider({ delay = 300, ...props }: TooltipProviderProps) {
   return (
@@ -161,29 +160,25 @@ function TooltipProvider({ delay = 300, ...props }: TooltipProviderProps) {
   );
 }
 
-interface TooltipProps
-  extends React.ComponentProps<typeof TooltipPrimitive.Root> {}
+interface TooltipProps extends TooltipPrimitive.Root.Props {}
 
 function Tooltip({ ...props }: TooltipProps) {
   return <TooltipPrimitive.Root data-slot="tooltip" {...props} />;
 }
 
-interface TooltipTriggerProps
-  extends React.ComponentProps<typeof TooltipPrimitive.Trigger> {}
+interface TooltipTriggerProps extends TooltipPrimitive.Trigger.Props {}
 
 function TooltipTrigger(props: TooltipTriggerProps) {
   return <TooltipPrimitive.Trigger data-slot="tooltip-trigger" {...props} />;
 }
 
-interface TooltipPortalProps
-  extends React.ComponentProps<typeof TooltipPrimitive.Portal> {}
+interface TooltipPortalProps extends TooltipPrimitive.Portal.Props {}
 
 function TooltipPortal(props: TooltipPortalProps) {
   return <TooltipPrimitive.Portal data-slot="tooltip-portal" {...props} />;
 }
 
-interface TooltipPositionerProps
-  extends React.ComponentProps<typeof TooltipPrimitive.Positioner> {}
+interface TooltipPositionerProps extends TooltipPrimitive.Positioner.Props {}
 
 function TooltipPositioner({
   className,
@@ -207,7 +202,7 @@ function TooltipPositioner({
 }
 
 interface TooltipPopupProps
-  extends React.ComponentProps<typeof TooltipPrimitive.Popup>,
+  extends TooltipPrimitive.Popup.Props,
     Pick<
       TooltipPositionerProps,
       "side" | "sideOffset" | "align" | "alignOffset"

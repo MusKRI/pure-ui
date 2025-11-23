@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-group-split-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "button-group"
+  ],
+  "files": [
+    {
+      "path": "src/registry/default/components/examples/button-group/button-group-split-demo.tsx",
+      "content": "import { PlusIcon } from \"lucide-react\";\r\n\r\nimport { Button } from \"@/registry/default/components/ui/button\";\r\nimport {\r\n  ButtonGroup,\r\n  ButtonGroupSeparator,\r\n} from \"@/registry/default/components/ui/button-group\";\r\n\r\nexport function ButtonGroupSplitDemo() {\r\n  return (\r\n    <ButtonGroup>\r\n      <Button variant=\"secondary\">Button</Button>\r\n      <ButtonGroupSeparator orientation=\"vertical\" />\r\n      <Button size=\"icon\" variant=\"secondary\">\r\n        <PlusIcon />\r\n      </Button>\r\n    </ButtonGroup>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

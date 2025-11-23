@@ -215,7 +215,7 @@ function SelectValue({
           return (
             <span
               {...renderProps}
-              className={cn("w-full text-foreground/60", className)}
+              className={cn("w-full text-left text-foreground/60", className)}
             >
               {placeholder}
             </span>
@@ -226,7 +226,7 @@ function SelectValue({
           <span
             key={newValue}
             {...renderProps}
-            className={cn("w-full fadeIn truncate", className)}
+            className={cn("w-full text-left fadeIn truncate", className)}
           />
         );
       }}

@@ -265,8 +265,7 @@ function useAccordion() {
   return context;
 }
 
-interface AccordionProps
-  extends React.ComponentProps<typeof AccordionPrimitive.Root> {
+interface AccordionProps extends AccordionPrimitive.Root.Props {
   animationPreset?: AnimationPreset;
   transitionPreset?: TransitionPreset;
   reduceMotion?: boolean;
@@ -347,8 +346,7 @@ function useAccordionItem() {
   return context;
 }
 
-interface AccordionItemProps
-  extends React.ComponentProps<typeof AccordionPrimitive.Item> {}
+interface AccordionItemProps extends AccordionPrimitive.Item.Props {}
 
 function AccordionItem({
   value: itemValue,
@@ -424,8 +422,7 @@ function AccordionItem({
   );
 }
 
-interface AccordionHeaderProps
-  extends React.ComponentProps<typeof AccordionPrimitive.Header> {}
+interface AccordionHeaderProps extends AccordionPrimitive.Header.Props {}
 
 function AccordionHeader({ className, ...props }: AccordionHeaderProps) {
   return (
@@ -437,8 +434,7 @@ function AccordionHeader({ className, ...props }: AccordionHeaderProps) {
   );
 }
 
-interface AccordionTriggerProps
-  extends React.ComponentProps<typeof AccordionPrimitive.Trigger> {
+interface AccordionTriggerProps extends AccordionPrimitive.Trigger.Props {
   icon?: (props: { open: boolean }) => React.ReactNode;
 }
 
@@ -505,8 +501,7 @@ function AccordionTrigger({
   );
 }
 
-interface AccordionPanelProps
-  extends React.ComponentProps<typeof AccordionPrimitive.Panel> {}
+interface AccordionPanelProps extends AccordionPrimitive.Panel.Props {}
 
 function AccordionPanel({
   className,

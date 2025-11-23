@@ -100,7 +100,7 @@ type CSSAnimationPresets = keyof typeof cssAnimationPresets;
 type CSSTransitionPresets = keyof typeof cssTransitionPresets;
 
 interface DialogContextType {
-  modal: DialogProps["modal"];
+  modal: DialogProps<unknown>["modal"];
 }
 
 const DialogContext = createContext<DialogContextType | undefined>(undefined);
@@ -113,10 +113,13 @@ function useDialog() {
   return context;
 }
 
-interface DialogProps
-  extends React.ComponentProps<typeof DialogPrimitive.Root> {}
+interface DialogProps<TPayload = unknown>
+  extends DialogPrimitive.Root.Props<TPayload> {}
 
-function Dialog({ modal = true, ...props }: DialogProps) {
+function Dialog<TPayload = unknown>({
+  modal = true,
+  ...props
+}: DialogProps<TPayload>) {
   return (
     <DialogContext.Provider value={{ modal }}>
       <DialogPrimitive.Root data-slot="dialog" modal={modal} {...props} />
@@ -124,29 +127,25 @@ function Dialog({ modal = true, ...props }: DialogProps) {
   );
 }
 
-interface DialogTriggerProps
-  extends React.ComponentProps<typeof DialogPrimitive.Trigger> {}
+interface DialogTriggerProps extends DialogPrimitive.Trigger.Props {}
 
 function DialogTrigger({ ...props }: DialogTriggerProps) {
   return <DialogPrimitive.Trigger data-slot="dialog-trigger" {...props} />;
 }
 
-interface DialogViewportProps
-  extends React.ComponentProps<typeof DialogPrimitive.Viewport> {}
+interface DialogViewportProps extends DialogPrimitive.Viewport.Props {}
 
 function DialogViewport({ ...props }: DialogViewportProps) {
   return <DialogPrimitive.Viewport data-slot="dialog-viewport" {...props} />;
 }
 
-interface DialogPortalProps
-  extends React.ComponentProps<typeof DialogPrimitive.Portal> {}
+interface DialogPortalProps extends DialogPrimitive.Portal.Props {}
 
 function DialogPortal(props: DialogPortalProps) {
   return <DialogPrimitive.Portal data-slot="dialog-portal" {...props} />;
 }
 
-interface DialogBackdropProps
-  extends React.ComponentProps<typeof DialogPrimitive.Backdrop> {}
+interface DialogBackdropProps extends DialogPrimitive.Backdrop.Props {}
 
 function DialogBackdrop({ className, ...props }: DialogBackdropProps) {
   return (
@@ -166,8 +165,7 @@ function DialogBackdrop({ className, ...props }: DialogBackdropProps) {
   );
 }
 
-interface DialogPopupProps
-  extends React.ComponentProps<typeof DialogPrimitive.Popup> {
+interface DialogPopupProps extends DialogPrimitive.Popup.Props {
   animationPreset?: CSSAnimationPresets;
   transitionPreset?: CSSTransitionPresets;
   reduceMotion?: boolean;
@@ -266,10 +264,7 @@ function DialogFooter({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
-function DialogTitle({
-  className,
-  ...props
-}: React.ComponentProps<typeof DialogPrimitive.Title>) {
+function DialogTitle({ className, ...props }: DialogPrimitive.Title.Props) {
   return (
     <DialogPrimitive.Title
       data-slot="dialog-title"
@@ -282,7 +277,7 @@ function DialogTitle({
 function DialogDescription({
   className,
   ...props
-}: React.ComponentProps<typeof DialogPrimitive.Description>) {
+}: DialogPrimitive.Description.Props) {
   return (
     <DialogPrimitive.Description
       data-slot="dialog-description"
@@ -292,8 +287,7 @@ function DialogDescription({
   );
 }
 
-interface DialogCloseProps
-  extends React.ComponentProps<typeof DialogPrimitive.Close> {}
+interface DialogCloseProps extends DialogPrimitive.Close.Props {}
 
 function DialogClose(props: DialogCloseProps) {
   return <DialogPrimitive.Close data-slot="dialog-close" {...props} />;

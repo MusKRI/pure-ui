@@ -35,11 +35,27 @@ export const pureUIShadcnComponents: RegistryItem[] = [
         target: "components/ui/button.tsx",
       },
     ],
+    dependencies: ["class-variance-authority", "clsx", "tailwind-merge"],
+  },
+  // Button Group
+  {
+    name: "button-group",
+    type: "registry:ui",
+    title: "Button Group",
+    description: "A customizable button group component",
+    files: [
+      {
+        path: "ui/button-group/index.tsx",
+        type: "registry:ui",
+        target: "components/ui/button-group.tsx",
+      },
+    ],
+    registryDependencies: ["separator"],
     dependencies: [
-      "class-variance-authority",
+      "tailwind-variants",
       "clsx",
       "tailwind-merge",
-      "@radix-ui/react-slot",
+      "@base-ui-components/react",
     ],
   },
   // Card

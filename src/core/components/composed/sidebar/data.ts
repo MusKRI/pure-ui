@@ -93,6 +93,13 @@ const pureUIComponents = [
     tag: "UPDATED",
   },
   {
+    id: "button-group",
+    title: "Button Group",
+    type: "link",
+    href: "/components/button-group",
+    tag: "NEW",
+  },
+  {
     id: "card",
     title: "Card",
     type: "link",
@@ -169,7 +176,6 @@ const pureUIComponents = [
     title: "Scroll Area",
     type: "link",
     href: "/components/scroll-area",
-    tag: "NEW",
   },
   {
     id: "select",
@@ -206,7 +212,6 @@ const pureUIComponents = [
     title: "Toast",
     type: "link",
     href: "/components/toast",
-    tag: "NEW",
   },
   {
     id: "tooltip",

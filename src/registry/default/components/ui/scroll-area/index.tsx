@@ -2,8 +2,7 @@ import { ScrollArea as ScrollAreaPrimitive } from "@base-ui-components/react/scr
 
 import { cn } from "@/lib/classes";
 
-interface ScrollAreaProps
-  extends React.ComponentProps<typeof ScrollAreaPrimitive.Root> {
+interface ScrollAreaProps extends ScrollAreaPrimitive.Root.Props {
   orientation?: "horizontal" | "vertical" | "both";
   scrollShadow?: "vertical" | "horizontal" | "both" | "none";
 }
@@ -86,8 +85,7 @@ function ScrollArea({
   );
 }
 
-interface ScrollAreaContentProps
-  extends React.ComponentProps<typeof ScrollAreaPrimitive.Viewport> {}
+interface ScrollAreaContentProps extends ScrollAreaPrimitive.Viewport.Props {}
 
 function ScrollAreaContent({
   className,
@@ -105,8 +103,7 @@ function ScrollAreaContent({
   );
 }
 
-interface ScrollBarProps
-  extends React.ComponentProps<typeof ScrollAreaPrimitive.Scrollbar> {}
+interface ScrollBarProps extends ScrollAreaPrimitive.Scrollbar.Props {}
 
 function ScrollBar({
   className,

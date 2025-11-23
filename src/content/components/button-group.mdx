@@ -1,0 +1,140 @@
+---
+title: Button Group
+description: A container that groups related buttons together with consistent styling.
+---
+
+<ComponentShowcase name="button-group-demo" />
+
+## Installation
+
+<Tabs defaultValue="terminal">
+  <TabsList>
+    <TabsTrigger value="terminal">
+      <Terminal className="w-4 h-4" />
+      Terminal
+    </TabsTrigger>
+    <TabsTrigger value="manual">
+      <Code2 className="w-4 h-4" />
+      Manual
+    </TabsTrigger>
+  </TabsList>
+  <TabsContent value="terminal">
+    <InstallationCommands
+      type="registry-installation"
+      registryPath="components/button-group"
+    />
+  </TabsContent>
+  <TabsContent value="manual">
+    <Steps>
+      <Step>Install Dependencies</Step>
+      <InstallationCommands
+        type="package-installation"
+        npmCommand="npm install tailwind-variants clsx tailwind-merge @base-ui-components/react"
+        pnpmCommand="pnpm add tailwind-variants clsx tailwind-merge @base-ui-components/react"
+        yarnCommand="yarn add tailwind-variants clsx tailwind-merge @base-ui-components/react"
+        bunCommand="bun add tailwind-variants clsx tailwind-merge @base-ui-components/react"
+      />
+
+      <Step>Add cn function to your utils</Step>
+
+      ```ts filename="lib/classes.ts"
+      import { clsx, type ClassValue } from "clsx";
+      import { twMerge } from "tailwind-merge";
+
+      export function cn(...inputs: ClassValue[]) {
+        return twMerge(clsx(inputs));
+      }
+      ```
+
+    <Step>Copy and paste the following code into your project</Step>
+
+    <ComponentCodePreview name="button-group" />
+
+  </Steps>
+  </TabsContent>
+</Tabs>
+
+## Usage
+
+```tsx
+import {
+  ButtonGroup,
+  ButtonGroupSeparator,
+  ButtonGroupText,
+} from "@/components/ui/button-group";
+```
+
+```tsx
+<ButtonGroup>
+  <Button>Button 1</Button>
+  <Button>Button 2</Button>
+</ButtonGroup>
+```
+
+## Examples
+
+### Basic
+
+<ComponentShowcase name="button-group-basic-demo" />
+
+### Orientation
+
+Set the `orientation` prop to change the button group layout.
+
+<ComponentShowcase name="button-group-orientation-demo" />
+
+### Size
+
+Control the size of buttons using the `size` prop on individual buttons.
+
+<ComponentShowcase name="button-group-size-demo" />
+
+### Nested
+
+Nest `<ButtonGroup>` components to create button groups with spacing.
+
+<ComponentShowcase name="button-group-nested-demo" />
+
+### Separator
+
+The `<ButtonGroupSeparator>` component visually divides buttons within a group.
+
+Buttons with variant `outline` do not need a separator since they have a border. For other variants, a separator is recommended to improve the visual hierarchy.
+
+<ComponentShowcase name="button-group-separator-demo" />
+
+### Split
+
+Create a split button group by adding two buttons separated by a `ButtonGroupSeparator`.
+
+<ComponentShowcase name="button-group-split-demo" />
+
+### Input
+
+Wrap an `Input` component with buttons.
+
+<ComponentShowcase name="button-group-input-demo" />
+
+### Input Group
+
+Wrap an `InputGroup` component to create complex input layouts.
+
+<ComponentShowcase name="button-group-input-group-demo" />
+
+### Menu
+
+Create a split button group with a `Menu` component.
+
+<ComponentShowcase name="button-group-menu-demo" />
+
+### Select
+
+Pair with a `Select` component.
+
+<ComponentShowcase name="button-group-select-demo" />
+
+### Popover
+
+Use with a `Popover` component.
+
+<ComponentShowcase name="button-group-popover-demo" />

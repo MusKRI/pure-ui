@@ -164,7 +164,7 @@ function useMenu() {
   return context;
 }
 
-interface MenuProps extends React.ComponentProps<typeof MenuPrimitive.Root> {
+interface MenuProps extends MenuPrimitive.Root.Props {
   backdrop?: Backdrop;
 }
 
@@ -176,22 +176,19 @@ function Menu({ backdrop = "transparent", ...props }: MenuProps) {
   );
 }
 
-interface MenuTriggerProps
-  extends React.ComponentProps<typeof MenuPrimitive.Trigger> {}
+interface MenuTriggerProps extends MenuPrimitive.Trigger.Props {}
 
 function MenuTrigger({ ...props }: MenuTriggerProps) {
   return <MenuPrimitive.Trigger data-slot="menu-trigger" {...props} />;
 }
 
-interface MenuPortalProps
-  extends React.ComponentProps<typeof MenuPrimitive.Portal> {}
+interface MenuPortalProps extends MenuPrimitive.Portal.Props {}
 
 function MenuPortal(props: MenuPortalProps) {
   return <MenuPrimitive.Portal data-slot="menu-portal" {...props} />;
 }
 
-interface MenuBackdropProps
-  extends React.ComponentProps<typeof MenuPrimitive.Backdrop> {}
+interface MenuBackdropProps extends MenuPrimitive.Backdrop.Props {}
 
 function MenuBackdrop({ className, ...props }: MenuBackdropProps) {
   const { backdrop = "transparent" } = useMenu();
@@ -212,8 +209,7 @@ function MenuBackdrop({ className, ...props }: MenuBackdropProps) {
   );
 }
 
-interface MenuPositionerProps
-  extends React.ComponentProps<typeof MenuPrimitive.Positioner> {}
+interface MenuPositionerProps extends MenuPrimitive.Positioner.Props {}
 
 function MenuPositioner({
   sideOffset = 4,
@@ -240,8 +236,7 @@ function MenuPositioner({
   );
 }
 
-interface MenuArrowProps
-  extends React.ComponentProps<typeof MenuPrimitive.Arrow> {}
+interface MenuArrowProps extends MenuPrimitive.Arrow.Props {}
 
 function MenuArrow({ className, ...rest }: MenuArrowProps) {
   return (
@@ -272,7 +267,7 @@ function ArrowSvg(props: React.ComponentProps<"svg">) {
 }
 
 interface MenuPopupProps
-  extends React.ComponentProps<typeof MenuPrimitive.Popup>,
+  extends MenuPrimitive.Popup.Props,
     Pick<MenuPositionerProps, "side" | "sideOffset" | "align" | "alignOffset"> {
   animationPreset?: CSSAnimationPresets;
   transitionPreset?: CSSTransitionPresets;
@@ -346,15 +341,13 @@ function MenuPopup({
   );
 }
 
-interface MenuGroupProps
-  extends React.ComponentProps<typeof MenuPrimitive.Group> {}
+interface MenuGroupProps extends MenuPrimitive.Group.Props {}
 
 function MenuGroup(props: MenuGroupProps) {
   return <MenuPrimitive.Group data-slot="menu-group" {...props} />;
 }
 
-interface MenuGroupLabelProps
-  extends React.ComponentProps<typeof MenuPrimitive.GroupLabel> {}
+interface MenuGroupLabelProps extends MenuPrimitive.GroupLabel.Props {}
 
 function MenuGroupLabel({ className, ...rest }: MenuGroupLabelProps) {
   return (
@@ -382,8 +375,7 @@ function MenuLabel({ className, ...props }: React.ComponentProps<"span">) {
   );
 }
 
-interface MenuItemProps
-  extends React.ComponentProps<typeof MenuPrimitive.Item> {}
+interface MenuItemProps extends MenuPrimitive.Item.Props {}
 
 function MenuItem({ className, ...rest }: MenuItemProps) {
   return (
@@ -399,10 +391,7 @@ function MenuItem({ className, ...rest }: MenuItemProps) {
   );
 }
 
-function MenuSeparator({
-  className,
-  ...props
-}: React.ComponentProps<typeof MenuPrimitive.Separator>) {
+function MenuSeparator({ className, ...props }: MenuPrimitive.Separator.Props) {
   return (
     <MenuPrimitive.Separator
       data-slot="menu-separator"
@@ -412,8 +401,7 @@ function MenuSeparator({
   );
 }
 
-interface MenuCheckboxItemProps
-  extends React.ComponentProps<typeof MenuPrimitive.CheckboxItem> {}
+interface MenuCheckboxItemProps extends MenuPrimitive.CheckboxItem.Props {}
 
 function MenuCheckboxItem({
   className,
@@ -446,8 +434,7 @@ interface MenuRadioGroupContextType {
 
 const MenuRadioGroupContext = createContext<MenuRadioGroupContextType>({});
 
-interface MenuRadioGroupProps
-  extends React.ComponentProps<typeof MenuPrimitive.RadioGroup> {
+interface MenuRadioGroupProps extends MenuPrimitive.RadioGroup.Props {
   activeIcon?: React.ReactNode;
 }
 
@@ -464,7 +451,7 @@ function MenuRadioItem({
   children,
   value,
   ...props
-}: React.ComponentProps<typeof MenuPrimitive.RadioItem>) {
+}: MenuPrimitive.RadioItem.Props) {
   const { activeIcon } = useContext(MenuRadioGroupContext);
 
   return (
@@ -506,22 +493,20 @@ function MenuShortcut({ className, ...props }: React.ComponentProps<"span">) {
   );
 }
 
-interface MenuSubProps
-  extends React.ComponentProps<typeof MenuPrimitive.SubmenuRoot> {}
+interface MenuSubProps extends MenuPrimitive.SubmenuRoot.Props {}
 
 function MenuSub(props: MenuSubProps) {
   return <MenuPrimitive.SubmenuRoot data-slot="menu-submenu" {...props} />;
 }
 
-interface MenuSubTriggerProps
-  extends React.ComponentProps<typeof MenuPrimitive.SubmenuTrigger> {}
+interface MenuSubTriggerProps extends MenuPrimitive.SubmenuTrigger.Props {}
 
 function MenuSubTrigger({ className, children, ...rest }: MenuSubTriggerProps) {
   return (
     <MenuPrimitive.SubmenuTrigger
       data-slot="menu-submenu-trigger"
       className={cn(
-        `text-foreground border-[0.5px] border-transparent relative flex cursor-default items-center gap-2 rounded-[10px] px-(--item-inline-padding) py-(--item-block-padding) text-sm`,
+        `text-foreground border-[0.5px] border-transparent relative flex cursor-default items-center gap-2 rounded-[10px] px-(--item-inline-padding) py-(--item-block-padding) text-sm [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4`,
         `hover:bg-accent/70 focus-visible:bg-accent/70 dark:hover:bg-accent dark:focus-visible:bg-accent hover:text-accent-foreground hover:border-border/30 data-popup-open:bg-accent/70 data-popup-open:text-accent-foreground data-popup-open:border-border/30 outline-hidden`,
         className
       )}
@@ -533,15 +518,13 @@ function MenuSubTrigger({ className, children, ...rest }: MenuSubTriggerProps) {
   );
 }
 
-interface MenuSubmenuPortalProps
-  extends React.ComponentProps<typeof MenuPrimitive.Portal> {}
+interface MenuSubmenuPortalProps extends MenuPrimitive.Portal.Props {}
 
 function MenuSubmenuPortal(props: MenuSubmenuPortalProps) {
   return <MenuPrimitive.Portal data-slot="menu-submenu-portal" {...props} />;
 }
 
-interface MenuSubPositionerProps
-  extends React.ComponentProps<typeof MenuPrimitive.Positioner> {}
+interface MenuSubPositionerProps extends MenuPrimitive.Positioner.Props {}
 
 function MenuSubPositioner({
   sideOffset = 4,
@@ -568,7 +551,7 @@ function MenuSubPositioner({
 }
 
 interface MenuSubPopupProps
-  extends React.ComponentProps<typeof MenuPrimitive.Popup>,
+  extends MenuPrimitive.Popup.Props,
     Pick<
       MenuPositionerProps,
       "side" | "sideOffset" | "align" | "alignOffset"

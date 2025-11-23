@@ -69,6 +69,7 @@ function Button({
 }: ButtonProps) {
   return (
     <BaseButton
+      data-slot="button"
       className={cn(buttonVariants({ variant, size, radius }), className)}
       {...props}
     />

@@ -4,8 +4,7 @@ import { Switch as SwitchPrimitive } from "@base-ui-components/react/switch";
 
 import { cn } from "@/lib/classes";
 
-interface SwitchProps
-  extends React.ComponentProps<typeof SwitchPrimitive.Root> {
+interface SwitchProps extends SwitchPrimitive.Root.Props {
   reduceMotion?: boolean;
   isInteractive?: boolean;
   size?: "sm" | "md" | "lg";

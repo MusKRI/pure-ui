@@ -18,8 +18,4 @@ const fontChillax = localFont({
   variable: "--font-chillax",
 });
 
-export const fontVariables = cn(
-  fontSans.variable,
-  fontNotoMono.variable,
-  fontChillax.variable
-);
+export const fontVariables = cn(fontSans.variable, fontNotoMono.variable, fontChillax.variable);

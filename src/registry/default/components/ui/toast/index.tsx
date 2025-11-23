@@ -40,8 +40,7 @@ function getRadiusClass(radius?: ToastRadius): string {
   }
 }
 
-interface ToastProviderProps
-  extends React.ComponentProps<typeof Toast.Provider> {
+interface ToastProviderProps extends Toast.Provider.Props {
   position?: ToastPosition;
 }
 

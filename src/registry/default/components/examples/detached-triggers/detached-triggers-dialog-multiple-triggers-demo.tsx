@@ -73,8 +73,8 @@ export const DetachedTriggersDialogMultipleTriggersDemo = () => {
         triggerId={triggerId}
       >
         {({ payload }) => {
-          const player = (payload as DialogPayload)?.player ?? "";
-          const description = (payload as DialogPayload)?.description ?? "";
+          const player = payload?.player ?? "";
+          const description = payload?.description ?? "";
 
           return (
             <DialogPopup>
