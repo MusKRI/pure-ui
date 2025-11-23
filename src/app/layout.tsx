@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
 
-import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-
 import "@/styles/globals.css";
 import { cn } from "@/lib/classes";
 import { fontVariables } from "@/lib/fonts";
 import { ThemeProvider } from "@/core/providers";
 import { ToastProvider } from "@/registry/default/components/ui/toast";
+
+import { Analytics } from "@/core/events/openpanel";
 
 export const metadata: Metadata = {
   title: "Pure UI",
@@ -36,7 +35,6 @@ export default function RootLayout({
           <ToastProvider position="bottom-right">{children}</ToastProvider>
         </ThemeProvider>
         <Analytics />
-        <SpeedInsights />
       </body>
     </html>
   );
