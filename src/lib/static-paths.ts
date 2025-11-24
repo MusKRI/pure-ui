@@ -1,11 +1,6 @@
-import { Array, Effect, pipe } from "effect";
-
-import { pureUISidebarConfig } from "@/core/components/composed/sidebar/data";
-import type {
-  SidebarGroupItem,
-  SidebarItem,
-  SidebarLinkItem,
-} from "@/types/sidebar.types";
+import { Array, Effect, pipe, Data } from "effect";
+import { readdir } from "fs/promises";
+import { join, relative, parse } from "path";
 
 /**
  * Static path configuration type for Next.js generateStaticParams
@@ -14,86 +9,119 @@ export interface StaticPath {
   path: string[];
 }
 
-/**
- * Extracts the href from a SidebarLinkItem
- */
-const extractLinkHref = (item: SidebarLinkItem): string => item.href;
+export class DirectoryReadError extends Data.TaggedError("DirectoryReadError")<{
+  path: string;
+  cause: unknown;
+}> {}
 
 /**
- * Extracts all hrefs from a SidebarGroupItem by mapping over its children
+ * Recursively reads directory contents and filters for .mdx files
  */
-const extractGroupHrefs = (item: SidebarGroupItem): readonly string[] =>
-  item.children.map(extractLinkHref);
+const readContentDirectory = (contentDir: string) =>
+  Effect.tryPromise({
+    try: () =>
+      readdir(contentDir, {
+        recursive: true,
+        withFileTypes: true,
+      }) as Promise<Array<import("fs").Dirent>>,
+    catch: (cause) =>
+      new DirectoryReadError({
+        path: contentDir,
+        cause,
+      }),
+  });
 
 /**
- * Extracts all hrefs from a single SidebarItem (either link or group)
- * Returns an array of hrefs to handle groups with multiple children
+ * Filters for .mdx files only
  */
-const extractHrefsFromItem = (item: SidebarItem): readonly string[] =>
-  item.type === "link" ? [extractLinkHref(item)] : extractGroupHrefs(item);
+const filterMdxFiles = (
+  entries: Array<import("fs").Dirent>
+): Array<import("fs").Dirent> =>
+  entries.filter((entry) => entry.isFile() && entry.name.endsWith(".mdx"));
 
 /**
- * Converts a href path (e.g., "/docs/installation/nextjs") to a StaticPath
- * by removing the leading slash and splitting by "/"
+ * Converts a file path to a relative path from the content directory
+ * and removes the .mdx extension
+ * Example: "src/content/docs/index.mdx" -> "docs/index.mdx" -> "docs/index"
  */
-const hrefToStaticPath = (href: string): StaticPath => ({
-  path: href.replace(/^\//, "").split("/").filter(Boolean),
-});
+const fileToRelativePath = (
+  entry: import("fs").Dirent,
+  contentDir: string
+): string => {
+  const fullPath = join(entry.parentPath || contentDir, entry.name);
+  const relativePath = relative(contentDir, fullPath);
+
+  // Normalize path separators to forward slashes for URLs
+  const normalizedPath = relativePath.replace(/\\/g, "/");
+
+  const { dir, name } = parse(normalizedPath);
+  return dir ? `${dir}/${name}` : name;
+};
 
 /**
- * Extracts all hrefs from an array of SidebarItems
- * Flattens the results since groups can have multiple children
+ * Converts a relative file path to a Next.js static path array
+ * Removes "index" from the path since index.mdx files map to the directory path
+ * Example:
+ * - "docs/index" -> ["docs"]
+ * - "docs/get-started" -> ["docs", "get-started"]
+ * - "docs/installation/nextjs" -> ["docs", "installation", "nextjs"]
+ * - "components/detached-triggers/dialog" -> ["components", "detached-triggers", "dialog"]
  */
-const extractAllHrefs = (items: readonly SidebarItem[]): readonly string[] =>
-  pipe(
-    items,
-    Array.flatMap(extractHrefsFromItem),
-    Array.dedupe // Remove any potential duplicates
-  );
+const relativePathToStaticPath = (relativePath: string): StaticPath => {
+  const parts = relativePath.split("/").filter(Boolean);
+
+  // Remove "index" from the end if present (e.g., ["docs", "index"] -> ["docs"])
+  const filteredParts =
+    parts.length > 1 && parts[parts.length - 1] === "index"
+      ? parts.slice(0, -1)
+      : parts;
+
+  return {
+    path: filteredParts,
+  };
+};
 
 /**
- * Converts an array of hrefs to an array of StaticPaths
- */
-const convertHrefsToStaticPaths = (
-  hrefs: readonly string[]
-): readonly StaticPath[] => hrefs.map(hrefToStaticPath);
-
-/**
- * Generates all static paths from the sidebar configuration
- * This combines docs, components, and any future sections
+ * Generates all static paths by reading .mdx files from the content directory
+ * This ensures all actual content files are included, regardless of sidebar configuration
  *
  * @returns Effect that resolves to an array of StaticPath objects
  */
 export const generateStaticPaths = (): Effect.Effect<
   readonly StaticPath[],
-  never,
+  DirectoryReadError,
   never
 > =>
-  pipe(
-    Effect.sync(() => {
-      // Collect all sidebar items from different sections
-      const allSidebarItems = [
-        ...pureUISidebarConfig.docs,
-        ...pureUISidebarConfig.components,
-        // Add future sections here (e.g., blocks, examples, etc.)
-      ];
-      return allSidebarItems;
-    }),
-    Effect.map(extractAllHrefs),
-    Effect.map(convertHrefsToStaticPaths)
-  );
+  Effect.gen(function* () {
+    const contentDir = join(process.cwd(), "src/content");
+
+    const entries = yield* readContentDirectory(contentDir);
+
+    const mdxFiles = filterMdxFiles(entries);
+
+    const relativePaths = mdxFiles.map((entry) =>
+      fileToRelativePath(entry, contentDir)
+    );
+
+    const staticPaths = pipe(
+      relativePaths,
+      Array.map(relativePathToStaticPath),
+      Array.dedupe // Remove any potential duplicates
+    );
+
+    return staticPaths;
+  });
 
 /**
  * Helper function to run generateStaticPaths and return a Promise
  * This is convenient for Next.js generateStaticParams which expects a Promise
  *
  * @example
- * ```ts
+ *
  * export async function generateStaticParams() {
  *   return await getStaticPaths();
  * }
- * ```
- */
+ *  */
 export const getStaticPaths = async (): Promise<StaticPath[]> => {
   const paths = await Effect.runPromise(generateStaticPaths());
   // Convert readonly array to mutable array for Next.js compatibility

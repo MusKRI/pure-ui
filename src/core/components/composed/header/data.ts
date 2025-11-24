@@ -5,7 +5,7 @@ export const pureUIHeaderLinks = [
   },
   {
     label: "Components",
-    href: "/components/accordion",
+    href: "/components",
   },
   {
     label: "Blocks",
