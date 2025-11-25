@@ -1,5 +1,11 @@
 import { type RegistryItem } from "@/lib/registry/schemas";
 
+import { getAppUrl } from "@/lib/env";
+
+const createRegistryDependency = (name: string) => {
+  return `${getAppUrl()}/r/components/${name}.json`;
+};
+
 export const pureUIShadcnComponents: RegistryItem[] = [
   // Accordion
   {
@@ -20,7 +26,7 @@ export const pureUIShadcnComponents: RegistryItem[] = [
       "@base-ui-components/react",
       "motion",
     ],
-    registryDependencies: ["classes"],
+    registryDependencies: [createRegistryDependency("classes")],
   },
   // Button
   {
@@ -35,7 +41,13 @@ export const pureUIShadcnComponents: RegistryItem[] = [
         target: "components/ui/button.tsx",
       },
     ],
-    dependencies: ["class-variance-authority", "clsx", "tailwind-merge"],
+    registryDependencies: [createRegistryDependency("classes")],
+    dependencies: [
+      "tailwind-variants",
+      "clsx",
+      "tailwind-merge",
+      "@base-ui-components/react",
+    ],
   },
   // Button Group
   {
@@ -50,7 +62,10 @@ export const pureUIShadcnComponents: RegistryItem[] = [
         target: "components/ui/button-group.tsx",
       },
     ],
-    registryDependencies: ["separator"],
+    registryDependencies: [
+      createRegistryDependency("separator"),
+      createRegistryDependency("classes"),
+    ],
     dependencies: [
       "tailwind-variants",
       "clsx",
@@ -71,6 +86,7 @@ export const pureUIShadcnComponents: RegistryItem[] = [
         target: "components/ui/card.tsx",
       },
     ],
+    registryDependencies: [createRegistryDependency("classes")],
     dependencies: ["clsx", "tailwind-merge"],
   },
   // Checkbox
@@ -86,8 +102,9 @@ export const pureUIShadcnComponents: RegistryItem[] = [
         target: "components/ui/checkbox.tsx",
       },
     ],
+    registryDependencies: [createRegistryDependency("classes")],
     dependencies: [
-      "class-variance-authority",
+      "tailwind-variants",
       "clsx",
       "tailwind-merge",
       "@base-ui-components/react",
@@ -106,12 +123,12 @@ export const pureUIShadcnComponents: RegistryItem[] = [
         target: "components/ui/dialog.tsx",
       },
     ],
+    registryDependencies: [createRegistryDependency("classes")],
     dependencies: [
-      "class-variance-authority",
       "clsx",
       "tailwind-merge",
       "@base-ui-components/react",
-      "motion",
+      "lucide-react",
     ],
   },
   // Input
@@ -127,7 +144,8 @@ export const pureUIShadcnComponents: RegistryItem[] = [
         target: "components/ui/input.tsx",
       },
     ],
-    dependencies: ["clsx", "tailwind-merge", "tailwind-variants"],
+    registryDependencies: [createRegistryDependency("classes")],
+    dependencies: ["clsx", "tailwind-merge", "@base-ui-components/react"],
   },
   // Input Group
   {
@@ -142,7 +160,12 @@ export const pureUIShadcnComponents: RegistryItem[] = [
         target: "components/ui/input-group.tsx",
       },
     ],
-    registryDependencies: ["input", "textarea"],
+    registryDependencies: [
+      createRegistryDependency("input"),
+      createRegistryDependency("textarea"),
+      createRegistryDependency("classes"),
+      createRegistryDependency("button"),
+    ],
     dependencies: [
       "clsx",
       "tailwind-merge",
@@ -163,8 +186,9 @@ export const pureUIShadcnComponents: RegistryItem[] = [
         target: "components/ui/input-otp.tsx",
       },
     ],
+    registryDependencies: [createRegistryDependency("classes")],
     dependencies: [
-      "class-variance-authority",
+      "tailwind-variants",
       "clsx",
       "tailwind-merge",
       "input-otp",
@@ -184,6 +208,7 @@ export const pureUIShadcnComponents: RegistryItem[] = [
         target: "components/ui/label.tsx",
       },
     ],
+    registryDependencies: [createRegistryDependency("classes")],
     dependencies: ["clsx", "tailwind-merge"],
   },
   // Menu
@@ -199,12 +224,8 @@ export const pureUIShadcnComponents: RegistryItem[] = [
         target: "components/ui/menu.tsx",
       },
     ],
-    dependencies: [
-      "@base-ui-components/react",
-      "motion",
-      "clsx",
-      "tailwind-merge",
-    ],
+    registryDependencies: [createRegistryDependency("classes")],
+    dependencies: ["@base-ui-components/react", "clsx", "tailwind-merge"],
   },
   // Popover
   {
@@ -219,12 +240,8 @@ export const pureUIShadcnComponents: RegistryItem[] = [
         target: "components/ui/popover.tsx",
       },
     ],
-    dependencies: [
-      "@base-ui-components/react",
-      "motion",
-      "clsx",
-      "tailwind-merge",
-    ],
+    registryDependencies: [createRegistryDependency("classes")],
+    dependencies: ["@base-ui-components/react", "clsx", "tailwind-merge"],
   },
 
   // Scroll Area
@@ -240,6 +257,7 @@ export const pureUIShadcnComponents: RegistryItem[] = [
         target: "components/ui/scroll-area.tsx",
       },
     ],
+    registryDependencies: [createRegistryDependency("classes")],
     dependencies: ["@base-ui-components/react", "clsx", "tailwind-merge"],
   },
 
@@ -256,11 +274,12 @@ export const pureUIShadcnComponents: RegistryItem[] = [
         target: "components/ui/select.tsx",
       },
     ],
+    registryDependencies: [createRegistryDependency("classes")],
     dependencies: [
       "@base-ui-components/react",
-      "motion",
       "clsx",
       "tailwind-merge",
+      "lucide-react",
     ],
   },
   // Separator
@@ -276,6 +295,7 @@ export const pureUIShadcnComponents: RegistryItem[] = [
         target: "components/ui/separator.tsx",
       },
     ],
+    registryDependencies: [createRegistryDependency("classes")],
     dependencies: ["@base-ui-components/react", "clsx", "tailwind-merge"],
   },
   // Switch
@@ -291,12 +311,10 @@ export const pureUIShadcnComponents: RegistryItem[] = [
         target: "components/ui/switch.tsx",
       },
     ],
-    dependencies: [
-      "tailwind-variants",
-      "tailwind-merge",
-      "@base-ui-components/react",
-    ],
+    registryDependencies: [createRegistryDependency("classes")],
+    dependencies: ["clsx", "tailwind-merge", "@base-ui-components/react"],
   },
+  // Spinner
   {
     name: "spinner",
     type: "registry:ui",
@@ -309,7 +327,13 @@ export const pureUIShadcnComponents: RegistryItem[] = [
         target: "components/ui/spinner.tsx",
       },
     ],
-    dependencies: ["tailwind-merge", "clsx"],
+    registryDependencies: [createRegistryDependency("classes")],
+    dependencies: [
+      "tailwind-variants",
+      "tailwind-merge",
+      "@base-ui-components/react",
+      "clsx",
+    ],
   },
   // Textarea
   {
@@ -324,6 +348,7 @@ export const pureUIShadcnComponents: RegistryItem[] = [
         target: "components/ui/textarea.tsx",
       },
     ],
+    registryDependencies: [createRegistryDependency("classes")],
     dependencies: ["@base-ui-components/react", "clsx", "tailwind-merge"],
   },
   // Toast
@@ -339,7 +364,11 @@ export const pureUIShadcnComponents: RegistryItem[] = [
         target: "components/ui/toast.tsx",
       },
     ],
-    registryDependencies: ["button", "spinner"],
+    registryDependencies: [
+      createRegistryDependency("button"),
+      createRegistryDependency("spinner"),
+      createRegistryDependency("classes"),
+    ],
     dependencies: ["@base-ui-components/react", "clsx", "tailwind-merge"],
   },
   // Tooltip
@@ -355,11 +384,7 @@ export const pureUIShadcnComponents: RegistryItem[] = [
         target: "components/ui/tooltip.tsx",
       },
     ],
-    dependencies: [
-      "@base-ui-components/react",
-      "motion",
-      "clsx",
-      "tailwind-merge",
-    ],
+    registryDependencies: [createRegistryDependency("classes")],
+    dependencies: ["@base-ui-components/react", "clsx", "tailwind-merge"],
   },
 ];

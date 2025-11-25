@@ -2,9 +2,9 @@
 
 import { createContext, useContext, useMemo } from "react";
 import { Select as SelectPrimitive } from "@base-ui-components/react/select";
+import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 
 import { cn } from "@/lib/classes";
-import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 
 const cssAnimationPresets = {
   none: "transition-none",

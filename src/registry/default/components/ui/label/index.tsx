@@ -1,6 +1,6 @@
-import * as React from "react"
+import * as React from "react";
 
-import { cn } from "@/lib/classes"
+import { cn } from "@/lib/classes";
 
 function Label({ className, ...props }: React.ComponentProps<"label">) {
   return (
@@ -9,7 +9,7 @@ function Label({ className, ...props }: React.ComponentProps<"label">) {
       className={cn("inline-flex items-center gap-2 text-sm/4", className)}
       {...props}
     />
-  )
+  );
 }
 
-export { Label }
+export { Label };

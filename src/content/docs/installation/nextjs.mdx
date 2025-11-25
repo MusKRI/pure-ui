@@ -3,4 +3,43 @@ title: Next.js
 description: Install and configure Pure UI for Next.js.
 ---
 
-Will be updated soon.
+## Create a new Next.js project
+
+Start by creating a new Next.js project using following command:
+
+<InstallationCommands
+  type="package-installation"
+  npmCommand="npx create-next-app@latest my-app"
+  pnpmCommand="pnpm dlx create-next-app@latest my-app"
+  yarnCommand="yarn create-next-app@latest my-app"
+  bunCommand="bunx --bun create-next-app@latest my-app"
+/>
+
+Replace `my-app` with your project name.
+
+You will be asked a few questions to configure your project. Answer them according to your preferences.
+
+```bash filename="Terminal" noCopy
+? Would you like to use the recommended Next.js defaults? » No, customize settings
+? Would you like to use TypeScript? » Yes
+? Which linter would you like to use? » Biome
+? Would you like to use React Compiler? » Yes
+? Would you like to use Tailwind CSS? » Yes
+? Would you like your code inside a `src/` directory? » Yes
+? Would you like to use App Router? (recommended) » Yes
+? Would you like to customize the default import alias(`@/*` by default)? » No
+```
+
+Currently, I would like to use [Biome](https://biomejs.dev/) as the linter. You can use other linters if you want.
+
+## Shadcn CLI
+
+Run the shadcn init command to setup your project:
+
+<InstallationCommands
+  type="package-installation"
+  npmCommand="npx shadcn@latest init"
+  pnpmCommand="pnpm dlx shadcn@latest init"
+  yarnCommand="yarn shadcn@latest init"
+  bunCommand="bunx --bun shadcn@latest init"
+/>

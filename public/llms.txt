@@ -1,0 +1,3 @@
+# Pure UI
+
+**Pure UI** is a curated collection of refined, animated, and accessible components built with [Base UI](https://base-ui.com/), [Tailwind CSS](https://tailwindcss.com/), [Motion](https://motion.dev/), and other high-quality open source libraries.

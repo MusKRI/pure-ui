@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { Tooltip as TooltipPrimitive } from "@base-ui-components/react/tooltip";
 
 import { cn } from "@/lib/classes";
