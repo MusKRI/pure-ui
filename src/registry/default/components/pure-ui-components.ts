@@ -195,6 +195,24 @@ export const pureUIShadcnComponents: RegistryItem[] = [
       "motion",
     ],
   },
+
+  // Kbd
+  {
+    name: "kbd",
+    type: "registry:ui",
+    title: "Kbd",
+    description: "A customizable kbd component",
+    files: [
+      {
+        path: "ui/kbd/index.tsx",
+        type: "registry:ui",
+        target: "components/ui/kbd.tsx",
+      },
+    ],
+    registryDependencies: [createRegistryDependency("classes")],
+    dependencies: ["clsx", "tailwind-merge"],
+  },
+
   // Label
   {
     name: "label",

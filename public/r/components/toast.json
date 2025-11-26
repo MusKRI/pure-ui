@@ -10,8 +10,9 @@
     "tailwind-merge"
   ],
   "registryDependencies": [
-    "button",
-    "spinner"
+    "http://localhost:3000/r/components/button.json",
+    "http://localhost:3000/r/components/spinner.json",
+    "http://localhost:3000/r/components/classes.json"
   ],
   "files": [
     {

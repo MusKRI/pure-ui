@@ -90,7 +90,6 @@ const pureUIComponents = [
     title: "Button",
     type: "link",
     href: "/components/button",
-    tag: "UPDATED",
   },
   {
     id: "button-group",
@@ -133,7 +132,6 @@ const pureUIComponents = [
     title: "Dialog",
     type: "link",
     href: "/components/dialog",
-    tag: "UPDATED",
   },
   {
     id: "input",
@@ -152,6 +150,13 @@ const pureUIComponents = [
     title: "Input OTP",
     type: "link",
     href: "/components/input-otp",
+  },
+  {
+    id: "kbd",
+    title: "Kbd",
+    type: "link",
+    href: "/components/kbd",
+    tag: "NEW",
   },
   {
     id: "label",

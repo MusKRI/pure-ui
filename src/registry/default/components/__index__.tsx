@@ -11,7 +11,7 @@ export const Index: Record<string, any> = {
     name: "accordion",
     description: "A customizable button component",
     type: "registry:ui",
-    registryDependencies: ["classes"],
+    registryDependencies: ["http://localhost:3000/r/components/classes.json"],
     dependencies: ["clsx","tailwind-merge","@base-ui-components/react","motion"],
     files: [{
       path: "src/registry/default/components/ui/accordion/index.tsx",
@@ -30,8 +30,8 @@ export const Index: Record<string, any> = {
     name: "button",
     description: "A customizable button component",
     type: "registry:ui",
-    registryDependencies: undefined,
-    dependencies: ["class-variance-authority","clsx","tailwind-merge"],
+    registryDependencies: ["http://localhost:3000/r/components/classes.json"],
+    dependencies: ["tailwind-variants","clsx","tailwind-merge","@base-ui-components/react"],
     files: [{
       path: "src/registry/default/components/ui/button/index.tsx",
       type: "registry:ui",
@@ -49,7 +49,7 @@ export const Index: Record<string, any> = {
     name: "button-group",
     description: "A customizable button group component",
     type: "registry:ui",
-    registryDependencies: ["separator"],
+    registryDependencies: ["http://localhost:3000/r/components/separator.json","http://localhost:3000/r/components/classes.json"],
     dependencies: ["tailwind-variants","clsx","tailwind-merge","@base-ui-components/react"],
     files: [{
       path: "src/registry/default/components/ui/button-group/index.tsx",
@@ -68,7 +68,7 @@ export const Index: Record<string, any> = {
     name: "card",
     description: "A customizable card component",
     type: "registry:ui",
-    registryDependencies: undefined,
+    registryDependencies: ["http://localhost:3000/r/components/classes.json"],
     dependencies: ["clsx","tailwind-merge"],
     files: [{
       path: "src/registry/default/components/ui/card/index.tsx",
@@ -87,8 +87,8 @@ export const Index: Record<string, any> = {
     name: "checkbox",
     description: "A customizable checkbox component",
     type: "registry:ui",
-    registryDependencies: undefined,
-    dependencies: ["class-variance-authority","clsx","tailwind-merge","@base-ui-components/react"],
+    registryDependencies: ["http://localhost:3000/r/components/classes.json"],
+    dependencies: ["tailwind-variants","clsx","tailwind-merge","@base-ui-components/react"],
     files: [{
       path: "src/registry/default/components/ui/checkbox/index.tsx",
       type: "registry:ui",
@@ -106,8 +106,8 @@ export const Index: Record<string, any> = {
     name: "dialog",
     description: "A customizable dialog component",
     type: "registry:ui",
-    registryDependencies: undefined,
-    dependencies: ["class-variance-authority","clsx","tailwind-merge","@base-ui-components/react","motion"],
+    registryDependencies: ["http://localhost:3000/r/components/classes.json"],
+    dependencies: ["clsx","tailwind-merge","@base-ui-components/react","lucide-react"],
     files: [{
       path: "src/registry/default/components/ui/dialog/index.tsx",
       type: "registry:ui",
@@ -125,8 +125,8 @@ export const Index: Record<string, any> = {
     name: "input",
     description: "A customizable input component",
     type: "registry:ui",
-    registryDependencies: undefined,
-    dependencies: ["clsx","tailwind-merge","tailwind-variants"],
+    registryDependencies: ["http://localhost:3000/r/components/classes.json"],
+    dependencies: ["clsx","tailwind-merge","@base-ui-components/react"],
     files: [{
       path: "src/registry/default/components/ui/input/index.tsx",
       type: "registry:ui",
@@ -144,7 +144,7 @@ export const Index: Record<string, any> = {
     name: "input-group",
     description: "A customizable input group component",
     type: "registry:ui",
-    registryDependencies: ["input","textarea"],
+    registryDependencies: ["http://localhost:3000/r/components/input.json","http://localhost:3000/r/components/textarea.json","http://localhost:3000/r/components/classes.json","http://localhost:3000/r/components/button.json"],
     dependencies: ["clsx","tailwind-merge","tailwind-variants","@base-ui-components/react"],
     files: [{
       path: "src/registry/default/components/ui/input-group/index.tsx",
@@ -163,8 +163,8 @@ export const Index: Record<string, any> = {
     name: "input-otp",
     description: "A customizable input OTP component",
     type: "registry:ui",
-    registryDependencies: undefined,
-    dependencies: ["class-variance-authority","clsx","tailwind-merge","input-otp","motion"],
+    registryDependencies: ["http://localhost:3000/r/components/classes.json"],
+    dependencies: ["tailwind-variants","clsx","tailwind-merge","input-otp","motion"],
     files: [{
       path: "src/registry/default/components/ui/input-otp/index.tsx",
       type: "registry:ui",
@@ -178,11 +178,30 @@ export const Index: Record<string, any> = {
     categories: undefined,
     meta: undefined,
   },
+  "kbd": {
+    name: "kbd",
+    description: "A customizable kbd component",
+    type: "registry:ui",
+    registryDependencies: ["http://localhost:3000/r/components/classes.json"],
+    dependencies: ["clsx","tailwind-merge"],
+    files: [{
+      path: "src/registry/default/components/ui/kbd/index.tsx",
+      type: "registry:ui",
+      target: "components/ui/kbd.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/ui/kbd/index.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
   "label": {
     name: "label",
     description: "A customizable label component",
     type: "registry:ui",
-    registryDependencies: undefined,
+    registryDependencies: ["http://localhost:3000/r/components/classes.json"],
     dependencies: ["clsx","tailwind-merge"],
     files: [{
       path: "src/registry/default/components/ui/label/index.tsx",
@@ -201,8 +220,8 @@ export const Index: Record<string, any> = {
     name: "menu",
     description: "A customizable menu component",
     type: "registry:ui",
-    registryDependencies: undefined,
-    dependencies: ["@base-ui-components/react","motion","clsx","tailwind-merge"],
+    registryDependencies: ["http://localhost:3000/r/components/classes.json"],
+    dependencies: ["@base-ui-components/react","clsx","tailwind-merge"],
     files: [{
       path: "src/registry/default/components/ui/menu/index.tsx",
       type: "registry:ui",
@@ -220,8 +239,8 @@ export const Index: Record<string, any> = {
     name: "popover",
     description: "A customizable popover component",
     type: "registry:ui",
-    registryDependencies: undefined,
-    dependencies: ["@base-ui-components/react","motion","clsx","tailwind-merge"],
+    registryDependencies: ["http://localhost:3000/r/components/classes.json"],
+    dependencies: ["@base-ui-components/react","clsx","tailwind-merge"],
     files: [{
       path: "src/registry/default/components/ui/popover/index.tsx",
       type: "registry:ui",
@@ -239,7 +258,7 @@ export const Index: Record<string, any> = {
     name: "scroll-area",
     description: "A customizable scroll area component",
     type: "registry:ui",
-    registryDependencies: undefined,
+    registryDependencies: ["http://localhost:3000/r/components/classes.json"],
     dependencies: ["@base-ui-components/react","clsx","tailwind-merge"],
     files: [{
       path: "src/registry/default/components/ui/scroll-area/index.tsx",
@@ -258,8 +277,8 @@ export const Index: Record<string, any> = {
     name: "select",
     description: "A customizable select component",
     type: "registry:ui",
-    registryDependencies: undefined,
-    dependencies: ["@base-ui-components/react","motion","clsx","tailwind-merge"],
+    registryDependencies: ["http://localhost:3000/r/components/classes.json"],
+    dependencies: ["@base-ui-components/react","clsx","tailwind-merge","lucide-react"],
     files: [{
       path: "src/registry/default/components/ui/select/index.tsx",
       type: "registry:ui",
@@ -277,7 +296,7 @@ export const Index: Record<string, any> = {
     name: "separator",
     description: "A customizable separator component",
     type: "registry:ui",
-    registryDependencies: undefined,
+    registryDependencies: ["http://localhost:3000/r/components/classes.json"],
     dependencies: ["@base-ui-components/react","clsx","tailwind-merge"],
     files: [{
       path: "src/registry/default/components/ui/separator/index.tsx",
@@ -296,8 +315,8 @@ export const Index: Record<string, any> = {
     name: "switch",
     description: "A customizable switch component",
     type: "registry:ui",
-    registryDependencies: undefined,
-    dependencies: ["tailwind-variants","tailwind-merge","@base-ui-components/react"],
+    registryDependencies: ["http://localhost:3000/r/components/classes.json"],
+    dependencies: ["clsx","tailwind-merge","@base-ui-components/react"],
     files: [{
       path: "src/registry/default/components/ui/switch/index.tsx",
       type: "registry:ui",
@@ -315,8 +334,8 @@ export const Index: Record<string, any> = {
     name: "spinner",
     description: "A customizable spinner component",
     type: "registry:ui",
-    registryDependencies: undefined,
-    dependencies: ["tailwind-merge","clsx"],
+    registryDependencies: ["http://localhost:3000/r/components/classes.json"],
+    dependencies: ["tailwind-variants","tailwind-merge","@base-ui-components/react","clsx"],
     files: [{
       path: "src/registry/default/components/ui/spinner/index.tsx",
       type: "registry:ui",
@@ -334,7 +353,7 @@ export const Index: Record<string, any> = {
     name: "textarea",
     description: "A customizable textarea component",
     type: "registry:ui",
-    registryDependencies: undefined,
+    registryDependencies: ["http://localhost:3000/r/components/classes.json"],
     dependencies: ["@base-ui-components/react","clsx","tailwind-merge"],
     files: [{
       path: "src/registry/default/components/ui/textarea/index.tsx",
@@ -353,7 +372,7 @@ export const Index: Record<string, any> = {
     name: "toast",
     description: "A customizable toast component",
     type: "registry:ui",
-    registryDependencies: ["button","spinner"],
+    registryDependencies: ["http://localhost:3000/r/components/button.json","http://localhost:3000/r/components/spinner.json","http://localhost:3000/r/components/classes.json"],
     dependencies: ["@base-ui-components/react","clsx","tailwind-merge"],
     files: [{
       path: "src/registry/default/components/ui/toast/index.tsx",
@@ -372,8 +391,8 @@ export const Index: Record<string, any> = {
     name: "tooltip",
     description: "A customizable tooltip component",
     type: "registry:ui",
-    registryDependencies: undefined,
-    dependencies: ["@base-ui-components/react","motion","clsx","tailwind-merge"],
+    registryDependencies: ["http://localhost:3000/r/components/classes.json"],
+    dependencies: ["@base-ui-components/react","clsx","tailwind-merge"],
     files: [{
       path: "src/registry/default/components/ui/tooltip/index.tsx",
       type: "registry:ui",
@@ -2148,6 +2167,101 @@ export const Index: Record<string, any> = {
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/default/components/examples/input-otp/input-otp-controlled-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
+  "kbd-demo": {
+    name: "kbd-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["kbd"],
+    dependencies: undefined,
+    files: [{
+      path: "src/registry/default/components/examples/kbd/kbd-demo.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/examples/kbd/kbd-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
+  "kbd-group-demo": {
+    name: "kbd-group-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["kbd"],
+    dependencies: undefined,
+    files: [{
+      path: "src/registry/default/components/examples/kbd/kbd-group-demo.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/examples/kbd/kbd-group-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
+  "kbd-button-demo": {
+    name: "kbd-button-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["kbd"],
+    dependencies: undefined,
+    files: [{
+      path: "src/registry/default/components/examples/kbd/kbd-button-demo.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/examples/kbd/kbd-button-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
+  "kbd-tooltip-demo": {
+    name: "kbd-tooltip-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["kbd"],
+    dependencies: undefined,
+    files: [{
+      path: "src/registry/default/components/examples/kbd/kbd-tooltip-demo.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/examples/kbd/kbd-tooltip-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    categories: undefined,
+    meta: undefined,
+  },
+  "kbd-input-group-demo": {
+    name: "kbd-input-group-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["kbd"],
+    dependencies: undefined,
+    files: [{
+      path: "src/registry/default/components/examples/kbd/kbd-input-group-demo.tsx",
+      type: "registry:example",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/components/examples/kbd/kbd-input-group-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),

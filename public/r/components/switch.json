@@ -5,9 +5,12 @@
   "title": "Switch",
   "description": "A customizable switch component",
   "dependencies": [
-    "tailwind-variants",
+    "clsx",
     "tailwind-merge",
     "@base-ui-components/react"
+  ],
+  "registryDependencies": [
+    "http://localhost:3000/r/components/classes.json"
   ],
   "files": [
     {

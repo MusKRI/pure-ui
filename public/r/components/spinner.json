@@ -5,8 +5,13 @@
   "title": "Spinner",
   "description": "A customizable spinner component",
   "dependencies": [
+    "tailwind-variants",
     "tailwind-merge",
+    "@base-ui-components/react",
     "clsx"
+  ],
+  "registryDependencies": [
+    "http://localhost:3000/r/components/classes.json"
   ],
   "files": [
     {

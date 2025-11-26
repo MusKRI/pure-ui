@@ -7,7 +7,10 @@
   "dependencies": [
     "clsx",
     "tailwind-merge",
-    "tailwind-variants"
+    "@base-ui-components/react"
+  ],
+  "registryDependencies": [
+    "http://localhost:3000/r/components/classes.json"
   ],
   "files": [
     {

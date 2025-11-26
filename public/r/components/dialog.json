@@ -5,11 +5,13 @@
   "title": "Dialog",
   "description": "A customizable dialog component",
   "dependencies": [
-    "class-variance-authority",
     "clsx",
     "tailwind-merge",
     "@base-ui-components/react",
-    "motion"
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "http://localhost:3000/r/components/classes.json"
   ],
   "files": [
     {

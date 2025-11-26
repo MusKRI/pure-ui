@@ -6,9 +6,11 @@
   "description": "A customizable popover component",
   "dependencies": [
     "@base-ui-components/react",
-    "motion",
     "clsx",
     "tailwind-merge"
+  ],
+  "registryDependencies": [
+    "http://localhost:3000/r/components/classes.json"
   ],
   "files": [
     {

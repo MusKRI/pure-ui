@@ -11,8 +11,10 @@
     "@base-ui-components/react"
   ],
   "registryDependencies": [
-    "input",
-    "textarea"
+    "http://localhost:3000/r/components/input.json",
+    "http://localhost:3000/r/components/textarea.json",
+    "http://localhost:3000/r/components/classes.json",
+    "http://localhost:3000/r/components/button.json"
   ],
   "files": [
     {

@@ -8,6 +8,9 @@
     "clsx",
     "tailwind-merge"
   ],
+  "registryDependencies": [
+    "http://localhost:3000/r/components/classes.json"
+  ],
   "files": [
     {
       "path": "src/registry/default/components/ui/card/index.tsx",

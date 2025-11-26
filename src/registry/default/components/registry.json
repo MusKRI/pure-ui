@@ -14,7 +14,7 @@
         "motion"
       ],
       "registryDependencies": [
-        "classes"
+        "http://localhost:3000/r/components/classes.json"
       ],
       "files": [
         {
@@ -30,9 +30,13 @@
       "title": "Button",
       "description": "A customizable button component",
       "dependencies": [
-        "class-variance-authority",
+        "tailwind-variants",
         "clsx",
-        "tailwind-merge"
+        "tailwind-merge",
+        "@base-ui-components/react"
+      ],
+      "registryDependencies": [
+        "http://localhost:3000/r/components/classes.json"
       ],
       "files": [
         {
@@ -54,7 +58,8 @@
         "@base-ui-components/react"
       ],
       "registryDependencies": [
-        "separator"
+        "http://localhost:3000/r/components/separator.json",
+        "http://localhost:3000/r/components/classes.json"
       ],
       "files": [
         {
@@ -73,6 +78,9 @@
         "clsx",
         "tailwind-merge"
       ],
+      "registryDependencies": [
+        "http://localhost:3000/r/components/classes.json"
+      ],
       "files": [
         {
           "path": "src/registry/default/components/ui/card/index.tsx",
@@ -87,10 +95,13 @@
       "title": "Checkbox",
       "description": "A customizable checkbox component",
       "dependencies": [
-        "class-variance-authority",
+        "tailwind-variants",
         "clsx",
         "tailwind-merge",
         "@base-ui-components/react"
+      ],
+      "registryDependencies": [
+        "http://localhost:3000/r/components/classes.json"
       ],
       "files": [
         {
@@ -106,11 +117,13 @@
       "title": "Dialog",
       "description": "A customizable dialog component",
       "dependencies": [
-        "class-variance-authority",
         "clsx",
         "tailwind-merge",
         "@base-ui-components/react",
-        "motion"
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "http://localhost:3000/r/components/classes.json"
       ],
       "files": [
         {
@@ -128,7 +141,10 @@
       "dependencies": [
         "clsx",
         "tailwind-merge",
-        "tailwind-variants"
+        "@base-ui-components/react"
+      ],
+      "registryDependencies": [
+        "http://localhost:3000/r/components/classes.json"
       ],
       "files": [
         {
@@ -150,8 +166,10 @@
         "@base-ui-components/react"
       ],
       "registryDependencies": [
-        "input",
-        "textarea"
+        "http://localhost:3000/r/components/input.json",
+        "http://localhost:3000/r/components/textarea.json",
+        "http://localhost:3000/r/components/classes.json",
+        "http://localhost:3000/r/components/button.json"
       ],
       "files": [
         {
@@ -167,17 +185,40 @@
       "title": "Input OTP",
       "description": "A customizable input OTP component",
       "dependencies": [
-        "class-variance-authority",
+        "tailwind-variants",
         "clsx",
         "tailwind-merge",
         "input-otp",
         "motion"
+      ],
+      "registryDependencies": [
+        "http://localhost:3000/r/components/classes.json"
       ],
       "files": [
         {
           "path": "src/registry/default/components/ui/input-otp/index.tsx",
           "type": "registry:ui",
           "target": "components/ui/input-otp.tsx"
+        }
+      ]
+    },
+    {
+      "name": "kbd",
+      "type": "registry:ui",
+      "title": "Kbd",
+      "description": "A customizable kbd component",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "http://localhost:3000/r/components/classes.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/ui/kbd/index.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/kbd.tsx"
         }
       ]
     },
@@ -189,6 +230,9 @@
       "dependencies": [
         "clsx",
         "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "http://localhost:3000/r/components/classes.json"
       ],
       "files": [
         {
@@ -205,9 +249,11 @@
       "description": "A customizable menu component",
       "dependencies": [
         "@base-ui-components/react",
-        "motion",
         "clsx",
         "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "http://localhost:3000/r/components/classes.json"
       ],
       "files": [
         {
@@ -224,9 +270,11 @@
       "description": "A customizable popover component",
       "dependencies": [
         "@base-ui-components/react",
-        "motion",
         "clsx",
         "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "http://localhost:3000/r/components/classes.json"
       ],
       "files": [
         {
@@ -246,6 +294,9 @@
         "clsx",
         "tailwind-merge"
       ],
+      "registryDependencies": [
+        "http://localhost:3000/r/components/classes.json"
+      ],
       "files": [
         {
           "path": "src/registry/default/components/ui/scroll-area/index.tsx",
@@ -261,9 +312,12 @@
       "description": "A customizable select component",
       "dependencies": [
         "@base-ui-components/react",
-        "motion",
         "clsx",
-        "tailwind-merge"
+        "tailwind-merge",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "http://localhost:3000/r/components/classes.json"
       ],
       "files": [
         {
@@ -283,6 +337,9 @@
         "clsx",
         "tailwind-merge"
       ],
+      "registryDependencies": [
+        "http://localhost:3000/r/components/classes.json"
+      ],
       "files": [
         {
           "path": "src/registry/default/components/ui/separator/index.tsx",
@@ -297,9 +354,12 @@
       "title": "Switch",
       "description": "A customizable switch component",
       "dependencies": [
-        "tailwind-variants",
+        "clsx",
         "tailwind-merge",
         "@base-ui-components/react"
+      ],
+      "registryDependencies": [
+        "http://localhost:3000/r/components/classes.json"
       ],
       "files": [
         {
@@ -315,8 +375,13 @@
       "title": "Spinner",
       "description": "A customizable spinner component",
       "dependencies": [
+        "tailwind-variants",
         "tailwind-merge",
+        "@base-ui-components/react",
         "clsx"
+      ],
+      "registryDependencies": [
+        "http://localhost:3000/r/components/classes.json"
       ],
       "files": [
         {
@@ -335,6 +400,9 @@
         "@base-ui-components/react",
         "clsx",
         "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "http://localhost:3000/r/components/classes.json"
       ],
       "files": [
         {
@@ -355,8 +423,9 @@
         "tailwind-merge"
       ],
       "registryDependencies": [
-        "button",
-        "spinner"
+        "http://localhost:3000/r/components/button.json",
+        "http://localhost:3000/r/components/spinner.json",
+        "http://localhost:3000/r/components/classes.json"
       ],
       "files": [
         {
@@ -373,9 +442,11 @@
       "description": "A customizable tooltip component",
       "dependencies": [
         "@base-ui-components/react",
-        "motion",
         "clsx",
         "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "http://localhost:3000/r/components/classes.json"
       ],
       "files": [
         {
@@ -1590,6 +1661,71 @@
       "files": [
         {
           "path": "src/registry/default/components/examples/input-otp/input-otp-controlled-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "kbd-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "kbd"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/kbd/kbd-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "kbd-group-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "kbd"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/kbd/kbd-group-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "kbd-button-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "kbd"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/kbd/kbd-button-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "kbd-tooltip-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "kbd"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/kbd/kbd-tooltip-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "kbd-input-group-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "kbd"
+      ],
+      "files": [
+        {
+          "path": "src/registry/default/components/examples/kbd/kbd-input-group-demo.tsx",
           "type": "registry:example"
         }
       ]

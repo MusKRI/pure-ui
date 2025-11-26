@@ -5,11 +5,14 @@
   "title": "Input OTP",
   "description": "A customizable input OTP component",
   "dependencies": [
-    "class-variance-authority",
+    "tailwind-variants",
     "clsx",
     "tailwind-merge",
     "input-otp",
     "motion"
+  ],
+  "registryDependencies": [
+    "http://localhost:3000/r/components/classes.json"
   ],
   "files": [
     {

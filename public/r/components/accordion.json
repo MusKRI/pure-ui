@@ -11,7 +11,7 @@
     "motion"
   ],
   "registryDependencies": [
-    "classes"
+    "http://localhost:3000/r/components/classes.json"
   ],
   "files": [
     {
