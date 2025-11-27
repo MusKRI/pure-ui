@@ -21,7 +21,7 @@ description: A popup that opens on top of the entire page.
   <TabsContent value="terminal">
     <InstallationCommands
       type="registry-installation"
-      registryPath="components/dialog"
+      registryPath="dialog"
     />
   </TabsContent>
   <TabsContent value="manual">
@@ -88,10 +88,7 @@ For example, you can control the dialog state in order to open it imperatively f
 ```tsx noCopy add=4,5 highlight={14}
 const [open, setOpen] = React.useState(false);
 return (
-  <Dialog.Root
-    open={open}
-    onOpenChange={setOpen}
-  >
+  <Dialog.Root open={open} onOpenChange={setOpen}>
     <Dialog.Trigger>Open</Dialog.Trigger>
     <Dialog.Portal>
       <Dialog.Popup>

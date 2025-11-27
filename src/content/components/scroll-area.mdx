@@ -21,7 +21,7 @@ description: A native scroll container with custom scrollbars.
   <TabsContent value="terminal">
     <InstallationCommands
       type="registry-installation"
-      registryPath="components/scroll-area"
+      registryPath="scroll-area"
     />
   </TabsContent>
   <TabsContent value="manual">
@@ -93,9 +93,7 @@ The scroll shadows are the small gradient backgrounds that appear at the top and
 You can control the scroll shadows using the `scrollShadow` prop. It can be set to `vertical`, `horizontal`, `both`, or `none`. The default value is `none`.
 
 ```tsx add=2
-<ScrollArea
-  scrollShadow="vertical"
->
+<ScrollArea scrollShadow="vertical">
   <ScrollAreaContent>
     <div>
       <p>Vertical scroll shadow</p>

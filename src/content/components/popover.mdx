@@ -21,7 +21,7 @@ description: An accessible popup anchored to a button.
   <TabsContent value="terminal">
     <InstallationCommands
       type="registry-installation"
-      registryPath="components/popover"
+      registryPath="popover"
     />
   </TabsContent>
   <TabsContent value="manual">
@@ -99,15 +99,10 @@ You can pass `delay` to Popover to change the delay time for opening the popover
 
 ```tsx add=4 noCopy
 <Popover>
-  <PopoverTrigger
-    openOnHover
-    delay={200}
-  >
+  <PopoverTrigger openOnHover delay={200}>
     ...
   </PopoverTrigger>
-  <PopoverPopup>
-    ...
-  </PopoverPopup>
+  <PopoverPopup>...</PopoverPopup>
   ...
 </Popover>
 ```
@@ -116,15 +111,10 @@ You can also pass `closeDelay` of Popover to change the delay time for closing t
 
 ```tsx add=4 noCopy
 <Popover>
-  <PopoverTrigger
-    openOnHover
-    closeDelay={200}
-  >
+  <PopoverTrigger openOnHover closeDelay={200}>
     ...
   </PopoverTrigger>
-  <PopoverPopup>
-    ...
-  </PopoverPopup>
+  <PopoverPopup>...</PopoverPopup>
   ...
 </Popover>
 ```
