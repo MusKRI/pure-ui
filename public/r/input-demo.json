@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "input"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/examples/input/input-demo.tsx",
+      "content": "import { Input } from \"@/registry/pure-ui/ui/input\";\r\n\r\nexport default function InputDemo() {\r\n  return (\r\n    <Input\r\n      type=\"text\"\r\n      placeholder=\"Enter text\"\r\n      aria-label=\"Enter text\"\r\n      className=\"w-full max-w-sm\"\r\n    />\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

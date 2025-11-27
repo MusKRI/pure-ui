@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-group-input-group-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "button-group"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/examples/button-group/button-group-input-group-demo.tsx",
+      "content": "\"use client\";\r\n\r\nimport { useState } from \"react\";\r\nimport { AudioLinesIcon, PlusIcon } from \"lucide-react\";\r\n\r\nimport { Button } from \"@/registry/pure-ui/ui/button\";\r\nimport { ButtonGroup } from \"@/registry/pure-ui/ui/button-group\";\r\nimport {\r\n  InputGroup,\r\n  InputGroupAddon,\r\n  InputGroupButton,\r\n  InputGroupInput,\r\n} from \"@/registry/pure-ui/ui/input-group\";\r\nimport {\r\n  Tooltip,\r\n  TooltipPopup,\r\n  TooltipTrigger,\r\n} from \"@/registry/pure-ui/ui/tooltip\";\r\n\r\nexport function ButtonGroupInputGroupDemo() {\r\n  const [voiceEnabled, setVoiceEnabled] = useState(false);\r\n\r\n  return (\r\n    <ButtonGroup className=\"[--radius:9999rem]\">\r\n      <ButtonGroup>\r\n        <Button variant=\"outline\" size=\"icon\">\r\n          <PlusIcon />\r\n        </Button>\r\n      </ButtonGroup>\r\n      <ButtonGroup>\r\n        <InputGroup>\r\n          <InputGroupInput\r\n            placeholder={\r\n              voiceEnabled ? \"Record and send audio...\" : \"Send a message...\"\r\n            }\r\n            disabled={voiceEnabled}\r\n          />\r\n          <InputGroupAddon align=\"inline-end\">\r\n            <Tooltip>\r\n              <TooltipTrigger\r\n                render={\r\n                  <InputGroupButton\r\n                    onClick={() => setVoiceEnabled(!voiceEnabled)}\r\n                    size=\"icon-xs\"\r\n                    data-active={voiceEnabled}\r\n                    className=\"data-[active=true]:bg-orange-100 data-[active=true]:text-orange-700 dark:data-[active=true]:bg-orange-800 dark:data-[active=true]:text-orange-100\"\r\n                    aria-pressed={voiceEnabled}\r\n                  />\r\n                }\r\n              >\r\n                <AudioLinesIcon />\r\n              </TooltipTrigger>\r\n              <TooltipPopup>Voice Mode</TooltipPopup>\r\n            </Tooltip>\r\n          </InputGroupAddon>\r\n        </InputGroup>\r\n      </ButtonGroup>\r\n    </ButtonGroup>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

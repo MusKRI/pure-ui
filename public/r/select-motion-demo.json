@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "select-motion-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "select"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/examples/select/select-motion-demo.tsx",
+      "content": "import { CheckCheck } from \"lucide-react\";\r\n\r\nimport {\r\n  Select,\r\n  SelectIcon,\r\n  SelectItem,\r\n  SelectItemText,\r\n  SelectList,\r\n  SelectPopup,\r\n  SelectTrigger,\r\n  SelectValue,\r\n} from \"@/registry/pure-ui/ui/select\";\r\n\r\nconst fonts = [\r\n  { label: \"Sans-serif\", value: \"sans\" },\r\n  { label: \"Serif\", value: \"serif\" },\r\n  { label: \"Monospace\", value: \"mono\" },\r\n  { label: \"Cursive\", value: \"cursive\" },\r\n];\r\n\r\nexport const SelectMotionDemo = () => {\r\n  const sides = [\r\n    \"right\",\r\n    \"top\",\r\n    \"bottom\",\r\n    \"left\",\r\n    \"inline-start\",\r\n    \"inline-end\",\r\n  ] as const;\r\n\r\n  const alignments = [\"start\", \"center\", \"end\"] as const;\r\n\r\n  return (\r\n    <div className=\"flex flex-col items-center gap-3 w-full\">\r\n      {sides.map((side) => {\r\n        return (\r\n          <div\r\n            className=\"flex flex-col gap-1 border-b border-border/40 last:border-b-0 pb-5 last:pb-0\"\r\n            key={side}\r\n          >\r\n            <p>\r\n              Side:{\" \"}\r\n              <span className=\"text-muted-foreground capitalize\">{side}</span>\r\n            </p>\r\n            <div className=\"flex flex-wrap gap-4\">\r\n              {alignments.map((alignment) => {\r\n                return (\r\n                  <Select key={alignment + side} items={fonts}>\r\n                    <SelectTrigger className=\"h-7 w-fit\">\r\n                      <SelectIcon>\r\n                        <CheckCheck className=\"size-3.5 text-secondary-foreground\" />\r\n                      </SelectIcon>\r\n                      <SelectValue\r\n                        placeholder={`${alignment}`}\r\n                        className=\"capitalize\"\r\n                      />\r\n                    </SelectTrigger>\r\n                    <SelectPopup\r\n                      side={side}\r\n                      align={alignment}\r\n                      animationPreset=\"motion\"\r\n                      className=\"min-w-45\"\r\n                    >\r\n                      <SelectList>\r\n                        {fonts.map((font) => {\r\n                          return (\r\n                            <SelectItem key={font.value} value={font.value}>\r\n                              <SelectItemText>{font.label}</SelectItemText>\r\n                            </SelectItem>\r\n                          );\r\n                        })}\r\n                      </SelectList>\r\n                    </SelectPopup>\r\n                  </Select>\r\n                );\r\n              })}\r\n            </div>\r\n          </div>\r\n        );\r\n      })}\r\n    </div>\r\n  );\r\n};\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

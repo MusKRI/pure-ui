@@ -21,7 +21,7 @@ description: Accordion display a list of high-level options that can expand/coll
   <TabsContent value="terminal">
     <InstallationCommands
       type="registry-installation"
-      registryPath="components/accordion"
+      registryPath="accordion"
     />
   </TabsContent>
   <TabsContent value="manual">
@@ -80,11 +80,7 @@ import {
 You can use the `variant` prop to change the variant of the accordion.
 
 ```tsx noCopy highlight={2}
-<Accordion
-  variant="default"
->
-  ...rest content...
-</Accordion>
+<Accordion variant="default">...rest content...</Accordion>
 ```
 
 ### Default

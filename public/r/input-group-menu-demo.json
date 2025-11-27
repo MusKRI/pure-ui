@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-group-menu-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "input-group"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/examples/input-group/input-group-menu-demo.tsx",
+      "content": "import { ChevronDownIcon, MoreHorizontal } from \"lucide-react\";\r\n\r\nimport {\r\n  InputGroup,\r\n  InputGroupAddon,\r\n  InputGroupButton,\r\n  InputGroupInput,\r\n  InputGroupText,\r\n  InputGroupTextarea,\r\n} from \"@/registry/pure-ui/ui/input-group\";\r\n\r\nimport {\r\n  Menu,\r\n  MenuItem,\r\n  MenuPopup,\r\n  MenuTrigger,\r\n} from \"@/registry/pure-ui/ui/menu\";\r\n\r\nexport function InputGroupMenuDemo() {\r\n  return (\r\n    <div className=\"grid w-full max-w-sm gap-6\">\r\n      <InputGroup>\r\n        <InputGroupInput placeholder=\"Enter file name\" />\r\n        <InputGroupAddon align=\"inline-end\">\r\n          <Menu>\r\n            <MenuTrigger\r\n              render={\r\n                <InputGroupButton\r\n                  variant=\"ghost\"\r\n                  aria-label=\"More\"\r\n                  size=\"icon-xs\"\r\n                />\r\n              }\r\n            >\r\n              <MoreHorizontal />\r\n            </MenuTrigger>\r\n            <MenuPopup align=\"end\">\r\n              <MenuItem>Settings</MenuItem>\r\n              <MenuItem>Copy path</MenuItem>\r\n              <MenuItem>Open location</MenuItem>\r\n            </MenuPopup>\r\n          </Menu>\r\n        </InputGroupAddon>\r\n      </InputGroup>\r\n\r\n      <InputGroup className=\"[--radius:1rem]\">\r\n        <InputGroupInput placeholder=\"Enter search query\" />\r\n        <InputGroupAddon align=\"inline-end\">\r\n          <Menu>\r\n            <MenuTrigger\r\n              render={\r\n                <InputGroupButton\r\n                  variant=\"ghost\"\r\n                  className=\"pr-1.5! text-xs active:scale-100\"\r\n                />\r\n              }\r\n            >\r\n              Search In... <ChevronDownIcon className=\"size-3\" />\r\n            </MenuTrigger>\r\n            <MenuPopup align=\"end\" className=\"[--radius:0.95rem]\">\r\n              <MenuItem>Documentation</MenuItem>\r\n              <MenuItem>Blog Posts</MenuItem>\r\n              <MenuItem>Changelog</MenuItem>\r\n            </MenuPopup>\r\n          </Menu>\r\n        </InputGroupAddon>\r\n      </InputGroup>\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

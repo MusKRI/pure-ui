@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-controlled-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "input"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/examples/input/input-controlled-demo.tsx",
+      "content": "\"use client\";\r\n\r\nimport { Input } from \"@/registry/pure-ui/ui/input\";\r\nimport React from \"react\";\r\n\r\nexport function InputControlledDemo() {\r\n  const [value, setValue] = React.useState(\"base-ui.com\");\r\n\r\n  return (\r\n    <div className=\"flex w-80 flex-col gap-2\">\r\n      <Input\r\n        aria-label=\"Domain\"\r\n        placeholder=\"domain\"\r\n        value={value}\r\n        onValueChange={(value) => setValue(value)}\r\n      />\r\n      <span className=\"text-muted-foreground px-1 text-sm\">\r\n        https://{value || \"your-domain\"}\r\n      </span>\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

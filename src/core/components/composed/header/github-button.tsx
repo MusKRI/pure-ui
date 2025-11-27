@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 
 import { GithubIcon } from "@/core/icons/pack1";
-import { Button } from "@/registry/default/components/ui/button";
+import { Button } from "@/registry/pure-ui/ui/button";
 
 export async function StarsCount() {
   try {

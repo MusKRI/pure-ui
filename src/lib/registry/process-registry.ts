@@ -16,7 +16,7 @@ import {
   registryItemSchema,
 } from "@/lib/registry/schemas";
 
-import { Index } from "@/registry/default/components/__index__";
+import { Index } from "@/registry/pure-ui/__index__";
 
 export type ProcessedRegistryFile = RegistryItemFile & {
   content: string;
@@ -70,26 +70,19 @@ const processImportPaths = (content: string) =>
     content,
     // Replace shadcn registry component imports
     (c) =>
-      c.replace(
-        /@\/registry\/default\/components\/ui\/([^"']+)/g,
-        "@/components/ui/$1"
-      ),
+      c.replace(/@\/registry\/pure-ui\/ui\/([^"']+)/g, "@/components/ui/$1"),
     // Replace react-aria registry component imports
     (c) =>
-      c.replace(
-        /@\/registry\/default\/components\/ui\/([^"']+)/g,
-        "@/components/ui/$1"
-      ),
+      c.replace(/@\/registry\/pure-ui\/ui\/([^"']+)/g, "@/components/ui/$1"),
     // Replace lib imports
-    (c) =>
-      c.replace(/@\/registry\/default\/components\/lib\/([^"']+)/g, "@/lib/$1")
+    (c) => c.replace(/@\/registry\/pure-ui\/lib\/([^"']+)/g, "@/lib/$1")
   );
 
 // Effect based file reading with error handling
 const readFileWithProcessing = (filePath: string, fs: FileSystem.FileSystem) =>
   pipe(
     Effect.gen(function* () {
-      const absolutePath = path.join(process.cwd(), filePath);
+      const absolutePath = path.join(process.cwd(), "src", filePath);
 
       // Read file content
       const content = yield* fs

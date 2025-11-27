@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "textarea-controlled-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "textarea"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/examples/textarea/textarea-controlled-demo.tsx",
+      "content": "\"use client\";\r\n\r\nimport { useState } from \"react\";\r\nimport { Textarea } from \"@/registry/pure-ui/ui/textarea\";\r\n\r\nexport function TextareaControlledDemo() {\r\n  const [value, setValue] = useState(\"Type your message here\");\r\n\r\n  return (\r\n    <div className=\"flex w-80 flex-col gap-2\">\r\n      <Textarea\r\n        aria-label=\"Message\"\r\n        placeholder=\"Type your message here\"\r\n        value={value}\r\n        onChange={(e) => setValue(e.target.value)}\r\n      />\r\n      <span className=\"text-muted-foreground px-1 text-sm\">Value: {value}</span>\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

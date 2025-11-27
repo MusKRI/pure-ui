@@ -2,7 +2,7 @@
 
 import { useCopyToClipboard } from "@/core/hooks/use-copy-to-clipboard";
 import { CopyIcon } from "@/core/icons/pack1";
-import { Button } from "@/registry/default/components/ui/button";
+import { Button } from "@/registry/pure-ui/ui/button";
 
 type Props = {
   rawContent: string;

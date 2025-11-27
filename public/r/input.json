@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input",
+  "type": "registry:ui",
+  "title": "Input",
+  "description": "A customizable input component",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "@base-ui-components/react"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/ui/input/index.tsx",
+      "content": "import { Input as InputPrimitive } from \"@base-ui-components/react/input\";\r\nimport { cn } from \"@/lib/classes\";\r\n\r\nexport interface InputProps extends Omit<InputPrimitive.Props, \"size\"> {\r\n  size?: \"sm\" | \"default\" | \"lg\" | number;\r\n}\r\n\r\nfunction Input({ className, size = \"default\", ...props }: InputProps) {\r\n  return (\r\n    <InputPrimitive\r\n      data-slot=\"input\"\r\n      className={cn(\r\n        \"relative w-full min-w-0 rounded-lg border border-input/70 bg-background dark:bg-input/32 shadow-xs text-base/5 sm:text-sm px-3 py-2 h-9 outline-none placeholder:text-muted-foreground/80 [transition:box-shadow_150ms_ease-out]\",\r\n        // Focus State\r\n        \"focus-visible:border-ring focus-visible:ring-[1px]\",\r\n        \"disabled:opacity-64 aria-invalid:border-destructive/36 focus-visible:aria-invalid:border-destructive/64 focus-visible:aria-invalid:ring-destructive/16 [disabled,focus-visible,aria-invalid]:shadow-none dark:aria-invalid:ring-destructive/24\",\r\n        size === \"sm\" && \"h-8 px-3\",\r\n        size === \"lg\" && \"h-10 px-6\",\r\n        props.type === \"search\" &&\r\n          \"[&::-webkit-search-cancel-button]:appearance-none [&::-webkit-search-decoration]:appearance-none [&::-webkit-search-results-button]:appearance-none [&::-webkit-search-results-decoration]:appearance-none\",\r\n        props.type === \"file\" &&\r\n          \"text-muted-foreground file:me-3 file:bg-transparent file:text-sm file:font-medium file:text-foreground\",\r\n        className\r\n      )}\r\n      size={typeof size === \"number\" ? size : undefined}\r\n      {...props}\r\n    />\r\n  );\r\n}\r\n\r\nexport { Input };\r\n",
+      "type": "registry:ui",
+      "target": "components/ui/input.tsx"
+    }
+  ]
+}

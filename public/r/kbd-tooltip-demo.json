@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "kbd-tooltip-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "kbd"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/examples/kbd/kbd-tooltip-demo.tsx",
+      "content": "import { Button } from \"@/registry/pure-ui/ui/button\";\r\nimport { ButtonGroup } from \"@/registry/pure-ui/ui/button-group\";\r\nimport { Kbd, KbdGroup } from \"@/registry/pure-ui/ui/kbd\";\r\nimport {\r\n  Tooltip,\r\n  TooltipPopup,\r\n  TooltipProvider,\r\n  TooltipTrigger,\r\n} from \"@/registry/pure-ui/ui/tooltip\";\r\n\r\nexport function KbdTooltipDemo() {\r\n  return (\r\n    <div className=\"flex flex-wrap gap-4\">\r\n      <ButtonGroup>\r\n        <TooltipProvider>\r\n          <Tooltip>\r\n            <TooltipTrigger render={<Button size=\"sm\" variant=\"outline\" />}>\r\n              Save\r\n            </TooltipTrigger>\r\n            <TooltipPopup>\r\n              <div className=\"flex items-center gap-2\">\r\n                Save Changes <Kbd>S</Kbd>\r\n              </div>\r\n            </TooltipPopup>\r\n          </Tooltip>\r\n          <Tooltip>\r\n            <TooltipTrigger render={<Button size=\"sm\" variant=\"outline\" />}>\r\n              Print\r\n            </TooltipTrigger>\r\n            <TooltipPopup>\r\n              <div className=\"flex items-center gap-2\">\r\n                Print Document{\" \"}\r\n                <KbdGroup>\r\n                  <Kbd>Ctrl</Kbd>\r\n                  <Kbd>P</Kbd>\r\n                </KbdGroup>\r\n              </div>\r\n            </TooltipPopup>\r\n          </Tooltip>\r\n        </TooltipProvider>\r\n      </ButtonGroup>\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

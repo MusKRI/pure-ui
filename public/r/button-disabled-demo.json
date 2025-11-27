@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-disabled-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "button"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/examples/button/button-disabled-demo.tsx",
+      "content": "import { Button } from \"@/registry/pure-ui/ui/button\";\r\n\r\nexport default function ButtonDisabled() {\r\n  return <Button disabled>Button</Button>;\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

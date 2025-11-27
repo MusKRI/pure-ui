@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toast-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "toast"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/examples/toast/toast-demo.tsx",
+      "content": "\"use client\";\r\n\r\nimport { Button } from \"@/registry/pure-ui/ui/button\";\r\nimport { toast } from \"@/registry/pure-ui/ui/toast\";\r\n\r\nexport function ToastDemo() {\r\n  return (\r\n    <div className=\"flex flex-wrap gap-2\">\r\n      <Button\r\n        variant=\"outline\"\r\n        onClick={() => {\r\n          toast.add({\r\n            title: \"Event has been created\",\r\n          });\r\n        }}\r\n      >\r\n        Default Toast\r\n      </Button>\r\n      <Button\r\n        variant=\"outline\"\r\n        onClick={() => {\r\n          toast.add({\r\n            title: \"Event has been created\",\r\n            description: \"Monday, January 3rd at 6:00pm\",\r\n            timeout: 10000000,\r\n          });\r\n        }}\r\n      >\r\n        With Description\r\n      </Button>\r\n      <Button\r\n        variant=\"outline\"\r\n        onClick={() => {\r\n          toast.add({\r\n            title: \"Event has been created\",\r\n            description: \"Monday, January 3rd at 6:00pm\",\r\n            type: \"info\",\r\n          });\r\n        }}\r\n      >\r\n        With Icon\r\n      </Button>\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

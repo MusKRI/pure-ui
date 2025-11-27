@@ -6,12 +6,12 @@ import { CopyIcon } from "@/core/icons/pack1";
 
 import { cn } from "@/lib/classes";
 import { useCopyToClipboard } from "@/core/hooks/use-copy-to-clipboard";
-import { Button } from "@/registry/default/components/ui/button";
+import { Button } from "@/registry/pure-ui/ui/button";
 import {
   Tooltip,
   TooltipPopup,
   TooltipTrigger,
-} from "@/registry/default/components/ui/tooltip";
+} from "@/registry/pure-ui/ui/tooltip";
 
 export function CopyButton({
   value,

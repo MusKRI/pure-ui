@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spinner",
+  "type": "registry:ui",
+  "title": "Spinner",
+  "description": "A customizable spinner component",
+  "dependencies": [
+    "tailwind-variants",
+    "tailwind-merge",
+    "@base-ui-components/react",
+    "clsx"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/ui/spinner/index.tsx",
+      "content": "\"use client\";\r\n\r\nimport { SVGProps } from \"react\";\r\nimport { tv, type VariantProps } from \"tailwind-variants\";\r\nimport { cn } from \"@/lib/classes\";\r\n\r\ninterface SpinnerPrimitiveProps extends SVGProps<SVGSVGElement> {}\r\n\r\nfunction SpinnerPrimitive({ className, ...props }: SpinnerPrimitiveProps) {\r\n  return (\r\n    <svg\r\n      xmlns=\"http://www.w3.org/2000/svg\"\r\n      viewBox=\"0 0 24 24\"\r\n      className={cn(\"size-full\", className)}\r\n      {...props}\r\n    >\r\n      <path\r\n        fill=\"currentColor\"\r\n        d=\"M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,19a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z\"\r\n        opacity=\".25\"\r\n      />\r\n      <path\r\n        fill=\"currentColor\"\r\n        d=\"M10.14,1.16a11,11,0,0,0-9,8.92A1.59,1.59,0,0,0,2.46,12,1.52,1.52,0,0,0,4.11,10.7a8,8,0,0,1,6.66-6.61A1.42,1.42,0,0,0,12,2.69h0A1.57,1.57,0,0,0,10.14,1.16Z\"\r\n      >\r\n        <animateTransform\r\n          attributeName=\"transform\"\r\n          dur=\"7s\"\r\n          repeatCount=\"indefinite\"\r\n          type=\"rotate\"\r\n          values=\"0 12 12;360 12 12\"\r\n        />\r\n      </path>\r\n    </svg>\r\n  );\r\n}\r\n\r\nconst spinnerVariants = tv({\r\n  base: `pointer-events-none relative size-6 inline-block animate-spin animation-duration-[0.75s] text-current`,\r\n  variants: {\r\n    size: {\r\n      sm: `size-4`,\r\n      md: `size-6`,\r\n      lg: `size-8`,\r\n      xl: `size-10`,\r\n    },\r\n  },\r\n  defaultVariants: {\r\n    size: `md`,\r\n  },\r\n});\r\n\r\ninterface SpinnerRootProps\r\n  extends Omit<React.ComponentProps<\"svg\">, \"display\" | \"opacity\" | \"color\">,\r\n    VariantProps<typeof spinnerVariants> {}\r\n\r\nfunction Spinner({ size = \"md\", ...props }: SpinnerRootProps) {\r\n  return (\r\n    <span\r\n      data-slot=\"spinner\"\r\n      className={cn(\r\n        \"in-data-[slot='toast-content']:size-5!\",\r\n        spinnerVariants({\r\n          size,\r\n        })\r\n      )}\r\n    >\r\n      <SpinnerPrimitive\r\n        aria-hidden\r\n        aria-label=\"Loading\"\r\n        role=\"presentation\"\r\n        {...props}\r\n      />\r\n    </span>\r\n  );\r\n}\r\n\r\nexport { Spinner };\r\n",
+      "type": "registry:ui",
+      "target": "components/ui/spinner.tsx"
+    }
+  ]
+}

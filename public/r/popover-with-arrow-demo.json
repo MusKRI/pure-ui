@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "popover-with-arrow-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "popover"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/examples/popover/popover-with-arrow-demo.tsx",
+      "content": "import { BellIcon } from \"lucide-react\";\r\n\r\nimport {\r\n  Popover,\r\n  PopoverDescription,\r\n  PopoverPopup,\r\n  PopoverTitle,\r\n  PopoverTrigger,\r\n} from \"@/registry/pure-ui/ui/popover\";\r\nimport { Button } from \"@/registry/pure-ui/ui/button\";\r\n\r\nexport const PopoverWithArrowDemo = () => {\r\n  return (\r\n    <Popover>\r\n      <PopoverTrigger render={<Button variant=\"outline\" size=\"icon\" />}>\r\n        <BellIcon aria-label=\"Notifications\" />\r\n      </PopoverTrigger>\r\n      <PopoverPopup showArrow className=\"w-full\" sideOffset={8}>\r\n        <PopoverTitle className=\"text-base font-medium\">\r\n          Notifications\r\n        </PopoverTitle>\r\n        <PopoverDescription className=\"text-base text-gray-600\">\r\n          You are all caught up. Good job!\r\n        </PopoverDescription>\r\n      </PopoverPopup>\r\n    </Popover>\r\n  );\r\n};\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

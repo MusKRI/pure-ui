@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "accordion-custom-indicator-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "accordion"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/examples/accordion/accordion-custom-indicator-demo.tsx",
+      "content": "import { Plus, ChevronDown, ChevronsDown } from \"lucide-react\";\r\n\r\nimport {\r\n  Accordion,\r\n  AccordionPanel,\r\n  AccordionItem,\r\n  AccordionTrigger,\r\n} from \"@/registry/pure-ui/ui/accordion\";\r\nimport { cn } from \"@/lib/classes\";\r\n\r\nexport function AccordionCustomIndicatorDemo() {\r\n  return (\r\n    <Accordion className=\"w-full max-w-xl\">\r\n      <AccordionItem value=\"item-1\">\r\n        <AccordionTrigger\r\n          icon={({ open }) => (\r\n            <Plus\r\n              className={cn(\r\n                \"size-4 transition-transform duration-300 ease\",\r\n                open ? \"rotate-45\" : \"rotate-0\"\r\n              )}\r\n            />\r\n          )}\r\n        >\r\n          What is Base UI?\r\n        </AccordionTrigger>\r\n        <AccordionPanel className=\"flex flex-col gap-4 text-balance\">\r\n          <p className=\"text-[15px] text-muted-foreground\">\r\n            Base UI is a library of high-quality unstyled React components for\r\n            design systems and web apps.\r\n          </p>\r\n        </AccordionPanel>\r\n      </AccordionItem>\r\n      <AccordionItem value=\"item-2\">\r\n        <AccordionTrigger\r\n          icon={({ open }) => (\r\n            <ChevronDown\r\n              className={cn(\r\n                \"size-4 transition-transform duration-300 ease\",\r\n                open ? \"rotate-180\" : \"rotate-0\"\r\n              )}\r\n            />\r\n          )}\r\n        >\r\n          How do I get started?\r\n        </AccordionTrigger>\r\n        <AccordionPanel className=\"flex flex-col gap-4 text-balance\">\r\n          <p className=\"text-[15px] text-muted-foreground\">\r\n            Head to the “Quick start” guide in the docs. If you’ve used unstyled\r\n            libraries before, you’ll feel at home.\r\n          </p>\r\n        </AccordionPanel>\r\n      </AccordionItem>\r\n      <AccordionItem value=\"item-3\">\r\n        <AccordionTrigger\r\n          icon={({ open }) => (\r\n            <ChevronsDown\r\n              className={cn(\r\n                \"size-4 transition-transform duration-300 ease\",\r\n                open ? \"rotate-180\" : \"rotate-0\"\r\n              )}\r\n            />\r\n          )}\r\n        >\r\n          Can I use it for my project?\r\n        </AccordionTrigger>\r\n        <AccordionPanel className=\"flex flex-col gap-4 text-balance\">\r\n          <p className=\"text-[15px] text-muted-foreground\">\r\n            Of course! Base UI is free and open source.\r\n          </p>\r\n        </AccordionPanel>\r\n      </AccordionItem>\r\n    </Accordion>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

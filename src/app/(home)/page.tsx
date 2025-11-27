@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { cn } from "@/lib/classes";
-import { Button } from "@/registry/default/components/ui/button";
+import { Button } from "@/registry/pure-ui/ui/button";
 import { RollingText } from "components/composed/rolling-text";
 
 export default function Home() {

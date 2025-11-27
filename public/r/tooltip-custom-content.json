@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tooltip-custom-content",
+  "type": "registry:example",
+  "registryDependencies": [
+    "tooltip"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/examples/tooltip/tooltip-custom-content.tsx",
+      "content": "import {\r\n  Tooltip,\r\n  TooltipTrigger,\r\n  TooltipPopup,\r\n  TooltipProvider,\r\n} from \"@/registry/pure-ui/ui/tooltip\";\r\n\r\nexport const TooltipCustomContent = () => {\r\n  return (\r\n    <TooltipProvider>\r\n      <Tooltip>\r\n        <TooltipTrigger>\r\n          <p>Hover me</p>\r\n        </TooltipTrigger>\r\n        <TooltipPopup>\r\n          <div className=\"px-1 py-2\">\r\n            <div className=\"text-sm font-bold\">Custom Content</div>\r\n            <div className=\"text-xs\">This is a custom tooltip content</div>\r\n          </div>\r\n        </TooltipPopup>\r\n      </Tooltip>\r\n    </TooltipProvider>\r\n  );\r\n};\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

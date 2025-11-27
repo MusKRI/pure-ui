@@ -7,7 +7,7 @@ import { AnimatePresence, LayoutGroup, motion } from "motion/react";
 import { ExtendedPureUIFile } from "@/lib/registry/component-processor";
 import { ExtendedRegistryItem } from "@/lib/registry/process-registry";
 import { cn } from "@/lib/classes";
-import { Index } from "@/registry/default/components/__index__";
+import { Index } from "@/registry/pure-ui/__index__";
 import { SourceCodeIcon, ViewIcon } from "@/core/icons/pack1";
 
 import { ComponentShowcaseTab } from "./component-showcase-tab";

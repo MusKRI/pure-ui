@@ -4,7 +4,7 @@ import "@/styles/globals.css";
 import { cn } from "@/lib/classes";
 import { fontVariables } from "@/lib/fonts";
 import { ThemeProvider } from "@/core/providers";
-import { ToastProvider } from "@/registry/default/components/ui/toast";
+import { ToastProvider } from "@/registry/pure-ui/ui/toast";
 
 import { Analytics } from "@/core/events/openpanel";
 

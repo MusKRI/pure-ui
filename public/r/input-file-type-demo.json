@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-file-type-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "input"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/examples/input/input-file-type-demo.tsx",
+      "content": "import { Input } from \"@/registry/pure-ui/ui/input\";\r\n\r\nexport default function InputFileTypeDemo() {\r\n  return <Input type=\"file\" aria-label=\"File\" className=\"w-full max-w-sm\" />;\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

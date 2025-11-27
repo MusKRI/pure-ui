@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "select-basic-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "select"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/examples/select/select-basic-demo.tsx",
+      "content": "import { CheckIcon, ChevronDownIcon, ChevronsUpDownIcon } from \"lucide-react\";\r\n\r\nimport {\r\n  Select,\r\n  SelectIcon,\r\n  SelectItem,\r\n  SelectItemIndicator,\r\n  SelectItemText,\r\n  SelectList,\r\n  SelectPopup,\r\n  SelectTrigger,\r\n  SelectValue,\r\n} from \"@/registry/pure-ui/ui/select\";\r\n\r\nexport const food = [\r\n  {\r\n    id: \"1\",\r\n    value: \"pizza\",\r\n    label: \"Pizza 🍕\",\r\n  },\r\n  {\r\n    id: \"2\",\r\n    value: \"burger\",\r\n    label: \"Burger 🍔\",\r\n  },\r\n  {\r\n    id: \"3\",\r\n    value: \"ramen\",\r\n    label: \"Ramen 🍜\",\r\n  },\r\n];\r\n\r\nconst fonts = [\r\n  { label: \"Sans-serif\", value: \"sans\" },\r\n  { label: \"Serif\", value: \"serif\" },\r\n  { label: \"Monospace\", value: \"mono\" },\r\n  { label: \"Cursive\", value: \"cursive\" },\r\n];\r\n\r\nexport const SelectBasicDemo = () => {\r\n  return (\r\n    <div className=\"flex flex-col md:flex-row gap-4\">\r\n      <Select items={food}>\r\n        <SelectTrigger>\r\n          <SelectValue placeholder=\"Select a food\" />\r\n          <SelectIcon>\r\n            <ChevronDownIcon className=\"size-4\" />\r\n          </SelectIcon>\r\n        </SelectTrigger>\r\n        <SelectPopup alignItemWithTrigger>\r\n          <SelectList>\r\n            {food.map(({ label, value }) => (\r\n              <SelectItem key={value} value={value}>\r\n                <SelectItemText>{label}</SelectItemText>\r\n                <SelectItemIndicator>\r\n                  <CheckIcon className=\"size-3\" />\r\n                </SelectItemIndicator>\r\n              </SelectItem>\r\n            ))}\r\n          </SelectList>\r\n        </SelectPopup>\r\n      </Select>\r\n\r\n      <Select items={fonts}>\r\n        <SelectTrigger>\r\n          <SelectValue placeholder=\"Select a font\" />\r\n          <SelectIcon>\r\n            <ChevronsUpDownIcon className=\"size-4\" />\r\n          </SelectIcon>\r\n        </SelectTrigger>\r\n        <SelectPopup>\r\n          <SelectList>\r\n            {fonts.map(({ label, value }) => (\r\n              <SelectItem key={value} value={value}>\r\n                <SelectItemText>{label}</SelectItemText>\r\n                <SelectItemIndicator>\r\n                  <CheckIcon className=\"size-3\" />\r\n                </SelectItemIndicator>\r\n              </SelectItem>\r\n            ))}\r\n          </SelectList>\r\n        </SelectPopup>\r\n      </Select>\r\n    </div>\r\n  );\r\n};\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "popover-controlled-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "popover"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/examples/popover/popover-controlled-demo.tsx",
+      "content": "\"use client\";\r\n\r\nimport { useState, useTransition } from \"react\";\r\n\r\nimport {\r\n  Popover,\r\n  PopoverPopup,\r\n  PopoverTrigger,\r\n} from \"@/registry/pure-ui/ui/popover\";\r\nimport { Button } from \"@/registry/pure-ui/ui/button\";\r\nimport { Input } from \"@/registry/pure-ui/ui/input\";\r\n\r\nexport const PopoverControlledDemo = () => {\r\n  const [open, setOpen] = useState(false);\r\n\r\n  const [isSubmitting, startSubmitting] = useTransition();\r\n\r\n  const handleSubmit = () => {\r\n    startSubmitting(async () => {\r\n      await new Promise((resolve) => setTimeout(resolve, 2000));\r\n      setOpen(false);\r\n    });\r\n  };\r\n\r\n  return (\r\n    <div className=\"flex flex-col gap-4\">\r\n      <div className=\"text-muted-foreground text-sm\">\r\n        State: {open ? \"Open\" : \"Close\"}\r\n      </div>\r\n\r\n      <Popover open={open} onOpenChange={setOpen}>\r\n        <PopoverTrigger render={<Button size=\"sm\" radius=\"none\" />}>\r\n          <span>Receive News</span>\r\n        </PopoverTrigger>\r\n        <PopoverPopup>\r\n          <div className=\"flex flex-col gap-2\">\r\n            <Input disabled={isSubmitting} placeholder=\"Your Email\" />\r\n            <Button\r\n              className=\"w-full\"\r\n              size=\"sm\"\r\n              onClick={handleSubmit}\r\n              disabled={isSubmitting}\r\n            >\r\n              Submit\r\n            </Button>\r\n          </div>\r\n        </PopoverPopup>\r\n      </Popover>\r\n    </div>\r\n  );\r\n};\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

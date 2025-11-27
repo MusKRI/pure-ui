@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-otp-variants-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "input-otp"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/examples/input-otp/input-otp-variants-demo.tsx",
+      "content": "import {\r\n  InputOTP,\r\n  InputOTPGroup,\r\n  InputOTPSlot,\r\n} from \"@/registry/pure-ui/ui/input-otp\";\r\n\r\nexport const InputOTPVariantsDemo = () => {\r\n  const variants = [\"bordered\", \"underlined\"] as const;\r\n\r\n  return (\r\n    <div className=\"flex flex-col items-center gap-4\">\r\n      {variants.map((variant) => (\r\n        <InputOTP key={variant} maxLength={6} variant={variant}>\r\n          <InputOTPGroup>\r\n            <InputOTPSlot index={0} />\r\n            <InputOTPSlot index={1} />\r\n            <InputOTPSlot index={2} />\r\n            <InputOTPSlot index={3} />\r\n            <InputOTPSlot index={4} />\r\n            <InputOTPSlot index={5} />\r\n          </InputOTPGroup>\r\n        </InputOTP>\r\n      ))}\r\n    </div>\r\n  );\r\n};\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

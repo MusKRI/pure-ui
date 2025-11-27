@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "switch-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "switch"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/examples/switch/switch-demo.tsx",
+      "content": "import { Switch } from \"@/registry/pure-ui/ui/switch\";\r\n\r\nexport function SwitchDemo() {\r\n  return <Switch />;\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

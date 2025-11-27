@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-reduce-motion-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "button"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/examples/button/button-reduce-motion-demo.tsx",
+      "content": "import { Button } from \"@/registry/pure-ui/ui/button\";\r\n\r\nexport function ButtonReduceMotionDemo() {\r\n  return <Button>Shadcn Button</Button>;\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

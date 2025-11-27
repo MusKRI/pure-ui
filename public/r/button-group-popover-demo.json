@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-group-popover-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "button-group"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/examples/button-group/button-group-popover-demo.tsx",
+      "content": "import { BotIcon, ChevronDownIcon } from \"lucide-react\";\r\n\r\nimport { Button } from \"@/registry/pure-ui/ui/button\";\r\nimport { ButtonGroup } from \"@/registry/pure-ui/ui/button-group\";\r\nimport {\r\n  Popover,\r\n  PopoverPopup,\r\n  PopoverTrigger,\r\n} from \"@/registry/pure-ui/ui/popover\";\r\nimport { Separator } from \"@/registry/pure-ui/ui/separator\";\r\nimport { Textarea } from \"@/registry/pure-ui/ui/textarea\";\r\n\r\nexport function ButtonGroupPopoverDemo() {\r\n  return (\r\n    <ButtonGroup>\r\n      <Button variant=\"outline\">\r\n        <BotIcon /> Copilot\r\n      </Button>\r\n      <Popover>\r\n        <PopoverTrigger\r\n          render={\r\n            <Button variant=\"outline\" size=\"icon\" aria-label=\"Open Popover\" />\r\n          }\r\n        >\r\n          <ChevronDownIcon />\r\n        </PopoverTrigger>\r\n        <PopoverPopup align=\"end\" className=\"rounded-xl p-0 text-sm\">\r\n          <div className=\"px-4 py-3\">\r\n            <div className=\"text-sm font-medium\">Agent Tasks</div>\r\n          </div>\r\n          <Separator />\r\n          <div className=\"p-4 text-sm *:[p:not(:last-child)]:mb-2\">\r\n            <Textarea\r\n              placeholder=\"Describe your task in natural language.\"\r\n              className=\"mb-4 resize-none\"\r\n            />\r\n            <p className=\"font-medium\">Start a new task with Copilot</p>\r\n            <p className=\"text-muted-foreground\">\r\n              Describe your task in natural language. Copilot will work in the\r\n              background and open a pull request for your review.\r\n            </p>\r\n          </div>\r\n        </PopoverPopup>\r\n      </Popover>\r\n    </ButtonGroup>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

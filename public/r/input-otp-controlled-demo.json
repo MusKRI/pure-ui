@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-otp-controlled-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "input-otp"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/examples/input-otp/input-otp-controlled-demo.tsx",
+      "content": "\"use client\";\r\n\r\nimport { useState } from \"react\";\r\n\r\nimport {\r\n  InputOTP,\r\n  InputOTPGroup,\r\n  InputOTPSlot,\r\n} from \"@/registry/pure-ui/ui/input-otp\";\r\n\r\nexport const InputOTPControlledDemo = () => {\r\n  const [value, setValue] = useState(\"\");\r\n\r\n  return (\r\n    <div className=\"flex flex-col gap-3\">\r\n      <InputOTP\r\n        variant=\"underlined\"\r\n        maxLength={6}\r\n        value={value}\r\n        onChange={setValue}\r\n      >\r\n        <InputOTPGroup>\r\n          <InputOTPSlot index={0} />\r\n          <InputOTPSlot index={1} />\r\n          <InputOTPSlot index={2} />\r\n          <InputOTPSlot index={3} />\r\n          <InputOTPSlot index={4} />\r\n          <InputOTPSlot index={5} />\r\n        </InputOTPGroup>\r\n      </InputOTP>\r\n\r\n      <p className=\"text-sm text-muted-foreground\">\r\n        Value: <span className=\"font-semibold\">{value}</span>\r\n      </p>\r\n    </div>\r\n  );\r\n};\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

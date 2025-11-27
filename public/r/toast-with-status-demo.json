@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toast-with-status-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "toast"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/examples/toast/toast-with-status-demo.tsx",
+      "content": "\"use client\";\r\n\r\nimport { Button } from \"@/registry/pure-ui/ui/button\";\r\nimport { toast } from \"@/registry/pure-ui/ui/toast\";\r\n\r\nexport function ToastWithStatusDemo() {\r\n  return (\r\n    <div className=\"flex flex-wrap gap-2\">\r\n      <Button\r\n        variant=\"outline\"\r\n        onClick={() => {\r\n          toast.add({\r\n            title: \"Success!\",\r\n            description: \"Your changes have been saved.\",\r\n            type: \"success\",\r\n          });\r\n        }}\r\n      >\r\n        Success Toast\r\n      </Button>\r\n      <Button\r\n        variant=\"outline\"\r\n        onClick={() => {\r\n          toast.add({\r\n            title: \"Uh oh! Something went wrong.\",\r\n            description: \"There was a problem with your request.\",\r\n            type: \"error\",\r\n          });\r\n        }}\r\n      >\r\n        Error Toast\r\n      </Button>\r\n      <Button\r\n        variant=\"outline\"\r\n        onClick={() => {\r\n          toast.add({\r\n            title: \"Heads up!\",\r\n            description: \"You can add components to your app using the cli.\",\r\n            type: \"info\",\r\n          });\r\n        }}\r\n      >\r\n        Info Toast\r\n      </Button>\r\n      <Button\r\n        variant=\"outline\"\r\n        onClick={() => {\r\n          toast.add({\r\n            title: \"Warning!\",\r\n            description: \"Your session is about to expire.\",\r\n            type: \"warning\",\r\n          });\r\n        }}\r\n      >\r\n        Warning Toast\r\n      </Button>\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

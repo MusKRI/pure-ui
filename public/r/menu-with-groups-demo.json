@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "menu-with-groups-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "menu"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/examples/menu/menu-with-groups-demo.tsx",
+      "content": "\"use client\";\r\n\r\nimport { CheckIcon } from \"lucide-react\";\r\nimport { useState } from \"react\";\r\n\r\nimport {\r\n  Menu,\r\n  MenuTrigger,\r\n  MenuPopup,\r\n  MenuSeparator,\r\n  MenuGroup,\r\n  MenuGroupLabel,\r\n  MenuRadioGroup,\r\n  MenuRadioItem,\r\n  MenuCheckboxItem,\r\n} from \"@/registry/pure-ui/ui/menu\";\r\nimport { Button } from \"@/registry/pure-ui/ui/button\";\r\n\r\nexport function MenuWithGroupsDemo() {\r\n  const [value, setValue] = useState(\"date\");\r\n  const [showMinimap, setShowMinimap] = useState(true);\r\n  const [showSearch, setShowSearch] = useState(true);\r\n  const [showSidebar, setShowSidebar] = useState(false);\r\n\r\n  return (\r\n    <Menu>\r\n      <MenuTrigger render={<Button variant=\"outline\" />}>\r\n        <span>Open</span>\r\n      </MenuTrigger>\r\n      <MenuPopup className=\"w-56\" align=\"center\">\r\n        <MenuGroup>\r\n          <MenuGroupLabel>Sort</MenuGroupLabel>\r\n          <MenuRadioGroup\r\n            value={value}\r\n            onValueChange={setValue}\r\n            activeIcon={<CheckIcon className=\"size-4\" />}\r\n          >\r\n            <MenuRadioItem value=\"date\">Date</MenuRadioItem>\r\n            <MenuRadioItem value=\"name\">Name</MenuRadioItem>\r\n            <MenuRadioItem value=\"type\">Type</MenuRadioItem>\r\n          </MenuRadioGroup>\r\n        </MenuGroup>\r\n\r\n        <MenuSeparator />\r\n\r\n        <MenuGroup>\r\n          <MenuGroupLabel>Workspace</MenuGroupLabel>\r\n          <MenuCheckboxItem\r\n            checked={showMinimap}\r\n            onCheckedChange={(checked) => setShowMinimap(checked)}\r\n            onSelect={(event) => event.preventDefault()}\r\n          >\r\n            Minimap\r\n          </MenuCheckboxItem>\r\n          <MenuCheckboxItem\r\n            checked={showSearch}\r\n            onCheckedChange={(checked) => setShowSearch(checked)}\r\n            onSelect={(event) => event.preventDefault()}\r\n          >\r\n            Search\r\n          </MenuCheckboxItem>\r\n          <MenuCheckboxItem\r\n            checked={showSidebar}\r\n            onCheckedChange={(checked) => setShowSidebar(checked)}\r\n            onSelect={(event) => event.preventDefault()}\r\n          >\r\n            Sidebar\r\n          </MenuCheckboxItem>\r\n        </MenuGroup>\r\n      </MenuPopup>\r\n    </Menu>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}
