@@ -11,7 +11,7 @@
 Run development server:
 
 ```sh
-bun run dev
+npm run dev
 ```
 
 Open http://localhost:3000 with your browser to see the result.
@@ -23,13 +23,13 @@ Open http://localhost:3000 with your browser to see the result.
 Check for linting errors:
 
 ```sh
-bun run lint
+npm run lint
 ```
 
 Format code automatically:
 
 ```sh
-bun run format
+npm run format
 ```
 
 ## Resources
@@ -42,5 +42,5 @@ bun run format
 Build shadcn/ui registry:
 
 ```sh
-bun run build:pure-ui
+npm run build:pure-ui && npm run registry:build
 ```
