@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "number-field-together-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "number-field"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/examples/number-field/number-field-together-demo.tsx",
+      "content": "import {\r\n  NumberField,\r\n  NumberFieldDecrement,\r\n  NumberFieldGroup,\r\n  NumberFieldIncrement,\r\n  NumberFieldInput,\r\n} from \"@/registry/pure-ui/ui/number-field\";\r\n\r\nexport function NumberFieldTogetherDemo() {\r\n  return (\r\n    <div className=\"flex flex-col gap-5\">\r\n      <NumberField defaultValue={0}>\r\n        <NumberFieldGroup className=\"[&>[data-slot=number-field-input]+[data-slot=number-field-decrement]]:rounded-none [&>[data-slot=number-field-input]+[data-slot=number-field-increment]]:rounded-none [&>[data-slot=number-field-decrement]+[data-slot=number-field-increment]]:rounded-r-lg [&>[data-slot=number-field-increment]+[data-slot=number-field-decrement]]:rounded-r-lg [&>[data-slot=number-field-increment]+[data-slot=number-field-decrement]]:rounded-l-none\">\r\n          <NumberFieldInput className=\"text-left\" />\r\n          <NumberFieldDecrement />\r\n          <NumberFieldIncrement />\r\n        </NumberFieldGroup>\r\n      </NumberField>\r\n\r\n      <NumberField defaultValue={0}>\r\n        <NumberFieldGroup className=\"[&>[data-slot=number-field-input]+[data-slot=number-field-decrement]]:rounded-none [&>[data-slot=number-field-input]+[data-slot=number-field-increment]]:rounded-none [&>[data-slot=number-field-decrement]+[data-slot=number-field-increment]]:rounded-r-lg [&>[data-slot=number-field-increment]+[data-slot=number-field-decrement]]:rounded-r-lg [&>[data-slot=number-field-increment]+[data-slot=number-field-decrement]]:rounded-l-none\">\r\n          <NumberFieldInput className=\"text-left\" />\r\n          <NumberFieldIncrement />\r\n          <NumberFieldDecrement />\r\n        </NumberFieldGroup>\r\n      </NumberField>\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

@@ -239,6 +239,21 @@ export const pureUIComponents: Registry["items"] = [
     ],
     dependencies: ["@base-ui-components/react", "clsx", "tailwind-merge"],
   },
+  // Number Field
+  {
+    name: "number-field",
+    type: "registry:ui",
+    title: "Number Field",
+    description: "A customizable number field component",
+    files: [
+      {
+        path: "ui/number-field/index.tsx",
+        type: "registry:ui",
+        target: "components/ui/number-field.tsx",
+      },
+    ],
+    dependencies: ["@base-ui-components/react", "clsx", "tailwind-merge"],
+  },
   // Popover
   {
     name: "popover",

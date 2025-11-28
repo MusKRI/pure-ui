@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "number-field-formatting-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "number-field"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/examples/number-field/number-field-formatting-demo.tsx",
+      "content": "import {\r\n  NumberField,\r\n  NumberFieldDecrement,\r\n  NumberFieldGroup,\r\n  NumberFieldIncrement,\r\n  NumberFieldInput,\r\n  NumberFieldScrubArea,\r\n} from \"@/registry/pure-ui/ui/number-field\";\r\nimport { Label } from \"@/registry/pure-ui/ui/label\";\r\n\r\nexport function NumberFieldFormattingDemo() {\r\n  return (\r\n    <div className=\"flex flex-col gap-5\">\r\n      <NumberField\r\n        defaultValue={0}\r\n        min={0}\r\n        format={{ currency: \"INR\", style: \"currency\" }}\r\n        id=\"price\"\r\n      >\r\n        <NumberFieldScrubArea>\r\n          <Label htmlFor=\"price\" className=\"cursor-ew-resize\">\r\n            Price\r\n          </Label>\r\n        </NumberFieldScrubArea>\r\n        <NumberFieldGroup>\r\n          <NumberFieldDecrement />\r\n          <NumberFieldInput />\r\n          <NumberFieldIncrement />\r\n        </NumberFieldGroup>\r\n      </NumberField>\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

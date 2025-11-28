@@ -240,6 +240,24 @@ export const Index: Record<string, Record<string, any>> = {
       categories: undefined,
       meta: undefined,
     },
+    "number-field": {
+      name: "number-field",
+      description: "A customizable number field component",
+      type: "registry:ui",
+      registryDependencies: undefined,
+      files: [{
+        path: "registry/pure-ui/ui/number-field/index.tsx",
+        type: "registry:ui",
+        target: "components/ui/number-field.tsx"
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/ui/number-field/index.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
     "popover": {
       name: "popover",
       description: "A customizable popover component",
@@ -2592,6 +2610,204 @@ export const Index: Record<string, Record<string, any>> = {
       }],
       component: React.lazy(async () => {
         const mod = await import("@/registry/pure-ui/examples/menu/menu-slide-inside-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "number-field-demo": {
+      name: "number-field-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["number-field"],
+      files: [{
+        path: "registry/pure-ui/examples/number-field/number-field-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/number-field/number-field-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "number-field-default-demo": {
+      name: "number-field-default-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["number-field"],
+      files: [{
+        path: "registry/pure-ui/examples/number-field/number-field-default-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/number-field/number-field-default-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "number-field-together-demo": {
+      name: "number-field-together-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["number-field"],
+      files: [{
+        path: "registry/pure-ui/examples/number-field/number-field-together-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/number-field/number-field-together-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "number-field-up-down-demo": {
+      name: "number-field-up-down-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["number-field"],
+      files: [{
+        path: "registry/pure-ui/examples/number-field/number-field-up-down-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/number-field/number-field-up-down-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "number-field-with-scrub-demo": {
+      name: "number-field-with-scrub-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["number-field"],
+      files: [{
+        path: "registry/pure-ui/examples/number-field/number-field-with-scrub-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/number-field/number-field-with-scrub-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "number-field-mouse-wheel-scrub-demo": {
+      name: "number-field-mouse-wheel-scrub-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["number-field"],
+      files: [{
+        path: "registry/pure-ui/examples/number-field/number-field-mouse-wheel-scrub-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/number-field/number-field-mouse-wheel-scrub-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "number-field-disabled-demo": {
+      name: "number-field-disabled-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["number-field"],
+      files: [{
+        path: "registry/pure-ui/examples/number-field/number-field-disabled-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/number-field/number-field-disabled-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "number-field-range-demo": {
+      name: "number-field-range-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["number-field"],
+      files: [{
+        path: "registry/pure-ui/examples/number-field/number-field-range-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/number-field/number-field-range-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "number-field-step-demo": {
+      name: "number-field-step-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["number-field"],
+      files: [{
+        path: "registry/pure-ui/examples/number-field/number-field-step-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/number-field/number-field-step-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "number-field-controlled-demo": {
+      name: "number-field-controlled-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["number-field"],
+      files: [{
+        path: "registry/pure-ui/examples/number-field/number-field-controlled-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/number-field/number-field-controlled-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "number-field-formatting-demo": {
+      name: "number-field-formatting-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["number-field"],
+      files: [{
+        path: "registry/pure-ui/examples/number-field/number-field-formatting-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/number-field/number-field-formatting-demo.tsx")
         const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
         return { default: mod.default || mod[exportName] }
       }),

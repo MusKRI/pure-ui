@@ -1,0 +1,139 @@
+---
+title: Number Field
+description: A numeric input element with increment and decrement buttons, and a scrub area.
+---
+
+<ComponentShowcase name="number-field-demo" />
+
+## Installation
+
+<Tabs defaultValue="terminal">
+  <TabsList>
+    <TabsTrigger value="terminal">
+      <Terminal className="w-4 h-4" />
+      Terminal
+    </TabsTrigger>
+    <TabsTrigger value="manual">
+      <Code2 className="w-4 h-4" />
+      Manual
+    </TabsTrigger>
+  </TabsList>
+  <TabsContent value="terminal">
+    <InstallationCommands
+      type="registry-installation"
+      registryPath="number-field"
+    />
+  </TabsContent>
+  <TabsContent value="manual">
+    <Steps>
+      <Step>Install dependencies</Step>
+
+      <InstallationCommands
+        type="package-installation"
+        npmCommand="npm install @base-ui-components/react clsx tailwind-merge"
+        pnpmCommand="pnpm add @base-ui-components/react clsx tailwind-merge"
+        yarnCommand="yarn add @base-ui-components/react clsx tailwind-merge"
+        bunCommand="bun add @base-ui-components/react clsx tailwind-merge"
+      />
+
+      <Step>Add cn function to your utils</Step>
+
+      ```ts filename="lib/classes.ts"
+      import { clsx, type ClassValue } from "clsx";
+      import { twMerge } from "tailwind-merge";
+
+      export function cn(...inputs: ClassValue[]) {
+        return twMerge(clsx(inputs));
+      }
+      ```
+
+      <Step>Copy and paste the following code into your project</Step>
+
+      <ComponentCodePreview name="number-field" />
+    </Steps>
+
+  </TabsContent>
+</Tabs>
+
+## Usage
+
+```tsx
+import {
+  NumberField,
+  NumberFieldDecrement,
+  NumberFieldGroup,
+  NumberFieldIncrement,
+  NumberFieldInput,
+  NumberFieldScrubArea,
+} from "@/components/ui/number-field";
+import { Label } from "@/components/ui/label";
+```
+
+```tsx
+<NumberField defaultValue={0} id="quantity">
+  <NumberFieldScrubArea>
+    <Label htmlFor="quantity">Quantity</Label>
+  </NumberFieldScrubArea>
+  <NumberFieldGroup>
+    <NumberFieldDecrement />
+    <NumberFieldInput />
+    <NumberFieldIncrement />
+  </NumberFieldGroup>
+</NumberField>
+```
+
+## Design
+
+### Default
+
+<ComponentShowcase name="number-field-default-demo" />
+
+### Together
+
+<ComponentShowcase name="number-field-together-demo" />
+
+### Up Down
+
+<ComponentShowcase name="number-field-up-down-demo" />
+
+## Examples
+
+### With Scrub
+
+<ComponentShowcase name="number-field-with-scrub-demo" />
+
+If you want to allow the user to scrub the input value with mouse wheel, you can pass `allowWheelScrub={true}` prop to `NumberField` component while focused on the input.
+
+```tsx noCopy add=2
+<NumberField
+  allowWheelScrub
+>
+//  rest of the code
+</NumberField>
+```
+
+<ComponentShowcase name="number-field-mouse-wheel-scrub-demo" />
+
+### Disabled
+
+<ComponentShowcase name="number-field-disabled-demo" />
+
+### Range
+
+You can pass `min` and `max` props to `NumberField` component to set the range of the input value.
+
+<ComponentShowcase name="number-field-range-demo" />
+
+### Step
+
+You can pass `step` prop to `NumberField` component to set the step of the input value.
+
+<ComponentShowcase name="number-field-step-demo" />
+
+### Controlled
+
+<ComponentShowcase name="number-field-controlled-demo" />
+
+### Formatting
+
+<ComponentShowcase name="number-field-formatting-demo" />

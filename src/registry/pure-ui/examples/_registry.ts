@@ -1359,6 +1359,130 @@ export const pureUICompExamples: Registry["items"] = [
       },
     ],
   },
+
+  // Number Field
+  {
+    name: "number-field-demo",
+    type: "registry:example",
+    registryDependencies: ["number-field"],
+    files: [
+      {
+        path: "examples/number-field/number-field-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "number-field-default-demo",
+    type: "registry:example",
+    registryDependencies: ["number-field"],
+    files: [
+      {
+        path: "examples/number-field/number-field-default-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "number-field-together-demo",
+    type: "registry:example",
+    registryDependencies: ["number-field"],
+    files: [
+      {
+        path: "examples/number-field/number-field-together-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "number-field-up-down-demo",
+    type: "registry:example",
+    registryDependencies: ["number-field"],
+    files: [
+      {
+        path: "examples/number-field/number-field-up-down-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "number-field-with-scrub-demo",
+    type: "registry:example",
+    registryDependencies: ["number-field"],
+    files: [
+      {
+        path: "examples/number-field/number-field-with-scrub-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "number-field-mouse-wheel-scrub-demo",
+    type: "registry:example",
+    registryDependencies: ["number-field"],
+    files: [
+      {
+        path: "examples/number-field/number-field-mouse-wheel-scrub-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "number-field-disabled-demo",
+    type: "registry:example",
+    registryDependencies: ["number-field"],
+    files: [
+      {
+        path: "examples/number-field/number-field-disabled-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "number-field-range-demo",
+    type: "registry:example",
+    registryDependencies: ["number-field"],
+    files: [
+      {
+        path: "examples/number-field/number-field-range-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "number-field-step-demo",
+    type: "registry:example",
+    registryDependencies: ["number-field"],
+    files: [
+      {
+        path: "examples/number-field/number-field-step-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "number-field-controlled-demo",
+    type: "registry:example",
+    registryDependencies: ["number-field"],
+    files: [
+      {
+        path: "examples/number-field/number-field-controlled-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "number-field-formatting-demo",
+    type: "registry:example",
+    registryDependencies: ["number-field"],
+    files: [
+      {
+        path: "examples/number-field/number-field-formatting-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+
   // Popover
   {
     name: "popover-demo",

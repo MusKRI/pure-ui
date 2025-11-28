@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "number-field-default-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "number-field"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/examples/number-field/number-field-default-demo.tsx",
+      "content": "import {\r\n  NumberField,\r\n  NumberFieldDecrement,\r\n  NumberFieldGroup,\r\n  NumberFieldIncrement,\r\n  NumberFieldInput,\r\n  NumberFieldScrubArea,\r\n} from \"@/registry/pure-ui/ui/number-field\";\r\nimport { Label } from \"@/registry/pure-ui/ui/label\";\r\n\r\nexport function NumberFieldDefaultDemo() {\r\n  return (\r\n    <NumberField defaultValue={0} id=\"quantity\">\r\n      <NumberFieldScrubArea>\r\n        <Label htmlFor=\"quantity\" className=\"cursor-ew-resize\">\r\n          Quantity\r\n        </Label>\r\n      </NumberFieldScrubArea>\r\n      <NumberFieldGroup>\r\n        <NumberFieldDecrement />\r\n        <NumberFieldInput />\r\n        <NumberFieldIncrement />\r\n      </NumberFieldGroup>\r\n    </NumberField>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "number-field-mouse-wheel-scrub-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "number-field"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/examples/number-field/number-field-mouse-wheel-scrub-demo.tsx",
+      "content": "import {\r\n  NumberField,\r\n  NumberFieldDecrement,\r\n  NumberFieldGroup,\r\n  NumberFieldIncrement,\r\n  NumberFieldInput,\r\n  NumberFieldScrubArea,\r\n} from \"@/registry/pure-ui/ui/number-field\";\r\nimport { Label } from \"@/registry/pure-ui/ui/label\";\r\n\r\nexport function NumberFieldMouseWheelScrubDemo() {\r\n  return (\r\n    <div className=\"flex flex-col gap-5\">\r\n      <NumberField defaultValue={0} allowWheelScrub id=\"marks\">\r\n        <NumberFieldScrubArea>\r\n          <Label htmlFor=\"marks\" className=\"cursor-ew-resize\">\r\n            Marks\r\n          </Label>\r\n        </NumberFieldScrubArea>\r\n        <NumberFieldGroup>\r\n          <NumberFieldDecrement />\r\n          <NumberFieldInput />\r\n          <NumberFieldIncrement />\r\n        </NumberFieldGroup>\r\n      </NumberField>\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

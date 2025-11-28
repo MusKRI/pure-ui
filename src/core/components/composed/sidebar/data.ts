@@ -122,7 +122,6 @@ const pureUIComponents = [
     title: "Detached Triggers",
     type: "group",
     href: "/components/detached-triggers",
-    tag: "NEW",
     defaultExpanded: false,
     children: [
       {
@@ -176,6 +175,12 @@ const pureUIComponents = [
     title: "Menu",
     type: "link",
     href: "/components/menu",
+  },
+  {
+    id: "number-field",
+    title: "Number Field",
+    type: "link",
+    href: "/components/number-field",
   },
   {
     id: "popover",

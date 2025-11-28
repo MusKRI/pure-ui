@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "number-field-controlled-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "number-field"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/examples/number-field/number-field-controlled-demo.tsx",
+      "content": "\"use client\";\r\n\r\nimport { useState } from \"react\";\r\n\r\nimport {\r\n  NumberField,\r\n  NumberFieldDecrement,\r\n  NumberFieldGroup,\r\n  NumberFieldIncrement,\r\n  NumberFieldInput,\r\n  NumberFieldScrubArea,\r\n} from \"@/registry/pure-ui/ui/number-field\";\r\nimport { Label } from \"@/registry/pure-ui/ui/label\";\r\n\r\nexport function NumberFieldControlledDemo() {\r\n  const [value, setValue] = useState(0);\r\n\r\n  return (\r\n    <div className=\"flex flex-col gap-5\">\r\n      <NumberField\r\n        value={value}\r\n        onValueChange={(value) => setValue(value ?? 0)}\r\n        id=\"controlled\"\r\n      >\r\n        <NumberFieldScrubArea>\r\n          <Label htmlFor=\"controlled\" className=\"cursor-ew-resize\">\r\n            Controlled\r\n          </Label>\r\n        </NumberFieldScrubArea>\r\n        <NumberFieldGroup>\r\n          <NumberFieldDecrement />\r\n          <NumberFieldInput />\r\n          <NumberFieldIncrement />\r\n        </NumberFieldGroup>\r\n      </NumberField>\r\n\r\n      <span className=\"text-muted-foreground px-1 text-sm\">Value: {value}</span>\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}
