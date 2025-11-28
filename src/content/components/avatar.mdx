@@ -1,0 +1,83 @@
+---
+title: Avatar
+description: An image element with a fallback for representing the user.
+---
+
+<ComponentShowcase name="avatar-demo" />
+
+## Installation
+
+<Tabs defaultValue="terminal">
+  <TabsList>
+    <TabsTrigger value="terminal">
+      <Terminal className="w-4 h-4" />
+      Terminal
+    </TabsTrigger>
+    <TabsTrigger value="manual">
+      <Code2 className="w-4 h-4" />
+      Manual
+    </TabsTrigger>
+  </TabsList>
+  <TabsContent value="terminal">
+    <InstallationCommands
+      type="registry-installation"
+      registryPath="avatar"
+    />
+  </TabsContent>
+  <TabsContent value="manual">
+  <Steps>
+    <Step>Install Dependencies</Step>
+
+    <InstallationCommands
+      type="package-installation"
+      npmCommand="npm install @base-ui-components/react clsx tailwind-merge"
+      pnpmCommand="pnpm add @base-ui-components/react clsx tailwind-merge"
+      yarnCommand="yarn add @base-ui-components/react clsx tailwind-merge"
+      bunCommand="bun add @base-ui-components/react clsx tailwind-merge"
+    />
+    </Steps>
+
+    <Step>Add cn function to your utils</Step>
+
+    ```ts filename="lib/classes.ts"
+      import { clsx, type ClassValue } from "clsx";
+      import { twMerge } from "tailwind-merge";
+
+      export function cn(...inputs: ClassValue[]) {
+        return twMerge(clsx(inputs));
+      }
+    ```
+
+    <Step>Copy and paste the following code into your project</Step>
+
+    <ComponentCodePreview name="avatar" />
+
+  </TabsContent>
+</Tabs>
+
+## Usage
+
+```tsx
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+```
+
+```tsx
+<Avatar>
+  <AvatarImage src="/avatars/krishna.png" alt="User avatar" />
+  <AvatarFallback>JD</AvatarFallback>
+</Avatar>
+```
+
+## Examples
+
+### Size
+
+<ComponentShowcase name="avatar-size-demo" />
+
+### Radius
+
+<ComponentShowcase name="avatar-radius-demo" />
+
+### Grouping
+
+<ComponentShowcase name="avatar-grouping-demo" />

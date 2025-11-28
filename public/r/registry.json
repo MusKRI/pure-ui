@@ -38,6 +38,24 @@
       ]
     },
     {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "An easily stylable avatar component.",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge",
+        "@base-ui-components/react"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/ui/avatar/index.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/avatar.tsx"
+        }
+      ]
+    },
+    {
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
@@ -581,6 +599,58 @@
       "files": [
         {
           "path": "src/registry/pure-ui/examples/accordion/accordion-slide-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "avatar-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "avatar"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/avatar/avatar-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "avatar-size-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "avatar"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/avatar/avatar-size-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "avatar-radius-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "avatar"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/avatar/avatar-radius-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "avatar-grouping-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "avatar"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/avatar/avatar-grouping-demo.tsx",
           "type": "registry:example"
         }
       ]

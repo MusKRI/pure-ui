@@ -22,6 +22,22 @@ export const pureUIComponents: Registry["items"] = [
     ],
   },
 
+  // Avatar
+  {
+    name: "avatar",
+    type: "registry:ui",
+    title: "Avatar",
+    description: "An easily stylable avatar component.",
+    files: [
+      {
+        path: "ui/avatar/index.tsx",
+        type: "registry:ui",
+        target: "components/ui/avatar.tsx",
+      },
+    ],
+    dependencies: ["clsx", "tailwind-merge", "@base-ui-components/react"],
+  },
+
   // Button
   {
     name: "button",

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "avatar"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/examples/avatar/avatar-demo.tsx",
+      "content": "import {\r\n  Avatar,\r\n  AvatarFallback,\r\n  AvatarImage,\r\n} from \"@/registry/pure-ui/ui/avatar\";\r\n\r\nexport function AvatarDemo() {\r\n  return (\r\n    <div className=\"flex flex-row flex-wrap items-center gap-12\">\r\n      <Avatar>\r\n        <AvatarImage\r\n          src=\"https://avatars.githubusercontent.com/u/96678499?v=4\"\r\n          alt=\"@shadcn\"\r\n        />\r\n        <AvatarFallback>CN</AvatarFallback>\r\n      </Avatar>\r\n      <Avatar className=\"rounded-lg\">\r\n        <AvatarImage\r\n          src=\"https://github.com/evilrabbit.png\"\r\n          alt=\"@evilrabbit\"\r\n        />\r\n        <AvatarFallback>ER</AvatarFallback>\r\n      </Avatar>\r\n      <div className=\"*:data-[slot=avatar]:ring-background flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:grayscale\">\r\n        <Avatar>\r\n          <AvatarImage src=\"https://github.com/shadcn.png\" alt=\"@shadcn\" />\r\n          <AvatarFallback>CN</AvatarFallback>\r\n        </Avatar>\r\n        <Avatar>\r\n          <AvatarImage\r\n            src=\"https://avatars.githubusercontent.com/u/96678499?v=4\"\r\n            alt=\"@maxleiter\"\r\n          />\r\n          <AvatarFallback>LR</AvatarFallback>\r\n        </Avatar>\r\n        <Avatar>\r\n          <AvatarImage\r\n            src=\"https://github.com/evilrabbit.png\"\r\n            alt=\"@evilrabbit\"\r\n          />\r\n          <AvatarFallback>ER</AvatarFallback>\r\n        </Avatar>\r\n      </div>\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

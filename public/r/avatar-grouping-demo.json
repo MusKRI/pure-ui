@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar-grouping-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "avatar"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/examples/avatar/avatar-grouping-demo.tsx",
+      "content": "import {\r\n  Avatar,\r\n  AvatarFallback,\r\n  AvatarImage,\r\n} from \"@/registry/pure-ui/ui/avatar\";\r\n\r\nexport function AvatarGroupingDemo() {\r\n  return (\r\n    <div className=\"-space-x-[0.6rem] flex\">\r\n      <Avatar className=\"ring-2 ring-background\">\r\n        <AvatarImage\r\n          alt=\"U1\"\r\n          src=\"https://pbs.twimg.com/profile_images/1904866883041714179/MhesgL6S_400x400.jpg\"\r\n        />\r\n        <AvatarFallback>U1</AvatarFallback>\r\n      </Avatar>\r\n      <Avatar className=\"ring-2 ring-background\">\r\n        <AvatarImage\r\n          alt=\"U2\"\r\n          src=\"https://pbs.twimg.com/profile_images/1904866883041714179/MhesgL6S_400x400.jpg\"\r\n        />\r\n        <AvatarFallback>U2</AvatarFallback>\r\n      </Avatar>\r\n      <Avatar className=\"ring-2 ring-background\">\r\n        <AvatarImage\r\n          alt=\"U3\"\r\n          src=\"https://pbs.twimg.com/profile_images/1904866883041714179/MhesgL6S_400x400.jpg\"\r\n        />\r\n        <AvatarFallback>U3</AvatarFallback>\r\n      </Avatar>\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

@@ -86,6 +86,13 @@ const pureUIComponents = [
     href: "/components/accordion",
   },
   {
+    id: "avatar",
+    title: "Avatar",
+    type: "link",
+    href: "/components/avatar",
+    tag: "NEW",
+  },
+  {
     id: "button",
     title: "Button",
     type: "link",

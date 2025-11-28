@@ -99,7 +99,10 @@ You can pass `delay` to Popover to change the delay time for opening the popover
 
 ```tsx add=4 noCopy
 <Popover>
-  <PopoverTrigger openOnHover delay={200}>
+  <PopoverTrigger
+    openOnHover
+    delay={200}
+  >
     ...
   </PopoverTrigger>
   <PopoverPopup>...</PopoverPopup>
@@ -111,7 +114,10 @@ You can also pass `closeDelay` of Popover to change the delay time for closing t
 
 ```tsx add=4 noCopy
 <Popover>
-  <PopoverTrigger openOnHover closeDelay={200}>
+  <PopoverTrigger
+    openOnHover
+    closeDelay={200}
+  >
     ...
   </PopoverTrigger>
   <PopoverPopup>...</PopoverPopup>

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar",
+  "type": "registry:ui",
+  "title": "Avatar",
+  "description": "An easily stylable avatar component.",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "@base-ui-components/react"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/ui/avatar/index.tsx",
+      "content": "\"use client\";\r\n\r\nimport { Avatar as AvatarPrimitive } from \"@base-ui-components/react/avatar\";\r\n\r\nimport { cn } from \"@/lib/classes\";\r\n\r\nexport interface AvatarProps extends AvatarPrimitive.Root.Props {}\r\n\r\nfunction Avatar({ className, ...props }: AvatarProps) {\r\n  return (\r\n    <AvatarPrimitive.Root\r\n      className={cn(\r\n        \"inline-flex size-10 shrink-0 select-none items-center justify-center overflow-hidden rounded-full bg-muted align-middle font-medium text-xs\",\r\n        className\r\n      )}\r\n      data-slot=\"avatar\"\r\n      {...props}\r\n    />\r\n  );\r\n}\r\n\r\nexport interface AvatarImageProps extends AvatarPrimitive.Image.Props {}\r\n\r\nfunction AvatarImage({ className, ...props }: AvatarImageProps) {\r\n  return (\r\n    <AvatarPrimitive.Image\r\n      className={cn(\"size-full object-cover\", className)}\r\n      data-slot=\"avatar-image\"\r\n      {...props}\r\n    />\r\n  );\r\n}\r\n\r\nexport interface AvatarFallbackProps extends AvatarPrimitive.Fallback.Props {}\r\n\r\nfunction AvatarFallback({ className, ...props }: AvatarFallbackProps) {\r\n  return (\r\n    <AvatarPrimitive.Fallback\r\n      className={cn(\r\n        \"flex size-full items-center justify-center rounded-full bg-muted\",\r\n        className\r\n      )}\r\n      data-slot=\"avatar-fallback\"\r\n      {...props}\r\n    />\r\n  );\r\n}\r\n\r\nexport { Avatar, AvatarImage, AvatarFallback };\r\n",
+      "type": "registry:ui",
+      "target": "components/ui/avatar.tsx"
+    }
+  ]
+}

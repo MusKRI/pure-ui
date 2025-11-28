@@ -178,7 +178,10 @@ If you’re already familiar with Radix UI and shadcn/ui, this guide highlights 
 
 ```tsx remove=3,6 add=4
 <Tooltip>
-  <TooltipTrigger asChild render={<Button variant="outline" />}>
+  <TooltipTrigger
+    asChild
+    render={<Button variant="outline" />}
+  >
     <Button variant="outline">Hover me</Button>
     Hover me
   </TooltipTrigger>

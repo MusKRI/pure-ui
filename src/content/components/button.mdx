@@ -79,7 +79,10 @@ import { Button } from "@/components/ui/button";
 
 export function LinkAsButton() {
   return (
-    <Button render={<Link href="/login" />} nativeButton={false}>
+    <Button
+      render={<Link href="/login" />}
+      nativeButton={false}
+    >
       Login
     </Button>
   );
@@ -153,7 +156,11 @@ If you’re already familiar with Radix UI and shadcn/ui, this guide highlights 
 ### Comparison Example
 
 ```tsx remove=2,6 add=3,4
-<Button asChild render={<Link href="/login" />} nativeButton={false}>
+<Button
+  asChild
+  render={<Link href="/login" />}
+  nativeButton={false}
+>
   <Link href="/login">Log in</Link>
   Log in
 </Button>
