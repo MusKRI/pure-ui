@@ -103,7 +103,6 @@ const pureUIComponents = [
     title: "Button Group",
     type: "link",
     href: "/components/button-group",
-    tag: "NEW",
   },
   {
     id: "card",
@@ -181,6 +180,7 @@ const pureUIComponents = [
     title: "Number Field",
     type: "link",
     href: "/components/number-field",
+    tag: "NEW",
   },
   {
     id: "popover",
