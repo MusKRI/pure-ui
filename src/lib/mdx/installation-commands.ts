@@ -1,4 +1,4 @@
-import { Effect, pipe, Array as EffectArray, Option } from "effect";
+import { Effect, Array as EffectArray, Option } from "effect";
 import { highlightCode } from "@/lib/mdx/code-highlighter";
 import {
   getRegistryInstallationCommand,
@@ -23,100 +23,98 @@ export interface InstallationCommandsProps {
 
 /**
  * Processes installation commands props and generates array of InstallationTab
- * using Effect-TS for better error handling and composition
  */
 export const processInstallationCommands = (
   props: InstallationCommandsProps
-): Effect.Effect<InstallationTab[], never> => {
-  return pipe(
-    Effect.succeed(props),
-    Effect.flatMap((props) => {
-      const {
-        type,
-        registryPath,
+): Effect.Effect<InstallationTab[], never> =>
+  Effect.gen(function* () {
+    const {
+      type,
+      registryPath,
+      npmCommand,
+      pnpmCommand,
+      yarnCommand,
+      bunCommand,
+    } = props;
+
+    // Handle registry-installation type
+    if (type === "registry-installation") {
+      const pathOption = Option.fromNullable(registryPath).pipe(
+        Option.filter((path) => path.trim() !== "")
+      );
+
+      if (Option.isNone(pathOption)) {
+        return [];
+      }
+
+      return yield* generateRegistryInstallationTabs(pathOption.value);
+    }
+
+    // Handle package-installation type
+    if (type === "package-installation") {
+      return yield* generatePackageInstallationTabs({
         npmCommand,
         pnpmCommand,
         yarnCommand,
         bunCommand,
-      } = props;
+      });
+    }
 
-      // Handle registry-installation type
-      if (type === "registry-installation") {
-        return pipe(
-          Option.fromNullable(registryPath),
-          Option.filter((path) => path.trim() !== ""),
-          Option.match({
-            onNone: () => Effect.succeed<InstallationTab[]>([]),
-            onSome: (path) => generateRegistryInstallationTabs(path),
-          })
-        );
-      }
-
-      // Handle package-installation type
-      if (type === "package-installation") {
-        return generatePackageInstallationTabs({
-          npmCommand,
-          pnpmCommand,
-          yarnCommand,
-          bunCommand,
-        });
-      }
-
-      // Default case - return empty array
-      return Effect.succeed<InstallationTab[]>([]);
-    })
-  );
-};
+    // Default case - return empty array
+    return [];
+  });
 
 /**
  * Generates installation tabs for registry-based installations
  */
 const generateRegistryInstallationTabs = (
   registryPath: string
-): Effect.Effect<InstallationTab[], never> => {
-  const packageManagers: PackageManager[] = ["npm", "pnpm", "yarn", "bun"];
+): Effect.Effect<InstallationTab[], never> =>
+  Effect.gen(function* () {
+    const packageManagers: PackageManager[] = ["npm", "pnpm", "yarn", "bun"];
 
-  return pipe(
-    packageManagers,
-    EffectArray.map((manager) =>
-      pipe(
-        Effect.try(() => getRegistryInstallationCommand(registryPath, manager)),
-        Effect.flatMap((command) =>
-          pipe(
-            Effect.promise(() => highlightCode(command, { lang: "bash" })),
-            Effect.map((highlightedContent) => ({
+    // Process all package managers in parallel with controlled concurrency
+    const tabs = yield* Effect.all(
+      packageManagers.map((manager) =>
+        Effect.gen(function* () {
+          // Get the installation command
+          let command: string;
+          try {
+            command = getRegistryInstallationCommand(registryPath, manager);
+          } catch {
+            return {
               name: manager,
-              // icon: getToolIcon(manager),
-              content: highlightedContent,
-              rawContent: command,
-              language: "bash",
-            })),
-            Effect.catchAll(() =>
-              Effect.succeed({
-                name: manager,
-                // icon: getToolIcon(manager),
-                content: command,
-                rawContent: command,
-                language: "bash",
-              })
-            )
-          )
-        ),
-        Effect.catchAll(() =>
-          Effect.succeed({
+              content: "",
+              rawContent: "",
+              language: "bash" as const,
+            };
+          }
+
+          // Try to highlight the code
+          let highlightedContent: string;
+          try {
+            highlightedContent = yield* Effect.promise(() =>
+              highlightCode(command, { lang: "bash" })
+            );
+          } catch {
+            // Fallback to unhighlighted command if highlighting fails
+            highlightedContent = command;
+          }
+
+          return {
             name: manager,
-            // icon: getToolIcon(manager),
-            content: "",
-            rawContent: "",
-            language: "bash",
-          })
-        )
-      )
-    ),
-    Effect.all,
-    Effect.map(EffectArray.filter((tab) => tab.rawContent !== ""))
-  );
-};
+            content: highlightedContent,
+            rawContent: command,
+            language: "bash" as const,
+          };
+        })
+      ),
+      { concurrency: 5 } // Limit concurrency to prevent resource exhaustion
+    );
+
+    // Filter out tabs with empty content
+    return tabs.filter((tab) => tab.rawContent !== "");
+  });
 
 /**
  * Generates installation tabs for package-based installations
@@ -126,43 +124,51 @@ const generatePackageInstallationTabs = (commands: {
   pnpmCommand?: string;
   yarnCommand?: string;
   bunCommand?: string;
-}): Effect.Effect<InstallationTab[], never> => {
-  const { npmCommand, pnpmCommand, yarnCommand, bunCommand } = commands;
+}): Effect.Effect<InstallationTab[], never> =>
+  Effect.gen(function* () {
+    const { npmCommand, pnpmCommand, yarnCommand, bunCommand } = commands;
 
-  const commandMap: Array<{
-    manager: PackageManager;
-    command?: string;
-  }> = [
-    { manager: "npm", command: npmCommand },
-    { manager: "pnpm", command: pnpmCommand },
-    { manager: "yarn", command: yarnCommand },
-    { manager: "bun", command: bunCommand },
-  ];
+    // Filter to only commands that are provided and non-empty
+    const commandMap = [
+      { manager: "npm" as PackageManager, command: npmCommand },
+      { manager: "pnpm" as PackageManager, command: pnpmCommand },
+      { manager: "yarn" as PackageManager, command: yarnCommand },
+      { manager: "bun" as PackageManager, command: bunCommand },
+    ]
+      .filter(({ command }) => Boolean(command?.trim()))
+      .map(({ manager, command }) => ({
+        manager,
+        command: command!,
+      })) as Array<{
+      manager: PackageManager;
+      command: string;
+    }>;
 
-  return pipe(
-    commandMap,
-    EffectArray.filter(({ command }) => Boolean(command?.trim())),
-    EffectArray.map(({ manager, command }) =>
-      pipe(
-        Effect.promise(() => highlightCode(command!, { lang: "bash" })),
-        Effect.map((highlightedContent) => ({
-          name: manager,
-          // icon: getToolIcon(manager),
-          content: highlightedContent,
-          rawContent: command!,
-          language: "bash",
-        })),
-        Effect.catchAll(() =>
-          Effect.succeed({
+    // Process all commands in parallel with controlled concurrency
+    const tabs = yield* Effect.all(
+      commandMap.map(({ manager, command }) =>
+        Effect.gen(function* () {
+          // Try to highlight the code
+          let highlightedContent: string;
+          try {
+            highlightedContent = yield* Effect.promise(() =>
+              highlightCode(command, { lang: "bash" })
+            );
+          } catch {
+            // Fallback to unhighlighted command if highlighting fails
+            highlightedContent = command;
+          }
+
+          return {
             name: manager,
-            // icon: getToolIcon(manager),
-            content: command!,
-            rawContent: command!,
-            language: "bash",
-          })
-        )
-      )
-    ),
-    Effect.all
-  );
-};
+            content: highlightedContent,
+            rawContent: command,
+            language: "bash" as const,
+          };
+        })
+      ),
+      { concurrency: 5 } // Limit concurrency to prevent resource exhaustion
+    );
+
+    return tabs;
+  });

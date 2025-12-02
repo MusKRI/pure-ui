@@ -1,0 +1,111 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "calendar",
+  "type": "registry:ui",
+  "title": "Calendar",
+  "description": "A customizable calendar component",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "react-day-picker"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/ui/calendar/index.tsx",
+      "content": "\"use client\";\r\nimport * as React from \"react\";\r\nimport {\r\n  ChevronDownIcon,\r\n  ChevronLeftIcon,\r\n  ChevronRightIcon,\r\n} from \"lucide-react\";\r\nimport { DayButton, DayPicker, getDefaultClassNames } from \"react-day-picker\";\r\n\r\nimport { Button, buttonVariants } from \"@/registry/pure-ui/ui/button\";\r\nimport { cn } from \"@/lib/classes\";\r\n\r\ntype CalendarProps = React.ComponentProps<typeof DayPicker> & {};\r\n\r\nfunction Calendar({\r\n  className,\r\n  classNames,\r\n  showOutsideDays = true,\r\n  captionLayout = \"label\",\r\n  formatters,\r\n  components,\r\n  ...props\r\n}: CalendarProps) {\r\n  const defaultClassNames = getDefaultClassNames();\r\n\r\n  return (\r\n    <DayPicker\r\n      showOutsideDays={showOutsideDays}\r\n      className={cn(\r\n        \"border border-border rounded-md bg-background [--cell-size:--spacing(8)] in-data-[slot=card-content]:bg-transparent in-data-[slot=popover-content]:bg-transparent\",\r\n        className\r\n      )}\r\n      formatters={{\r\n        formatMonthDropdown: (date) =>\r\n          date.toLocaleString(\"default\", { month: \"short\" }),\r\n        ...formatters,\r\n      }}\r\n      captionLayout={captionLayout}\r\n      classNames={{\r\n        root: cn(\"w-fit shadow-xs overflow-hidden\", defaultClassNames.root),\r\n        months: cn(\r\n          \"flex flex-col md:flex-row relative\",\r\n          defaultClassNames.months\r\n        ),\r\n        month: cn(\r\n          \"flex flex-col w-full [.rdp-month+&]:border-l [.rdp-month+&]:border-border/50 dark:[.rdp-month+&]:border-border/80\",\r\n          defaultClassNames.month\r\n        ),\r\n        nav: cn(\r\n          \"flex items-center gap-1 w-full absolute top-0 inset-x-0 z-0 justify-between p-1.5 rounded-t-md\",\r\n          defaultClassNames.nav\r\n        ),\r\n        button_previous: cn(\r\n          buttonVariants({ variant: \"ghost\", size: \"sm\", radius: \"sm\" }),\r\n          \"active:scale-100 border-[0.5px] border-border\",\r\n          \"size-[calc(var(--cell-size)-6px)] aria-disabled:opacity-50 p-0 select-none bg-background dark:bg-accent\",\r\n          defaultClassNames.button_previous\r\n        ),\r\n        button_next: cn(\r\n          buttonVariants({ variant: \"ghost\", size: \"sm\", radius: \"sm\" }),\r\n          \"active:scale-100 border-[0.5px] border-border\",\r\n          \"size-[calc(var(--cell-size)-6px)] aria-disabled:opacity-50 p-0 select-none bg-background dark:bg-accent\",\r\n          defaultClassNames.button_next\r\n        ),\r\n        month_caption: cn(\r\n          \"flex items-center justify-center w-full px-(--cell-size) [height:calc(var(--cell-size)+6px)] border-b border-border/50 bg-[#f9f9f9] dark:bg-secondary\",\r\n          defaultClassNames.month_caption\r\n        ),\r\n        caption_label: cn(\r\n          \"select-none font-medium\",\r\n          captionLayout === \"label\"\r\n            ? \"text-sm\"\r\n            : \"rounded-md pl-2 pr-1 flex items-center gap-1 text-sm h-8 [&>svg]:text-muted-foreground [&>svg]:size-3.5\",\r\n          defaultClassNames.caption_label\r\n        ),\r\n        table: \"w-full border-collapse\",\r\n        weekdays: cn(\r\n          \"flex bg-[#f9f9f9] dark:bg-secondary p-[calc(var(--spacing)*1.5+0.5px)] border-b border-border/50 border-t border-t-background/70 dark:border-t-background/30\",\r\n          defaultClassNames.weekdays\r\n        ),\r\n        weekday: cn(\r\n          \"text-muted-foreground rounded-md flex-1 font-normal text-[0.8rem] select-none \",\r\n          defaultClassNames.weekday\r\n        ),\r\n        weeks: cn(\r\n          \"p-1.5 pt-0 block bg-background rounded-b-md\",\r\n          defaultClassNames.weeks\r\n        ),\r\n        week: cn(\"flex w-full mt-2\", defaultClassNames.week),\r\n        week_number_header: cn(\r\n          \"select-none w-(--cell-size)\",\r\n          defaultClassNames.week_number_header\r\n        ),\r\n        week_number: cn(\r\n          \"text-[0.8rem] select-none text-muted-foreground\",\r\n          defaultClassNames.week_number\r\n        ),\r\n        day: cn(\r\n          \"relative text-[0.8rem] w-full h-full p-0 text-center [&:last-child[data-selected=true]_button]:rounded-r-md group/day aspect-square select-none\",\r\n          props.showWeekNumber\r\n            ? \"[&:nth-child(2)[data-selected=true]_button]:rounded-l-md\"\r\n            : \"[&:first-child[data-selected=true]_button]:rounded-l-md\",\r\n          defaultClassNames.day\r\n        ),\r\n        range_start: cn(\r\n          \"rounded-l-md bg-accent\",\r\n          defaultClassNames.range_start\r\n        ),\r\n        range_middle: cn(\"rounded-none\", defaultClassNames.range_middle),\r\n        range_end: cn(\"rounded-r-md bg-accent\", defaultClassNames.range_end),\r\n        today: cn(\r\n          \"bg-accent text-accent-foreground rounded-md data-[selected=true]:rounded-none\",\r\n          defaultClassNames.today\r\n        ),\r\n        outside: cn(\r\n          \"text-muted-foreground aria-selected:text-muted-foreground\",\r\n          defaultClassNames.outside\r\n        ),\r\n        disabled: cn(\r\n          \"text-muted-foreground opacity-50\",\r\n          defaultClassNames.disabled\r\n        ),\r\n        hidden: cn(\"invisible\", defaultClassNames.hidden),\r\n        ...classNames,\r\n      }}\r\n      components={{\r\n        Root: ({ className, rootRef, ...props }) => {\r\n          return (\r\n            <div\r\n              data-slot=\"calendar\"\r\n              ref={rootRef}\r\n              className={cn(\"[transition:height_0.3s_ease-in-out]\", className)}\r\n              {...props}\r\n            />\r\n          );\r\n        },\r\n        Chevron: ({ className, orientation, ...props }) => {\r\n          if (orientation === \"left\") {\r\n            return (\r\n              <ChevronLeftIcon className={cn(\"size-4\", className)} {...props} />\r\n            );\r\n          }\r\n          if (orientation === \"right\") {\r\n            return (\r\n              <ChevronRightIcon\r\n                className={cn(\"size-4\", className)}\r\n                {...props}\r\n              />\r\n            );\r\n          }\r\n          return (\r\n            <ChevronDownIcon className={cn(\"size-4\", className)} {...props} />\r\n          );\r\n        },\r\n\r\n        DayButton: CalendarDayButton,\r\n        WeekNumber: ({ children, ...props }) => {\r\n          return (\r\n            <td {...props}>\r\n              <div className=\"flex size-(--cell-size) items-center justify-center text-center\">\r\n                {children}\r\n              </div>\r\n            </td>\r\n          );\r\n        },\r\n        ...components,\r\n      }}\r\n      {...props}\r\n    />\r\n  );\r\n}\r\n\r\nfunction CalendarDayButton({\r\n  className,\r\n  day,\r\n  modifiers,\r\n  ...props\r\n}: React.ComponentProps<typeof DayButton>) {\r\n  const defaultClassNames = getDefaultClassNames();\r\n  const ref = React.useRef<HTMLButtonElement>(null);\r\n\r\n  React.useEffect(() => {\r\n    if (modifiers.focused) ref.current?.focus();\r\n  }, [modifiers.focused]);\r\n\r\n  return (\r\n    <Button\r\n      variant=\"ghost\"\r\n      size=\"icon-sm\"\r\n      // data-day={day.date.toLocaleDateString()}\r\n      data-selected-single={\r\n        modifiers.selected &&\r\n        !modifiers.range_start &&\r\n        !modifiers.range_end &&\r\n        !modifiers.range_middle\r\n      }\r\n      data-range-start={modifiers.range_start}\r\n      data-range-end={modifiers.range_end}\r\n      data-range-middle={modifiers.range_middle}\r\n      className={cn(\r\n        \"active:scale-100 duration-50 disabled:bg-transparent [[data-outside=true]>&]:text-muted-foreground data-[selected-single=true]:bg-primary data-[selected-single=true]:text-primary-foreground data-[range-middle=true]:bg-accent data-[range-middle=true]:text-accent-foreground data-[range-start=true]:bg-primary data-[range-start=true]:text-primary-foreground data-[range-end=true]:bg-primary data-[range-end=true]:text-primary-foreground flex aspect-square size-auto w-full min-w-(--cell-size) flex-col gap-1 leading-none font-normal group-data-[focused=true]/day:relative group-data-[focused=true]/day:z-10 data-[range-end=true]:rounded-md data-[range-end=true]:rounded-l-none data-[range-middle=true]:rounded-none data-[range-start=true]:rounded-md data-[range-start=true]:rounded-r-none [&>span]:text-xs [&>span]:opacity-70\",\r\n        defaultClassNames.day,\r\n        className\r\n      )}\r\n      {...props}\r\n    />\r\n  );\r\n}\r\n\r\nexport { Calendar };\r\n",
+      "type": "registry:ui",
+      "target": "components/ui/calendar.tsx"
+    }
+  ],
+  "css": {
+    "@keyframes rdp-slide_in_left": {
+      "0%": {
+        "transform": "translateX(-100%)"
+      },
+      "100%": {
+        "transform": "translateX(0)"
+      }
+    },
+    "@keyframes rdp-slide_in_right": {
+      "0%": {
+        "transform": "translateX(100%)"
+      },
+      "100%": {
+        "transform": "translateX(0)"
+      }
+    },
+    "@keyframes rdp-slide_out_left": {
+      "0%": {
+        "transform": "translateX(0)"
+      },
+      "100%": {
+        "transform": "translateX(-100%)"
+      }
+    },
+    "@keyframes rdp-slide_out_right": {
+      "0%": {
+        "transform": "translateX(0)"
+      },
+      "100%": {
+        "transform": "translateX(100%)"
+      }
+    },
+    "@keyframes rdp-fade_in": {
+      "from": {
+        "opacity": "0"
+      },
+      "to": {
+        "opacity": "1"
+      }
+    },
+    "@keyframes rdp-fade_out": {
+      "from": {
+        "opacity": "1"
+      },
+      "to": {
+        "opacity": "0"
+      }
+    },
+    ".rdp-weeks_before_enter": {
+      "animation": "rdp-slide_in_left var(--rdp-animation_duration, 0.3s) var(--rdp-animation_timing, cubic-bezier(0.4, 0, 0.2, 1)) forwards"
+    },
+    ".rdp-weeks_before_exit": {
+      "animation": "rdp-slide_out_left var(--rdp-animation_duration, 0.3s) var(--rdp-animation_timing, cubic-bezier(0.4, 0, 0.2, 1)) forwards"
+    },
+    ".rdp-weeks_after_enter": {
+      "animation": "rdp-slide_in_right var(--rdp-animation_duration, 0.3s) var(--rdp-animation_timing, cubic-bezier(0.4, 0, 0.2, 1)) forwards"
+    },
+    ".rdp-weeks_after_exit": {
+      "animation": "rdp-slide_out_right var(--rdp-animation_duration, 0.3s) var(--rdp-animation_timing, cubic-bezier(0.4, 0, 0.2, 1)) forwards"
+    },
+    ".rdp-root[dir=\"rtl\"] .rdp-weeks_after_enter": {
+      "animation": "rdp-slide_in_left var(--rdp-animation_duration, 0.3s) var(--rdp-animation_timing, cubic-bezier(0.4, 0, 0.2, 1)) forwards"
+    },
+    ".rdp-root[dir=\"rtl\"] .rdp-weeks_before_exit": {
+      "animation": "rdp-slide_out_right var(--rdp-animation_duration, 0.3s) var(--rdp-animation_timing, cubic-bezier(0.4, 0, 0.2, 1)) forwards"
+    },
+    ".rdp-root[dir=\"rtl\"] .rdp-weeks_before_enter": {
+      "animation": "rdp-slide_in_right var(--rdp-animation_duration, 0.3s) var(--rdp-animation_timing, cubic-bezier(0.4, 0, 0.2, 1)) forwards"
+    },
+    ".rdp-root[dir=\"rtl\"] .rdp-weeks_after_exit": {
+      "animation": "rdp-slide_out_left var(--rdp-animation_duration, 0.3s) var(--rdp-animation_timing, cubic-bezier(0.4, 0, 0.2, 1)) forwards"
+    },
+    ".rdp-caption_after_enter": {
+      "animation": "rdp-fade_in var(--rdp-animation_duration, 0.3s) var(--rdp-animation_timing, cubic-bezier(0.4, 0, 0.2, 1)) forwards"
+    },
+    ".rdp-caption_after_exit": {
+      "animation": "rdp-fade_out var(--rdp-animation_duration, 0.3s) var(--rdp-animation_timing, cubic-bezier(0.4, 0, 0.2, 1)) forwards"
+    },
+    ".rdp-caption_before_enter": {
+      "animation": "rdp-fade_in var(--rdp-animation_duration, 0.3s) var(--rdp-animation_timing, cubic-bezier(0.4, 0, 0.2, 1)) forwards"
+    },
+    ".rdp-caption_before_exit": {
+      "animation": "rdp-fade_out var(--rdp-animation_duration, 0.3s) var(--rdp-animation_timing, cubic-bezier(0.4, 0, 0.2, 1)) forwards"
+    },
+    "@media (prefers-reduced-motion: reduce)": {
+      ".rdp-weeks_before_enter, .rdp-weeks_before_exit, .rdp-weeks_after_enter, .rdp-weeks_after_exit, .rdp-caption_after_enter, .rdp-caption_after_exit, .rdp-caption_before_enter, .rdp-caption_before_exit": {
+        "animation": "none"
+      }
+    }
+  }
+}

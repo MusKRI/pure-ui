@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "calendar-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "calendar"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/examples/calendar/calendar-demo.tsx",
+      "content": "import { Calendar } from \"@/registry/pure-ui/ui/calendar\";\r\n\r\nexport function CalendarDemo() {\r\n  return <Calendar mode=\"single\" />;\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

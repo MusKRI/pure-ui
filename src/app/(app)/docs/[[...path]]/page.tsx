@@ -7,7 +7,7 @@ import { parseSlug } from "@/lib/slug-parser";
 import { getStaticPaths } from "@/lib/static-paths";
 import { getAppUrl } from "@/lib/env";
 
-export async function generateMetadata(props: PageProps<"/[...path]">) {
+export async function generateMetadata(props: PageProps<"/docs/[[...path]]">) {
   const { path = [] } = await props.params;
 
   const parsedSlug = await Effect.runPromise(parseSlug(path));
@@ -79,7 +79,9 @@ export async function generateStaticParams() {
   return staticPaths;
 }
 
-export default async function PureUIFlowPage(props: PageProps<"/[...path]">) {
+export default async function PureUIFlowPage(
+  props: PageProps<"/docs/[[...path]]">
+) {
   const { path = [] } = await props.params;
 
   const parsedSlug = await Effect.runPromise(parseSlug(path));
@@ -99,7 +101,7 @@ export default async function PureUIFlowPage(props: PageProps<"/[...path]">) {
   const content = contentExit.value;
 
   return (
-    <div className="flex flex-col scroll-smooth">
+    <div className="flex flex-col">
       <ContentInfoHeader
         content={content}
         relativePath={parsedSlug.validPath}

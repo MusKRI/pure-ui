@@ -1,11 +1,4 @@
-import {
-  Effect,
-  Cache,
-  pipe,
-  Array as EffectArray,
-  Context,
-  Layer,
-} from "effect";
+import { Effect, Data, pipe, Array as EffectArray } from "effect";
 import { FileSystem } from "@effect/platform";
 import { NodeFileSystem } from "@effect/platform-node";
 import * as path from "path";
@@ -15,8 +8,11 @@ import {
   RegistryItemFile,
   registryItemSchema,
 } from "@/lib/registry/schemas";
-
 import { Index } from "@/registry/pure-ui/__index__";
+
+// ============================================================================
+// Types
+// ============================================================================
 
 export type ProcessedRegistryFile = RegistryItemFile & {
   content: string;
@@ -26,203 +22,154 @@ export interface ExtendedRegistryItem extends Omit<RegistryItem, "files"> {
   files: ProcessedRegistryFile[];
 }
 
-// Define our services and contexts
-export interface ComponentRegistryService {
-  readonly getItem: (
-    name: string
-  ) => Effect.Effect<ExtendedRegistryItem | null, RegistryError>;
-  readonly getItemCached: (
-    name: string
-  ) => Effect.Effect<ExtendedRegistryItem | null, RegistryError>;
-  readonly clearCache: () => Effect.Effect<void>;
+// ============================================================================
+// Errors (using Effect's Data.TaggedError)
+// ============================================================================
+
+export class RegistryError extends Data.TaggedError("RegistryError")<{
+  readonly message: string;
+  readonly cause?: unknown;
+}> {}
+
+export class FileNotFoundError extends Data.TaggedError("FileNotFoundError")<{
+  readonly filePath: string;
+  readonly cause?: unknown;
+}> {}
+
+export class ComponentNotFoundError extends Data.TaggedError(
+  "ComponentNotFoundError"
+)<{
+  readonly componentName: string;
+}> {}
+
+// ============================================================================
+// Utilities
+// ============================================================================
+
+/**
+ * Process import paths in file content
+ */
+function processImportPaths(content: string): string {
+  return content
+    .replace(/@\/registry\/pure-ui\/ui\/([^"']+)/g, "@/components/ui/$1")
+    .replace(/@\/registry\/pure-ui\/lib\/([^"']+)/g, "@/lib/$1");
 }
 
-export const ComponentRegistryService =
-  Context.GenericTag<ComponentRegistryService>(
-    "@services/ComponentRegistryService"
-  );
-
-// Define our error types
-export class RegistryError extends Error {
-  readonly _tag: string = "RegistryError";
-  constructor(readonly message: string, readonly cause?: unknown) {
-    super(message);
-  }
-}
-
-export class FileNotFoundError extends RegistryError {
-  readonly _tag = "FileNotFoundError";
-  constructor(readonly filePath: string, cause?: unknown) {
-    super(`File not found: ${filePath}`, cause);
-  }
-}
-
-export class ComponentNotFoundError extends RegistryError {
-  readonly _tag = "ComponentNotFoundError";
-  constructor(readonly componentName: string) {
-    super(`Component not found: ${componentName}`);
-  }
-}
-
-// Process Import paths logic
-const processImportPaths = (content: string) =>
-  pipe(
-    content,
-    // Replace shadcn registry component imports
-    (c) =>
-      c.replace(/@\/registry\/pure-ui\/ui\/([^"']+)/g, "@/components/ui/$1"),
-    // Replace react-aria registry component imports
-    (c) =>
-      c.replace(/@\/registry\/pure-ui\/ui\/([^"']+)/g, "@/components/ui/$1"),
-    // Replace lib imports
-    (c) => c.replace(/@\/registry\/pure-ui\/lib\/([^"']+)/g, "@/lib/$1")
-  );
-
-// Effect based file reading with error handling
+/**
+ * Read and process a single registry file using Effect
+ */
 const readFileWithProcessing = (filePath: string, fs: FileSystem.FileSystem) =>
-  pipe(
-    Effect.gen(function* () {
-      const absolutePath = path.join(process.cwd(), "src", filePath);
+  Effect.gen(function* () {
+    const absolutePath = path.join(process.cwd(), "src", filePath);
 
-      // Read file content
-      const content = yield* fs
-        .readFileString(absolutePath)
-        .pipe(
-          Effect.mapError((cause) => new FileNotFoundError(filePath, cause))
-        );
+    const content = yield* fs.readFileString(absolutePath).pipe(
+      Effect.mapError(
+        (cause) =>
+          new FileNotFoundError({
+            filePath,
+            cause,
+          })
+      )
+    );
 
-      // Process import paths
-      const processedContent = processImportPaths(content);
+    return processImportPaths(content);
+  });
 
-      return processedContent;
-    })
-  );
-
-// Process a single registry file
+/**
+ * Process a single registry file
+ */
 const processRegistryFile = (
   file: RegistryItemFile,
   fs: FileSystem.FileSystem
-): Effect.Effect<ProcessedRegistryFile, RegistryError> =>
+): Effect.Effect<ProcessedRegistryFile, FileNotFoundError> =>
   pipe(
     readFileWithProcessing(file.path, fs),
     Effect.map((content) => ({ ...file, content }))
   );
 
-// Process all files in parallel for maximum performance
+/**
+ * Process multiple registry files with controlled concurrency
+ * Uses Effect's concurrency control (5 concurrent operations max)
+ */
 const processRegistryFiles = (
   files: readonly RegistryItemFile[],
   fs: FileSystem.FileSystem
-): Effect.Effect<ProcessedRegistryFile[], RegistryError> =>
+): Effect.Effect<ProcessedRegistryFile[], FileNotFoundError> =>
   pipe(
     files,
     EffectArray.map((file) => processRegistryFile(file, fs)),
-    Effect.all, // This runs all file operations in parallel
-    Effect.withConcurrency("unbounded")
+    Effect.all,
+    Effect.withConcurrency(5) // Limited concurrency to prevent resource exhaustion
   );
 
-export const getComponentRegistryItem = (name: string) => {
-  return Effect.gen(function* () {
+/**
+ * Get a component registry item by name
+ * This is the core Effect that loads and processes a component
+ */
+const getComponentRegistryItem = (name: string) =>
+  Effect.gen(function* () {
     const foundItem = Index[name];
 
     if (!foundItem) {
-      return yield* Effect.fail(new ComponentNotFoundError(name));
+      return yield* Effect.fail(
+        new ComponentNotFoundError({ componentName: name })
+      );
     }
 
     const parsedItem = registryItemSchema.parse(foundItem);
 
     if (!parsedItem) {
-      return yield* Effect.fail(new ComponentNotFoundError(name));
+      return yield* Effect.fail(
+        new ComponentNotFoundError({ componentName: name })
+      );
     }
 
     const fs = yield* FileSystem.FileSystem;
 
-    // Prcess all files in parallel
     const processedFiles = yield* processRegistryFiles(
       parsedItem.files ?? [],
       fs
     );
 
-    const result = {
+    return {
       ...parsedItem,
       files: processedFiles,
-    };
-
-    return result;
-  });
-};
-
-// Implementation with caching
-const makeComponentRegistryService = Effect.gen(function* () {
-  // Create a cache that automaticlly handles memoization
-  const cache = yield* Cache.make({
-    capacity: 100, // Cache up to 100 components
-    timeToLive: "10 seconds",
-    lookup: (name: string) =>
-      pipe(
-        getComponentRegistryItem(name)
-        // Effect.option // Convert failures to None for cache
-      ),
+    } satisfies ExtendedRegistryItem;
   });
 
-  const getItem = (
-    name: string
-  ): Effect.Effect<ExtendedRegistryItem | null, RegistryError> =>
+// ============================================================================
+// Public API
+// ============================================================================
+
+/**
+ * Get a component registry item by name
+ * Simple async function - no caching, no runtime needed
+ * Returns null if component not found, throws on other errors
+ */
+export async function getComponentRegistryItemCached(
+  name: string
+): Promise<ExtendedRegistryItem | null> {
+  const result = await Effect.runPromiseExit(
     pipe(
       getComponentRegistryItem(name),
       Effect.provide(NodeFileSystem.layer),
-      Effect.catchAll(() => Effect.succeed(null))
-    );
-
-  const getItemCached = (
-    name: string
-  ): Effect.Effect<ExtendedRegistryItem | null, RegistryError> =>
-    pipe(
-      cache.get(name),
-      // Effect.map((option) => (option._tag === "Some" ? option.value : null)),
-      Effect.catchAll(() =>
-        Effect.fail(new ComponentNotFoundError("Component not found"))
-      )
-    );
-
-  const clearCache = (): Effect.Effect<void> => cache.invalidateAll;
-
-  return ComponentRegistryService.of({
-    getItem,
-    getItemCached,
-    clearCache,
-  });
-});
-
-// Layer for dependency injection
-export const ComponentRegistryServiceLive = Layer.effect(
-  ComponentRegistryService,
-  makeComponentRegistryService
-).pipe(
-  Layer.provide(NodeFileSystem.layer) // Provide the Node.js FileSystem implementation
-);
-
-// Convenience functions for easier usage
-export const getComponentRegistryItemRefined = (name: string) =>
-  pipe(
-    ComponentRegistryService,
-    Effect.flatMap((service) => service.getItem(name))
+      Effect.catchAll((error) => {
+        // Return null for ComponentNotFoundError, rethrow others
+        if (error._tag === "ComponentNotFoundError") {
+          return Effect.succeed(null);
+        }
+        return Effect.fail(error);
+      })
+    )
   );
 
-export const getComponentRegistryItemCachedRefined = (name: string) =>
-  pipe(
-    ComponentRegistryService,
-    Effect.flatMap((service) => service.getItemCached(name))
-  );
+  if (result._tag === "Failure") {
+    throw result.cause;
+  }
 
-export const clearRegistryCacheRefined = () =>
-  pipe(
-    ComponentRegistryService,
-    Effect.flatMap((service) => service.clearCache())
-  );
+  return result.value;
+}
 
-// Runtime for executing effects
-export const runtime = pipe(
-  ComponentRegistryServiceLive,
-  Layer.toRuntime,
-  Effect.scoped
-);
+// Legacy export for backward compatibility
+export const getComponentRegistryItemCachedRefined =
+  getComponentRegistryItemCached;

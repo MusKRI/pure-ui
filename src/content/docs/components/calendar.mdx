@@ -1,0 +1,281 @@
+---
+title: Calendar
+description: A date field component that allows users to enter and edit date.
+---
+
+<ComponentShowcase name="calendar-demo" />
+
+## Installation
+
+<Tabs defaultValue="terminal">
+  <TabsList>
+    <TabsTrigger value="terminal">
+      <Terminal className="w-4 h-4" />
+      Terminal
+    </TabsTrigger>
+    <TabsTrigger value="manual">
+      <Code2 className="w-4 h-4" />
+      Manual
+    </TabsTrigger>
+  </TabsList>
+  <TabsContent value="terminal">
+    <InstallationCommands
+      type="registry-installation"
+      registryPath="calendar"
+    />
+  </TabsContent>
+  <TabsContent value="manual">
+    <Steps>
+      <Step>Install Dependencies</Step>
+
+      <InstallationCommands
+        type="package-installation"
+        npmCommand="npm install clsx tailwind-merge react-day-picker"
+        pnpmCommand="pnpm add clsx tailwind-merge react-day-picker"
+        yarnCommand="yarn add clsx tailwind-merge react-day-picker"
+        bunCommand="bun add clsx tailwind-merge react-day-picker"
+      />
+
+      <Step>Add cn function to your utils</Step>
+
+      ```ts filename="lib/classes.ts"
+      import { clsx, type ClassValue } from "clsx";
+      import { twMerge } from "tailwind-merge";
+
+      export function cn(...inputs: ClassValue[]) {
+        return twMerge(clsx(inputs));
+      }
+      ```
+
+      <Step>Copy and paste the following code into your project</Step>
+
+      <ComponentCodePreview name="calendar" />
+
+      <Step>Add calendar keyframes to your styles</Step>
+
+      ```css filename="app/globals.css"
+      @keyframes rdp-slide_in_left {
+        0% {
+          transform: translateX(-100%);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes rdp-slide_in_right {
+        0% {
+          transform: translateX(100%);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes rdp-slide_out_left {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+
+      @keyframes rdp-slide_out_right {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(100%);
+        }
+      }
+
+      @keyframes rdp-fade_in {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes rdp-fade_out {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+        }
+      }
+
+      .rdp-weeks_before_enter {
+        animation: rdp-slide_in_left var(--rdp-animation_duration, 0.3s)
+          var(--rdp-animation_timing, cubic-bezier(0.4, 0, 0.2, 1)) forwards;
+      }
+
+      .rdp-weeks_before_exit {
+        animation: rdp-slide_out_left var(--rdp-animation_duration, 0.3s)
+          var(--rdp-animation_timing, cubic-bezier(0.4, 0, 0.2, 1)) forwards;
+      }
+
+      .rdp-weeks_after_enter {
+        animation: rdp-slide_in_right var(--rdp-animation_duration, 0.3s)
+          var(--rdp-animation_timing, cubic-bezier(0.4, 0, 0.2, 1)) forwards;
+      }
+
+      .rdp-weeks_after_exit {
+        animation: rdp-slide_out_right var(--rdp-animation_duration, 0.3s)
+          var(--rdp-animation_timing, cubic-bezier(0.4, 0, 0.2, 1)) forwards;
+      }
+
+      .rdp-root[dir="rtl"] .rdp-weeks_after_enter {
+        animation: rdp-slide_in_left var(--rdp-animation_duration, 0.3s)
+          var(--rdp-animation_timing, cubic-bezier(0.4, 0, 0.2, 1)) forwards;
+      }
+
+      .rdp-root[dir="rtl"] .rdp-weeks_before_exit {
+        animation: rdp-slide_out_right var(--rdp-animation_duration, 0.3s)
+          var(--rdp-animation_timing, cubic-bezier(0.4, 0, 0.2, 1)) forwards;
+      }
+
+      .rdp-root[dir="rtl"] .rdp-weeks_before_enter {
+        animation: rdp-slide_in_right var(--rdp-animation_duration, 0.3s)
+          var(--rdp-animation_timing, cubic-bezier(0.4, 0, 0.2, 1)) forwards;
+      }
+
+      .rdp-root[dir="rtl"] .rdp-weeks_after_exit {
+        animation: rdp-slide_out_left var(--rdp-animation_duration, 0.3s)
+          var(--rdp-animation_timing, cubic-bezier(0.4, 0, 0.2, 1)) forwards;
+      }
+
+      .rdp-caption_after_enter {
+        animation: rdp-fade_in var(--rdp-animation_duration, 0.3s)
+          var(--rdp-animation_timing, cubic-bezier(0.4, 0, 0.2, 1)) forwards;
+      }
+
+      .rdp-caption_after_exit {
+        animation: rdp-fade_out var(--rdp-animation_duration, 0.3s)
+          var(--rdp-animation_timing, cubic-bezier(0.4, 0, 0.2, 1)) forwards;
+      }
+
+      .rdp-caption_before_enter {
+        animation: rdp-fade_in var(--rdp-animation_duration, 0.3s)
+          var(--rdp-animation_timing, cubic-bezier(0.4, 0, 0.2, 1)) forwards;
+      }
+
+      .rdp-caption_before_exit {
+        animation: rdp-fade_out var(--rdp-animation_duration, 0.3s)
+          var(--rdp-animation_timing, cubic-bezier(0.4, 0, 0.2, 1)) forwards;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .rdp-weeks_before_enter,
+        .rdp-weeks_before_exit,
+        .rdp-weeks_after_enter,
+        .rdp-weeks_after_exit,
+        .rdp-caption_after_enter,
+        .rdp-caption_after_exit,
+        .rdp-caption_before_enter,
+        .rdp-caption_before_exit {
+          animation: none;
+        }
+      }
+      ```
+
+    </Steps>
+
+  </TabsContent>
+</Tabs>
+
+## Usage
+
+```tsx
+import { Calendar } from "@/components/ui/calendar";
+```
+
+```tsx
+const [date, setDate] = React.useState<Date | undefined>(new Date());
+
+return (
+  <Calendar
+    mode="single"
+    selected={date}
+    onSelect={setDate}
+    className="rounded-lg border"
+  />
+);
+```
+
+See the [React DayPicker](https://react-day-picker.js.org) documentation for more information.
+
+## Animate
+
+You can animate the calendar by adding the `animate` prop.
+
+```tsx add=2 noCopy
+<Calendar
+  animate
+  mode="single"
+/>
+```
+
+<ComponentShowcase name="calendar-animate-demo" />
+
+## Examples
+
+### Simple Calendar
+
+<ComponentShowcase name="calendar-simple-demo" />
+
+### Multiple Months
+
+You can display multiple months by adding the `numberOfMonths` prop. For example, to display 2 months side by side, you can use the following code:
+
+```tsx add=2 noCopy
+<Calendar
+  multipleMonths={2}
+  mode="single"
+/>
+```
+
+<ComponentShowcase name="calendar-multiple-months-demo" />
+
+
+### Single Selection
+
+You can use `mode="single"` to allow a single date to be selected.
+
+```tsx add=2 noCopy
+<Calendar
+  mode="single"
+/>
+```
+
+<ComponentShowcase name="calendar-simple-demo" />
+
+### Multiple Selection
+
+You can use `mode="multiple"` to allow multiple dates to be selected.
+You can also use the `max` prop to limit the number of dates that can be selected.
+
+```tsx add=2 noCopy
+<Calendar
+  mode="multiple"
+/>
+```
+
+<ComponentShowcase name="calendar-multiple-selection-demo" />
+
+### Range Selection
+
+You can use `mode="range"` to allow a range of dates to be selected.
+
+```tsx add=2 noCopy
+<Calendar
+  mode="range"
+/>
+```
+
+<ComponentShowcase name="calendar-range-selection-demo" />
+
+<ComponentShowcase name="calendar-multi-months-range-selection-demo" />

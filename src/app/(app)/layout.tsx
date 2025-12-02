@@ -1,15 +1,12 @@
 import { Header } from "components/composed/header";
-import { PureUILayoutWrapper } from "components/composed/content-ui";
+import { MobileMenu } from "components/composed/mobile-menu";
 
-export default function PureUILayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex flex-col min-h-svh">
+    <div className="relative z-10 flex min-h-svh flex-col">
       <Header />
-      <PureUILayoutWrapper>{children}</PureUILayoutWrapper>
+      <MobileMenu />
+      <main className="flex flex-1 flex-col">{children}</main>
     </div>
   );
 }

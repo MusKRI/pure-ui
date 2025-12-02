@@ -83,50 +83,56 @@ const pureUIComponents = [
     id: "accordion",
     title: "Accordion",
     type: "link",
-    href: "/components/accordion",
+    href: "/docs/components/accordion",
   },
   {
     id: "avatar",
     title: "Avatar",
     type: "link",
-    href: "/components/avatar",
+    href: "/docs/components/avatar",
     tag: "NEW",
   },
   {
     id: "button",
     title: "Button",
     type: "link",
-    href: "/components/button",
+    href: "/docs/components/button",
   },
   {
     id: "button-group",
     title: "Button Group",
     type: "link",
-    href: "/components/button-group",
+    href: "/docs/components/button-group",
   },
+  // {
+  //   id: "calendar",
+  //   title: "Calendar",
+  //   type: "link",
+  //   href: "/docs/components/calendar",
+  // },
   {
     id: "card",
     title: "Card",
     type: "link",
-    href: "/components/card",
+    href: "/docs/components/card",
   },
   {
     id: "checkbox",
     title: "Checkbox",
     type: "link",
-    href: "/components/checkbox",
+    href: "/docs/components/checkbox",
   },
   {
     id: "detached-triggers",
     title: "Detached Triggers",
     type: "group",
-    href: "/components/detached-triggers",
+    href: "/docs/components/detached-triggers",
     defaultExpanded: false,
     children: [
       {
         id: "dialog",
         title: "Dialog",
-        href: "/components/detached-triggers/dialog",
+        href: "/docs/components/detached-triggers/dialog",
         type: "link",
       },
     ],
@@ -136,105 +142,105 @@ const pureUIComponents = [
     id: "dialog",
     title: "Dialog",
     type: "link",
-    href: "/components/dialog",
+    href: "/docs/components/dialog",
   },
   {
     id: "input",
     title: "Input",
     type: "link",
-    href: "/components/input",
+    href: "/docs/components/input",
   },
   {
     id: "input-group",
     title: "Input Group",
     type: "link",
-    href: "/components/input-group",
+    href: "/docs/components/input-group",
   },
   {
     id: "input-otp",
     title: "Input OTP",
     type: "link",
-    href: "/components/input-otp",
+    href: "/docs/components/input-otp",
   },
   {
     id: "kbd",
     title: "Kbd",
     type: "link",
-    href: "/components/kbd",
+    href: "/docs/components/kbd",
     tag: "NEW",
   },
   {
     id: "label",
     title: "Label",
     type: "link",
-    href: "/components/label",
+    href: "/docs/components/label",
   },
   {
     id: "menu",
     title: "Menu",
     type: "link",
-    href: "/components/menu",
+    href: "/docs/components/menu",
   },
   {
     id: "number-field",
     title: "Number Field",
     type: "link",
-    href: "/components/number-field",
+    href: "/docs/components/number-field",
     tag: "NEW",
   },
   {
     id: "popover",
     title: "Popover",
     type: "link",
-    href: "/components/popover",
+    href: "/docs/components/popover",
   },
   {
     id: "scroll-area",
     title: "Scroll Area",
     type: "link",
-    href: "/components/scroll-area",
+    href: "/docs/components/scroll-area",
   },
   {
     id: "select",
     title: "Select",
     type: "link",
-    href: "/components/select",
+    href: "/docs/components/select",
   },
   {
     id: "separator",
     title: "Separator",
     type: "link",
-    href: "/components/separator",
+    href: "/docs/components/separator",
   },
   {
     id: "spinner",
     title: "Spinner",
     type: "link",
-    href: "/components/spinner",
+    href: "/docs/components/spinner",
   },
   {
     id: "switch",
     title: "Switch",
     type: "link",
-    href: "/components/switch",
+    href: "/docs/components/switch",
   },
   {
     id: "textarea",
     title: "Textarea",
     type: "link",
-    href: "/components/textarea",
+    href: "/docs/components/textarea",
   },
   {
     id: "toast",
     title: "Toast",
     type: "link",
-    href: "/components/toast",
+    href: "/docs/components/toast",
   },
   {
     id: "tooltip",
     title: "Tooltip",
     type: "link",
-    href: "/components/tooltip",
+    href: "/docs/components/tooltip",
   },
 ] satisfies SidebarItem[];
 
@@ -244,11 +250,11 @@ export const pureUISidebarConfig = {
 };
 
 export const getSidebarConfig = (pathname: string): SidebarItem[] => {
+  if (pathname.startsWith("/docs/components")) {
+    return pureUISidebarConfig.components;
+  }
   if (pathname.startsWith("/docs")) {
     return pureUISidebarConfig.docs;
-  }
-  if (pathname.startsWith("/components")) {
-    return pureUISidebarConfig.components;
   }
   return [];
 };

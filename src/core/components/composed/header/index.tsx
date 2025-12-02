@@ -15,7 +15,7 @@ export function Header() {
           <div className="mr-6 sm:mr-12 flex gap-2 md:gap-0">
             <PureUISidebarToggleButton />
 
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1 max-md:hidden">
               <Link href="/" className="flex items-center gap-1">
                 <PureUILogo className="w-6 h-6 text-primary" />
                 <div

@@ -14,43 +14,24 @@ import {
 type SidebarItemProps = {
   item: SidebarItem;
   pathname: string;
-  handleClosingSidebar: () => void;
 };
 
-export function SidebarItem({
-  item,
-  pathname,
-  handleClosingSidebar,
-}: SidebarItemProps) {
+export function SidebarItem({ item, pathname }: SidebarItemProps) {
   const ifSidebarLink = isSidebarLink(item);
 
   if (ifSidebarLink) {
-    return (
-      <SidebarLinkItem
-        item={item}
-        pathname={pathname}
-        handleClosingSidebar={handleClosingSidebar}
-      />
-    );
+    return <SidebarLinkItem item={item} pathname={pathname} />;
   }
 
-  return (
-    <SidebarGroupItem
-      item={item}
-      pathname={pathname}
-      handleClosingSidebar={handleClosingSidebar}
-    />
-  );
+  return <SidebarGroupItem item={item} pathname={pathname} />;
 }
 
 function SidebarLinkItem({
   item,
   pathname,
-  handleClosingSidebar,
 }: {
   item: SidebarLinkItem;
   pathname: string;
-  handleClosingSidebar: () => void;
 }) {
   return (
     <Link
@@ -62,7 +43,6 @@ function SidebarLinkItem({
           ? ["text-sidebar-primary", "bg-sidebar-accent/60", "font-medium"]
           : ["text-sidebar-foreground/60 hover:text-sidebar-primary"]
       )}
-      onClick={handleClosingSidebar}
     >
       {item.title}
       {item.tag && (
@@ -77,11 +57,9 @@ function SidebarLinkItem({
 function SidebarGroupItem({
   item,
   pathname,
-  handleClosingSidebar,
 }: {
   item: SidebarGroupItem;
   pathname: string;
-  handleClosingSidebar: () => void;
 }) {
   const [isExpanded, setIsExpanded] = useState(item.defaultExpanded ?? false);
   const isActive = item.href ? pathname === item.href : false;
@@ -135,8 +113,6 @@ function SidebarGroupItem({
             if (isActive) {
               e.preventDefault();
               handleGroupClick();
-            } else {
-              handleClosingSidebar();
             }
           }}
         >
@@ -166,7 +142,6 @@ function SidebarGroupItem({
                   key={child.id}
                   item={child}
                   pathname={pathname}
-                  handleClosingSidebar={handleClosingSidebar}
                 />
               ))}
             </div>

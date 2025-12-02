@@ -1,3 +1,9 @@
+type HeaderLink = {
+  label: string;
+  href: string;
+  tag?: string;
+};
+
 export const pureUIHeaderLinks = [
   {
     label: "Docs",
@@ -5,10 +11,11 @@ export const pureUIHeaderLinks = [
   },
   {
     label: "Components",
-    href: "/components",
+    href: "/docs/components",
   },
   {
     label: "Blocks",
-    href: "#",
+    href: "/blocks",
+    tag: "NEW",
   },
-] as const;
+] satisfies HeaderLink[];
