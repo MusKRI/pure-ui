@@ -61,20 +61,29 @@ const fileToRelativePath = (
 /**
  * Converts a relative file path to a Next.js static path array
  * Removes "index" from the path since index.mdx files map to the directory path
+ * Also filters to only include docs paths and removes the 'docs' prefix
  * Example:
- * - "docs/index" -> ["docs"]
- * - "docs/get-started" -> ["docs", "get-started"]
- * - "docs/installation/nextjs" -> ["docs", "installation", "nextjs"]
- * - "components/detached-triggers/dialog" -> ["components", "detached-triggers", "dialog"]
+ * - "docs/index" -> [] (for /docs route)
+ * - "docs/get-started" -> ["get-started"]
+ * - "docs/installation/nextjs" -> ["installation", "nextjs"]
+ * - "components/button" -> (filtered out, not a docs path)
  */
-const relativePathToStaticPath = (relativePath: string): StaticPath => {
+const relativePathToStaticPath = (relativePath: string): StaticPath | null => {
   const parts = relativePath.split("/").filter(Boolean);
 
-  // Remove "index" from the end if present (e.g., ["docs", "index"] -> ["docs"])
+  // Only process paths that start with 'docs'
+  if (parts[0] !== "docs") {
+    return null;
+  }
+
+  // Remove 'docs' prefix
+  const withoutDocs = parts.slice(1);
+
+  // Remove "index" from the end if present (e.g., ["index"] -> [])
   const filteredParts =
-    parts.length > 1 && parts[parts.length - 1] === "index"
-      ? parts.slice(0, -1)
-      : parts;
+    withoutDocs.length > 0 && withoutDocs[withoutDocs.length - 1] === "index"
+      ? withoutDocs.slice(0, -1)
+      : withoutDocs;
 
   return {
     path: filteredParts,
@@ -106,6 +115,7 @@ export const generateStaticPaths = (): Effect.Effect<
     const staticPaths = pipe(
       relativePaths,
       Array.map(relativePathToStaticPath),
+      Array.filter((path): path is StaticPath => path !== null), // Filter out nulls
       Array.dedupe // Remove any potential duplicates
     );
 

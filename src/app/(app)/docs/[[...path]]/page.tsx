@@ -76,6 +76,8 @@ export async function generateMetadata(props: PageProps<"/docs/[[...path]]">) {
 export async function generateStaticParams() {
   const staticPaths = await getStaticPaths();
 
+  console.log("staticPaths", staticPaths);
+
   return staticPaths;
 }
 
