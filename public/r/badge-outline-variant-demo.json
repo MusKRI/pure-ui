@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "badge-outline-variant-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "badge"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/examples/badge/badge-outline-variant-demo.tsx",
+      "content": "import { Badge } from \"@/registry/pure-ui/ui/badge\";\r\n\r\nexport function BadgeOutlineVariantDemo() {\r\n  return (\r\n    <div className=\"flex flex-wrap items-center gap-2 md:flex-row\">\r\n      <Badge variant=\"outline\" shape=\"bar\">\r\n        Outline\r\n      </Badge>\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

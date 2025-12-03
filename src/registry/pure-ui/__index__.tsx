@@ -42,6 +42,24 @@ export const Index: Record<string, Record<string, any>> = {
       categories: undefined,
       meta: undefined,
     },
+    "badge": {
+      name: "badge",
+      description: "An easily stylable badge component.",
+      type: "registry:ui",
+      registryDependencies: undefined,
+      files: [{
+        path: "registry/pure-ui/ui/badge/index.tsx",
+        type: "registry:ui",
+        target: "components/ui/badge.tsx"
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/ui/badge/index.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
     "button": {
       name: "button",
       description: "A customizable button component",
@@ -738,6 +756,168 @@ export const Index: Record<string, Record<string, any>> = {
       }],
       component: React.lazy(async () => {
         const mod = await import("@/registry/pure-ui/examples/avatar/avatar-grouping-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "badge-demo": {
+      name: "badge-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["badge"],
+      files: [{
+        path: "registry/pure-ui/examples/badge/badge-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/badge/badge-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "badge-simple-shape-demo": {
+      name: "badge-simple-shape-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["badge"],
+      files: [{
+        path: "registry/pure-ui/examples/badge/badge-simple-shape-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/badge/badge-simple-shape-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "badge-bar-shape-demo": {
+      name: "badge-bar-shape-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["badge"],
+      files: [{
+        path: "registry/pure-ui/examples/badge/badge-bar-shape-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/badge/badge-bar-shape-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "badge-dot-shape-demo": {
+      name: "badge-dot-shape-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["badge"],
+      files: [{
+        path: "registry/pure-ui/examples/badge/badge-dot-shape-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/badge/badge-dot-shape-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "badge-default-variant-demo": {
+      name: "badge-default-variant-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["badge"],
+      files: [{
+        path: "registry/pure-ui/examples/badge/badge-default-variant-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/badge/badge-default-variant-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "badge-destructive-variant-demo": {
+      name: "badge-destructive-variant-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["badge"],
+      files: [{
+        path: "registry/pure-ui/examples/badge/badge-destructive-variant-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/badge/badge-destructive-variant-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "badge-secondary-variant-demo": {
+      name: "badge-secondary-variant-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["badge"],
+      files: [{
+        path: "registry/pure-ui/examples/badge/badge-secondary-variant-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/badge/badge-secondary-variant-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "badge-outline-variant-demo": {
+      name: "badge-outline-variant-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["badge"],
+      files: [{
+        path: "registry/pure-ui/examples/badge/badge-outline-variant-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/badge/badge-outline-variant-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "badge-custom-demo": {
+      name: "badge-custom-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["badge"],
+      files: [{
+        path: "registry/pure-ui/examples/badge/badge-custom-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/badge/badge-custom-demo.tsx")
         const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
         return { default: mod.default || mod[exportName] }
       }),

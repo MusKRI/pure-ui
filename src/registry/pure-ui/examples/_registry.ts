@@ -181,6 +181,107 @@ export const pureUICompExamples: Registry["items"] = [
     ],
   },
 
+  // Badge
+  {
+    name: "badge-demo",
+    type: "registry:example",
+    registryDependencies: ["badge"],
+    files: [
+      {
+        path: "examples/badge/badge-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "badge-simple-shape-demo",
+    type: "registry:example",
+    registryDependencies: ["badge"],
+    files: [
+      {
+        path: "examples/badge/badge-simple-shape-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "badge-bar-shape-demo",
+    type: "registry:example",
+    registryDependencies: ["badge"],
+    files: [
+      {
+        path: "examples/badge/badge-bar-shape-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "badge-dot-shape-demo",
+    type: "registry:example",
+    registryDependencies: ["badge"],
+    files: [
+      {
+        path: "examples/badge/badge-dot-shape-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "badge-default-variant-demo",
+    type: "registry:example",
+    registryDependencies: ["badge"],
+    files: [
+      {
+        path: "examples/badge/badge-default-variant-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "badge-destructive-variant-demo",
+    type: "registry:example",
+    registryDependencies: ["badge"],
+    files: [
+      {
+        path: "examples/badge/badge-destructive-variant-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "badge-secondary-variant-demo",
+    type: "registry:example",
+    registryDependencies: ["badge"],
+    files: [
+      {
+        path: "examples/badge/badge-secondary-variant-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "badge-outline-variant-demo",
+    type: "registry:example",
+    registryDependencies: ["badge"],
+    files: [
+      {
+        path: "examples/badge/badge-outline-variant-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "badge-custom-demo",
+    type: "registry:example",
+    registryDependencies: ["badge"],
+    files: [
+      {
+        path: "examples/badge/badge-custom-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+
   // Button Group
   {
     name: "button-group-demo",

@@ -38,6 +38,27 @@ export const pureUIComponents: Registry["items"] = [
     dependencies: ["clsx", "tailwind-merge", "@base-ui-components/react"],
   },
 
+  // Badge
+  {
+    name: "badge",
+    type: "registry:ui",
+    title: "Badge",
+    description: "An easily stylable badge component.",
+    files: [
+      {
+        path: "ui/badge/index.tsx",
+        type: "registry:ui",
+        target: "components/ui/badge.tsx",
+      },
+    ],
+    dependencies: [
+      "tailwind-variants",
+      "clsx",
+      "tailwind-merge",
+      "@base-ui-components/react",
+    ],
+  },
+
   // Button
   {
     name: "button",

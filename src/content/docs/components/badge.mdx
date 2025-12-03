@@ -1,0 +1,113 @@
+---
+title: Badge
+description: Displays a badge or a component that looks like a badge.
+---
+
+<ComponentShowcase name="badge-demo" />
+
+## Installation
+
+<Tabs defaultValue="terminal">
+  <TabsList>
+    <TabsTrigger value="terminal">
+      <Terminal className="w-4 h-4" />
+      Terminal
+    </TabsTrigger>
+    <TabsTrigger value="manual">
+      <Code2 className="w-4 h-4" />
+      Manual
+    </TabsTrigger>
+  </TabsList>
+  <TabsContent value="terminal">
+    <InstallationCommands
+      type="registry-installation"
+      registryPath="badge"
+    />
+  </TabsContent>
+  <TabsContent value="manual">
+  <Steps>
+    <Step>Install Dependencies</Step>
+
+    <InstallationCommands
+      type="package-installation"
+      npmCommand="npm install @base-ui-components/react clsx tailwind-merge tailwind-variants"
+      pnpmCommand="pnpm add @base-ui-components/react clsx tailwind-merge tailwind-variants"
+      yarnCommand="yarn add @base-ui-components/react clsx tailwind-merge tailwind-variants"
+      bunCommand="bun add @base-ui-components/react clsx tailwind-merge tailwind-variants"
+    />
+    </Steps>
+
+    <Step>Add cn function to your utils</Step>
+
+    ```ts filename="lib/classes.ts"
+      import { clsx, type ClassValue } from "clsx";
+      import { twMerge } from "tailwind-merge";
+
+      export function cn(...inputs: ClassValue[]) {
+        return twMerge(clsx(inputs));
+      }
+    ```
+
+    <Step>Copy and paste the following code into your project</Step>
+
+    <ComponentCodePreview name="badge" />
+
+  </TabsContent>
+</Tabs>
+
+## Usage
+
+```tsx
+import { Badge } from "@/components/ui/badge";
+```
+
+```tsx
+<Badge
+  variant="default | outline | secondary | destructive"
+  shape="simple | bar | dot"
+>
+  Badge
+</Badge>
+```
+
+## Shape
+
+You can use the `shape` prop to change the shape of the badge.
+
+### Simple
+
+<ComponentShowcase name="badge-simple-shape-demo" />
+
+### Bar
+
+<ComponentShowcase name="badge-bar-shape-demo" />
+
+### Dot
+
+<ComponentShowcase name="badge-dot-shape-demo" />
+
+## Variants
+
+You can use the `variant` prop to change the variant of the badge.
+
+### Default
+
+<ComponentShowcase name="badge-default-variant-demo" />
+
+### Destructive
+
+<ComponentShowcase name="badge-destructive-variant-demo" />
+
+### Secondary
+
+<ComponentShowcase name="badge-secondary-variant-demo" />
+
+### Outline
+
+<ComponentShowcase name="badge-outline-variant-demo" />
+
+## Custom
+
+You can customize the badge as you want.
+
+<ComponentShowcase name="badge-custom-demo" />

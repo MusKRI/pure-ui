@@ -56,6 +56,25 @@
       ]
     },
     {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "An easily stylable badge component.",
+      "dependencies": [
+        "tailwind-variants",
+        "clsx",
+        "tailwind-merge",
+        "@base-ui-components/react"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/ui/badge/index.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/badge.tsx"
+        }
+      ]
+    },
+    {
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
@@ -778,6 +797,123 @@
       "files": [
         {
           "path": "src/registry/pure-ui/examples/avatar/avatar-grouping-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "badge-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "badge"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/badge/badge-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "badge-simple-shape-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "badge"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/badge/badge-simple-shape-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "badge-bar-shape-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "badge"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/badge/badge-bar-shape-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "badge-dot-shape-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "badge"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/badge/badge-dot-shape-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "badge-default-variant-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "badge"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/badge/badge-default-variant-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "badge-destructive-variant-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "badge"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/badge/badge-destructive-variant-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "badge-secondary-variant-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "badge"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/badge/badge-secondary-variant-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "badge-outline-variant-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "badge"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/badge/badge-outline-variant-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "badge-custom-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "badge"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/badge/badge-custom-demo.tsx",
           "type": "registry:example"
         }
       ]

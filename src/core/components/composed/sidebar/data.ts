@@ -90,6 +90,12 @@ const pureUIComponents = [
     title: "Avatar",
     type: "link",
     href: "/docs/components/avatar",
+  },
+  {
+    id: "badge",
+    title: "Badge",
+    type: "link",
+    href: "/docs/components/badge",
     tag: "NEW",
   },
   {
@@ -167,7 +173,6 @@ const pureUIComponents = [
     title: "Kbd",
     type: "link",
     href: "/docs/components/kbd",
-    tag: "NEW",
   },
   {
     id: "label",

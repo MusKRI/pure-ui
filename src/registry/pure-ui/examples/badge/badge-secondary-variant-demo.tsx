@@ -1,0 +1,11 @@
+import { Badge } from "@/registry/pure-ui/ui/badge";
+
+export function BadgeSecondaryVariantDemo() {
+  return (
+    <div className="flex flex-wrap items-center gap-2 md:flex-row">
+      <Badge variant="secondary" shape="bar">
+        Secondary
+      </Badge>
+    </div>
+  );
+}
