@@ -18,7 +18,7 @@ const pureUIDocs = [
     title: "Installation",
     type: "group",
     href: "/docs/installation",
-    defaultExpanded: true,
+    defaultExpanded: false,
     children: [
       {
         id: "nextjs",
@@ -254,12 +254,13 @@ export const pureUISidebarConfig = {
   components: pureUIComponents,
 };
 
-export const getSidebarConfig = (pathname: string): SidebarItem[] => {
-  if (pathname.startsWith("/docs/components")) {
-    return pureUISidebarConfig.components;
-  }
-  if (pathname.startsWith("/docs")) {
-    return pureUISidebarConfig.docs;
-  }
-  return [];
-};
+export const sidebarTree = [
+  {
+    label: "Docs",
+    items: pureUIDocs,
+  },
+  {
+    label: "Components",
+    items: pureUIComponents,
+  },
+];

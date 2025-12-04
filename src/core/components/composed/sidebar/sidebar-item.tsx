@@ -41,7 +41,9 @@ function SidebarLinkItem({
         "text-sm flex items-center gap-2 py-1.5 px-4 rounded-md font-normal",
         pathname === item.href
           ? ["text-sidebar-primary", "bg-sidebar-accent/60", "font-medium"]
-          : ["text-sidebar-foreground/60 hover:text-sidebar-primary"]
+          : [
+              "text-sidebar-foreground/80 hover:text-sidebar-primary hover:bg-sidebar-accent/40",
+            ]
       )}
     >
       {item.title}
@@ -107,7 +109,9 @@ function SidebarGroupItem({
             "flex items-center justify-between px-4 py-1.5 rounded-md cursor-pointer text-sm font-medium",
             isActive
               ? ["text-sidebar-primary", "bg-sidebar-accent/60"]
-              : ["text-muted-foreground hover:text-foreground"]
+              : [
+                  "text-sidebar-foreground/80 hover:text-sidebar-primary hover:bg-sidebar-accent/40",
+                ]
           )}
           onClick={(e) => {
             if (isActive) {
