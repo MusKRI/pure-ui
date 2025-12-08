@@ -24,7 +24,7 @@ export const TooltipDelayDemo = () => {
 
         <Tooltip>
           <TooltipTrigger
-            closeDelay={1000}
+            closeDelay={1000000000}
             render={<Button size="sm" variant="outline" radius="none" />}
           >
             Delay Close (1000ms)

@@ -191,6 +191,7 @@ function TooltipPositioner({
         side={side}
         data-slot="tooltip-positioner"
         className={cn(
+          "z-100",
           (side === "inline-end" || side === "inline-start") &&
             "**:data-[slot=tooltip-arrow]:hidden",
           className

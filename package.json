@@ -7,7 +7,7 @@
     "node": "22.x"
   },
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev --turbopack --port 3001",
     "build": "next build --turbopack",
     "start": "next start -p 3001 -H 0.0.0.0",
     "lint": "biome check",

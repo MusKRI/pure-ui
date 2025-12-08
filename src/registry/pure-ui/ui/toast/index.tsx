@@ -71,7 +71,7 @@ function ToastList({
         data-slot="toast-viewport"
         data-position={position}
         className={cn(
-          "fixed mx-auto max-w-90 [--toast-inset:--spacing(4)] sm:[--toast-inset:--spacing(8)] w-[calc(100%-var(--toast-inset)*2)]",
+          "fixed z-100 mx-auto max-w-90 [--toast-inset:--spacing(4)] sm:[--toast-inset:--spacing(8)] w-[calc(100%-var(--toast-inset)*2)]",
           // Vertical positioning
           "data-[position*=top]:top-(--toast-inset)",
           "data-[position*=bottom]:bottom-(--toast-inset)",
