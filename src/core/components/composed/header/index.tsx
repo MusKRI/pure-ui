@@ -9,7 +9,7 @@ import { GithubButton } from "./github-button";
 
 export function Header() {
   return (
-    <header className="fixed top-0 z-10 w-full backdrop-blur-lg border-b bg-sidebar">
+    <header className="fixed top-0 z-40 w-full backdrop-blur-lg border-b bg-sidebar">
       <div className="mx-auto w-full max-w-full">
         <div className="flex h-16 items-center justify-between gap-2 md:gap-4 px-6">
           <div className="mr-6 sm:mr-12 flex gap-2 md:gap-0">

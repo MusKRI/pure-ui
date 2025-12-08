@@ -3361,6 +3361,25 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "calendar-block",
+      "type": "registry:block",
+      "registryDependencies": [
+        "calendar"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/blocks/calendar/calendar-block/index.tsx",
+          "type": "registry:file",
+          "target": "blocks/calendar/calendar-block.tsx"
+        },
+        {
+          "path": "src/registry/pure-ui/blocks/calendar/calendar-block/test-check.tsx",
+          "type": "registry:file",
+          "target": "blocks/calendar/calendar-block/test-check.tsx"
+        }
+      ]
     }
   ]
 }

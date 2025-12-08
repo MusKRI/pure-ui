@@ -1,0 +1,31 @@
+services:
+  app:
+    build: .
+    container_name: pure-ui
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      # Add other envs you need (use .env for sensitive values)
+    expose:
+      - "3001"
+    # If you want to mount env file (optional):
+    env_file:
+      - .env
+
+  caddy:
+    image: caddy:latest
+    container_name: caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - app
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+
+volumes:
+  caddy_data:
+  caddy_config:

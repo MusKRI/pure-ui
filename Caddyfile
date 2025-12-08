@@ -1,0 +1,3 @@
+pure.kam-ui.com {
+  reverse_proxy app:3001
+}

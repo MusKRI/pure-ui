@@ -20,6 +20,9 @@ import {
 import { InstallationCommands } from "./components/installation-commands";
 import { ComponentCodePreview } from "./components/component-code-preview";
 
+// Blocks
+import { BlockShowcase } from "./components/block-showcase";
+
 export const mdxComponents: MDXComponents = {
   h1: ({ className, ...props }: React.ComponentProps<"h1">) => (
     <h1
@@ -165,6 +168,8 @@ export const mdxComponents: MDXComponents = {
 
   InstallationCommands,
   ComponentCodePreview,
+
+  BlockShowcase,
 
   // Icons
   Code2: SourceCodeIcon,

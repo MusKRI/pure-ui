@@ -1,7 +1,6 @@
 import { cn } from "@/lib/classes";
 import { ParsedContent } from "@/lib/content-parser";
 import { CopyMarkdown } from "./copy-markdown";
-import { Tick01Icon } from "@/core/icons/pack1";
 
 type Props = {
   content: ParsedContent;
@@ -9,7 +8,7 @@ type Props = {
 };
 
 export const ContentInfoHeader = ({ content, relativePath }: Props) => {
-  const { title, description, features = [] } = content.frontmatter;
+  const { title, description } = content.frontmatter;
 
   const headingsLength = content.headings.length > 0;
 

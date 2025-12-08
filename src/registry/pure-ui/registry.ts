@@ -4,6 +4,7 @@ import { z } from "zod";
 import { pureUIComponents } from "./ui/_registry";
 import { pureUILib } from "./lib/_registry";
 import { pureUICompExamples } from "./examples/_registry";
+import { pureUIBlocks } from "./blocks/_registry";
 
 const PURE_UI_STYLE = {
   type: "registry:style",
@@ -25,5 +26,6 @@ export const registry = {
     ...pureUIComponents,
     ...pureUILib,
     ...pureUICompExamples,
+    ...pureUIBlocks,
   ]),
 } satisfies Registry;

@@ -20,7 +20,7 @@ export default function BlocksIndexPage() {
           <Button
             variant="default"
             radius="full"
-            render={<Link href="/blocks" />}
+            render={<Link href="/blocks/calendar" />}
             nativeButton={false}
           >
             Browse Blocks <ArrowRightIcon className="size-4" />
