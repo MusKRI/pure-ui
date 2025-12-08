@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "calendar-disabled-weekends-block",
+  "type": "registry:block",
+  "registryDependencies": [
+    "calendar"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/blocks/calendar/calendar-8-block.tsx",
+      "content": "\"use client\";\r\n\r\nimport { useState } from \"react\";\r\nimport { DateRange } from \"react-day-picker\";\r\n\r\nimport { Calendar } from \"@/registry/pure-ui/ui/calendar\";\r\n\r\nexport function Calendar8Block() {\r\n  const [dateRange, setDateRange] = useState<DateRange | undefined>({\r\n    from: new Date(2025, 5, 17),\r\n    to: new Date(2025, 5, 20),\r\n  });\r\n\r\n  return (\r\n    <div className=\"flex flex-col gap-2 items-center justify-center p-5 h-[500px]\">\r\n      <Calendar\r\n        animate\r\n        mode=\"range\"\r\n        defaultMonth={dateRange?.from}\r\n        selected={dateRange}\r\n        onSelect={setDateRange}\r\n        numberOfMonths={2}\r\n        disabled={{ dayOfWeek: [0, 6] }}\r\n        excludeDisabled\r\n      />\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:file",
+      "target": "blocks/calendar/calendar-8-block.tsx"
+    }
+  ]
+}

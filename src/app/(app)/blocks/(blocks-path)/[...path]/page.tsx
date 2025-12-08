@@ -42,7 +42,7 @@ export async function generateMetadata(props: PageProps<"/blocks/[...path]">) {
 
   return {
     metadataBase: new URL(getAppUrl()),
-    title: `${title} - Pure UI`,
+    title: `${title} Blocks - Pure UI`,
     description: description,
     keywords: [
       "pure ui",

@@ -1446,96 +1446,6 @@ export const Index: Record<string, Record<string, any>> = {
       categories: undefined,
       meta: undefined,
     },
-    "calendar-simple-demo": {
-      name: "calendar-simple-demo",
-      description: "",
-      type: "registry:example",
-      registryDependencies: ["calendar"],
-      files: [{
-        path: "registry/pure-ui/examples/calendar/calendar-simple-demo.tsx",
-        type: "registry:example",
-        target: ""
-      }],
-      component: React.lazy(async () => {
-        const mod = await import("@/registry/pure-ui/examples/calendar/calendar-simple-demo.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-        return { default: mod.default || mod[exportName] }
-      }),
-      categories: undefined,
-      meta: undefined,
-    },
-    "calendar-multiple-months-demo": {
-      name: "calendar-multiple-months-demo",
-      description: "",
-      type: "registry:example",
-      registryDependencies: ["calendar"],
-      files: [{
-        path: "registry/pure-ui/examples/calendar/calendar-multiple-months-demo.tsx",
-        type: "registry:example",
-        target: ""
-      }],
-      component: React.lazy(async () => {
-        const mod = await import("@/registry/pure-ui/examples/calendar/calendar-multiple-months-demo.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-        return { default: mod.default || mod[exportName] }
-      }),
-      categories: undefined,
-      meta: undefined,
-    },
-    "calendar-multiple-selection-demo": {
-      name: "calendar-multiple-selection-demo",
-      description: "",
-      type: "registry:example",
-      registryDependencies: ["calendar"],
-      files: [{
-        path: "registry/pure-ui/examples/calendar/calendar-multiple-selection-demo.tsx",
-        type: "registry:example",
-        target: ""
-      }],
-      component: React.lazy(async () => {
-        const mod = await import("@/registry/pure-ui/examples/calendar/calendar-multiple-selection-demo.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-        return { default: mod.default || mod[exportName] }
-      }),
-      categories: undefined,
-      meta: undefined,
-    },
-    "calendar-range-selection-demo": {
-      name: "calendar-range-selection-demo",
-      description: "",
-      type: "registry:example",
-      registryDependencies: ["calendar"],
-      files: [{
-        path: "registry/pure-ui/examples/calendar/calendar-range-selection-demo.tsx",
-        type: "registry:example",
-        target: ""
-      }],
-      component: React.lazy(async () => {
-        const mod = await import("@/registry/pure-ui/examples/calendar/calendar-range-selection-demo.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-        return { default: mod.default || mod[exportName] }
-      }),
-      categories: undefined,
-      meta: undefined,
-    },
-    "calendar-multi-months-range-selection-demo": {
-      name: "calendar-multi-months-range-selection-demo",
-      description: "",
-      type: "registry:example",
-      registryDependencies: ["calendar"],
-      files: [{
-        path: "registry/pure-ui/examples/calendar/calendar-multi-months-range-selection-demo.tsx",
-        type: "registry:example",
-        target: ""
-      }],
-      component: React.lazy(async () => {
-        const mod = await import("@/registry/pure-ui/examples/calendar/calendar-multi-months-range-selection-demo.tsx")
-        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-        return { default: mod.default || mod[exportName] }
-      }),
-      categories: undefined,
-      meta: undefined,
-    },
     "card-demo": {
       name: "card-demo",
       description: "",
@@ -4314,16 +4224,138 @@ export const Index: Record<string, Record<string, any>> = {
       type: "registry:block",
       registryDependencies: ["calendar"],
       files: [{
-        path: "registry/pure-ui/blocks/calendar/calendar-block/index.tsx",
+        path: "registry/pure-ui/blocks/calendar/calendar-block.tsx",
         type: "registry:file",
         target: "blocks/calendar/calendar-block.tsx"
-      },{
-        path: "registry/pure-ui/blocks/calendar/calendar-block/test-check.tsx",
-        type: "registry:file",
-        target: "blocks/calendar/calendar-block/test-check.tsx"
       }],
       component: React.lazy(async () => {
-        const mod = await import("@/registry/pure-ui/blocks/calendar/calendar-block/index.tsx")
+        const mod = await import("@/registry/pure-ui/blocks/calendar/calendar-block.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "calendar-multiple-months-single-selection-block": {
+      name: "calendar-multiple-months-single-selection-block",
+      description: "",
+      type: "registry:block",
+      registryDependencies: ["calendar"],
+      files: [{
+        path: "registry/pure-ui/blocks/calendar/calendar-2-block.tsx",
+        type: "registry:file",
+        target: "blocks/calendar/calendar-2-block.tsx"
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/blocks/calendar/calendar-2-block.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "calendar-multiple-months-multiple-selection-block": {
+      name: "calendar-multiple-months-multiple-selection-block",
+      description: "",
+      type: "registry:block",
+      registryDependencies: ["calendar"],
+      files: [{
+        path: "registry/pure-ui/blocks/calendar/calendar-3-block.tsx",
+        type: "registry:file",
+        target: "blocks/calendar/calendar-3-block.tsx"
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/blocks/calendar/calendar-3-block.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "calendar-multiple-months-range-selection-block": {
+      name: "calendar-multiple-months-range-selection-block",
+      description: "",
+      type: "registry:block",
+      registryDependencies: ["calendar"],
+      files: [{
+        path: "registry/pure-ui/blocks/calendar/calendar-4-block.tsx",
+        type: "registry:file",
+        target: "blocks/calendar/calendar-4-block.tsx"
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/blocks/calendar/calendar-4-block.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "calendar-range-selection-minimum-days-block": {
+      name: "calendar-range-selection-minimum-days-block",
+      description: "",
+      type: "registry:block",
+      registryDependencies: ["calendar"],
+      files: [{
+        path: "registry/pure-ui/blocks/calendar/calendar-5-block.tsx",
+        type: "registry:file",
+        target: "blocks/calendar/calendar-5-block.tsx"
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/blocks/calendar/calendar-5-block.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "calendar-range-selection-minimum-and-maximum-days-block": {
+      name: "calendar-range-selection-minimum-and-maximum-days-block",
+      description: "",
+      type: "registry:block",
+      registryDependencies: ["calendar"],
+      files: [{
+        path: "registry/pure-ui/blocks/calendar/calendar-6-block.tsx",
+        type: "registry:file",
+        target: "blocks/calendar/calendar-6-block.tsx"
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/blocks/calendar/calendar-6-block.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "calendar-disabled-dates-block": {
+      name: "calendar-disabled-dates-block",
+      description: "",
+      type: "registry:block",
+      registryDependencies: ["calendar"],
+      files: [{
+        path: "registry/pure-ui/blocks/calendar/calendar-7-block.tsx",
+        type: "registry:file",
+        target: "blocks/calendar/calendar-7-block.tsx"
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/blocks/calendar/calendar-7-block.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "calendar-disabled-weekends-block": {
+      name: "calendar-disabled-weekends-block",
+      description: "",
+      type: "registry:block",
+      registryDependencies: ["calendar"],
+      files: [{
+        path: "registry/pure-ui/blocks/calendar/calendar-8-block.tsx",
+        type: "registry:file",
+        target: "blocks/calendar/calendar-8-block.tsx"
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/blocks/calendar/calendar-8-block.tsx")
         const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
         return { default: mod.default || mod[exportName] }
       }),

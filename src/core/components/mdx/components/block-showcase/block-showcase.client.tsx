@@ -11,6 +11,8 @@ import { SourcePreview } from "./source-preview";
 import { Button } from "@/registry/pure-ui/ui/button";
 import { cn } from "@/lib/classes";
 import { BlockShowcaseFiles } from "./block-showcase-files";
+import { CopyButton } from "../copy-button";
+import { BlockShowcaseCopyButton } from "./block-showcase-copy-button";
 
 interface BlockShowcaseClientProps {
   processedFiles: ExtendedPureUIFile[];
@@ -86,6 +88,7 @@ export function BlockShowcaseClient({
                 >
                   {showCode ? "Hide Code" : "Show Code"}
                 </Collapsible.Trigger>
+                <BlockShowcaseCopyButton value={currentFile?.content || ""} />
               </div>
             </div>
           </div>

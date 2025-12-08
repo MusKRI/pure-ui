@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "calendar-range-selection-minimum-and-maximum-days-block",
+  "type": "registry:block",
+  "registryDependencies": [
+    "calendar"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/blocks/calendar/calendar-6-block.tsx",
+      "content": "\"use client\";\r\n\r\nimport { useState } from \"react\";\r\nimport { DateRange } from \"react-day-picker\";\r\n\r\nimport { Calendar } from \"@/registry/pure-ui/ui/calendar\";\r\n\r\nexport function Calendar6Block() {\r\n  const [dateRange, setDateRange] = useState<DateRange | undefined>({\r\n    from: new Date(2025, 5, 18),\r\n    to: new Date(2025, 6, 7),\r\n  });\r\n\r\n  return (\r\n    <div className=\"flex flex-col gap-2 items-center justify-center p-5 h-[500px]\">\r\n      <Calendar\r\n        animate\r\n        mode=\"range\"\r\n        defaultMonth={dateRange?.from}\r\n        selected={dateRange}\r\n        onSelect={setDateRange}\r\n        numberOfMonths={2}\r\n        min={2}\r\n        max={20}\r\n      />\r\n      <div className=\"text-muted-foreground text-center text-xs\">\r\n        Your stay must be between 2 and 20 nights\r\n      </div>\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:file",
+      "target": "blocks/calendar/calendar-6-block.tsx"
+    }
+  ]
+}

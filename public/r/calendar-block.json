@@ -7,16 +7,10 @@
   ],
   "files": [
     {
-      "path": "src/registry/pure-ui/blocks/calendar/calendar-block/index.tsx",
+      "path": "src/registry/pure-ui/blocks/calendar/calendar-block.tsx",
       "content": "\"use client\";\r\n\r\nimport { useState } from \"react\";\r\nimport { Calendar } from \"@/registry/pure-ui/ui/calendar\";\r\n\r\nexport function CalendarBlock() {\r\n  const [date, setDate] = useState<Date | undefined>(new Date(2025, 5, 12));\r\n\r\n  return (\r\n    <div className=\"flex items-center justify-center p-5 h-[500px]\">\r\n      <Calendar\r\n        animate\r\n        mode=\"single\"\r\n        defaultMonth={date}\r\n        selected={date}\r\n        onSelect={setDate}\r\n        className=\"border shadow-sm\"\r\n      />\r\n    </div>\r\n  );\r\n}\r\n",
       "type": "registry:file",
       "target": "blocks/calendar/calendar-block.tsx"
-    },
-    {
-      "path": "src/registry/pure-ui/blocks/calendar/calendar-block/test-check.tsx",
-      "content": "export function TestCheck() {\r\n  return (\r\n    <div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n      <div>Test Check</div>\r\n    </div>\r\n  );\r\n}\r\n",
-      "type": "registry:file",
-      "target": "blocks/calendar/calendar-block/test-check.tsx"
     }
   ]
 }

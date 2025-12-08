@@ -72,7 +72,7 @@ export const mdxComponents: MDXComponents = {
   h4: ({ className, ...props }: React.ComponentProps<"h4">) => (
     <h4
       className={cn(
-        "PureH4 font-chillax mt-10 mb-3 scroll-m-24 text-lg font-medium tracking-tight",
+        "PureH4 font-chillax mt-10 mb-3 scroll-m-24 text-lg font-medium tracking-tight [.PureUIBlockShowcase+&]:mt-24",
         className
       )}
       {...props}

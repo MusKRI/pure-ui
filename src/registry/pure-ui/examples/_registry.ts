@@ -606,61 +606,6 @@ export const pureUICompExamples: Registry["items"] = [
       },
     ],
   },
-  {
-    name: "calendar-simple-demo",
-    type: "registry:example",
-    registryDependencies: ["calendar"],
-    files: [
-      {
-        path: "examples/calendar/calendar-simple-demo.tsx",
-        type: "registry:example",
-      },
-    ],
-  },
-  {
-    name: "calendar-multiple-months-demo",
-    type: "registry:example",
-    registryDependencies: ["calendar"],
-    files: [
-      {
-        path: "examples/calendar/calendar-multiple-months-demo.tsx",
-        type: "registry:example",
-      },
-    ],
-  },
-  {
-    name: "calendar-multiple-selection-demo",
-    type: "registry:example",
-    registryDependencies: ["calendar"],
-    files: [
-      {
-        path: "examples/calendar/calendar-multiple-selection-demo.tsx",
-        type: "registry:example",
-      },
-    ],
-  },
-  {
-    name: "calendar-range-selection-demo",
-    type: "registry:example",
-    registryDependencies: ["calendar"],
-    files: [
-      {
-        path: "examples/calendar/calendar-range-selection-demo.tsx",
-        type: "registry:example",
-      },
-    ],
-  },
-  {
-    name: "calendar-multi-months-range-selection-demo",
-    type: "registry:example",
-    registryDependencies: ["calendar"],
-    files: [
-      {
-        path: "examples/calendar/calendar-multi-months-range-selection-demo.tsx",
-        type: "registry:example",
-      },
-    ],
-  },
 
   // Card
   {
