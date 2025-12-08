@@ -1,0 +1,57 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches:
+      - main # deploy on pushes to this branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install ssh client (for ssh-keyscan)
+        run: sudo apt-get update && sudo apt-get install -y openssh-client
+
+      - name: Add server to known_hosts
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+        run: |
+          mkdir -p ~/.ssh
+          # add server fingerprint to known_hosts to avoid interactive prompt
+          ssh-keyscan -H "$HOST" >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+
+      - name: Setup private key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+
+      - name: Deploy via SSH (pull, build, restart)
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          port: ${{ secrets.DEPLOY_PORT }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          script: |
+            set -e
+            echo "Deploying branch $GITHUB_REF to ${{ secrets.DEPLOY_DIR }}"
+            cd ${{ secrets.DEPLOY_DIR }}
+
+            # Make sure we are on the right branch and force reset to remote
+            git fetch --all --prune
+            git checkout ${{ secrets.DEPLOY_BRANCH }} || git checkout -B ${{ secrets.DEPLOY_BRANCH }}
+            git reset --hard origin/${{ secrets.DEPLOY_BRANCH }}
+
+            # Build & restart containers
+            docker compose pull || true
+            docker compose up -d --build --remove-orphans
+
+            # cleanup old images
+            docker image prune -af || true
+
+            echo "Deployment finished"

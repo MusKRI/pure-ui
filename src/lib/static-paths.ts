@@ -60,30 +60,44 @@ const fileToRelativePath = (
 
 /**
  * Converts a relative file path to a Next.js static path array
+ * Filters to only include paths with the specified prefix and removes the prefix
  * Removes "index" from the path since index.mdx files map to the directory path
- * Also filters to only include docs paths and removes the 'docs' prefix
- * Example:
+ *
+ * @param relativePath - The relative path from content directory (e.g., "docs/index", "blocks/calendar")
+ * @param prefix - The content type prefix to filter by (e.g., "docs", "blocks")
+ * @returns StaticPath object or null if path doesn't match the prefix
+ *
+ * Examples for prefix "docs":
  * - "docs/index" -> [] (for /docs route)
  * - "docs/get-started" -> ["get-started"]
  * - "docs/installation/nextjs" -> ["installation", "nextjs"]
- * - "components/button" -> (filtered out, not a docs path)
+ * - "blocks/calendar" -> null (filtered out, not a docs path)
+ *
+ * Examples for prefix "blocks":
+ * - "blocks/calendar" -> ["calendar"]
+ * - "blocks/forms" -> ["forms"]
+ * - "docs/index" -> null (filtered out, not a blocks path)
  */
-const relativePathToStaticPath = (relativePath: string): StaticPath | null => {
+const relativePathToStaticPath = (
+  relativePath: string,
+  prefix: string
+): StaticPath | null => {
   const parts = relativePath.split("/").filter(Boolean);
 
-  // Only process paths that start with 'docs'
-  if (parts[0] !== "docs") {
+  // Only process paths that start with the specified prefix
+  if (parts[0] !== prefix) {
     return null;
   }
 
-  // Remove 'docs' prefix
-  const withoutDocs = parts.slice(1);
+  // Remove prefix
+  const withoutPrefix = parts.slice(1);
 
   // Remove "index" from the end if present (e.g., ["index"] -> [])
   const filteredParts =
-    withoutDocs.length > 0 && withoutDocs[withoutDocs.length - 1] === "index"
-      ? withoutDocs.slice(0, -1)
-      : withoutDocs;
+    withoutPrefix.length > 0 &&
+    withoutPrefix[withoutPrefix.length - 1] === "index"
+      ? withoutPrefix.slice(0, -1)
+      : withoutPrefix;
 
   return {
     path: filteredParts,
@@ -92,15 +106,15 @@ const relativePathToStaticPath = (relativePath: string): StaticPath | null => {
 
 /**
  * Generates all static paths by reading .mdx files from the content directory
+ * for a specific content type prefix (e.g., "docs", "blocks")
  * This ensures all actual content files are included, regardless of sidebar configuration
  *
+ * @param prefix - The content type prefix to filter by (e.g., "docs", "blocks")
  * @returns Effect that resolves to an array of StaticPath objects
  */
-export const generateStaticPaths = (): Effect.Effect<
-  readonly StaticPath[],
-  DirectoryReadError,
-  never
-> =>
+const generateStaticPathsForPrefix = (
+  prefix: string
+): Effect.Effect<readonly StaticPath[], DirectoryReadError, never> =>
   Effect.gen(function* () {
     const contentDir = join(process.cwd(), "src/content");
 
@@ -114,13 +128,37 @@ export const generateStaticPaths = (): Effect.Effect<
 
     const staticPaths = pipe(
       relativePaths,
-      Array.map(relativePathToStaticPath),
+      Array.map((path) => relativePathToStaticPath(path, prefix)),
       Array.filter((path): path is StaticPath => path !== null), // Filter out nulls
       Array.dedupe // Remove any potential duplicates
     );
 
     return staticPaths;
   });
+
+/**
+ * Generates all static paths for docs by reading .mdx files from the content directory
+ * This ensures all actual content files are included, regardless of sidebar configuration
+ *
+ * @returns Effect that resolves to an array of StaticPath objects
+ */
+export const generateStaticPaths = (): Effect.Effect<
+  readonly StaticPath[],
+  DirectoryReadError,
+  never
+> => generateStaticPathsForPrefix("docs");
+
+/**
+ * Generates all static paths for blocks by reading .mdx files from the content directory
+ * This ensures all actual content files are included, regardless of sidebar configuration
+ *
+ * @returns Effect that resolves to an array of StaticPath objects
+ */
+export const generateBlockStaticPaths = (): Effect.Effect<
+  readonly StaticPath[],
+  DirectoryReadError,
+  never
+> => generateStaticPathsForPrefix("blocks");
 
 /**
  * Helper function to run generateStaticPaths and return a Promise
@@ -131,9 +169,25 @@ export const generateStaticPaths = (): Effect.Effect<
  * export async function generateStaticParams() {
  *   return await getStaticPaths();
  * }
- *  */
+ */
 export const getStaticPaths = async (): Promise<StaticPath[]> => {
   const paths = await Effect.runPromise(generateStaticPaths());
+  // Convert readonly array to mutable array for Next.js compatibility
+  return [...paths];
+};
+
+/**
+ * Helper function to run generateBlockStaticPaths and return a Promise
+ * This is convenient for Next.js generateStaticParams which expects a Promise
+ *
+ * @example
+ *
+ * export async function generateStaticParams() {
+ *   return await getBlockStaticPaths();
+ * }
+ */
+export const getBlockStaticPaths = async (): Promise<StaticPath[]> => {
+  const paths = await Effect.runPromise(generateBlockStaticPaths());
   // Convert readonly array to mutable array for Next.js compatibility
   return [...paths];
 };
