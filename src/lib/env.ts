@@ -3,5 +3,5 @@ export function getAppUrl() {
     return "https://pure.kam-ui.com";
   }
 
-  return "http://localhost:3000";
+  return "http://localhost:3001";
 }
