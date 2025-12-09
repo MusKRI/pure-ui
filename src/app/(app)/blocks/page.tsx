@@ -2,7 +2,10 @@ import { ArrowRightIcon, PlusIcon } from "lucide-react";
 import Link from "next/link";
 
 import { Button } from "@/registry/pure-ui/ui/button";
-import { CalendarAnimateDemo } from "@/registry/pure-ui/examples/calendar/calendar-animate-demo";
+import { CalendarBlock } from "@/registry/pure-ui/blocks/calendar/calendar-block";
+import { Calendar2Block } from "@/registry/pure-ui/blocks/calendar/calendar-2-block";
+import { Calendar3Block } from "@/registry/pure-ui/blocks/calendar/calendar-3-block";
+import { Calendar4Block } from "@/registry/pure-ui/blocks/calendar/calendar-4-block";
 
 export default function BlocksIndexPage() {
   return (
@@ -46,26 +49,25 @@ export default function BlocksIndexPage() {
 
           <section className="mt-8 pb-10">
             <h2 className="font-chillax font-medium text-3xl relative px-6 md:px-12 lg:px-20">
-              <span className="absolute left-0 top-[0.5em] right-0 h-3 border-b border-border"></span>
               <span className="absolute left-0 right-0 bottom-2.5 border-b border-border"></span>
               <span className="relative">Calendar</span>
             </h2>
 
-            <div className="divide-y divide-border -translate-y-[10px] [&>*:last-child]:border-b">
-              <div className="flex flex-col-reverse md:grid md:grid-cols-2 relative pb-10 md:pb-0">
-                <div className="p-6 md:p-12 lg:p-20 relative md:border-r border-border flex justify-center items-center">
-                  <CalendarAnimateDemo />
+            <div className="divide-y divide-border -translate-y-[10px] [&>*:last-child]:border-b  ">
+              <div className="flex flex-col-reverse md:grid xl:grid-cols-2 relative pb-10 md:pb-0 [&>div]:even:border-r-0">
+                <div className="p-6 relative md:border-r border-border flex flex-col justify-center items-center">
+                  <CalendarBlock />
                 </div>
-                <div className="p-6 md:p-12 lg:p-20 relative md:border-r border-border flex justify-center items-center">
-                  <CalendarAnimateDemo />
+                <div className="p-6 relative md:border-r border-border flex flex-col justify-center items-center">
+                  <Calendar2Block />
                 </div>
               </div>
-              <div className="flex flex-col-reverse md:grid md:grid-cols-2 relative pb-10 md:pb-0">
-                <div className="p-6 md:p-12 lg:p-20 relative md:border-r border-border flex justify-center items-center">
-                  <CalendarAnimateDemo />
+              <div className="flex flex-col-reverse md:grid xl:grid-cols-2 relative pb-10 md:pb-0 [&>div]:even:border-r-0">
+                <div className="p-6 relative md:border-r border-border flex flex-col justify-center items-center">
+                  <Calendar3Block />
                 </div>
-                <div className="p-6 md:p-12 lg:p-20 relative md:border-r border-border flex justify-center items-center">
-                  <CalendarAnimateDemo />
+                <div className="p-6 relative md:border-r border-border flex flex-col justify-center items-center">
+                  <Calendar4Block />
                 </div>
               </div>
             </div>

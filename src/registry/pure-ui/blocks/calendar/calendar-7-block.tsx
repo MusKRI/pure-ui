@@ -8,7 +8,7 @@ export function Calendar7Block() {
   const [date, setDate] = useState<Date | undefined>(new Date(2025, 5, 12));
 
   return (
-    <div className="flex flex-col gap-2 items-center justify-center p-5 h-[500px]">
+    <div className="flex flex-col gap-2 items-center justify-center p-5 min-h-[500px]">
       <Calendar
         animate
         mode="single"

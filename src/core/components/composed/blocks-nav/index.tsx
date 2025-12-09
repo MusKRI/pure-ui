@@ -28,13 +28,18 @@ export function BlocksNav() {
                 key={item.id}
                 href={item.href}
                 className={cn(
-                  "text-sm font-medium text-sidebar-foreground/60 hover:text-sidebar-primary hover:bg-sidebar-accent/80 relative px-4 py-1 rounded-md",
+                  "text-sm font-medium text-sidebar-foreground/60 hover:text-sidebar-primary hover:bg-sidebar-accent/80 relative px-4 py-1 rounded-md flex items-center gap-2",
                   pathname === item.href
                     ? "text-sidebar-primary bg-sidebar-accent/80"
                     : ""
                 )}
               >
                 {item.title}
+                {item.tag && (
+                  <span className="text-[10px] text-amber-600 font-medium">
+                    {item.tag}
+                  </span>
+                )}
               </Link>
             ))}
           </ScrollAreaContent>

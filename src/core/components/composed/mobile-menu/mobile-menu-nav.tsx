@@ -20,6 +20,7 @@ export function MobileMenuNav() {
 
   const isComponentsPage = pathname.startsWith("/docs/components");
   const isDocsPage = !isComponentsPage && pathname.startsWith("/docs");
+  const isBlocksPage = pathname.startsWith("/blocks");
 
   return (
     <div className="flex flex-col gap-3 px-6 py-6 overflow-y-auto">
@@ -59,6 +60,27 @@ export function MobileMenuNav() {
         <CollapsiblePrimitive.Panel className="flex [&[hidden]:not([hidden='until-found'])]:hidden h-(--collapsible-panel-height) overflow-hidden transition-all ease-out data-ending-style:h-0 data-starting-style:h-0 duration-150">
           <div className="mt-1 flex cursor-text flex-col gap-1 py-2">
             {pureUISidebarConfig.components.map((item) => (
+              <MobileMenuNavItem
+                key={item.id}
+                item={item}
+                closeSidebar={closeSidebar}
+              />
+            ))}
+          </div>
+        </CollapsiblePrimitive.Panel>
+      </CollapsiblePrimitive.Root>
+
+      <CollapsiblePrimitive.Root
+        className="flex flex-col"
+        defaultOpen={isBlocksPage}
+      >
+        <CollapsiblePrimitive.Trigger className="group flex items-center gap-2 text-2xl font-medium cursor-pointer">
+          Blocks
+          <ChevronDownIcon className="size-5 transition-all ease-out group-data-panel-open:rotate-180 ml-auto" />
+        </CollapsiblePrimitive.Trigger>
+        <CollapsiblePrimitive.Panel className="flex [&[hidden]:not([hidden='until-found'])]:hidden h-(--collapsible-panel-height) overflow-hidden transition-all ease-out data-ending-style:h-0 data-starting-style:h-0 duration-150">
+          <div className="mt-1 flex cursor-text flex-col gap-1 py-2">
+            {pureUISidebarConfig.blocks.map((item) => (
               <MobileMenuNavItem
                 key={item.id}
                 item={item}

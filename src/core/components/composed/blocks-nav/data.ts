@@ -6,11 +6,6 @@ export const blocksNavItems = [
     title: "Calendar",
     href: "/blocks/calendar",
     type: "link",
-  },
-  {
-    id: "forms",
-    title: "Forms",
-    href: "/blocks/forms",
-    type: "link",
+    tag: "NEW",
   },
 ] satisfies SidebarItem[];

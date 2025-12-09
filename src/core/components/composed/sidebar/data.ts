@@ -1,4 +1,5 @@
 import { SidebarItem } from "@/types/sidebar.types";
+import { blocksNavItems } from "../blocks-nav/data";
 
 const pureUIDocs = [
   {
@@ -110,12 +111,13 @@ const pureUIComponents = [
     type: "link",
     href: "/docs/components/button-group",
   },
-  // {
-  //   id: "calendar",
-  //   title: "Calendar",
-  //   type: "link",
-  //   href: "/docs/components/calendar",
-  // },
+  {
+    id: "calendar",
+    title: "Calendar",
+    type: "link",
+    href: "/docs/components/calendar",
+    tag: "NEW",
+  },
   {
     id: "card",
     title: "Card",
@@ -191,7 +193,6 @@ const pureUIComponents = [
     title: "Number Field",
     type: "link",
     href: "/docs/components/number-field",
-    tag: "NEW",
   },
   {
     id: "popover",
@@ -252,6 +253,7 @@ const pureUIComponents = [
 export const pureUISidebarConfig = {
   docs: pureUIDocs,
   components: pureUIComponents,
+  blocks: blocksNavItems,
 };
 
 export const sidebarTree = [
