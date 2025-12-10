@@ -8,7 +8,7 @@
   "files": [
     {
       "path": "src/registry/pure-ui/blocks/calendar/calendar-3-block.tsx",
-      "content": "\"use client\";\r\n\r\nimport { useState } from \"react\";\r\n\r\nimport { Calendar } from \"@/registry/pure-ui/ui/calendar\";\r\n\r\nexport function Calendar3Block() {\r\n  const [dates, setDates] = useState<Date[]>([\r\n    new Date(2025, 5, 12),\r\n    new Date(2025, 6, 24),\r\n  ]);\r\n\r\n  return (\r\n    <div className=\"flex items-center justify-center p-5 h-[500px]\">\r\n      <Calendar\r\n        animate\r\n        mode=\"multiple\"\r\n        numberOfMonths={2}\r\n        defaultMonth={dates[0]}\r\n        required\r\n        selected={dates}\r\n        onSelect={setDates}\r\n        max={5}\r\n      />\r\n    </div>\r\n  );\r\n}\r\n",
+      "content": "\"use client\";\r\n\r\nimport { useState } from \"react\";\r\n\r\nimport { Calendar } from \"@/registry/pure-ui/ui/calendar\";\r\n\r\nexport function Calendar3Block() {\r\n  const [dates, setDates] = useState<Date[]>([\r\n    new Date(2025, 5, 12),\r\n    new Date(2025, 6, 24),\r\n  ]);\r\n\r\n  return (\r\n    <div className=\"flex items-center justify-center p-5 min-h-[500px]\">\r\n      <Calendar\r\n        animate\r\n        mode=\"multiple\"\r\n        numberOfMonths={2}\r\n        defaultMonth={dates[0]}\r\n        required\r\n        selected={dates}\r\n        onSelect={setDates}\r\n        max={5}\r\n      />\r\n    </div>\r\n  );\r\n}\r\n",
       "type": "registry:file",
       "target": "blocks/calendar/calendar-3-block.tsx"
     }

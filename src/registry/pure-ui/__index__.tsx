@@ -150,6 +150,24 @@ export const Index: Record<string, Record<string, any>> = {
       categories: undefined,
       meta: undefined,
     },
+    "collapsible": {
+      name: "collapsible",
+      description: "A customizable collapsible component",
+      type: "registry:ui",
+      registryDependencies: undefined,
+      files: [{
+        path: "registry/pure-ui/ui/collapsible/index.tsx",
+        type: "registry:ui",
+        target: "components/ui/collapsible.tsx"
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/ui/collapsible/index.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
     "dialog": {
       name: "dialog",
       description: "A customizable dialog component",
@@ -1602,6 +1620,168 @@ export const Index: Record<string, Record<string, any>> = {
       }],
       component: React.lazy(async () => {
         const mod = await import("@/registry/pure-ui/examples/checkbox/checkbox-sizes-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "collapsible-demo": {
+      name: "collapsible-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["collapsible"],
+      files: [{
+        path: "registry/pure-ui/examples/collapsible/collapsible-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/collapsible/collapsible-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "collapsible-scale-demo": {
+      name: "collapsible-scale-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["collapsible"],
+      files: [{
+        path: "registry/pure-ui/examples/collapsible/collapsible-scale-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/collapsible/collapsible-scale-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "collapsible-fade-demo": {
+      name: "collapsible-fade-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["collapsible"],
+      files: [{
+        path: "registry/pure-ui/examples/collapsible/collapsible-fade-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/collapsible/collapsible-fade-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "collapsible-slide-outside-demo": {
+      name: "collapsible-slide-outside-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["collapsible"],
+      files: [{
+        path: "registry/pure-ui/examples/collapsible/collapsible-slide-outside-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/collapsible/collapsible-slide-outside-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "collapsible-slide-inside-demo": {
+      name: "collapsible-slide-inside-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["collapsible"],
+      files: [{
+        path: "registry/pure-ui/examples/collapsible/collapsible-slide-inside-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/collapsible/collapsible-slide-inside-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "collapsible-motion-demo": {
+      name: "collapsible-motion-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["collapsible"],
+      files: [{
+        path: "registry/pure-ui/examples/collapsible/collapsible-motion-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/collapsible/collapsible-motion-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "collapsible-motion-blur-demo": {
+      name: "collapsible-motion-blur-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["collapsible"],
+      files: [{
+        path: "registry/pure-ui/examples/collapsible/collapsible-motion-blur-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/collapsible/collapsible-motion-blur-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "collapsible-perspective-demo": {
+      name: "collapsible-perspective-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["collapsible"],
+      files: [{
+        path: "registry/pure-ui/examples/collapsible/collapsible-perspective-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/collapsible/collapsible-perspective-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "collapsible-perspective-blur-demo": {
+      name: "collapsible-perspective-blur-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["collapsible"],
+      files: [{
+        path: "registry/pure-ui/examples/collapsible/collapsible-perspective-blur-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/collapsible/collapsible-perspective-blur-demo.tsx")
         const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
         return { default: mod.default || mod[exportName] }
       }),

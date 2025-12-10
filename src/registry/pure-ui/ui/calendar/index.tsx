@@ -96,10 +96,10 @@ function Calendar({
           defaultClassNames.week_number
         ),
         day: cn(
-          "relative text-[0.8rem] w-full h-full p-0 text-center [&:last-child[data-selected=true]_button]:rounded-r-md group/day aspect-square select-none",
+          "relative text-[0.8rem] w-full h-full p-0 text-center group/day aspect-square select-none",
           props.showWeekNumber
             ? "[&:nth-child(2)[data-selected=true]_button]:rounded-l-md"
-            : "[&:first-child[data-selected=true]_button]:rounded-l-md",
+            : "[&:last-child[data-selected=true]>button:not([data-range-end=false][data-range-start=false])]:rounded-r-none [&:last-child[data-selected=true]>button[data-range-end=true]]:rounded-r-md! [&:first-child[data-selected=true]>button:not([data-range-end=false][data-range-start=false])]:rounded-l-none [&:first-child[data-selected=true]>button[data-range-start=true]]:rounded-l-md!",
           defaultClassNames.day
         ),
         range_start: cn(

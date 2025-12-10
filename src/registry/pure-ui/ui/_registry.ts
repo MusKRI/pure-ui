@@ -255,6 +255,21 @@ export const pureUIComponents: Registry["items"] = [
       "@base-ui-components/react",
     ],
   },
+  // Collapsible
+  {
+    name: "collapsible",
+    type: "registry:ui",
+    title: "Collapsible",
+    description: "A customizable collapsible component",
+    files: [
+      {
+        path: "ui/collapsible/index.tsx",
+        type: "registry:ui",
+        target: "components/ui/collapsible.tsx",
+      },
+    ],
+    dependencies: ["clsx", "tailwind-merge", "@base-ui-components/react"],
+  },
   // Dialog
   {
     name: "dialog",

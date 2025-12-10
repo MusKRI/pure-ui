@@ -710,6 +710,108 @@ export const pureUICompExamples: Registry["items"] = [
     ],
   },
 
+  // Collapsible
+
+  {
+    name: "collapsible-demo",
+    type: "registry:example",
+    registryDependencies: ["collapsible"],
+    files: [
+      {
+        path: "examples/collapsible/collapsible-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "collapsible-scale-demo",
+    type: "registry:example",
+    registryDependencies: ["collapsible"],
+    files: [
+      {
+        path: "examples/collapsible/collapsible-scale-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "collapsible-fade-demo",
+    type: "registry:example",
+    registryDependencies: ["collapsible"],
+    files: [
+      {
+        path: "examples/collapsible/collapsible-fade-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "collapsible-slide-outside-demo",
+    type: "registry:example",
+    registryDependencies: ["collapsible"],
+    files: [
+      {
+        path: "examples/collapsible/collapsible-slide-outside-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "collapsible-slide-inside-demo",
+    type: "registry:example",
+    registryDependencies: ["collapsible"],
+    files: [
+      {
+        path: "examples/collapsible/collapsible-slide-inside-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "collapsible-motion-demo",
+    type: "registry:example",
+    registryDependencies: ["collapsible"],
+    files: [
+      {
+        path: "examples/collapsible/collapsible-motion-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "collapsible-motion-blur-demo",
+    type: "registry:example",
+    registryDependencies: ["collapsible"],
+    files: [
+      {
+        path: "examples/collapsible/collapsible-motion-blur-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "collapsible-perspective-demo",
+    type: "registry:example",
+    registryDependencies: ["collapsible"],
+    files: [
+      {
+        path: "examples/collapsible/collapsible-perspective-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "collapsible-perspective-blur-demo",
+    type: "registry:example",
+    registryDependencies: ["collapsible"],
+    files: [
+      {
+        path: "examples/collapsible/collapsible-perspective-blur-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+
   // Detached Triggers
   {
     name: "detached-trigger-dialog-simple-demo",

@@ -131,6 +131,12 @@ const pureUIComponents = [
     href: "/docs/components/checkbox",
   },
   {
+    id: "collapsible",
+    title: "Collapsible",
+    type: "link",
+    href: "/docs/components/collapsible",
+  },
+  {
     id: "detached-triggers",
     title: "Detached Triggers",
     type: "group",

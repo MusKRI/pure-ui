@@ -261,6 +261,24 @@
       ]
     },
     {
+      "name": "collapsible",
+      "type": "registry:ui",
+      "title": "Collapsible",
+      "description": "A customizable collapsible component",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge",
+        "@base-ui-components/react"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/ui/collapsible/index.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/collapsible.tsx"
+        }
+      ]
+    },
+    {
       "name": "dialog",
       "type": "registry:ui",
       "title": "Dialog",
@@ -1408,6 +1426,123 @@
       "files": [
         {
           "path": "src/registry/pure-ui/examples/checkbox/checkbox-sizes-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "collapsible-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "collapsible"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/collapsible/collapsible-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "collapsible-scale-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "collapsible"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/collapsible/collapsible-scale-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "collapsible-fade-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "collapsible"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/collapsible/collapsible-fade-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "collapsible-slide-outside-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "collapsible"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/collapsible/collapsible-slide-outside-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "collapsible-slide-inside-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "collapsible"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/collapsible/collapsible-slide-inside-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "collapsible-motion-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "collapsible"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/collapsible/collapsible-motion-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "collapsible-motion-blur-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "collapsible"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/collapsible/collapsible-motion-blur-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "collapsible-perspective-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "collapsible"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/collapsible/collapsible-perspective-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "collapsible-perspective-blur-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "collapsible"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/collapsible/collapsible-perspective-blur-demo.tsx",
           "type": "registry:example"
         }
       ]
