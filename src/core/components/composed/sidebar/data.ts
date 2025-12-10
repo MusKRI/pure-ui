@@ -97,7 +97,6 @@ const pureUIComponents = [
     title: "Badge",
     type: "link",
     href: "/docs/components/badge",
-    tag: "NEW",
   },
   {
     id: "button",
@@ -135,6 +134,7 @@ const pureUIComponents = [
     title: "Collapsible",
     type: "link",
     href: "/docs/components/collapsible",
+    tag: "NEW",
   },
   {
     id: "detached-triggers",
