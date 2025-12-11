@@ -1,4 +1,4 @@
-import { Dialog as SheetPrimitive } from "@base-ui-components/react/dialog";
+import { Dialog as SheetPrimitive } from "@base-ui/react/dialog";
 
 import { ExtendedPureUIFile } from "@/lib/registry/component-processor";
 import { useRef, useState } from "react";

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { Checkbox as CheckboxPrimitive } from "@base-ui-components/react";
+import { Checkbox as CheckboxPrimitive } from "@base-ui/react";
 import { tv, type VariantProps } from "tailwind-variants";
 
 import { cn } from "@/lib/classes";

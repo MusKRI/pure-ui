@@ -1,4 +1,4 @@
-import { Input as InputPrimitive } from "@base-ui-components/react/input";
+import { Input as InputPrimitive } from "@base-ui/react/input";
 import { cn } from "@/lib/classes";
 
 export interface InputProps extends Omit<InputPrimitive.Props, "size"> {

@@ -7,7 +7,7 @@ import {
   motion,
 } from "motion/react";
 import { useCallback, useMemo, useState } from "react";
-import { Tabs } from "@base-ui-components/react/tabs";
+import { Tabs } from "@base-ui/react/tabs";
 
 import { ExtendedPureUIFile } from "@/lib/registry/component-processor";
 import { ExtendedRegistryItem } from "@/lib/registry/process-registry";

@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useMemo } from "react";
-import { Select as SelectPrimitive } from "@base-ui-components/react/select";
+import { Select as SelectPrimitive } from "@base-ui/react/select";
 import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 
 import { cn } from "@/lib/classes";

@@ -4,7 +4,7 @@ import { tv, type VariantProps } from "tailwind-variants";
 import {
   Button as BaseButton,
   type ButtonProps as BaseButtonProps,
-} from "@base-ui-components/react/button";
+} from "@base-ui/react/button";
 
 import { cn } from "@/lib/classes";
 

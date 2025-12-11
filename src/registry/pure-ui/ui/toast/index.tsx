@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Toast } from "@base-ui-components/react/toast";
+import { Toast } from "@base-ui/react/toast";
 
 import { cn } from "@/lib/classes";
 import { buttonVariants } from "@/registry/pure-ui/ui/button";

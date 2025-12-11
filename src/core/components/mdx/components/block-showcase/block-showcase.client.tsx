@@ -1,17 +1,15 @@
 "use client";
 
 import { useCallback, useMemo, useRef, useState } from "react";
-import { Collapsible } from "@base-ui-components/react/collapsible";
+import { Collapsible } from "@base-ui/react/collapsible";
 
 import { ExtendedPureUIFile } from "@/lib/registry/component-processor";
 import { ExtendedRegistryItem } from "@/lib/registry/process-registry";
 
 import { Index } from "@/registry/pure-ui/__index__";
 import { SourcePreview } from "./source-preview";
-import { Button } from "@/registry/pure-ui/ui/button";
 import { cn } from "@/lib/classes";
 import { BlockShowcaseFiles } from "./block-showcase-files";
-import { CopyButton } from "../copy-button";
 import { BlockShowcaseCopyButton } from "./block-showcase-copy-button";
 
 interface BlockShowcaseClientProps {

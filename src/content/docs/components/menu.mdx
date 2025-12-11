@@ -30,10 +30,10 @@ description: A list of actions in a dropdown, enhanced with keyboard navigation.
 
       <InstallationCommands
         type="package-installation"
-        npmCommand="npm install @base-ui-components/react clsx tailwind-merge"
-        pnpmCommand="pnpm add @base-ui-components/react clsx tailwind-merge"
-        yarnCommand="yarn add @base-ui-components/react clsx tailwind-merge"
-        bunCommand="bun add @base-ui-components/react clsx tailwind-merge"
+        npmCommand="npm install @base-ui/react clsx tailwind-merge"
+        pnpmCommand="pnpm add @base-ui/react clsx tailwind-merge"
+        yarnCommand="yarn add @base-ui/react clsx tailwind-merge"
+        bunCommand="bun add @base-ui/react clsx tailwind-merge"
       />
 
       <Step>Add cn function to your utils</Step>
@@ -177,8 +177,8 @@ In order to open a dialog using a menu, control the dialog state and open it imp
 
 ```tsx noCopy
 import * as React from "react";
-import { Dialog } from "@base-ui-components/react/dialog";
-import { Menu } from "@base-ui-components/react/menu";
+import { Dialog } from "@base-ui/react/dialog";
+import { Menu } from "@base-ui/react/menu";
 
 function ExampleMenu() {
   const [dialogOpen, setDialogOpen] = React.useState(false);

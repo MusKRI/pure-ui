@@ -7,7 +7,7 @@
   "dependencies": [
     "tailwind-variants",
     "tailwind-merge",
-    "@base-ui-components/react",
+    "@base-ui/react",
     "clsx"
   ],
   "files": [

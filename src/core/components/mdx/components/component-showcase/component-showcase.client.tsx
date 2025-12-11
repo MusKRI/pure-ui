@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Tabs } from "@base-ui-components/react/tabs";
+import { Tabs } from "@base-ui/react/tabs";
 import { AnimatePresence, LayoutGroup, motion } from "motion/react";
 
 import { ExtendedPureUIFile } from "@/lib/registry/component-processor";

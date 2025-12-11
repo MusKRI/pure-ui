@@ -7,7 +7,7 @@ import React, {
   useMemo,
   useState,
 } from "react";
-import { Accordion as AccordionPrimitive } from "@base-ui-components/react/accordion";
+import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion";
 import { motion, AnimatePresence, MotionConfig } from "motion/react";
 
 import { cn } from "@/lib/classes";

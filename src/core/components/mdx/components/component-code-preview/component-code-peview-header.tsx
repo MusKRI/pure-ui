@@ -1,6 +1,6 @@
 import { SVGProps, useId, useMemo } from "react";
 import { motion } from "motion/react";
-import { Tabs } from "@base-ui-components/react/tabs";
+import { Tabs } from "@base-ui/react/tabs";
 
 import { RegistryItemFile } from "@/lib/registry/schemas";
 import {

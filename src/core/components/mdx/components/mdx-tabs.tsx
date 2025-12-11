@@ -9,7 +9,7 @@ import {
   useEffect,
 } from "react";
 import { AnimatePresence, LayoutGroup, motion } from "motion/react";
-import { Tabs as TabsPrimitive } from "@base-ui-components/react/tabs";
+import { Tabs as TabsPrimitive } from "@base-ui/react/tabs";
 import { cn } from "@/lib/classes";
 
 // Context for managing tab state

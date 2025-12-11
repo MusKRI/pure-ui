@@ -2,7 +2,7 @@
 
 import { useCallback, useMemo, useState } from "react";
 import { AnimatePresence, motion, LayoutGroup } from "motion/react";
-import { Tabs } from "@base-ui-components/react/tabs";
+import { Tabs } from "@base-ui/react/tabs";
 
 import { InstallationTab } from "@/lib/mdx/installation-commands";
 import { getToolIcon } from "@/lib/mdx/package-managers";

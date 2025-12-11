@@ -30,10 +30,10 @@ description: Accordion display a list of high-level options that can expand/coll
 
     <InstallationCommands
       type="package-installation"
-      npmCommand="npm install @base-ui-components/react motion clsx tailwind-merge"
-      pnpmCommand="pnpm add @base-ui-components/react motion clsx tailwind-merge"
-      yarnCommand="yarn add @base-ui-components/react motion clsx tailwind-merge"
-      bunCommand="bun add @base-ui-components/react motion clsx tailwind-merge"
+      npmCommand="npm install @base-ui/react motion clsx tailwind-merge"
+      pnpmCommand="pnpm add @base-ui/react motion clsx tailwind-merge"
+      yarnCommand="yarn add @base-ui/react motion clsx tailwind-merge"
+      bunCommand="bun add @base-ui/react motion clsx tailwind-merge"
     />
     </Steps>
 
@@ -80,7 +80,11 @@ import {
 You can use the `variant` prop to change the variant of the accordion.
 
 ```tsx noCopy highlight={2}
-<Accordion variant="default">...rest content...</Accordion>
+<Accordion
+  variant="default"
+>
+  ...rest content...
+</Accordion>
 ```
 
 ### Default

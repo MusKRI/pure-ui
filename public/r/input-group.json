@@ -8,7 +8,7 @@
     "clsx",
     "tailwind-merge",
     "tailwind-variants",
-    "@base-ui-components/react"
+    "@base-ui/react"
   ],
   "registryDependencies": [
     "input",

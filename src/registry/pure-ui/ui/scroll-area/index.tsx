@@ -1,4 +1,4 @@
-import { ScrollArea as ScrollAreaPrimitive } from "@base-ui-components/react/scroll-area";
+import { ScrollArea as ScrollAreaPrimitive } from "@base-ui/react/scroll-area";
 
 import { cn } from "@/lib/classes";
 
