@@ -1,8 +1,10 @@
 "use client";
 
 import { Dialog as SheetPrimitive } from "@base-ui/react/dialog";
+import { tv, type VariantProps } from "tailwind-variants";
 
 import { cn } from "@/lib/classes";
+import { XIcon } from "lucide-react";
 
 interface SheetProps extends SheetPrimitive.Root.Props {}
 
@@ -22,12 +24,6 @@ function SheetClose(props: SheetCloseProps) {
   return <SheetPrimitive.Close data-slot="sheet-close" {...props} />;
 }
 
-interface SheetViewportProps extends SheetPrimitive.Viewport.Props {}
-
-function SheetViewport(props: SheetViewportProps) {
-  return <SheetPrimitive.Viewport data-slot="sheet-viewport" {...props} />;
-}
-
 interface SheetPortalProps extends SheetPrimitive.Portal.Props {}
 
 function SheetPortal(props: SheetPortalProps) {
@@ -40,41 +36,178 @@ function SheetBackdrop({ className, ...props }: SheetBackdropProps) {
   return (
     <SheetPrimitive.Backdrop
       data-slot="sheet-backdrop"
-      render={
-        <div
-          key="sheet-backdrop"
-          className={cn(
-            "fixed inset-0 bg-black/32 backdrop-blur-sm z-50 transition-all duration-150 data-ending-style:opacity-0 data-starting-style:opacity-0 supports-[-webkit-touch-callout:none]:absolute",
-            className
-          )}
-        />
-      }
+      className={cn(
+        "fixed inset-0 bg-black/32 backdrop-blur-sm z-50 transition-all duration-150 data-ending-style:opacity-0 data-starting-style:opacity-0 supports-[-webkit-touch-callout:none]:absolute",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+const sheetVariants = tv({
+  slots: {
+    viewport: "fixed inset-0 z-50 flex",
+    popup: "group bg-background flex flex-col gap-4 min-h-0 max-h-full",
+  },
+  variants: {
+    side: {
+      right: {
+        viewport: "justify-end",
+        popup:
+          "w-3/4 border-l sm:max-w-sm [transition-property:translate,opacity,scale,border-radius] will-change-[translate,opacity,scale,border-radius] duration-300 ease-[cubic-bezier(0.215,0.61,0.355,1)] data-starting-style:opacity-0 data-starting-style:translate-x-full data-ending-style:opacity-0 data-ending-style:translate-x-full opacity-[calc(1-var(--nested-dialogs)*0.25)] -translate-x-[calc(2.5rem*var(--nested-dialogs))] scale-[calc(1-0.15*var(--nested-dialogs))] data-nested-dialog-open:rounded-lg",
+      },
+      left: {
+        viewport: "justify-start",
+        popup:
+          "w-3/4 border-r sm:max-w-sm [transition-property:translate,opacity,scale,border-radius] will-change-[translate,opacity,scale,border-radius] duration-300 ease-[cubic-bezier(0.215,0.61,0.355,1)] data-starting-style:opacity-0 data-starting-style:-translate-x-full data-ending-style:opacity-0 data-ending-style:-translate-x-full opacity-[calc(1-var(--nested-dialogs)*0.25)] translate-x-[calc(2.5rem*var(--nested-dialogs))] scale-[calc(1-0.15*var(--nested-dialogs))] data-nested-dialog-open:rounded-lg",
+      },
+      top: {
+        viewport: "flex-col justify-start",
+        popup:
+          "h-auto border-b [transition-property:translate,opacity,scale,border-radius] will-change-[translate,opacity,scale,border-radius] duration-300 ease-[cubic-bezier(0.215,0.61,0.355,1)] data-starting-style:opacity-0 data-starting-style:-translate-y-full data-ending-style:opacity-0 data-ending-style:-translate-y-full opacity-[calc(1-var(--nested-dialogs)*0.25)] scale-[calc(1-0.15*var(--nested-dialogs))] data-nested-dialog-open:rounded-lg data-nested-dialog-open:translate-y-[calc(1%*var(--nested-dialogs))]",
+      },
+      bottom: {
+        viewport: "flex-col justify-end",
+        popup:
+          "h-auto border-t [transition-property:translate,opacity,scale,border-radius] will-change-[translate,opacity,scale,border-radius] duration-300 ease-[cubic-bezier(0.215,0.61,0.355,1)] data-starting-style:opacity-0 data-starting-style:translate-y-full data-ending-style:opacity-0 data-ending-style:translate-y-full opacity-[calc(1-var(--nested-dialogs)*0.25)] scale-[calc(1-0.15*var(--nested-dialogs))] data-nested-dialog-open:rounded-lg data-nested-dialog-open:-translate-y-[calc(1%*var(--nested-dialogs))]",
+      },
+    },
+    variant: {
+      full: {},
+      rounded: {
+        viewport: "p-3",
+        popup: "rounded-lg border",
+      },
+    },
+  },
+  defaultVariants: {
+    side: "right",
+    variant: "full",
+  },
+});
+
+interface SheetViewportProps extends SheetPrimitive.Viewport.Props {
+  side?: VariantProps<typeof sheetVariants>["side"];
+  variant?: VariantProps<typeof sheetVariants>["variant"];
+}
+
+function SheetViewport({
+  side = "right",
+  variant = "full",
+  className,
+  ...props
+}: SheetViewportProps) {
+  const { viewport: viewportStyles } = sheetVariants();
+
+  return (
+    <SheetPrimitive.Viewport
+      data-slot="sheet-viewport"
+      data-side={side}
+      data-variant={variant}
+      className={cn(viewportStyles({ side, variant }), className)}
       {...props}
     />
   );
 }
 
 interface SheetPopupProps extends SheetPrimitive.Popup.Props {
-  side?: "top" | "bottom" | "left" | "right";
+  side?: VariantProps<typeof sheetVariants>["side"];
+  variant?: VariantProps<typeof sheetVariants>["variant"];
+  showCloseButton?: boolean;
+  reduceMotion?: boolean;
 }
 
 function SheetPopup({
-  className,
   side = "right",
+  variant = "full",
+  showCloseButton = true,
+  reduceMotion = false,
+  className,
   children,
   ...props
 }: SheetPopupProps) {
+  const { popup: popupStyles } = sheetVariants();
+
   return (
     <SheetPortal>
       <SheetBackdrop />
-      <SheetViewport className={cn("fixed inset-0 border z-50")}>
+      <SheetViewport variant={variant} side={side}>
         <SheetPrimitive.Popup
+          className={cn(
+            popupStyles({ side, variant }),
+            className,
+            reduceMotion && "transition-none!"
+          )}
           data-slot="sheet-popup"
-          className={cn("bg-background")}
+          data-side={side}
+          data-variant={variant}
+          {...props}
         >
           {children}
+          {showCloseButton && (
+            <SheetPrimitive.Close className="absolute right-2 top-2 inline-flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-md border border-transparent opacity-72 outline-none transition-[color,background-color,box-shadow,opacity] hover:opacity-100 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0">
+              <XIcon />
+              <span className="sr-only">Close</span>
+            </SheetPrimitive.Close>
+          )}
         </SheetPrimitive.Popup>
       </SheetViewport>
     </SheetPortal>
   );
 }
+
+function SheetHeader({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="sheet-header"
+      className={cn("flex flex-col gap-1.5 p-4", className)}
+      {...props}
+    />
+  );
+}
+
+function SheetFooter({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="sheet-footer"
+      className={cn("mt-auto flex flex-col gap-2 p-4", className)}
+      {...props}
+    />
+  );
+}
+
+interface SheetTitleProps extends SheetPrimitive.Title.Props {}
+
+function SheetTitle({ className, ...props }: SheetTitleProps) {
+  return (
+    <SheetPrimitive.Title
+      data-slot="sheet-title"
+      className={cn("text-foreground font-semibold", className)}
+      {...props}
+    />
+  );
+}
+
+interface SheetDescriptionProps extends SheetPrimitive.Description.Props {}
+
+function SheetDescription({ className, ...props }: SheetDescriptionProps) {
+  return (
+    <SheetPrimitive.Description
+      data-slot="sheet-description"
+      className={cn("text-muted-foreground text-sm", className)}
+      {...props}
+    />
+  );
+}
+
+export {
+  Sheet,
+  SheetTrigger,
+  SheetClose,
+  SheetPopup,
+  SheetHeader,
+  SheetFooter,
+  SheetTitle,
+  SheetDescription,
+};

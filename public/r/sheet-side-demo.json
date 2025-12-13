@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sheet-side-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "sheet"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/examples/sheet/sheet-side-demo.tsx",
+      "content": "import {\r\n  Sheet,\r\n  SheetClose,\r\n  SheetPopup,\r\n  SheetDescription,\r\n  SheetFooter,\r\n  SheetHeader,\r\n  SheetTitle,\r\n  SheetTrigger,\r\n} from \"@/registry/pure-ui/ui/sheet\";\r\nimport { Button } from \"@/registry/pure-ui/ui/button\";\r\n\r\nimport { Label } from \"@/registry/pure-ui/ui/label\";\r\nimport { Input } from \"@/registry/pure-ui/ui/input\";\r\n\r\nexport function SheetSideDemo() {\r\n  const sides = [\"top\", \"right\", \"bottom\", \"left\"] as const;\r\n\r\n  return (\r\n    <div className=\"flex flex-wrap items-center gap-4\">\r\n      {sides.map((side) => (\r\n        <Sheet key={side}>\r\n          <SheetTrigger\r\n            render={<Button variant=\"outline\" className=\"capitalize\" />}\r\n          >\r\n            {side}\r\n          </SheetTrigger>\r\n          <SheetPopup side={side}>\r\n            <SheetHeader className=\"group-data-[side=top]:max-w-lg group-data-[side=top]:mx-auto group-data-[side=bottom]:max-w-lg group-data-[side=bottom]:mx-auto w-full\">\r\n              <SheetTitle>Edit profile</SheetTitle>\r\n              <SheetDescription>\r\n                Make changes to your profile here. Click save when you&apos;re\r\n                done.\r\n              </SheetDescription>\r\n            </SheetHeader>\r\n            <div className=\"group-data-[side=top]:max-w-lg group-data-[side=top]:mx-auto group-data-[side=bottom]:max-w-lg group-data-[side=bottom]:mx-auto w-full\">\r\n              <div className=\"grid flex-1 auto-rows-min gap-6 px-4\">\r\n                <div className=\"grid gap-3\">\r\n                  <Label htmlFor=\"sheet-demo-name\">Name</Label>\r\n                  <Input id=\"sheet-demo-name\" defaultValue=\"Pedro Duarte\" />\r\n                </div>\r\n                <div className=\"grid gap-3\">\r\n                  <Label htmlFor=\"sheet-demo-username\">Username</Label>\r\n                  <Input id=\"sheet-demo-username\" defaultValue=\"@peduarte\" />\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <SheetFooter className=\"group-data-[side=top]:max-w-lg group-data-[side=top]:mx-auto group-data-[side=bottom]:max-w-lg group-data-[side=bottom]:mx-auto w-full\">\r\n              <Button type=\"submit\" className=\"w-full\">\r\n                Save changes\r\n              </Button>\r\n              <SheetClose\r\n                render={<Button variant=\"outline\" className=\"w-full\" />}\r\n              >\r\n                Close\r\n              </SheetClose>\r\n            </SheetFooter>\r\n          </SheetPopup>\r\n        </Sheet>\r\n      ))}\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

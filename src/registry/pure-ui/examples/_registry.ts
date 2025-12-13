@@ -2022,6 +2022,75 @@ export const pureUICompExamples: Registry["items"] = [
       },
     ],
   },
+
+  // Sheet
+  {
+    name: "sheet-demo",
+    type: "registry:example",
+    registryDependencies: ["sheet"],
+    files: [
+      {
+        path: "examples/sheet/sheet-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "sheet-side-demo",
+    type: "registry:example",
+    registryDependencies: ["sheet"],
+    files: [
+      {
+        path: "examples/sheet/sheet-side-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "sheet-variant-demo",
+    type: "registry:example",
+    registryDependencies: ["sheet"],
+    files: [
+      {
+        path: "examples/sheet/sheet-variant-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "sheet-size-demo",
+    type: "registry:example",
+    registryDependencies: ["sheet"],
+    files: [
+      {
+        path: "examples/sheet/sheet-size-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "sheet-nested-demo",
+    type: "registry:example",
+    registryDependencies: ["sheet"],
+    files: [
+      {
+        path: "examples/sheet/sheet-nested-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "sheet-reduce-motion-demo",
+    type: "registry:example",
+    registryDependencies: ["sheet"],
+    files: [
+      {
+        path: "examples/sheet/sheet-reduce-motion-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+
   // Separator
   {
     name: "separator-demo",

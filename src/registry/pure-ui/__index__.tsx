@@ -384,6 +384,24 @@ export const Index: Record<string, Record<string, any>> = {
       categories: undefined,
       meta: undefined,
     },
+    "sheet": {
+      name: "sheet",
+      description: "A customizable sheet component",
+      type: "registry:ui",
+      registryDependencies: undefined,
+      files: [{
+        path: "registry/pure-ui/ui/sheet/index.tsx",
+        type: "registry:ui",
+        target: "components/ui/sheet.tsx"
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/ui/sheet/index.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
     "switch": {
       name: "switch",
       description: "A customizable switch component",
@@ -3726,6 +3744,114 @@ export const Index: Record<string, Record<string, any>> = {
       }],
       component: React.lazy(async () => {
         const mod = await import("@/registry/pure-ui/examples/select/select-motion-blur-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "sheet-demo": {
+      name: "sheet-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["sheet"],
+      files: [{
+        path: "registry/pure-ui/examples/sheet/sheet-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/sheet/sheet-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "sheet-side-demo": {
+      name: "sheet-side-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["sheet"],
+      files: [{
+        path: "registry/pure-ui/examples/sheet/sheet-side-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/sheet/sheet-side-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "sheet-variant-demo": {
+      name: "sheet-variant-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["sheet"],
+      files: [{
+        path: "registry/pure-ui/examples/sheet/sheet-variant-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/sheet/sheet-variant-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "sheet-size-demo": {
+      name: "sheet-size-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["sheet"],
+      files: [{
+        path: "registry/pure-ui/examples/sheet/sheet-size-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/sheet/sheet-size-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "sheet-nested-demo": {
+      name: "sheet-nested-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["sheet"],
+      files: [{
+        path: "registry/pure-ui/examples/sheet/sheet-nested-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/sheet/sheet-nested-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "sheet-reduce-motion-demo": {
+      name: "sheet-reduce-motion-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["sheet"],
+      files: [{
+        path: "registry/pure-ui/examples/sheet/sheet-reduce-motion-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/sheet/sheet-reduce-motion-demo.tsx")
         const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
         return { default: mod.default || mod[exportName] }
       }),

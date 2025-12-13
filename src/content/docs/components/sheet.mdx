@@ -1,0 +1,131 @@
+---
+title: Sheet
+description: Extends the Dialog component to display content that complements the main content of the screen.
+---
+
+<ComponentShowcase name="sheet-demo" />
+
+## Installation
+
+<Tabs defaultValue="terminal">
+  <TabsList>
+    <TabsTrigger value="terminal">
+      <Terminal className="w-4 h-4" />
+      Terminal
+    </TabsTrigger>
+    <TabsTrigger value="manual">
+      <Code2 className="w-4 h-4" />
+      Manual
+    </TabsTrigger>
+  </TabsList>
+  <TabsContent value="terminal">
+    <InstallationCommands
+      type="registry-installation"
+      registryPath="sheet"
+    />
+  </TabsContent>
+  <TabsContent value="manual">
+    <Steps>
+      <Step>Install dependencies</Step>
+
+      <InstallationCommands
+        type="package-installation"
+        npmCommand="npm install @base-ui/react clsx tailwind-merge tailwind-variants"
+        pnpmCommand="pnpm add @base-ui/react clsx tailwind-merge tailwind-variants"
+        yarnCommand="yarn add @base-ui/react clsx tailwind-merge tailwind-variants"
+        bunCommand="bun add @base-ui/react clsx tailwind-merge tailwind-variants"
+      />
+
+      <Step>Add cn function to your utils</Step>
+
+      ```ts filename="lib/classes.ts"
+      import { clsx, type ClassValue } from "clsx";
+      import { twMerge } from "tailwind-merge";
+
+      export function cn(...inputs: ClassValue[]) {
+        return twMerge(clsx(inputs));
+      }
+      ```
+
+      <Step>Copy and paste the following code into your project</Step>
+
+      <ComponentCodePreview name="sheet" />
+    </Steps>
+
+  </TabsContent>
+</Tabs>
+
+## Usage
+
+```tsx
+import {
+  Sheet,
+  SheetPopup,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+```
+
+```tsx
+<Sheet>
+  <SheetTrigger>Open</SheetTrigger>
+  <SheetPopup>
+    <SheetHeader>
+      <SheetTitle>Are you absolutely sure?</SheetTitle>
+      <SheetDescription>
+        This action cannot be undone. This will permanently delete your account
+        and remove your data from our servers.
+      </SheetDescription>
+    </SheetHeader>
+  </SheetPopup>
+</Sheet>
+```
+
+## Examples
+
+### Side
+
+You can pass `side` to `SheetPopup` to change the side of the sheet. By default, it is `right`.
+
+<ComponentShowcase name="sheet-side-demo" />
+
+### Variant
+
+You can pass `variant` to `SheetPopup` to change the variant of the sheet. By default, it is `full`.
+
+<ComponentShowcase name="sheet-variant-demo" />
+
+### Nested
+
+You can create nested sheet within another to create layered panels. Use this pattern for advanced workflows or editing details without losing context.
+
+<ComponentShowcase name="sheet-nested-demo" />
+
+### Size
+
+You can adjust the size of the sheet using CSS classes:
+
+```tsx highlight={3}
+<Sheet>
+  <SheetTrigger>Open</SheetTrigger>
+  <SheetPopup className="w-[700px] sm:max-w-[1080px]">
+    <SheetHeader>
+      <SheetTitle>Are you absolutely sure?</SheetTitle>
+      <SheetDescription>
+        This action cannot be undone. This will permanently delete your account
+        and remove your data from our servers.
+      </SheetDescription>
+    </SheetHeader>
+  </SheetPopup>
+</Sheet>
+```
+
+<ComponentShowcase name="sheet-size-demo" />
+
+### Reduce Motion
+
+You can pass `reduceMotion` to `SheetPopup` to reduce the motion of the sheet.
+
+<ComponentShowcase name="sheet-reduce-motion-demo" />

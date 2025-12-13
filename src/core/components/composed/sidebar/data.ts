@@ -115,7 +115,6 @@ const pureUIComponents = [
     title: "Calendar",
     type: "link",
     href: "/docs/components/calendar",
-    tag: "NEW",
   },
   {
     id: "card",
@@ -223,6 +222,13 @@ const pureUIComponents = [
     title: "Separator",
     type: "link",
     href: "/docs/components/separator",
+  },
+  {
+    id: "sheet",
+    title: "Sheet",
+    type: "link",
+    href: "/docs/components/sheet",
+    tag: "NEW",
   },
   {
     id: "spinner",

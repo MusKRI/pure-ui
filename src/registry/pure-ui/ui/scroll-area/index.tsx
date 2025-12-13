@@ -31,7 +31,7 @@ function ScrollArea({
               ? "block"
               : "hidden",
             [
-              "absolute inset-px pointer-events-none",
+              "absolute inset-0 pointer-events-none",
               "before:content-[''] after:content-[''] before:block after:block before:absolute after:absolute before:left-0 after:left-0 before:w-full after:w-full before:pointer-events-none after:pointer-events-none",
               "before:rounded-md before:rounded-b-none after:rounded-md after:rounded-t-none",
               "before:transition-[height] after:transition-[height] before:duration-100 after:duration-100 before:ease-out after:ease-out",

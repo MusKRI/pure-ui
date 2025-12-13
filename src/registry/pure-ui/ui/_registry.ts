@@ -461,6 +461,26 @@ export const pureUIComponents: Registry["items"] = [
     ],
     dependencies: ["@base-ui/react", "clsx", "tailwind-merge"],
   },
+  // Sheet
+  {
+    name: "sheet",
+    type: "registry:ui",
+    title: "Sheet",
+    description: "A customizable sheet component",
+    files: [
+      {
+        path: "ui/sheet/index.tsx",
+        type: "registry:ui",
+        target: "components/ui/sheet.tsx",
+      },
+    ],
+    dependencies: [
+      "@base-ui/react",
+      "clsx",
+      "tailwind-merge",
+      "tailwind-variants",
+    ],
+  },
   // Switch
   {
     name: "switch",

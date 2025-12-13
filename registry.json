@@ -503,6 +503,25 @@
       ]
     },
     {
+      "name": "sheet",
+      "type": "registry:ui",
+      "title": "Sheet",
+      "description": "A customizable sheet component",
+      "dependencies": [
+        "@base-ui/react",
+        "clsx",
+        "tailwind-merge",
+        "tailwind-variants"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/ui/sheet/index.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/sheet.tsx"
+        }
+      ]
+    },
+    {
       "name": "switch",
       "type": "registry:ui",
       "title": "Switch",
@@ -2947,6 +2966,84 @@
       "files": [
         {
           "path": "src/registry/pure-ui/examples/select/select-motion-blur-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "sheet-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "sheet"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/sheet/sheet-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "sheet-side-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "sheet"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/sheet/sheet-side-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "sheet-variant-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "sheet"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/sheet/sheet-variant-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "sheet-size-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "sheet"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/sheet/sheet-size-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "sheet-nested-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "sheet"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/sheet/sheet-nested-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "sheet-reduce-motion-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "sheet"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/sheet/sheet-reduce-motion-demo.tsx",
           "type": "registry:example"
         }
       ]
