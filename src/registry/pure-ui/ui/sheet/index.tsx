@@ -2,9 +2,9 @@
 
 import { Dialog as SheetPrimitive } from "@base-ui/react/dialog";
 import { tv, type VariantProps } from "tailwind-variants";
+import { XIcon } from "lucide-react";
 
 import { cn } from "@/lib/classes";
-import { XIcon } from "lucide-react";
 
 interface SheetProps extends SheetPrimitive.Root.Props {}
 

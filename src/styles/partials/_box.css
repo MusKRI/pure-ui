@@ -1,0 +1,9 @@
+@layer base {
+  .box {
+    @apply shadow-[0px_3px_5px_#0000000b] bg-code border border-border max-md:border-x-transparent md:rounded-lg relative;
+
+    &.box--stacked::before {
+      @apply content-[''] -z-1 shadow-sm h-full absolute rounded-lg bg-code opacity-70 mt-3 top-0 left-3.5 right-3.5 border-border border;
+    }
+  }
+}

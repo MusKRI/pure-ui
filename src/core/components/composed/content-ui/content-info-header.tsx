@@ -13,10 +13,10 @@ export const ContentInfoHeader = ({ content, relativePath }: Props) => {
   const headingsLength = content.headings.length > 0;
 
   return (
-    <div className="bg-code/50 dark:bg-code border-b border-border md:mt-0">
+    <div className="mt-[50px] md:mt-14 md:px-6">
       <div
         className={cn(
-          "pt-18 md:pt-4 lg:pt-0 mx-auto px-6 pb-7 flex flex-col gap-6",
+          "pt-18 md:pt-4 lg:pt-0 mx-auto px-6 pb-7 flex flex-col gap-6 box box--stacked",
           headingsLength ? "max-w-[calc(85ch+260px)]" : "max-w-[85ch]"
         )}
       >
