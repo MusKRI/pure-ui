@@ -32,7 +32,7 @@ export function getRegistryInstallationCommand(
     case "pnpm":
       return `pnpm dlx shadcn@latest add "${registryUrl}"`;
     case "yarn":
-      return `npx shadcn@latest add "${registryUrl}"`;
+      return `yarn shadcn@latest add "${registryUrl}"`;
     case "bun":
       return `bunx --bun shadcn@latest add "${registryUrl}"`;
     default:
@@ -54,7 +54,7 @@ export function getNamespacedRegistryInstallationCommand(
     case "pnpm":
       return `pnpm dlx shadcn@latest add ${registryUrl}`;
     case "yarn":
-      return `npx shadcn@latest add ${registryUrl}`;
+      return `yarn shadcn@latest add ${registryUrl}`;
     case "bun":
       return `bunx --bun shadcn@latest add ${registryUrl}`;
     default:
