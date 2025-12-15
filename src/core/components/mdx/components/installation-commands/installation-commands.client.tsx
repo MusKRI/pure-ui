@@ -38,10 +38,10 @@ export function InstallationCommandsClient({
   }, []);
 
   return (
-    <div className="PureInstallationCommands relative border border-border bg-code mt-3 rounded-xl overflow-hidden">
+    <div className="PureInstallationCommands mt-3 rounded-2xl bg-code border border-border relative bg-clip-padding before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(--radius-2xl)-1px)] before:shadow-[0_1px_2px_1px_--theme(--color-black/4%)] after:pointer-events-none after:absolute after:-inset-[5px] after:-z-1 after:rounded-[calc(var(--radius-2xl)+4px)] after:border after:border-border/50 after:bg-clip-padding ">
       <LayoutGroup>
         <Tabs.Root value={activeTab} onValueChange={handleTabChange}>
-          <div className="h-full flex flex-col">
+          <div className="h-full flex flex-col rounded-2xl overflow-hidden">
             <Tabs.List
               className="relative flex items-center gap-3 px-3 [&::-webkit-scrollbar]:hidden z-2 overflow-auto shrink-0"
               style={{ scrollbarWidth: "none" }}
@@ -75,7 +75,7 @@ export function InstallationCommandsClient({
                           "size-4",
                           activeTab === tab.name
                             ? "text-primary grayscale-0"
-                            : "text-muted-foreground/70 grayscale-100"
+                            : "text-muted-foreground/40 grayscale-100"
                         )}
                       />
                     </motion.div>
@@ -83,10 +83,10 @@ export function InstallationCommandsClient({
                   </div>
                 </Tabs.Tab>
               ))}
-              <Tabs.Indicator className="absolute border-x bg-code left-0 top-1/2 -z-1 h-[calc(var(--active-tab-height)+1px)] w-(--active-tab-width) translate-x-(--active-tab-left) -translate-y-1/2 transition-all duration-200 ease-in-out" />
+              {/* <Tabs.Indicator className="absolute border left-0 top-1/2 -z-1 h-[calc(var(--active-tab-height)+1px)] w-(--active-tab-width) translate-x-(--active-tab-left) -translate-y-1/2 transition-all duration-200 ease-in-out" /> */}
             </Tabs.List>
 
-            <div className="flex-1 overflow-auto border-t border-border relative -top-px">
+            <div className="flex-1 overflow-auto relative">
               <AnimatePresence mode="popLayout">
                 {tabs.map((tab) => {
                   return (
