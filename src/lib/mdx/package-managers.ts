@@ -40,6 +40,28 @@ export function getRegistryInstallationCommand(
   }
 }
 
+export function getNamespacedRegistryInstallationCommand(
+  registryItemRestPath: string,
+  tool: PackageManager
+) {
+  if (!registryItemRestPath) throw new Error("Registry item name is required");
+
+  const registryUrl = `@pureui/${registryItemRestPath}`;
+
+  switch (tool) {
+    case "npm":
+      return `npx shadcn@latest add ${registryUrl}`;
+    case "pnpm":
+      return `pnpm dlx shadcn@latest add ${registryUrl}`;
+    case "yarn":
+      return `npx shadcn@latest add ${registryUrl}`;
+    case "bun":
+      return `bunx --bun shadcn@latest add ${registryUrl}`;
+    default:
+      throw new Error(`Unsupported package manager: ${tool}`);
+  }
+}
+
 /**
  * Generates dependency installation command based on package manager
  * @param dependencies - Array of package names to install

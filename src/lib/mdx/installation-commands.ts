@@ -1,6 +1,7 @@
 import { Effect, Array as EffectArray, Option } from "effect";
 import { highlightCode } from "@/lib/mdx/code-highlighter";
 import {
+  getNamespacedRegistryInstallationCommand,
   getRegistryInstallationCommand,
   type PackageManager,
 } from "@/lib/mdx/package-managers";
@@ -80,7 +81,10 @@ const generateRegistryInstallationTabs = (
           // Get the installation command
           let command: string;
           try {
-            command = getRegistryInstallationCommand(registryPath, manager);
+            command = getNamespacedRegistryInstallationCommand(
+              registryPath,
+              manager
+            );
           } catch {
             return {
               name: manager,
