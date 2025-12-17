@@ -64,7 +64,7 @@ export const Index: Record<string, Record<string, any>> = {
       name: "button",
       description: "A customizable button component",
       type: "registry:ui",
-      registryDependencies: undefined,
+      registryDependencies: ["classes"],
       files: [{
         path: "registry/pure-ui/ui/button/index.tsx",
         type: "registry:ui",
@@ -162,6 +162,24 @@ export const Index: Record<string, Record<string, any>> = {
       }],
       component: React.lazy(async () => {
         const mod = await import("@/registry/pure-ui/ui/collapsible/index.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "combobox": {
+      name: "combobox",
+      description: "A customizable combobox component",
+      type: "registry:ui",
+      registryDependencies: ["input"],
+      files: [{
+        path: "registry/pure-ui/ui/combobox/index.tsx",
+        type: "registry:ui",
+        target: "components/ui/combobox.tsx"
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/ui/combobox/index.tsx")
         const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
         return { default: mod.default || mod[exportName] }
       }),
@@ -1800,6 +1818,42 @@ export const Index: Record<string, Record<string, any>> = {
       }],
       component: React.lazy(async () => {
         const mod = await import("@/registry/pure-ui/examples/collapsible/collapsible-perspective-blur-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "combobox-demo": {
+      name: "combobox-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["combobox"],
+      files: [{
+        path: "registry/pure-ui/examples/combobox/combobox-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/combobox/combobox-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "combobox-input-inside-popup-demo": {
+      name: "combobox-input-inside-popup-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["combobox"],
+      files: [{
+        path: "registry/pure-ui/examples/combobox/combobox-input-inside-popup-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/combobox/combobox-input-inside-popup-demo.tsx")
         const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
         return { default: mod.default || mod[exportName] }
       }),

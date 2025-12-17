@@ -85,6 +85,9 @@
         "tailwind-merge",
         "@base-ui/react"
       ],
+      "registryDependencies": [
+        "classes"
+      ],
       "files": [
         {
           "path": "src/registry/pure-ui/ui/button/index.tsx",
@@ -275,6 +278,27 @@
           "path": "src/registry/pure-ui/ui/collapsible/index.tsx",
           "type": "registry:ui",
           "target": "components/ui/collapsible.tsx"
+        }
+      ]
+    },
+    {
+      "name": "combobox",
+      "type": "registry:ui",
+      "title": "Combobox",
+      "description": "A customizable combobox component",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge",
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "input"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/ui/combobox/index.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/combobox.tsx"
         }
       ]
     },
@@ -1562,6 +1586,32 @@
       "files": [
         {
           "path": "src/registry/pure-ui/examples/collapsible/collapsible-perspective-blur-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "combobox-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "combobox"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/combobox/combobox-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "combobox-input-inside-popup-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "combobox"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/combobox/combobox-input-inside-popup-demo.tsx",
           "type": "registry:example"
         }
       ]

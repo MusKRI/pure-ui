@@ -73,6 +73,7 @@ export const pureUIComponents: Registry["items"] = [
       "tailwind-merge",
       "@base-ui/react",
     ],
+    registryDependencies: ["classes"],
   },
 
   // Button Group
@@ -265,6 +266,24 @@ export const pureUIComponents: Registry["items"] = [
     ],
     dependencies: ["clsx", "tailwind-merge", "@base-ui/react"],
   },
+
+  // Combobox
+  {
+    name: "combobox",
+    type: "registry:ui",
+    title: "Combobox",
+    description: "A customizable combobox component",
+    files: [
+      {
+        path: "ui/combobox/index.tsx",
+        type: "registry:ui",
+        target: "components/ui/combobox.tsx",
+      },
+    ],
+    dependencies: ["clsx", "tailwind-merge", "@base-ui/react"],
+    registryDependencies: ["input"],
+  },
+
   // Dialog
   {
     name: "dialog",

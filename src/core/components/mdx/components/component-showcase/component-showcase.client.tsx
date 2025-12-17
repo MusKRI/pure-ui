@@ -81,13 +81,13 @@ export function ComponentShowcaseClient({
                     style={{
                       willChange: "height",
                     }}
-                    className="rounded-2xl bg-code/50 border border-border relative bg-clip-padding before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(--radius-2xl)-1px)] before:shadow-[0_1px_2px_1px_--theme(--color-black/4%)] after:pointer-events-none after:absolute after:-inset-[5px] after:-z-1 after:rounded-[calc(var(--radius-2xl)+4px)] after:border after:border-border/50 after:bg-clip-padding"
+                    className="rounded-2xl bg-code border border-border relative bg-clip-padding before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(--radius-2xl)-1px)] before:shadow-[0_1px_2px_1px_--theme(--color-black/4%)] after:pointer-events-none after:absolute after:-inset-[5px] after:-z-1 after:rounded-[calc(var(--radius-2xl)+4px)] after:border after:border-border/50 after:bg-clip-padding"
                   >
                     <div className="px-8 flex items-center justify-center pb-12 pt-12 h-full">
                       <div className="h-full w-full">
                         <div className="flex items-center justify-center min-h-full h-full">
                           {ComponentDemo ? (
-                            <div className="transform w-full flex items-center justify-center py-4">
+                            <div className="w-full flex items-center justify-center py-4">
                               <ComponentDemo />
                             </div>
                           ) : (

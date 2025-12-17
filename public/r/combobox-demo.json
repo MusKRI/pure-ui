@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "combobox-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "combobox"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/examples/combobox/combobox-demo.tsx",
+      "content": "\"use client\";\r\n\r\nimport {\r\n  Combobox,\r\n  ComboboxEmpty,\r\n  ComboboxInput,\r\n  ComboboxItem,\r\n  ComboboxList,\r\n  ComboboxPopup,\r\n} from \"@/registry/pure-ui/ui/combobox\";\r\n\r\nconst items = [\r\n  { label: \"Apple\", value: \"apple\" },\r\n  { label: \"Banana\", value: \"banana\" },\r\n  { label: \"Orange\", value: \"orange\" },\r\n  { label: \"Grape\", value: \"grape\" },\r\n  { label: \"Strawberry\", value: \"strawberry\" },\r\n  { label: \"Mango\", value: \"mango\" },\r\n  { label: \"Pineapple\", value: \"pineapple\" },\r\n  { label: \"Kiwi\", value: \"kiwi\" },\r\n  { label: \"Peach\", value: \"peach\" },\r\n  { label: \"Pear\", value: \"pear\" },\r\n  { label: \"Blueberry\", value: \"blueberry\" },\r\n  { label: \"Watermelon\", value: \"watermelon\" },\r\n  { label: \"Papaya\", value: \"papaya\" },\r\n  { label: \"Cherry\", value: \"cherry\" },\r\n  { label: \"Lemon\", value: \"lemon\" },\r\n  { label: \"Lime\", value: \"lime\" },\r\n  { label: \"Coconut\", value: \"coconut\" },\r\n  { label: \"Pomegranate\", value: \"pomegranate\" },\r\n  { label: \"Fig\", value: \"fig\" },\r\n  { label: \"Plum\", value: \"plum\" },\r\n];\r\n\r\nexport function ComboboxDemo() {\r\n  return (\r\n    <Combobox items={items}>\r\n      <div className=\"max-w-sm w-full\">\r\n        <ComboboxInput\r\n          aria-label=\"Select a item\"\r\n          placeholder=\"Select a item…\"\r\n        />\r\n      </div>\r\n      <ComboboxPopup>\r\n        <ComboboxEmpty>No items found.</ComboboxEmpty>\r\n        <ComboboxList>\r\n          {(item) => (\r\n            <ComboboxItem key={item.value} value={item}>\r\n              {item.label}\r\n            </ComboboxItem>\r\n          )}\r\n        </ComboboxList>\r\n      </ComboboxPopup>\r\n    </Combobox>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

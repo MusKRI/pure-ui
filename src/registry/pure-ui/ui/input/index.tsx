@@ -12,7 +12,7 @@ function Input({ className, size = "default", ...props }: InputProps) {
       className={cn(
         "relative w-full min-w-0 rounded-lg border border-input/70 bg-background dark:bg-input/32 shadow-xs text-base/5 sm:text-sm px-3 py-2 h-9 outline-none placeholder:text-muted-foreground/80 [transition:box-shadow_150ms_ease-out]",
         // Focus State
-        "focus-visible:border-ring focus-visible:ring-[1px]",
+        "focus-visible:border-ring focus-visible:ring-[1px] focus-visible:ring-border",
         "disabled:opacity-64 aria-invalid:border-destructive/36 focus-visible:aria-invalid:border-destructive/64 focus-visible:aria-invalid:ring-destructive/16 [disabled,focus-visible,aria-invalid]:shadow-none dark:aria-invalid:ring-destructive/24",
         size === "sm" && "h-8 px-3",
         size === "lg" && "h-10 px-6",

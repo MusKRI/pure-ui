@@ -812,6 +812,30 @@ export const pureUICompExamples: Registry["items"] = [
     ],
   },
 
+  // Combobox
+  {
+    name: "combobox-demo",
+    type: "registry:example",
+    registryDependencies: ["combobox"],
+    files: [
+      {
+        path: "examples/combobox/combobox-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "combobox-input-inside-popup-demo",
+    type: "registry:example",
+    registryDependencies: ["combobox"],
+    files: [
+      {
+        path: "examples/combobox/combobox-input-inside-popup-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+
   // Detached Triggers
   {
     name: "detached-trigger-dialog-simple-demo",
