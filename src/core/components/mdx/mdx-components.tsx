@@ -99,7 +99,7 @@ export const mdxComponents: MDXComponents = {
   p: ({ className, ...props }: React.ComponentProps<"p">) => (
     <p
       className={cn(
-        "PureP has-[+_.PureP]:mb-0 [.PureP+&]:mt-2 [.PureCodeBlockWrapper+&]:mt-10 !leading-[1.8] text-pretty text-muted-foreground text-base mb-6 last:mb-0 not-first:mt-6 [.PureUIComponentShowcase+&]:mt-0!",
+        "PureP has-[+_.PureP]:mb-0 [.PureP+&]:mt-2 [.PureCodeBlockWrapper+&]:mt-10 !leading-[1.8] text-pretty text-muted-foreground text-base mb-6 last:mb-0 not-first:mt-6 [.PureUIComponentShowcase+&]:mt-0! [.PureH3+&]:mt-0",
         className
       )}
       {...props}

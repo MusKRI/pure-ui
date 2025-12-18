@@ -1,11 +1,11 @@
 "use client";
 
 import { Combobox as ComboboxPrimitive } from "@base-ui/react/combobox";
-import { XIcon } from "lucide-react";
-import { createContext, SVGProps, useContext, useRef } from "react";
+import React, { createContext, SVGProps, useContext, useRef } from "react";
 
 import { Input } from "@/registry/pure-ui/ui/input";
 import { ScrollArea } from "@/registry/pure-ui/ui/scroll-area";
+import { Label } from "@/registry/pure-ui/ui/label";
 import { cn } from "@/lib/classes";
 
 interface ComboboxContextType {
@@ -48,9 +48,61 @@ export function ChevronsUpDownIcon(props: SVGProps<SVGSVGElement>) {
       viewBox="0 0 20 20"
       {...props}
     >
+      {/* Up chevron */}
       <path
+        className="group-data-popup-open:translate-y-[8.5px] [transition-property:translate] duration-200 ease-out"
         fill="currentColor"
-        d="M10.53 2.72a.75.75 0 0 0-1.06 0L5.22 6.97a.75.75 0 0 0 1.06 1.06L10 4.31l3.72 3.72a.75.75 0 1 0 1.06-1.06zm4.25 10.31l-4.25 4.25a.75.75 0 0 1-1.06 0l-4.25-4.25a.75.75 0 1 1 1.06-1.06L10 15.69l3.72-3.72a.75.75 0 1 1 1.06 1.06"
+        d="M10.53 2.72a.75.75 0 0 0-1.06 0L5.22 6.97a.75.75 0 0 0 1.06 1.06L10 4.31l3.72 3.72a.75.75 0 1 0 1.06-1.06z"
+      />
+
+      {/* Down chevron */}
+      <path
+        className="group-data-popup-open:-translate-y-[8.5px] [transition-property:translate] duration-200 ease-out"
+        fill="currentColor"
+        d="M14.78 13.03l-4.25 4.25a.75.75 0 0 1-1.06 0l-4.25-4.25a.75.75 0 1 1 1.06-1.06L10 15.69l3.72-3.72a.75.75 0 1 1 1.06 1.06"
+      />
+    </svg>
+  );
+}
+
+export function CloseIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      {...props}
+    >
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.5"
+        d="M18 6L6 18m12 0L6 6"
+      />
+    </svg>
+  );
+}
+
+export function CheckIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      {...props}
+    >
+      <path
+        className="group-data-selected:[stroke-dashoffset:0] [transition-property:stroke-dashoffset] duration-200 ease-out"
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="m5 12l5 5L20 7"
       />
     </svg>
   );
@@ -58,10 +110,12 @@ export function ChevronsUpDownIcon(props: SVGProps<SVGSVGElement>) {
 
 interface ComboboxInputProps extends ComboboxPrimitive.Input.Props {
   isClearable?: boolean;
+  showTrigger?: boolean;
 }
 
 function ComboboxInput({
-  isClearable = true,
+  isClearable = false,
+  showTrigger = true,
   className,
   ...props
 }: ComboboxInputProps) {
@@ -84,29 +138,40 @@ function ComboboxInput({
     <div className="relative w-full z-20" data-slot="combobox-input-wrapper">
       <ComboboxPrimitive.Input
         data-slot="combobox-input"
-        className={cn("relative", className)}
+        className={cn(
+          "relative [&:has(+[data-slot=combobox-trigger])]:pr-8 rounded-[12px]",
+          className
+        )}
         render={<Input />}
         {...props}
       />
-      <ComboboxTrigger
-        className={cn(
-          "absolute top-1/2 -translate-y-1/2 right-2 inline-flex size-8 sm:size-7 cursor-pointer items-center justify-center rounded-md border border-transparent opacity-80 outline-none transition-opacity hover:opacity-100 has-[+[data-slot=combobox-clear]]:hidden in-data-[slot=combobox-chips]:hidden [&_svg:not([class*='size-'])]:size-4.5 sm:[&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0"
-        )}
-      >
-        <ChevronsUpDownIcon />
-      </ComboboxTrigger>
+      {showTrigger && (
+        <ComboboxTrigger
+          className={cn(
+            "group absolute top-1/2 -translate-y-1/2 right-1 inline-flex size-8 sm:size-7 cursor-pointer items-center justify-center rounded-md border border-transparent outline-none z-1 has-[+[data-slot=combobox-clear]]:hidden in-data-[slot=combobox-chips]:hidden [&_svg:not([class*='size-'])]:size-4.5 sm:[&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0"
+          )}
+        >
+          <ChevronsUpDownIcon />
+        </ComboboxTrigger>
+      )}
       {isClearable && (
         <ComboboxClear
           className={cn(
-            "absolute top-1/2 -translate-y-1/2 right-2 inline-flex size-8 sm:size-7 cursor-pointer items-center justify-center rounded-md border border-transparent opacity-80 outline-none transition-opacity hover:opacity-100 has-[+[data-slot=combobox-clear]]:hidden in-data-[slot=combobox-chips]:hidden [&_svg:not([class*='size-'])]:size-4.5 sm:[&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+            "absolute top-1/2 -translate-y-1/2 right-1 inline-flex size-8 sm:size-7 cursor-pointer items-center justify-center rounded-md border border-transparent outline-none has-[+[data-slot=combobox-clear]]:hidden in-data-[slot=combobox-chips]:hidden [&_svg:not([class*='size-'])]:size-4.5 sm:[&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
             "data-starting-style:opacity-0 data-ending-style:opacity-100 data-starting-style:scale-98 data-ending-style:scale-98"
           )}
         >
-          <XIcon />
+          <CloseIcon />
         </ComboboxClear>
       )}
     </div>
   );
+}
+
+interface ComboboxLabel extends React.ComponentProps<typeof Label> {}
+
+function ComboboxLabel(props: ComboboxLabel) {
+  return <Label data-slot="combobox-label" {...props} />;
 }
 
 interface ComboboxClearProps extends ComboboxPrimitive.Clear.Props {}
@@ -127,7 +192,7 @@ function ComboboxTrigger({ className, ...props }: ComboboxTriggerProps) {
   return (
     <ComboboxPrimitive.Trigger
       data-slot="combobox-trigger"
-      className={cn(className)}
+      className={cn("rounded-[12px]", className)}
       {...props}
     />
   );
@@ -182,7 +247,7 @@ function ComboboxChipRemove({ className, ...props }: ComboboxChipRemoveProps) {
       data-slot="combobox-chip-remove"
       {...props}
     >
-      <XIcon />
+      <CloseIcon />
     </ComboboxPrimitive.ChipRemove>
   );
 }
@@ -238,19 +303,19 @@ function ComboboxPopup({
   children,
   ...props
 }: ComboboxPopupProps) {
-  const { chipsRef, multiple } = useContext(ComboboxContext);
+  const { chipsRef } = useContext(ComboboxContext);
 
   return (
     <ComboboxPortal>
       <ComboboxPositioner
-        {...(multiple && chipsRef?.current ? { anchor: chipsRef } : {})}
+        anchor={chipsRef}
         sideOffset={sideOffset}
         className={cn("select-none outline-none z-20", className)}
       >
         <ComboboxPrimitive.Popup
           data-slot="combobox-popup"
           className={cn(
-            "relative flex max-h-full origin-(--transform-origin) rounded-[16px] shadow-md border border-border transition-[scale,opacity] will-change-[scale,opacity] duration-100 overflow-hidden",
+            "group relative flex max-h-full origin-(--transform-origin) rounded-[16px] shadow-md border border-border transition-[scale,opacity] will-change-[scale,opacity] duration-100 overflow-hidden",
             // Animation states
             "data-starting-style:scale-98 data-ending-style:scale-98 data-starting-style:opacity-0 data-ending-style:opacity-0",
             // Safe offset
@@ -269,7 +334,7 @@ function ComboboxPopup({
           )}
           {...props}
         >
-          <span className="flex max-h-[min(var(--available-height),20rem)] w-[calc(var(--anchor-width)+10px)] max-w-[calc(var(--available-width)+10px)] flex-col overflow-hidden pointer-events-auto">
+          <span className="flex max-h-[min(var(--available-height),20rem)] not-has-data-[slot=combobox-input]:w-[calc(var(--anchor-width)+10px)] not-has-data-[slot=combobox-input]:max-w-[calc(var(--available-width)+10px)] w-(--anchor-width) max-w-(--available-width) flex-col overflow-hidden pointer-events-auto">
             {children}
           </span>
         </ComboboxPrimitive.Popup>
@@ -314,28 +379,14 @@ function ComboboxItem({ className, children, ...props }: ComboboxItemProps) {
     <ComboboxPrimitive.Item
       data-slot="combobox-item"
       className={cn(
-        "px-3 py-1.5 text-sm cursor-pointer hover:bg-accent/70 data-highlighted:bg-accent grid grid-cols-[1rem_1fr] items-center gap-2",
+        "group px-3 pr-5 py-1.5 text-sm cursor-pointer hover:bg-accent/70 data-highlighted:bg-accent grid grid-cols-[1rem_1fr] items-center gap-2",
         "data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4.5 sm:[&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
         className
       )}
       {...props}
     >
       <ComboboxPrimitive.ItemIndicator className="col-start-1">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="1em"
-          height="1em"
-          viewBox="0 0 24 24"
-        >
-          <path
-            fill="none"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="m5 12l5 5L20 7"
-          />
-        </svg>
+        <CheckIcon />
       </ComboboxPrimitive.ItemIndicator>
       <div className="col-start-2">{children}</div>
     </ComboboxPrimitive.Item>
@@ -354,7 +405,7 @@ function ComboboxGroupLabel({ className, ...props }: ComboboxGroupLabelProps) {
   return (
     <ComboboxPrimitive.GroupLabel
       className={cn(
-        "px-2 py-1.5 font-medium text-muted-foreground text-xs sticky top-0 bg-popover",
+        "px-2 py-1.5 font-medium text-muted-foreground text-xs sticky z-2 top-0 bg-popover w-full",
         className
       )}
       data-slot="combobox-group-label"
@@ -383,10 +434,7 @@ export {
   ComboboxTrigger,
   ComboboxChips,
   ComboboxChip,
-  ComboboxChipRemove,
   ComboboxList,
-  ComboboxPortal,
-  ComboboxPositioner,
   ComboboxPopup,
   ComboboxEmpty,
   ComboboxCollection,
@@ -395,4 +443,5 @@ export {
   ComboboxGroup,
   ComboboxGroupLabel,
   ComboboxSeparator,
+  ComboboxLabel,
 };

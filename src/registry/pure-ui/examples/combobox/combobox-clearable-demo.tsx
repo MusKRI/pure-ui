@@ -22,11 +22,11 @@ const users = [
 
 type User = (typeof users)[number];
 
-export function ComboboxDemo() {
+export function ComboboxClearableDemo() {
   return (
     <Combobox items={users}>
       <div className="max-w-xs w-full">
-        <ComboboxInput placeholder="Select a user..." />
+        <ComboboxInput placeholder="Select a user..." isClearable />
       </div>
       <ComboboxPopup>
         <ComboboxEmpty>No users found.</ComboboxEmpty>

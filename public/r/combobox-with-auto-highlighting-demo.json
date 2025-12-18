@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "combobox-with-auto-highlighting-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "combobox"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/examples/combobox/combobox-with-auto-highlighting-demo.tsx",
+      "content": "\"use client\";\r\n\r\nimport {\r\n  Combobox,\r\n  ComboboxEmpty,\r\n  ComboboxInput,\r\n  ComboboxItem,\r\n  ComboboxList,\r\n  ComboboxPopup,\r\n} from \"@/registry/pure-ui/ui/combobox\";\r\n\r\nexport function ComboboxWithAutoHighlightingDemo() {\r\n  return (\r\n    <Combobox items={fruits} autoHighlight>\r\n      <div className=\"max-w-xs w-full\">\r\n        <ComboboxInput placeholder=\"Select a fruit...\" />\r\n      </div>\r\n      <ComboboxPopup>\r\n        <ComboboxEmpty>No fruits found.</ComboboxEmpty>\r\n        <ComboboxList>\r\n          {(fruit: string) => (\r\n            <ComboboxItem key={fruit} value={fruit}>\r\n              {fruit}\r\n            </ComboboxItem>\r\n          )}\r\n        </ComboboxList>\r\n      </ComboboxPopup>\r\n    </Combobox>\r\n  );\r\n}\r\n\r\nconst fruits = [\r\n  \"Apple\",\r\n  \"Banana\",\r\n  \"Orange\",\r\n  \"Pineapple\",\r\n  \"Grape\",\r\n  \"Mango\",\r\n  \"Strawberry\",\r\n  \"Blueberry\",\r\n  \"Raspberry\",\r\n  \"Blackberry\",\r\n  \"Cherry\",\r\n  \"Peach\",\r\n  \"Pear\",\r\n  \"Plum\",\r\n  \"Kiwi\",\r\n  \"Watermelon\",\r\n  \"Cantaloupe\",\r\n  \"Honeydew\",\r\n  \"Papaya\",\r\n  \"Guava\",\r\n  \"Lychee\",\r\n  \"Pomegranate\",\r\n  \"Apricot\",\r\n  \"Grapefruit\",\r\n  \"Passionfruit\",\r\n];\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

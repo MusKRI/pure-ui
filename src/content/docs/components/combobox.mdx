@@ -5,4 +5,121 @@ description: An input combined with a list of predefined items to select.
 
 <ComponentShowcase name="combobox-demo" />
 
+## Installation
+
+<Tabs defaultValue="terminal">
+  <TabsList>
+    <TabsTrigger value="terminal">
+      <Terminal className="w-4 h-4" />
+      Terminal
+    </TabsTrigger>
+    <TabsTrigger value="manual">
+      <Code2 className="w-4 h-4" />
+      Manual
+    </TabsTrigger>
+  </TabsList>
+  <TabsContent value="terminal">
+    <InstallationCommands
+      type="registry-installation"
+      registryPath="combobox"
+    />
+  </TabsContent>
+  <TabsContent value="manual">
+  <Steps>
+    <Step>Install Dependencies</Step>
+
+    <InstallationCommands
+      type="package-installation"
+      npmCommand="npm install @base-ui/react clsx tailwind-merge"
+      pnpmCommand="pnpm add @base-ui/react clsx tailwind-merge"
+      yarnCommand="yarn add @base-ui/react clsx tailwind-merge"
+      bunCommand="bun add @base-ui/react clsx tailwind-merge"
+    />
+    </Steps>
+
+    <Step>Add cn function to your utils</Step>
+
+    ```ts filename="lib/classes.ts"
+      import { clsx, type ClassValue } from "clsx";
+      import { twMerge } from "tailwind-merge";
+
+      export function cn(...inputs: ClassValue[]) {
+        return twMerge(clsx(inputs));
+      }
+    ```
+
+    <Step>Copy and paste the following code into your project</Step>
+
+    <ComponentCodePreview name="combobox" />
+
+  </TabsContent>
+</Tabs>
+
+## Key Points
+
+- **Value Matching**: The `value` prop in `ComboboxItem` must match the type of items in you array. For objects, you can pass the entire object as the value.
+- **Render Function**: The `<ComboboxList>` children is a render function that receives each item and lets you customize how it's displayed.
+
+## Examples
+
+### Basic
+
+You can use array of simple data primitive values as items. Notice in example below that we are using array of strings as items passed to Combobox component.
+
+<ComponentShowcase name="combobox-basic-demo" />
+
+### With Objects as Items
+
+You can use array of objects as items. As mentioned in **key points**, the `value` prop in `ComboboxItem` must match the type of items in your array. For objects, you can pass the entire object as the value.
+
+<ComponentShowcase name="combobox-with-objects-items-demo" />
+
+Notice in above example that we are using `label` property in each item object of items. By default, the `label` property is used to display selected item in the input.
+
+In example below we are not using `label` property in each item object of items. In this case, whole object is displayed in the input which we don't want to show in the input :(
+
+<ComponentShowcase name="combobox-objects-without-label-demo" />
+
+To use custom label or other properties of the object to show in the input, you can use `itemToStringLabel` function as prop to `Combobox` component.
+
+<ComponentShowcase name="combobox-item-to-string-label-demo" />
+
+### Controlled Combobox
+
+You can use `value` and `onValueChange` props to control the selected item in the combobox.
+
+<ComponentShowcase name="combobox-controlled-demo" />
+
+### With Label
+
+You can use `ComboboxLabel` component to add a label to the combobox.
+
+<ComponentShowcase name="combobox-with-label-demo" />
+
+### Auto Highlighting
+
+You can use `autoHighlight` prop to enable auto highlighting of the items in the combobox. Now try searching for something like "app" and you will see that the first matching item is highlighted.
+
+<ComponentShowcase name="combobox-with-auto-highlighting-demo" />
+
+### Multiple Select
+
+You can allow multiple selection by passing `multiple` prop to the `Combobox` component. And selected items will be displayed in the input as `ComboboxChip` that can be removed.
+
+<ComponentShowcase name="combobox-multiple-selection-demo" />
+
+### Input Inside Popup
+
+**Important:** You need to pass `showTrigger={false}` to the `ComboboxInput` component when you are using it inside the `ComboboxPopup` component. This will prevent us to have only one trigger against which popup will be shown. otherwise, we'll end up having two triggers in Combobox and that will cause issues.
+
 <ComponentShowcase name="combobox-input-inside-popup-demo" />
+
+### Clearable Combobox
+
+You can show clear button by passing `isClearable` prop to the `ComboboxInput` component.
+
+<ComponentShowcase name="combobox-clearable-demo" />
+
+### Grouping Items
+
+<ComponentShowcase name="combobox-grouping-items-demo" />

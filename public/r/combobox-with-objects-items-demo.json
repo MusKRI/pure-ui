@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "combobox-with-objects-items-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "combobox"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/examples/combobox/combobox-with-objects-items-demo.tsx",
+      "content": "\"use client\";\r\n\r\nimport {\r\n  Combobox,\r\n  ComboboxEmpty,\r\n  ComboboxInput,\r\n  ComboboxItem,\r\n  ComboboxList,\r\n  ComboboxPopup,\r\n} from \"@/registry/pure-ui/ui/combobox\";\r\n\r\nconst users = [\r\n  { id: \"u1\", label: \"Alice Johnson\", email: \"alice@example.com\" },\r\n  { id: \"u2\", label: \"Bob Lee\", email: \"bob@example.com\" },\r\n  { id: \"u3\", label: \"Cathy Kim\", email: \"cathy@example.com\" },\r\n  { id: \"u4\", label: \"David Smith\", email: \"david@example.com\" },\r\n  { id: \"u5\", label: \"Emily Davis\", email: \"emily@example.com\" },\r\n  { id: \"u6\", label: \"Frank Miller\", email: \"frank@example.com\" },\r\n  { id: \"u7\", label: \"Grace Lee\", email: \"grace@example.com\" },\r\n  { id: \"u8\", label: \"Henry Walker\", email: \"henry@example.com\" },\r\n];\r\n\r\ntype User = (typeof users)[number];\r\n\r\nexport function ComboboxWithObjectsItemsDemo() {\r\n  return (\r\n    <Combobox items={users}>\r\n      <div className=\"max-w-xs w-full\">\r\n        <ComboboxInput placeholder=\"Select a user...\" />\r\n      </div>\r\n      <ComboboxPopup>\r\n        <ComboboxEmpty>No users found.</ComboboxEmpty>\r\n        <ComboboxList>\r\n          {(user: User) => (\r\n            <ComboboxItem key={user.id} value={user}>\r\n              <div>\r\n                <div className=\"font-medium\">{user.label}</div>\r\n                <div className=\"text-xs text-muted-foreground\">\r\n                  {user.email}\r\n                </div>\r\n              </div>\r\n            </ComboboxItem>\r\n          )}\r\n        </ComboboxList>\r\n      </ComboboxPopup>\r\n    </Combobox>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

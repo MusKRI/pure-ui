@@ -10,19 +10,19 @@ import {
 } from "@/registry/pure-ui/ui/combobox";
 
 const users = [
-  { id: "u1", label: "Alice Johnson", value: "alice@example.com" },
-  { id: "u2", label: "Bob Lee", value: "bob@example.com" },
-  { id: "u3", label: "Cathy Kim", value: "cathy@example.com" },
-  { id: "u4", label: "David Smith", value: "david@example.com" },
-  { id: "u5", label: "Emily Davis", value: "emily@example.com" },
-  { id: "u6", label: "Frank Miller", value: "frank@example.com" },
-  { id: "u7", label: "Grace Lee", value: "grace@example.com" },
-  { id: "u8", label: "Henry Walker", value: "henry@example.com" },
+  { id: "u1", name: "Alice Johnson", email: "alice@example.com" },
+  { id: "u2", name: "Bob Lee", email: "bob@example.com" },
+  { id: "u3", name: "Cathy Kim", email: "cathy@example.com" },
+  { id: "u4", name: "David Smith", email: "david@example.com" },
+  { id: "u5", name: "Emily Davis", email: "emily@example.com" },
+  { id: "u6", name: "Frank Miller", email: "frank@example.com" },
+  { id: "u7", name: "Grace Lee", email: "grace@example.com" },
+  { id: "u8", name: "Henry Walker", email: "henry@example.com" },
 ];
 
 type User = (typeof users)[number];
 
-export function ComboboxDemo() {
+export function ComboboxObjectsWithoutLabelDemo() {
   return (
     <Combobox items={users}>
       <div className="max-w-xs w-full">
@@ -34,9 +34,9 @@ export function ComboboxDemo() {
           {(user: User) => (
             <ComboboxItem key={user.id} value={user}>
               <div>
-                <div className="font-medium">{user.label}</div>
+                <div className="font-medium">{user.name}</div>
                 <div className="text-xs text-muted-foreground">
-                  {user.value}
+                  {user.email}
                 </div>
               </div>
             </ComboboxItem>

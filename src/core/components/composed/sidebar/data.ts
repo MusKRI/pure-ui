@@ -134,13 +134,13 @@ const pureUIComponents = [
     type: "link",
     href: "/docs/components/collapsible",
   },
-  // {
-  //   id: "combobox",
-  //   title: "Combobox",
-  //   type: "link",
-  //   href: "/docs/components/combobox",
-  //   tag: "NEW",
-  // },
+  {
+    id: "combobox",
+    title: "Combobox",
+    type: "link",
+    href: "/docs/components/combobox",
+    tag: "NEW",
+  },
   {
     id: "detached-triggers",
     title: "Detached Triggers",

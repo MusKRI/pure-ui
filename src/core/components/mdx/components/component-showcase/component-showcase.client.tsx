@@ -47,7 +47,7 @@ export function ComponentShowcaseClient({
   return (
     <div
       className={cn(
-        "PureUIComponentShowcase [.PureCodeBlockWrapper+&]:mt-7 relative mb-12"
+        "PureUIComponentShowcase [.PureCodeBlockWrapper+&]:mt-7 [.PureUIComponentShowcase:has(+.PureP)]:mb-5! relative mb-12"
       )}
     >
       <LayoutGroup>
