@@ -9,6 +9,9 @@
     "tailwind-merge",
     "@base-ui/react"
   ],
+  "registryDependencies": [
+    "classes"
+  ],
   "files": [
     {
       "path": "src/registry/pure-ui/ui/input/index.tsx",

@@ -212,6 +212,13 @@ const pureUIComponents = [
     href: "/docs/components/popover",
   },
   {
+    id: "radio-group",
+    title: "Radio Group",
+    type: "link",
+    href: "/docs/components/radio-group",
+    tag: "NEW",
+  },
+  {
     id: "scroll-area",
     title: "Scroll Area",
     type: "link",
@@ -234,7 +241,6 @@ const pureUIComponents = [
     title: "Sheet",
     type: "link",
     href: "/docs/components/sheet",
-    tag: "NEW",
   },
   {
     id: "spinner",

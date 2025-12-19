@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radio-group-controlled-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "radio-group"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/examples/radio-group/radio-group-controlled-demo.tsx",
+      "content": "\"use client\";\r\n\r\nimport { Label } from \"@/registry/pure-ui/ui/label\";\r\nimport { Radio, RadioGroup } from \"@/registry/pure-ui/ui/radio-group\";\r\nimport { useState } from \"react\";\r\n\r\nexport function RadioGroupControlledDemo() {\r\n  const [value, setValue] = useState(\"virat\");\r\n\r\n  return (\r\n    <div className=\"flex flex-col gap-4\">\r\n      <RadioGroup\r\n        value={value}\r\n        onValueChange={(value) => setValue(value as string)}\r\n      >\r\n        <div className=\"text-sm font-medium\">\r\n          Choose your favorite cricket player\r\n        </div>\r\n        <Label>\r\n          <Radio value=\"virat\" /> Virat Kohli\r\n        </Label>\r\n        <Label>\r\n          <Radio value=\"rohit\" /> Rohit Sharma\r\n        </Label>\r\n        <Label>\r\n          <Radio value=\"sachin\" /> Sachin Tendulkar\r\n        </Label>\r\n        <Label>\r\n          <Radio value=\"dhoni\" /> MS Dhoni\r\n        </Label>\r\n      </RadioGroup>\r\n\r\n      <span className=\"text-muted-foreground px-1 text-sm\">\r\n        Selected Value: {value}\r\n      </span>\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

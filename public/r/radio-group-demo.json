@@ -1,0 +1,12 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radio-group-demo",
+  "type": "registry:example",
+  "files": [
+    {
+      "path": "src/registry/pure-ui/examples/radio-group/radio-group-demo.tsx",
+      "content": "import { Label } from \"@/registry/pure-ui/ui/label\";\r\nimport { Radio, RadioGroup } from \"@/registry/pure-ui/ui/radio-group\";\r\n\r\nexport function RadioGroupDemo() {\r\n  return (\r\n    <RadioGroup defaultValue=\"next\">\r\n      <div className=\"text-sm font-medium\">\r\n        Choose your favorite cricket player\r\n      </div>\r\n      <Label>\r\n        <Radio value=\"virat\" /> Virat Kohli\r\n      </Label>\r\n      <Label>\r\n        <Radio value=\"rohit\" /> Rohit Sharma\r\n      </Label>\r\n      <Label>\r\n        <Radio value=\"sachin\" /> Sachin Tendulkar\r\n      </Label>\r\n      <Label>\r\n        <Radio value=\"dhoni\" /> MS Dhoni\r\n      </Label>\r\n    </RadioGroup>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

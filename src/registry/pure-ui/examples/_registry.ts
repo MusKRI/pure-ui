@@ -1956,6 +1956,85 @@ export const pureUICompExamples: Registry["items"] = [
     ],
   },
 
+  // Radio Group
+  {
+    name: "radio-group-demo",
+    type: "registry:example",
+    // registryDependencies: ["scroll-area"],
+    files: [
+      {
+        path: "examples/radio-group/radio-group-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "radio-group-disabled-demo",
+    type: "registry:example",
+    registryDependencies: ["radio-group"],
+    files: [
+      {
+        path: "examples/radio-group/radio-group-disabled-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "radio-group-basic-demo",
+    type: "registry:example",
+    registryDependencies: ["radio-group"],
+    files: [
+      {
+        path: "examples/radio-group/radio-group-basic-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "radio-group-with-description-demo",
+    type: "registry:example",
+    registryDependencies: ["radio-group"],
+    files: [
+      {
+        path: "examples/radio-group/radio-group-with-description-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "radio-group-custom-layout-demo",
+    type: "registry:example",
+    registryDependencies: ["radio-group"],
+    files: [
+      {
+        path: "examples/radio-group/radio-group-custom-layout-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "radio-group-controlled-demo",
+    type: "registry:example",
+    registryDependencies: ["radio-group"],
+    files: [
+      {
+        path: "examples/radio-group/radio-group-controlled-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+  {
+    name: "radio-group-orientation-demo",
+    type: "registry:example",
+    registryDependencies: ["radio-group"],
+    files: [
+      {
+        path: "examples/radio-group/radio-group-orientation-demo.tsx",
+        type: "registry:example",
+      },
+    ],
+  },
+
   // Scroll Area
   {
     name: "scroll-area-demo",

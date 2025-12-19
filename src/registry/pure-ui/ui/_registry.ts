@@ -454,6 +454,23 @@ export const pureUIComponents: Registry["items"] = [
     dependencies: ["@base-ui/react", "clsx", "tailwind-merge"],
   },
 
+  // Radio Group
+  {
+    name: "radio-group",
+    type: "registry:ui",
+    title: "Radio Group",
+    description: "A customizable radio group component",
+    files: [
+      {
+        path: "ui/radio-group/index.tsx",
+        type: "registry:ui",
+        target: "components/ui/radio-group.tsx",
+      },
+    ],
+    registryDependencies: ["classes"],
+    dependencies: ["@base-ui/react", "clsx", "tailwind-merge"],
+  },
+
   // Scroll Area
   {
     name: "scroll-area",

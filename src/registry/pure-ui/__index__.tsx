@@ -10,7 +10,7 @@ export const Index: Record<string, Record<string, any>> = {
       name: "accordion",
       description: "A customizable accordion component",
       type: "registry:ui",
-      registryDependencies: undefined,
+      registryDependencies: ["classes"],
       files: [{
         path: "registry/pure-ui/ui/accordion/index.tsx",
         type: "registry:ui",
@@ -28,7 +28,7 @@ export const Index: Record<string, Record<string, any>> = {
       name: "avatar",
       description: "An easily stylable avatar component.",
       type: "registry:ui",
-      registryDependencies: undefined,
+      registryDependencies: ["classes"],
       files: [{
         path: "registry/pure-ui/ui/avatar/index.tsx",
         type: "registry:ui",
@@ -46,7 +46,7 @@ export const Index: Record<string, Record<string, any>> = {
       name: "badge",
       description: "An easily stylable badge component.",
       type: "registry:ui",
-      registryDependencies: undefined,
+      registryDependencies: ["classes"],
       files: [{
         path: "registry/pure-ui/ui/badge/index.tsx",
         type: "registry:ui",
@@ -82,7 +82,7 @@ export const Index: Record<string, Record<string, any>> = {
       name: "button-group",
       description: "A customizable button group component",
       type: "registry:ui",
-      registryDependencies: ["separator"],
+      registryDependencies: ["separator","classes"],
       files: [{
         path: "registry/pure-ui/ui/button-group/index.tsx",
         type: "registry:ui",
@@ -100,7 +100,7 @@ export const Index: Record<string, Record<string, any>> = {
       name: "card",
       description: "A customizable card component",
       type: "registry:ui",
-      registryDependencies: undefined,
+      registryDependencies: ["classes"],
       files: [{
         path: "registry/pure-ui/ui/card/index.tsx",
         type: "registry:ui",
@@ -118,7 +118,7 @@ export const Index: Record<string, Record<string, any>> = {
       name: "calendar",
       description: "A customizable calendar component",
       type: "registry:ui",
-      registryDependencies: undefined,
+      registryDependencies: ["classes","button"],
       files: [{
         path: "registry/pure-ui/ui/calendar/index.tsx",
         type: "registry:ui",
@@ -136,7 +136,7 @@ export const Index: Record<string, Record<string, any>> = {
       name: "checkbox",
       description: "A customizable checkbox component",
       type: "registry:ui",
-      registryDependencies: undefined,
+      registryDependencies: ["classes"],
       files: [{
         path: "registry/pure-ui/ui/checkbox/index.tsx",
         type: "registry:ui",
@@ -154,7 +154,7 @@ export const Index: Record<string, Record<string, any>> = {
       name: "collapsible",
       description: "A customizable collapsible component",
       type: "registry:ui",
-      registryDependencies: undefined,
+      registryDependencies: ["classes"],
       files: [{
         path: "registry/pure-ui/ui/collapsible/index.tsx",
         type: "registry:ui",
@@ -172,7 +172,7 @@ export const Index: Record<string, Record<string, any>> = {
       name: "combobox",
       description: "A customizable combobox component",
       type: "registry:ui",
-      registryDependencies: ["input"],
+      registryDependencies: ["input","classes","label","scroll-area"],
       files: [{
         path: "registry/pure-ui/ui/combobox/index.tsx",
         type: "registry:ui",
@@ -190,7 +190,7 @@ export const Index: Record<string, Record<string, any>> = {
       name: "dialog",
       description: "A customizable dialog component",
       type: "registry:ui",
-      registryDependencies: undefined,
+      registryDependencies: ["classes"],
       files: [{
         path: "registry/pure-ui/ui/dialog/index.tsx",
         type: "registry:ui",
@@ -208,7 +208,7 @@ export const Index: Record<string, Record<string, any>> = {
       name: "input",
       description: "A customizable input component",
       type: "registry:ui",
-      registryDependencies: undefined,
+      registryDependencies: ["classes"],
       files: [{
         path: "registry/pure-ui/ui/input/index.tsx",
         type: "registry:ui",
@@ -226,7 +226,7 @@ export const Index: Record<string, Record<string, any>> = {
       name: "input-group",
       description: "A customizable input group component",
       type: "registry:ui",
-      registryDependencies: ["input","textarea","button"],
+      registryDependencies: ["input","textarea","button","classes"],
       files: [{
         path: "registry/pure-ui/ui/input-group/index.tsx",
         type: "registry:ui",
@@ -244,7 +244,7 @@ export const Index: Record<string, Record<string, any>> = {
       name: "input-otp",
       description: "A customizable input OTP component",
       type: "registry:ui",
-      registryDependencies: undefined,
+      registryDependencies: ["classes"],
       files: [{
         path: "registry/pure-ui/ui/input-otp/index.tsx",
         type: "registry:ui",
@@ -262,7 +262,7 @@ export const Index: Record<string, Record<string, any>> = {
       name: "kbd",
       description: "A customizable kbd component",
       type: "registry:ui",
-      registryDependencies: undefined,
+      registryDependencies: ["classes"],
       files: [{
         path: "registry/pure-ui/ui/kbd/index.tsx",
         type: "registry:ui",
@@ -280,7 +280,7 @@ export const Index: Record<string, Record<string, any>> = {
       name: "label",
       description: "A customizable label component",
       type: "registry:ui",
-      registryDependencies: undefined,
+      registryDependencies: ["classes"],
       files: [{
         path: "registry/pure-ui/ui/label/index.tsx",
         type: "registry:ui",
@@ -298,7 +298,7 @@ export const Index: Record<string, Record<string, any>> = {
       name: "menu",
       description: "A customizable menu component",
       type: "registry:ui",
-      registryDependencies: undefined,
+      registryDependencies: ["classes"],
       files: [{
         path: "registry/pure-ui/ui/menu/index.tsx",
         type: "registry:ui",
@@ -316,7 +316,7 @@ export const Index: Record<string, Record<string, any>> = {
       name: "number-field",
       description: "A customizable number field component",
       type: "registry:ui",
-      registryDependencies: undefined,
+      registryDependencies: ["classes"],
       files: [{
         path: "registry/pure-ui/ui/number-field/index.tsx",
         type: "registry:ui",
@@ -334,7 +334,7 @@ export const Index: Record<string, Record<string, any>> = {
       name: "popover",
       description: "A customizable popover component",
       type: "registry:ui",
-      registryDependencies: undefined,
+      registryDependencies: ["classes"],
       files: [{
         path: "registry/pure-ui/ui/popover/index.tsx",
         type: "registry:ui",
@@ -348,11 +348,29 @@ export const Index: Record<string, Record<string, any>> = {
       categories: undefined,
       meta: undefined,
     },
+    "radio-group": {
+      name: "radio-group",
+      description: "A customizable radio group component",
+      type: "registry:ui",
+      registryDependencies: ["classes"],
+      files: [{
+        path: "registry/pure-ui/ui/radio-group/index.tsx",
+        type: "registry:ui",
+        target: "components/ui/radio-group.tsx"
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/ui/radio-group/index.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
     "scroll-area": {
       name: "scroll-area",
       description: "A customizable scroll area component",
       type: "registry:ui",
-      registryDependencies: undefined,
+      registryDependencies: ["classes"],
       files: [{
         path: "registry/pure-ui/ui/scroll-area/index.tsx",
         type: "registry:ui",
@@ -370,7 +388,7 @@ export const Index: Record<string, Record<string, any>> = {
       name: "select",
       description: "A customizable select component",
       type: "registry:ui",
-      registryDependencies: undefined,
+      registryDependencies: ["classes"],
       files: [{
         path: "registry/pure-ui/ui/select/index.tsx",
         type: "registry:ui",
@@ -388,7 +406,7 @@ export const Index: Record<string, Record<string, any>> = {
       name: "separator",
       description: "A customizable separator component",
       type: "registry:ui",
-      registryDependencies: undefined,
+      registryDependencies: ["classes"],
       files: [{
         path: "registry/pure-ui/ui/separator/index.tsx",
         type: "registry:ui",
@@ -406,7 +424,7 @@ export const Index: Record<string, Record<string, any>> = {
       name: "sheet",
       description: "A customizable sheet component",
       type: "registry:ui",
-      registryDependencies: undefined,
+      registryDependencies: ["classes"],
       files: [{
         path: "registry/pure-ui/ui/sheet/index.tsx",
         type: "registry:ui",
@@ -424,7 +442,7 @@ export const Index: Record<string, Record<string, any>> = {
       name: "switch",
       description: "A customizable switch component",
       type: "registry:ui",
-      registryDependencies: undefined,
+      registryDependencies: ["classes"],
       files: [{
         path: "registry/pure-ui/ui/switch/index.tsx",
         type: "registry:ui",
@@ -442,7 +460,7 @@ export const Index: Record<string, Record<string, any>> = {
       name: "spinner",
       description: "A customizable spinner component",
       type: "registry:ui",
-      registryDependencies: undefined,
+      registryDependencies: ["classes"],
       files: [{
         path: "registry/pure-ui/ui/spinner/index.tsx",
         type: "registry:ui",
@@ -460,7 +478,7 @@ export const Index: Record<string, Record<string, any>> = {
       name: "textarea",
       description: "A customizable textarea component",
       type: "registry:ui",
-      registryDependencies: undefined,
+      registryDependencies: ["classes"],
       files: [{
         path: "registry/pure-ui/ui/textarea/index.tsx",
         type: "registry:ui",
@@ -478,7 +496,7 @@ export const Index: Record<string, Record<string, any>> = {
       name: "toast",
       description: "A customizable toast component",
       type: "registry:ui",
-      registryDependencies: ["button","spinner"],
+      registryDependencies: ["button","spinner","classes"],
       files: [{
         path: "registry/pure-ui/ui/toast/index.tsx",
         type: "registry:ui",
@@ -496,7 +514,7 @@ export const Index: Record<string, Record<string, any>> = {
       name: "tooltip",
       description: "A customizable tooltip component",
       type: "registry:ui",
-      registryDependencies: undefined,
+      registryDependencies: ["classes"],
       files: [{
         path: "registry/pure-ui/ui/tooltip/index.tsx",
         type: "registry:ui",
@@ -3654,6 +3672,132 @@ export const Index: Record<string, Record<string, any>> = {
       }],
       component: React.lazy(async () => {
         const mod = await import("@/registry/pure-ui/examples/popover/popover-custom-trigger-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "radio-group-demo": {
+      name: "radio-group-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: undefined,
+      files: [{
+        path: "registry/pure-ui/examples/radio-group/radio-group-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/radio-group/radio-group-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "radio-group-disabled-demo": {
+      name: "radio-group-disabled-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["radio-group"],
+      files: [{
+        path: "registry/pure-ui/examples/radio-group/radio-group-disabled-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/radio-group/radio-group-disabled-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "radio-group-basic-demo": {
+      name: "radio-group-basic-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["radio-group"],
+      files: [{
+        path: "registry/pure-ui/examples/radio-group/radio-group-basic-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/radio-group/radio-group-basic-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "radio-group-with-description-demo": {
+      name: "radio-group-with-description-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["radio-group"],
+      files: [{
+        path: "registry/pure-ui/examples/radio-group/radio-group-with-description-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/radio-group/radio-group-with-description-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "radio-group-custom-layout-demo": {
+      name: "radio-group-custom-layout-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["radio-group"],
+      files: [{
+        path: "registry/pure-ui/examples/radio-group/radio-group-custom-layout-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/radio-group/radio-group-custom-layout-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "radio-group-controlled-demo": {
+      name: "radio-group-controlled-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["radio-group"],
+      files: [{
+        path: "registry/pure-ui/examples/radio-group/radio-group-controlled-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/radio-group/radio-group-controlled-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
+    "radio-group-orientation-demo": {
+      name: "radio-group-orientation-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["radio-group"],
+      files: [{
+        path: "registry/pure-ui/examples/radio-group/radio-group-orientation-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/radio-group/radio-group-orientation-demo.tsx")
         const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
         return { default: mod.default || mod[exportName] }
       }),

@@ -7,7 +7,12 @@
   "dependencies": [
     "clsx",
     "tailwind-merge",
-    "react-day-picker"
+    "react-day-picker",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "classes",
+    "button"
   ],
   "files": [
     {

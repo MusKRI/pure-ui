@@ -10,6 +10,9 @@
     "@base-ui/react",
     "lucide-react"
   ],
+  "registryDependencies": [
+    "classes"
+  ],
   "files": [
     {
       "path": "src/registry/pure-ui/ui/dialog/index.tsx",

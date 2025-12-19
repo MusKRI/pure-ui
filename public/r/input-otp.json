@@ -11,6 +11,9 @@
     "input-otp",
     "motion"
   ],
+  "registryDependencies": [
+    "classes"
+  ],
   "files": [
     {
       "path": "src/registry/pure-ui/ui/input-otp/index.tsx",

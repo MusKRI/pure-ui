@@ -9,6 +9,9 @@
     "clsx",
     "tailwind-merge"
   ],
+  "registryDependencies": [
+    "classes"
+  ],
   "files": [
     {
       "path": "src/registry/pure-ui/ui/scroll-area/index.tsx",

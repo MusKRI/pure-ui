@@ -10,6 +10,9 @@
     "tailwind-merge",
     "lucide-react"
   ],
+  "registryDependencies": [
+    "classes"
+  ],
   "files": [
     {
       "path": "src/registry/pure-ui/ui/select/index.tsx",

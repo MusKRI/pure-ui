@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radio-group-with-description-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "radio-group"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/examples/radio-group/radio-group-with-description-demo.tsx",
+      "content": "import { Label } from \"@/registry/pure-ui/ui/label\";\r\nimport { Radio, RadioGroup } from \"@/registry/pure-ui/ui/radio-group\";\r\n\r\nexport function RadioGroupWithDescriptionDemo() {\r\n  return (\r\n    <RadioGroup defaultValue=\"all\">\r\n      <Label className=\"flex items-start gap-2\">\r\n        <Radio value=\"all\" />\r\n        <div className=\"flex flex-col gap-1\">\r\n          <span className=\"font-medium\">All Notifications</span>\r\n          <span className=\"text-xs text-muted-foreground\">\r\n            Receive all notifications including system, marketing, and activity\r\n            alerts.\r\n          </span>\r\n        </div>\r\n      </Label>\r\n      <Label className=\"flex items-start gap-2\">\r\n        <Radio value=\"mentions\" />\r\n        <div className=\"flex flex-col gap-1\">\r\n          <span className=\"font-medium\">Only Mentions</span>\r\n          <span className=\"text-xs text-muted-foreground\">\r\n            Get notified only when someone mentions you or replies to your\r\n            posts.\r\n          </span>\r\n        </div>\r\n      </Label>\r\n      <Label className=\"flex items-start gap-2\">\r\n        <Radio value=\"direct\" />\r\n        <div className=\"flex flex-col gap-1\">\r\n          <span className=\"font-medium\">Direct Messages</span>\r\n          <span className=\"text-xs text-muted-foreground\">\r\n            Only receive notifications for direct messages.\r\n          </span>\r\n        </div>\r\n      </Label>\r\n      <Label className=\"flex items-start gap-2\">\r\n        <Radio value=\"none\" />\r\n        <div className=\"flex flex-col gap-1\">\r\n          <span className=\"font-medium\">None</span>\r\n          <span className=\"text-xs text-muted-foreground\">\r\n            Do not receive any notifications.\r\n          </span>\r\n        </div>\r\n      </Label>\r\n    </RadioGroup>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

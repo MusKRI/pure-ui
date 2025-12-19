@@ -7,7 +7,11 @@
   "dependencies": [
     "@base-ui/react",
     "clsx",
-    "tailwind-merge"
+    "tailwind-merge",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "classes"
   ],
   "files": [
     {

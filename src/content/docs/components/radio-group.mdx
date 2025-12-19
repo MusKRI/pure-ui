@@ -1,0 +1,109 @@
+---
+title: Radio Group
+description: A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time.
+---
+
+<ComponentShowcase name="radio-group-demo" />
+
+## Installation
+
+<Tabs defaultValue="terminal">
+  <TabsList>
+    <TabsTrigger value="terminal">
+      <Terminal className="w-4 h-4" />
+      Terminal
+    </TabsTrigger>
+    <TabsTrigger value="manual">
+      <Code2 className="w-4 h-4" />
+      Manual
+    </TabsTrigger>
+  </TabsList>
+  <TabsContent value="terminal">
+    <InstallationCommands
+      type="registry-installation"
+      registryPath="radio-group"
+    />
+  </TabsContent>
+  <TabsContent value="manual">
+    <Steps>
+      <Step>Install dependencies</Step>
+
+      <InstallationCommands
+        type="package-installation"
+        npmCommand="npm install @base-ui/react clsx tailwind-merge"
+        pnpmCommand="pnpm add @base-ui/react clsx tailwind-merge"
+        yarnCommand="yarn add @base-ui/react clsx tailwind-merge"
+        bunCommand="bun add @base-ui/react clsx tailwind-merge"
+      />
+
+      <Step>Add cn function to your utils</Step>
+
+      ```ts filename="lib/classes.ts"
+      import { clsx, type ClassValue } from "clsx";
+      import { twMerge } from "tailwind-merge";
+
+      export function cn(...inputs: ClassValue[]) {
+        return twMerge(clsx(inputs));
+      }
+      ```
+
+      <Step>Copy and paste the following code into your project</Step>
+
+      <ComponentCodePreview name="radio-group" />
+    </Steps>
+
+  </TabsContent>
+</Tabs>
+
+## Usage
+
+```tsx
+import { RadioGroup, Radio } from "@/components/ui/radio-group";
+```
+
+```tsx
+<RadioGroup defaultValue="react-query">
+  <div className="text-sm font-medium">
+    Choose your favorite Tanstack library
+  </div>
+  <Label>
+    <Radio value="react-query" /> React Query
+  </Label>
+  <Label>
+    <Radio value="tanstack-router" /> Tanstack Router
+  </Label>
+  <Label>
+    <Radio value="tanstack-table" /> Tanstack Table
+  </Label>
+</RadioGroup>
+```
+
+## Examples
+
+### Basic
+
+<ComponentShowcase name="radio-group-basic-demo" />
+
+### With Description
+
+<ComponentShowcase name="radio-group-with-description-demo" />
+
+### Orientation
+
+You can change the orientation of the radio group to horizontal or vertical by passing the `orientation` prop to the `RadioGroup` component.
+
+<ComponentShowcase name="radio-group-orientation-demo" />
+
+### Controlled
+
+You can control the value of the radio group by passing the `value` prop to the `RadioGroup` component and using the `onValueChange` callback to update the value.
+
+<ComponentShowcase name="radio-group-controlled-demo" />
+
+### Custom Layout
+
+<ComponentShowcase name="radio-group-custom-layout-demo" />
+
+### Disabled
+
+<ComponentShowcase name="radio-group-disabled-demo" />

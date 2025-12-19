@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radio-group-orientation-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "radio-group"
+  ],
+  "files": [
+    {
+      "path": "src/registry/pure-ui/examples/radio-group/radio-group-orientation-demo.tsx",
+      "content": "import { Label } from \"@/registry/pure-ui/ui/label\";\r\nimport { Radio, RadioGroup } from \"@/registry/pure-ui/ui/radio-group\";\r\n\r\nexport function RadioGroupOrientationDemo() {\r\n  return (\r\n    <div className=\"flex flex-col gap-4\">\r\n      <div className=\"text-sm font-medium\">\r\n        How would you rate your experience?\r\n      </div>\r\n      <RadioGroup orientation=\"horizontal\">\r\n        {[1, 2, 3, 4, 5].map((item) => (\r\n          <Label key={item}>\r\n            <Radio value={item} /> {item}\r\n          </Label>\r\n        ))}\r\n      </RadioGroup>\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:example"
+    }
+  ]
+}

@@ -29,6 +29,9 @@
         "@base-ui/react",
         "motion"
       ],
+      "registryDependencies": [
+        "classes"
+      ],
       "files": [
         {
           "path": "src/registry/pure-ui/ui/accordion/index.tsx",
@@ -46,6 +49,9 @@
         "clsx",
         "tailwind-merge",
         "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "classes"
       ],
       "files": [
         {
@@ -65,6 +71,9 @@
         "clsx",
         "tailwind-merge",
         "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "classes"
       ],
       "files": [
         {
@@ -108,7 +117,8 @@
         "@base-ui/react"
       ],
       "registryDependencies": [
-        "separator"
+        "separator",
+        "classes"
       ],
       "files": [
         {
@@ -127,6 +137,9 @@
         "clsx",
         "tailwind-merge"
       ],
+      "registryDependencies": [
+        "classes"
+      ],
       "files": [
         {
           "path": "src/registry/pure-ui/ui/card/index.tsx",
@@ -143,7 +156,12 @@
       "dependencies": [
         "clsx",
         "tailwind-merge",
-        "react-day-picker"
+        "react-day-picker",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "classes",
+        "button"
       ],
       "files": [
         {
@@ -255,6 +273,9 @@
         "tailwind-merge",
         "@base-ui/react"
       ],
+      "registryDependencies": [
+        "classes"
+      ],
       "files": [
         {
           "path": "src/registry/pure-ui/ui/checkbox/index.tsx",
@@ -272,6 +293,9 @@
         "clsx",
         "tailwind-merge",
         "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "classes"
       ],
       "files": [
         {
@@ -292,7 +316,10 @@
         "@base-ui/react"
       ],
       "registryDependencies": [
-        "input"
+        "input",
+        "classes",
+        "label",
+        "scroll-area"
       ],
       "files": [
         {
@@ -313,6 +340,9 @@
         "@base-ui/react",
         "lucide-react"
       ],
+      "registryDependencies": [
+        "classes"
+      ],
       "files": [
         {
           "path": "src/registry/pure-ui/ui/dialog/index.tsx",
@@ -330,6 +360,9 @@
         "clsx",
         "tailwind-merge",
         "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "classes"
       ],
       "files": [
         {
@@ -353,7 +386,8 @@
       "registryDependencies": [
         "input",
         "textarea",
-        "button"
+        "button",
+        "classes"
       ],
       "files": [
         {
@@ -375,6 +409,9 @@
         "input-otp",
         "motion"
       ],
+      "registryDependencies": [
+        "classes"
+      ],
       "files": [
         {
           "path": "src/registry/pure-ui/ui/input-otp/index.tsx",
@@ -391,6 +428,9 @@
       "dependencies": [
         "clsx",
         "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "classes"
       ],
       "files": [
         {
@@ -409,6 +449,9 @@
         "clsx",
         "tailwind-merge"
       ],
+      "registryDependencies": [
+        "classes"
+      ],
       "files": [
         {
           "path": "src/registry/pure-ui/ui/label/index.tsx",
@@ -425,7 +468,11 @@
       "dependencies": [
         "@base-ui/react",
         "clsx",
-        "tailwind-merge"
+        "tailwind-merge",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "classes"
       ],
       "files": [
         {
@@ -445,6 +492,9 @@
         "clsx",
         "tailwind-merge"
       ],
+      "registryDependencies": [
+        "classes"
+      ],
       "files": [
         {
           "path": "src/registry/pure-ui/ui/number-field/index.tsx",
@@ -463,11 +513,35 @@
         "clsx",
         "tailwind-merge"
       ],
+      "registryDependencies": [
+        "classes"
+      ],
       "files": [
         {
           "path": "src/registry/pure-ui/ui/popover/index.tsx",
           "type": "registry:ui",
           "target": "components/ui/popover.tsx"
+        }
+      ]
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "title": "Radio Group",
+      "description": "A customizable radio group component",
+      "dependencies": [
+        "@base-ui/react",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "classes"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/ui/radio-group/index.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/radio-group.tsx"
         }
       ]
     },
@@ -480,6 +554,9 @@
         "@base-ui/react",
         "clsx",
         "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "classes"
       ],
       "files": [
         {
@@ -500,6 +577,9 @@
         "tailwind-merge",
         "lucide-react"
       ],
+      "registryDependencies": [
+        "classes"
+      ],
       "files": [
         {
           "path": "src/registry/pure-ui/ui/select/index.tsx",
@@ -517,6 +597,9 @@
         "@base-ui/react",
         "clsx",
         "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "classes"
       ],
       "files": [
         {
@@ -537,6 +620,9 @@
         "tailwind-merge",
         "tailwind-variants"
       ],
+      "registryDependencies": [
+        "classes"
+      ],
       "files": [
         {
           "path": "src/registry/pure-ui/ui/sheet/index.tsx",
@@ -554,6 +640,9 @@
         "clsx",
         "tailwind-merge",
         "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "classes"
       ],
       "files": [
         {
@@ -574,6 +663,9 @@
         "@base-ui/react",
         "clsx"
       ],
+      "registryDependencies": [
+        "classes"
+      ],
       "files": [
         {
           "path": "src/registry/pure-ui/ui/spinner/index.tsx",
@@ -591,6 +683,9 @@
         "@base-ui/react",
         "clsx",
         "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "classes"
       ],
       "files": [
         {
@@ -612,7 +707,8 @@
       ],
       "registryDependencies": [
         "button",
-        "spinner"
+        "spinner",
+        "classes"
       ],
       "files": [
         {
@@ -631,6 +727,9 @@
         "@base-ui/react",
         "clsx",
         "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "classes"
       ],
       "files": [
         {
@@ -2912,6 +3011,94 @@
       "files": [
         {
           "path": "src/registry/pure-ui/examples/popover/popover-custom-trigger-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "radio-group-demo",
+      "type": "registry:example",
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/radio-group/radio-group-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "radio-group-disabled-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "radio-group"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/radio-group/radio-group-disabled-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "radio-group-basic-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "radio-group"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/radio-group/radio-group-basic-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "radio-group-with-description-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "radio-group"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/radio-group/radio-group-with-description-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "radio-group-custom-layout-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "radio-group"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/radio-group/radio-group-custom-layout-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "radio-group-controlled-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "radio-group"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/radio-group/radio-group-controlled-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "radio-group-orientation-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "radio-group"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/radio-group/radio-group-orientation-demo.tsx",
           "type": "registry:example"
         }
       ]

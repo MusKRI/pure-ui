@@ -11,7 +11,8 @@
     "@base-ui/react"
   ],
   "registryDependencies": [
-    "separator"
+    "separator",
+    "classes"
   ],
   "files": [
     {
