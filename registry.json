@@ -675,6 +675,27 @@
       ]
     },
     {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "A customizable tabs component",
+      "dependencies": [
+        "@base-ui/react",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "classes"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/ui/tabs/index.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/tabs.tsx"
+        }
+      ]
+    },
+    {
       "name": "textarea",
       "type": "registry:ui",
       "title": "Textarea",
@@ -3554,6 +3575,110 @@
       "files": [
         {
           "path": "src/registry/pure-ui/examples/switch/custom-switch-card-style-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "tabs-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "tabs"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/tabs/tabs-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "tabs-segmented-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "tabs"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/tabs/tabs-segmented-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "tabs-underline-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "tabs"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/tabs/tabs-underline-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "tabs-card-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "tabs"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/tabs/tabs-card-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "tabs-horizontal-orientation-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "tabs"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/tabs/tabs-horizontal-orientation-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "tabs-vertical-orientation-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "tabs"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/tabs/tabs-vertical-orientation-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "tabs-panel-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "tabs"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/tabs/tabs-panel-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "tabs-auto-height-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "tabs"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/tabs/tabs-auto-height-demo.tsx",
           "type": "registry:example"
         }
       ]

@@ -139,7 +139,6 @@ const pureUIComponents = [
     title: "Combobox",
     type: "link",
     href: "/docs/components/combobox",
-    tag: "NEW",
   },
   {
     id: "detached-triggers",
@@ -253,6 +252,13 @@ const pureUIComponents = [
     title: "Switch",
     type: "link",
     href: "/docs/components/switch",
+  },
+  {
+    id: "tabs",
+    title: "Tabs",
+    type: "link",
+    href: "/docs/components/tabs",
+    tag: "NEW",
   },
   {
     id: "textarea",

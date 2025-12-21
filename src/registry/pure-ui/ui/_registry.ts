@@ -578,6 +578,24 @@ export const pureUIComponents: Registry["items"] = [
       "clsx",
     ],
   },
+
+  // Tabs
+  {
+    name: "tabs",
+    type: "registry:ui",
+    title: "Tabs",
+    description: "A customizable tabs component",
+    files: [
+      {
+        path: "ui/tabs/index.tsx",
+        type: "registry:ui",
+        target: "components/ui/tabs.tsx",
+      },
+    ],
+    registryDependencies: ["classes"],
+    dependencies: ["@base-ui/react", "clsx", "tailwind-merge"],
+  },
+
   // Textarea
   {
     name: "textarea",
