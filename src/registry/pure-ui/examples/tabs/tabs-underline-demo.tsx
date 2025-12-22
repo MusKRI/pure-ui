@@ -7,7 +7,7 @@ export function TabsUnderlineDemo() {
   return (
     <div className="flex flex-col gap-10">
       <Tabs defaultValue="source-code" variant="underline">
-        <div className="border-b max-w-full overflow-hidden">
+        <div className="border-b">
           <TabsList>
             <TabsTrigger value="source-code">
               <SourceCodeIcon />
@@ -16,9 +16,9 @@ export function TabsUnderlineDemo() {
             <TabsTrigger value="chart-bubble">
               <ChartBubbleIcon />
               Issues
-              <Badge variant="secondary" className="border-border text-[11px]">
+              {/* <Badge variant="secondary" className="border-border text-[11px]">
                 10
-              </Badge>
+              </Badge> */}
             </TabsTrigger>
             <TabsTrigger value="git-pull-request">
               <GitPullRequestIcon />
@@ -33,7 +33,7 @@ export function TabsUnderlineDemo() {
       </Tabs>
 
       <Tabs defaultValue="beachfront" variant="underline">
-        <div className="border-b max-w-full overflow-hidden">
+        <div className="border-b">
           <TabsList className="*:data-[slot=tabs-trigger]:flex-col *:data-[slot=tabs-trigger]:gap-1 *:data-[slot=tabs-trigger]:[&_svg]:size-5">
             <TabsTrigger value="beachfront">
               <BeachIcon />

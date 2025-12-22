@@ -59,8 +59,11 @@ function TabsList({ className, children, ...props }: TabsListProps) {
     <TabsPrimitive.List
       data-slot="tabs-list"
       className={cn(
-        "relative z-0 flex max-w-full w-fit items-center justify-start gap-x-0.5 text-muted-foreground data-[orientation=vertical]:flex-col p-1 data-[orientation=horizontal]:overflow-x-auto data-[orientation=horizontal]:overflow-y-hidden",
-        variant === "segmented" && "rounded-[12px] bg-muted ",
+        "relative z-0 flex max-w-full w-fit items-center justify-start gap-x-0.5 text-muted-foreground data-[orientation=vertical]:flex-col max-sm:data-[orientation=horizontal]:overflow-x-auto max-sm:data-[orientation=horizontal]:overflow-y-hidden",
+        variant === "segmented" && "rounded-[12px] bg-muted p-1",
+        variant === "underline" &&
+          "data-[orientation=vertical]:px-1 data-[orientation=horizontal]:py-1",
+        variant === "card" && "p-1",
         className
       )}
       {...props}
@@ -69,12 +72,13 @@ function TabsList({ className, children, ...props }: TabsListProps) {
       <TabsPrimitive.Indicator
         data-slot="tabs-indicator"
         className={cn(
-          "border border-border/10 absolute left-0 bottom-0 -translate-y-(--active-tab-bottom) h-(--active-tab-height) -z-1 w-(--active-tab-width) translate-x-(--active-tab-left) transition-[translate,width] duration-200 ease-[cubic-bezier(.25,.46,.45,.94)] will-change-[translate,width] transform-gpu",
+          "-translate-y-(--active-tab-bottom) absolute bottom-0 left-0 h-(--active-tab-height) w-(--active-tab-width) translate-x-(--active-tab-left) transition-[translate,width] duration-200 ease-[cubic-bezier(.25,.46,.45,.94)] will-change-[translate,width] transform-gpu",
           variant === "segmented" &&
-            "h-(--active-tab-height) rounded-md bg-card dark:bg-secondary shadow-sm",
+            "h-(--active-tab-height) rounded-md bg-card dark:bg-secondary shadow-sm border border-border/10 -z-1",
           variant === "underline" &&
-            "data-[orientation=vertical]:-translate-x-px z-5 bg-primary data-[orientation=horizontal]:h-0.5 data-[orientation=vertical]:w-0.5 data-[orientation=horizontal]:translate-y-px",
-          variant === "card" && "rounded-md bg-secondary"
+            "data-[orientation=vertical]:-translate-x-px z-10 bg-primary data-[orientation=horizontal]:h-0.5 data-[orientation=vertical]:w-0.5 data-[orientation=horizontal]:translate-y-[1.3px]",
+          variant === "card" &&
+            "rounded-md bg-secondary border border-border/10 -z-1"
         )}
       />
     </TabsPrimitive.List>
