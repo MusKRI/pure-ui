@@ -8,245 +8,79 @@ import React, {
   useState,
 } from "react";
 import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion";
-import { motion, AnimatePresence, MotionConfig } from "motion/react";
 
 import { cn } from "@/lib/classes";
 
-const animationPresets = {
-  none: {
-    initial: {},
-    animate: {},
-    exit: {},
-  },
-  fade: {
-    initial: { opacity: 0, height: 0 },
-    animate: { opacity: 1, height: `var(--accordion-panel-height)` },
-    exit: { opacity: 0, height: 0 },
-  },
-  perspective: {
-    initial: {
-      opacity: 0,
-      rotateX: -90,
-      transformOrigin: "top center",
-      transformPerspective: 1000,
-      height: 0,
-    },
-    animate: {
-      opacity: 1,
-      rotateX: 0,
-      transformOrigin: "top center",
-      transformPerspective: 1000,
-      height: `var(--accordion-panel-height)`,
-    },
-    exit: {
-      opacity: 0,
-      rotateX: -90,
-      transformOrigin: "top center",
-      transformPerspective: 1000,
-      height: 0,
-    },
-  },
-  perspectiveBlur: {
-    initial: {
-      opacity: 0,
-      rotateX: -90,
-      transformOrigin: "top center",
-      transformPerspective: 1000,
-      height: 0,
-      filter: "blur(10px)",
-    },
-    animate: {
-      opacity: 1,
-      rotateX: 0,
-      transformOrigin: "top center",
-      transformPerspective: 1000,
-      height: `var(--accordion-panel-height)`,
-      filter: "blur(0px)",
-    },
-    exit: {
-      opacity: 0,
-      rotateX: -90,
-      transformOrigin: "top center",
-      transformPerspective: 1000,
-      height: 0,
-      filter: "blur(10px)",
-    },
-  },
-  scale: {
-    initial: {
-      opacity: 0,
-      scale: 0.9,
-      transformOrigin: "center",
-      height: 0,
-    },
-    animate: {
-      opacity: 1,
-      scale: 1,
-      transformOrigin: "center",
-      height: `var(--accordion-panel-height)`,
-    },
-    exit: {
-      opacity: 0,
-      scale: 0.9,
-      transformOrigin: "center",
-      height: 0,
-    },
-  },
-  slide: {
-    initial: {
-      opacity: 0,
-      height: 0,
-      y: 10,
-    },
-    animate: {
-      opacity: 1,
-      height: `var(--accordion-panel-height)`,
-      y: 0,
-    },
-    exit: {
-      opacity: 0,
-      height: 0,
-      y: 10,
-    },
-  },
-} as const;
+const cssAnimationPresets = {
+  none: "transition-none",
+  fade: [
+    `[transition-property:opacity,height] [will-change:opacity,height]`,
+    `data-starting-style:opacity-0 data-ending-style:opacity-0 data-starting-style:h-0 data-ending-style:h-0`,
+  ],
+  scale: [
+    `[transition-property:scale,opacity,height] [will-change:scale,opacity,height] origin-left`,
+    `data-starting-style:scale-85 data-starting-style:opacity-0 data-starting-style:h-0 data-ending-style:opacity-0 data-ending-style:h-0 data-ending-style:scale-85`,
+  ],
+  slide: [
+    `[transition-property:translate,opacity,height] [will-change:translate,opacity,height]`,
+    `data-starting-style:opacity-0 data-starting-style:translate-y-[10px] data-ending-style:translate-y-[10px] data-ending-style:opacity-0 data-ending-style:h-0 data-starting-style:h-0`,
+  ],
+  perspective: [
+    `[transition-property:opacity,rotateX,rotateY,transform,height] [will-change:opacity,rotateX,rotateY,transform,height]`,
+    `[transform:perspective(1000px)] origin-top`,
+    `data-starting-style:h-0 data-ending-style:h-0`,
+    `data-starting-style:opacity-0 data-ending-style:opacity-0`,
+    `data-starting-style:-rotate-x-[90deg] data-ending-style:-rotate-x-[90deg]`,
+  ],
+  perspectiveBlur: [
+    `[transition-property:opacity,rotateX,rotateY,transform,height,filter] [will-change:opacity,rotateX,rotateY,transform,height,filter]`,
+    `[transform:perspective(1000px)] origin-top`,
+    `data-starting-style:h-0 data-ending-style:h-0`,
+    `data-starting-style:opacity-0 data-ending-style:opacity-0`,
+    `data-starting-style:-rotate-x-[90deg] data-ending-style:-rotate-x-[90deg]`,
+    `data-starting-style:blur-[9px] data-ending-style:blur-[9px]`,
+  ],
+};
 
-const transitionPresets = {
-  inExpo: {
-    type: "tween",
-    duration: 0.25,
-    ease: [0.95, 0.05, 0.795, 0.035],
-  },
-  outExpo: {
-    type: "tween",
-    duration: 0.25,
-    ease: [0.19, 1, 0.22, 1],
-  },
-  inOutExpo: {
-    type: "tween",
-    duration: 0.235,
-    ease: [1, 0, 0, 1],
-  },
-  quickOut: {
-    type: "tween",
-    duration: 0.2,
-    ease: [0, 0, 0.2, 1],
-  },
-  snappyOut: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.19, 1, 0.22, 1],
-  },
-  in: {
-    type: "tween",
-    duration: 0.235,
-    ease: [0.42, 0, 1, 1],
-  },
-  out: {
-    type: "tween",
-    duration: 0.185,
-    ease: [0, 0, 0.58, 1],
-  },
-  inOut: {
-    type: "tween",
-    duration: 0.225,
-    ease: [0.42, 0, 0.58, 1],
-  },
-  outIn: {
-    type: "tween",
-    duration: 0.235,
-    ease: [0.1, 0.7, 0.9, 0.5],
-  },
-  inQuad: {
-    type: "tween",
-    duration: 0.235,
-    ease: [0.55, 0.085, 0.68, 0.53],
-  },
-  outQuad: {
-    type: "tween",
-    duration: 0.25,
-    ease: [0.25, 0.46, 0.45, 0.94],
-  },
-  inOutQuad: {
-    type: "tween",
-    duration: 0.22,
-    ease: [0.455, 0.03, 0.515, 0.955],
-  },
-  inCubic: {
-    type: "tween",
-    duration: 0.26,
-    ease: [0.55, 0.055, 0.675, 0.19],
-  },
-  outCubic: {
-    type: "tween",
-    duration: 0.235,
-    ease: [0.215, 0.61, 0.355, 1],
-  },
-  inOutCubic: {
-    type: "tween",
-    duration: 0.35,
-    ease: [0.645, 0.045, 0.355, 1],
-  },
-  inQuart: {
-    type: "tween",
-    duration: 0.25,
-    ease: [0.895, 0.03, 0.685, 0.22],
-  },
-  outQuart: {
-    type: "tween",
-    duration: 0.25,
-    ease: [0.165, 0.84, 0.44, 1],
-  },
-  inOutQuart: {
-    type: "tween",
-    duration: 0.25,
-    ease: [0.77, 0, 0.175, 1],
-  },
-  inQuint: {
-    type: "tween",
-    duration: 0.25,
-    ease: [0.755, 0.05, 0.855, 0.06],
-  },
-  outQuint: {
-    type: "tween",
-    duration: 0.25,
-    ease: [0.23, 1, 0.32, 1],
-  },
-  inOutQuint: {
-    type: "tween",
-    duration: 0.26,
-    ease: [0.86, 0, 0.07, 1],
-  },
-  inCirc: {
-    type: "tween",
-    duration: 0.25,
-    ease: [0.6, 0.04, 0.98, 0.335],
-  },
-  outCirc: {
-    type: "tween",
-    duration: 0.27,
-    ease: [0.075, 0.82, 0.165, 1],
-  },
-  inOutCirc: {
-    type: "tween",
-    duration: 0.25,
-    ease: [0.785, 0.135, 0.15, 0.86],
-  },
-  inOutBase: {
-    type: "tween",
-    duration: 0.25,
-    ease: [0.25, 0.1, 0.25, 1],
-  },
-} as const;
+const cssTransitionPresets = {
+  inExpo: `duration-[0.35s] ease-[cubic-bezier(0.95,0.05,0.795,0.035)]`,
+  outExpo: `duration-[0.35s] ease-[cubic-bezier(0.19,1,0.22,1)]`,
+  inOutExpo: `duration-[0.35s] ease-[cubic-bezier(1,0,0,1)]`,
+  anticipate: `duration-[0.35s] ease-[cubic-bezier(1,-0.4,0.35,0.95)]`,
+  quickOut: `duration-[0.35s] ease-out`,
+  overshootOut: `duration-[0.35s] ease-[cubic-bezier(0.175,0.885,0.32,1.275)]`,
+  swiftOut: `duration-[0.35s] ease-[cubic-bezier(0.175,0.885,0.32,1.1)]`,
+  snappyOut: `duration-[0.35s] ease-[cubic-bezier(0.19,1,0.22,1)]`,
+  in: `duration-[0.35s] ease-[cubic-bezier(0.42,0,1,1)]`,
+  out: `duration-[0.35s] ease-[cubic-bezier(0,0,0.58,1)]`,
+  inOut: `duration-[0.25s] ease-[cubic-bezier(0.42,0,0.58,1)]`,
+  outIn: `duration-[0.35s] ease-[cubic-bezier(0.1,0.7,0.9,0.5)]`,
+  inQuad: `duration-[0.35s] ease-[cubic-bezier(0.55,0.085,0.68,0.53)]`,
+  outQuad: `duration-[0.25s] ease-[cubic-bezier(0.25,0.46,0.45,0.94)]`,
+  inOutQuad: `duration-[0.32s] ease-[cubic-bezier(0.455,0.03,0.515,0.955)]`,
+  inCubic: `duration-[0.35s] ease-[cubic-bezier(0.55,0.055,0.675,0.19)]`,
+  outCubic: `duration-[0.35s] ease-[cubic-bezier(0.215,0.61,0.355,1)]`,
+  inOutCubic: `duration-[0.35s] ease-[cubic-bezier(0.645,0.045,0.355,1)]`,
+  inQuart: `duration-[0.35s] ease-[cubic-bezier(0.895,0.03,0.685,0.22)]`,
+  outQuart: `duration-[0.35s] ease-[cubic-bezier(0.165,0.84,0.44,1)]`,
+  inOutQuart: `duration-[0.35s] ease-[cubic-bezier(0.77,0,0.175,1)]`,
+  inQuint: `duration-[0.35s] ease-[cubic-bezier(0.755,0.05,0.855,0.06)]`,
+  outQuint: `duration-[0.35s] ease-[cubic-bezier(0.23,1,0.32,1)]`,
+  inOutQuint: `duration-[0.35s] ease-[cubic-bezier(0.86,0,0.07,1)]`,
+  inCirc: `duration-[0.35s] ease-[cubic-bezier(0.6,0.04,0.98,0.335)]`,
+  outCirc: `duration-[0.35s] ease-[cubic-bezier(0.075,0.82,0.165,1)]`,
+  inOutCirc: `duration-[0.35s] ease-[cubic-bezier(0.785,0.135,0.15,0.86)]`,
+  inOutBase: `duration-[0.35s] ease-[cubic-bezier(0.25,0.1,0.25,1)]`,
+};
 
-type AnimationPreset = keyof typeof animationPresets;
-type TransitionPreset = keyof typeof transitionPresets;
+type CSSAnimationPreset = keyof typeof cssAnimationPresets;
+type CSSTransitionPreset = keyof typeof cssTransitionPresets;
 
-type AccordionVariant = "default" | "swiss";
+type AccordionVariant = "default" | "card" | "swiss";
 
 interface AccordionContextType {
-  animationPreset?: AnimationPreset;
-  transitionPreset?: TransitionPreset;
+  animationPreset?: CSSAnimationPreset;
+  transitionPreset?: CSSTransitionPreset;
   reduceMotion?: boolean;
   value: AccordionProps["value"];
   onValueChange: AccordionProps["onValueChange"];
@@ -266,8 +100,8 @@ function useAccordion() {
 }
 
 interface AccordionProps extends AccordionPrimitive.Root.Props {
-  animationPreset?: AnimationPreset;
-  transitionPreset?: TransitionPreset;
+  animationPreset?: CSSAnimationPreset;
+  transitionPreset?: CSSTransitionPreset;
   reduceMotion?: boolean;
   variant?: AccordionVariant;
 }
@@ -276,8 +110,8 @@ function Accordion({
   value,
   defaultValue,
   onValueChange,
-  animationPreset = "slide",
-  transitionPreset = "outCubic",
+  animationPreset = "fade",
+  transitionPreset = "outQuad",
   reduceMotion,
   variant = "default",
   className,
@@ -297,32 +131,32 @@ function Accordion({
   };
 
   return (
-    <MotionConfig reducedMotion={reduceMotion ? "always" : "never"}>
-      <AccordionContext.Provider
-        value={{
-          value: accordionValue,
-          onValueChange: handleValueChange,
-          animationPreset,
-          transitionPreset,
-          reduceMotion,
-          variant,
-        }}
-      >
-        <AccordionPrimitive.Root
-          data-slot="accordion"
-          value={accordionValue}
-          onValueChange={handleValueChange}
-          multiple={multiple}
-          className={cn(
-            "w-full",
-            variant === "default" && "flex flex-col gap-1.5",
-            variant === "swiss" && "rounded-2xl",
-            className
-          )}
-          {...props}
-        />
-      </AccordionContext.Provider>
-    </MotionConfig>
+    <AccordionContext.Provider
+      value={{
+        value: accordionValue,
+        onValueChange: handleValueChange,
+        animationPreset,
+        transitionPreset,
+        reduceMotion,
+        variant,
+      }}
+    >
+      <AccordionPrimitive.Root
+        data-slot="accordion"
+        value={accordionValue}
+        onValueChange={handleValueChange}
+        multiple={multiple}
+        className={cn(
+          "w-full",
+          variant === "default" &&
+            "flex flex-col border rounded-2xl outline-hidden",
+          variant === "card" && "flex flex-col gap-1.5",
+          variant === "swiss" && "rounded-2xl",
+          className
+        )}
+        {...props}
+      />
+    </AccordionContext.Provider>
   );
 }
 
@@ -379,13 +213,16 @@ function AccordionItem({
         value={itemValue}
         onOpenChange={handleItemOpenChange}
         className={cn(
-          `w-full contain-layout outline-hidden`,
+          "w-full contain-layout outline-hidden",
           // Base transitions - smooth all property changes
           `[transition-property:border-radius,margin,border]
            duration-260
            ease-[cubic-bezier(0.215,0.61,0.355,1)]
            will-change-[border-radius,margin,border]`,
-          variant === "default" && "border p-1 rounded-[14px]",
+          "focus-within:relative focus-within:z-2",
+          variant === "default" &&
+            "first:rounded-t-2xl last:rounded-b-2xl border-b border-border last:border-b-0 bg-card",
+          variant === "card" && "border p-1 rounded-[14px]",
           variant === "swiss" && [
             "bg-popover border-x border-border/60 relative overflow-hidden",
 
@@ -451,11 +288,15 @@ function AccordionTrigger({
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          "w-full text-left text-sm p-4 flex items-center cursor-pointer [transition-property:border-radius] duration-260 ease-[cubic-bezier(0.215,0.61,0.355,1)] will-change-[border-radius]",
-          `not-data-panel-open:bg-secondary/80 data-panel-open:bg-secondary/80 data-panel-open:rounded-b-none not-data-panel-open:hover:bg-accent focus-visible:bg-accent not-data-panel-open:dark:hover:bg-accent dark:focus-visible:bg-accent`,
-          `data-disabled:cursor-not-allowed data-disabled:opacity-50 data-disabled:pointer-events-none`,
-          `focus-visible:outline-2 focus-visible:outline-ring focus-visible:outline-offset-2`,
-          variant === "default" && "rounded-lg",
+          "w-full text-left text-sm p-4 flex items-center cursor-pointer",
+          "[transition-property:background-color,border-radius] duration-200 ease-[cubic-bezier(0.215,0.61,0.355,1)] will-change-[background-color,border-radius]",
+          `focus-visible:bg-accent not-data-panel-open:dark:hover:bg-accent dark:focus-visible:bg-accent data-disabled:cursor-not-allowed data-disabled:opacity-50 data-disabled:pointer-events-none focus-visible:outline-2 focus-visible:outline-ring`,
+          variant === "default" && [
+            `[&:where([data-slot=accordion-item]:first-child_&)]:rounded-t-2xl [&:where([data-slot=accordion-item]:last-child_&)]:rounded-b-2xl not-data-panel-open:bg-secondary/80 data-panel-open:bg-card`,
+          ],
+          variant === "card" && [
+            `rounded-lg not-data-panel-open:bg-secondary/80 data-panel-open:bg-secondary/80 data-panel-open:rounded-b-none`,
+          ],
           className
         )}
         {...props}
@@ -505,67 +346,59 @@ interface AccordionPanelProps extends AccordionPrimitive.Panel.Props {}
 
 function AccordionPanel({
   className,
-  hiddenUntilFound = false,
+  children,
+  style,
   ...props
 }: AccordionPanelProps) {
-  const { open } = useAccordionItem();
   const {
-    animationPreset = "slide",
+    variant = "default",
+    animationPreset = "fade",
     transitionPreset = "snappyOut",
     reduceMotion = false,
   } = useAccordion();
 
-  const animationConfig = useMemo(() => {
-    if (reduceMotion) return animationPresets.none;
+  const cssAnimationConfig = useMemo(() => {
+    if (reduceMotion) return cssAnimationPresets.none;
 
     if (animationPreset) {
-      return animationPresets[animationPreset];
+      return cssAnimationPresets[animationPreset];
     }
 
-    return animationPresets.slide;
+    return cssAnimationPresets.fade;
   }, [animationPreset, reduceMotion]);
 
-  const transitionConfig = useMemo(() => {
-    if (reduceMotion) return animationPresets.none;
+  const cssTransitionConfig = useMemo(() => {
+    if (reduceMotion) return cssAnimationPresets.none;
 
     if (transitionPreset) {
-      return transitionPresets[transitionPreset];
+      return cssTransitionPresets[transitionPreset];
     }
 
-    return transitionPresets.inOutExpo;
+    return cssTransitionPresets.inOutExpo;
   }, [transitionPreset, reduceMotion]);
 
   return (
-    <AnimatePresence initial={false}>
-      {open && (
-        <AccordionPrimitive.Panel
-          data-slot="accordion-panel"
-          hiddenUntilFound={hiddenUntilFound}
-          keepMounted
-          render={(renderProps) => {
-            return (
-              <motion.div
-                key="accordion-panel"
-                initial={animationConfig.initial}
-                animate={animationConfig.animate}
-                exit={animationConfig.exit}
-                transition={transitionConfig}
-                style={{
-                  willChange: "height, opacity, transform",
-                  ...renderProps.style,
-                }}
-                className={cn(`overflow-hidden text-sm`, className)}
-              >
-                <div data-slot="accordion-panel-content" className="p-3 pl-4">
-                  {renderProps.children}
-                </div>
-              </motion.div>
-            );
-          }}
-          {...props}
-        />
+    <AccordionPrimitive.Panel
+      data-slot="accordion-panel"
+      className={cn(
+        "overflow-hidden text-sm h-(--accordion-panel-height)",
+        cssAnimationConfig,
+        cssTransitionConfig,
+        className
       )}
-    </AnimatePresence>
+      style={{
+        willChange: "height, opacity, transform",
+        ...style,
+      }}
+      {...props}
+    >
+      <div
+        data-slot="accordion-panel-content"
+        className={cn(variant === "default" ? "pl-4 pr-4 pb-3" : "p-3 pl-4")}
+      >
+        {children}
+      </div>
+    </AccordionPrimitive.Panel>
   );
 }
 

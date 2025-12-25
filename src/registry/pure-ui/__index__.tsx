@@ -618,6 +618,24 @@ export const Index: Record<string, Record<string, any>> = {
       categories: undefined,
       meta: undefined,
     },
+    "accordion-card-variant-demo": {
+      name: "accordion-card-variant-demo",
+      description: "",
+      type: "registry:example",
+      registryDependencies: ["accordion"],
+      files: [{
+        path: "registry/pure-ui/examples/accordion/accordion-card-variant-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: React.lazy(async () => {
+        const mod = await import("@/registry/pure-ui/examples/accordion/accordion-card-variant-demo.tsx")
+        const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+        return { default: mod.default || mod[exportName] }
+      }),
+      categories: undefined,
+      meta: undefined,
+    },
     "accordion-multiple-expanded-demo": {
       name: "accordion-multiple-expanded-demo",
       description: "",

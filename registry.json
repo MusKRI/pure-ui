@@ -814,6 +814,19 @@
       ]
     },
     {
+      "name": "accordion-card-variant-demo",
+      "type": "registry:example",
+      "registryDependencies": [
+        "accordion"
+      ],
+      "files": [
+        {
+          "path": "src/registry/pure-ui/examples/accordion/accordion-card-variant-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "accordion-multiple-expanded-demo",
       "type": "registry:example",
       "registryDependencies": [
