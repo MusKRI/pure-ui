@@ -368,7 +368,7 @@ function AccordionPanel({
   }, [animationPreset, reduceMotion]);
 
   const cssTransitionConfig = useMemo(() => {
-    if (reduceMotion) return cssAnimationPresets.none;
+    if (reduceMotion) return "";
 
     if (transitionPreset) {
       return cssTransitionPresets[transitionPreset];
