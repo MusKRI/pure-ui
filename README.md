@@ -1,6 +1,6 @@
 # Pure UI
 
-**Pure UI** is a collection of beautifully designed, accessible, and composable components for your React apps. Built on top of [Base UI](https://base-ui.com/) and styled with [Tailwind CSS](https://tailwindcss.com/), it's designed for you to copy, paste, and own.
+**Pure UI** is an collection of beautifully designed, accessible, and composable components for your React apps. Built on top of [Base UI](https://base-ui.com/) and styled with [Tailwind CSS](https://tailwindcss.com/), it's designed for you to copy, paste, and own.
 
 <a href="https://pure.kam-ui.com">
   <img alt="Pure UI" src="https://github.com/MusKRI/pure-ui/blob/main/public/images/og.png">
