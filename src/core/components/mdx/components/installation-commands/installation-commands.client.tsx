@@ -30,7 +30,7 @@ export function InstallationCommandsClient({
   }, [installationTabs]);
 
   const [activeTab, setActiveTab] = useState<string>(
-    defaultTab || tabs[0]?.name || ""
+    defaultTab || tabs[0]?.name || "",
   );
 
   const handleTabChange = useCallback((tabName: string) => {
@@ -55,7 +55,7 @@ export function InstallationCommandsClient({
                     "focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
                     activeTab === tab.name
                       ? "text-foreground"
-                      : "text-muted-foreground hover:text-foreground"
+                      : "text-muted-foreground hover:text-foreground",
                   )}
                   style={{ willChange: "transform" }}
                 >
@@ -75,7 +75,7 @@ export function InstallationCommandsClient({
                           "size-4",
                           activeTab === tab.name
                             ? "text-primary grayscale-0"
-                            : "text-muted-foreground/40 grayscale-100"
+                            : "text-muted-foreground/40 grayscale-100",
                         )}
                       />
                     </motion.div>
@@ -117,7 +117,7 @@ export function InstallationCommandsClient({
                                 "[&::-webkit-scrollbar-track]:bg-transparent",
                                 "[&::-webkit-scrollbar-thumb]:bg-border",
                                 "[&::-webkit-scrollbar-thumb]:rounded-full",
-                                "[&::-webkit-scrollbar-thumb:hover]:bg-muted-foreground/30"
+                                "[&::-webkit-scrollbar-thumb:hover]:bg-muted-foreground/30",
                               )}
                               dangerouslySetInnerHTML={{
                                 __html: tab.content,
@@ -133,7 +133,7 @@ export function InstallationCommandsClient({
                                 "[&::-webkit-scrollbar-track]:bg-transparent",
                                 "[&::-webkit-scrollbar-thumb]:bg-border",
                                 "[&::-webkit-scrollbar-thumb]:rounded-full",
-                                "[&::-webkit-scrollbar-thumb:hover]:bg-muted-foreground/30"
+                                "[&::-webkit-scrollbar-thumb:hover]:bg-muted-foreground/30",
                               )}
                             >
                               <code className="text-foreground font-mono">
@@ -141,7 +141,7 @@ export function InstallationCommandsClient({
                               </code>
                             </pre>
                           )}
-                          <CopyButton value={tab.content} />
+                          <CopyButton value={tab.rawContent} />
                         </motion.div>
                       )}
                     </Tabs.Panel>
